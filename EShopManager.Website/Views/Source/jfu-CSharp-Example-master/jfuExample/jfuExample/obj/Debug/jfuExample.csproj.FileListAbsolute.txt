@@ -1,0 +1,4 @@
+F:\Roy桌面\周亞寬\inno\EShopManager.Website\Views\Source\jfu-CSharp-Example-master\jfuExample\jfuExample\bin\jfuExample.dll
+F:\Roy桌面\周亞寬\inno\EShopManager.Website\Views\Source\jfu-CSharp-Example-master\jfuExample\jfuExample\bin\jfuExample.pdb
+F:\Roy桌面\周亞寬\inno\EShopManager.Website\Views\Source\jfu-CSharp-Example-master\jfuExample\jfuExample\obj\Debug\jfuExample.dll
+F:\Roy桌面\周亞寬\inno\EShopManager.Website\Views\Source\jfu-CSharp-Example-master\jfuExample\jfuExample\obj\Debug\jfuExample.pdb

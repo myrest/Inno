@@ -1,0 +1,11 @@
+﻿input{ width:150px;}
+#panellogin{ padding: 10px 10px 8px 10px;display:none; width:230px;}
+#btnLogin {padding: 4px 8px 3px 20px;text-decoration: none;position: relative;}
+#btnLogin span.ui-icon {margin: 0 5px 0 0;position: absolute;left: 5px;}
+td:first-child { padding-right:3px;}
+
+#panelReg{ padding: 10px 10px 8px 10px; display:none; visibility:hidden; width:250px;}
+#btnReg {padding: 4px 8px 3px 20px;text-decoration: none;position: relative;}
+#btnReg span.ui-icon {margin: 0 5px 0 0;position: absolute;left: 5px;}
+
+#ToLoginPanel{ display:none;}

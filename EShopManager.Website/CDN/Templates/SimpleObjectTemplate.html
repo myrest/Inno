@@ -1,0 +1,29 @@
+﻿{for obj in data} <span>
+    <table>
+        <tr>
+            <td>
+                Alias :
+            </td>
+            <td>
+                <input type="text" name="Alias" value="${obj.a}" />
+            </td>
+            <tr>
+                <td>
+                    Description :
+                </td>
+                <td>
+                    <input type="text" name="Descript" value="${obj.d}" size="50" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Description Detail :
+                </td>
+                <td>
+                    <textarea name="DescriptDetail" rows="2" cols="50">${obj.dd}</textarea>
+                    <a href="javascript:void(0);" onclick="utility.RemoveSObj($(this).parent().parent());">Remove</a>
+                </td>
+            </tr>
+        </tr>
+    </table>
+</span>{/for}

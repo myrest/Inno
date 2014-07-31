@@ -1,0 +1,50 @@
+﻿<table class="fancytable">
+<thead>
+<tr class="headerrow">
+    <td class="txt-left" width="auto">
+        &nbsp;
+    </td>
+    {for col in cList}
+    <td class="itemnum">
+        ${col.k}
+    </td>
+    {/for}
+    <td class="itemnum">
+        小計
+    </td>
+</tr>
+</thead>
+<tbody>
+    {var i = 0;}
+    {for row in rList}
+    {var odclass = (i%2 == 0) ? "datarowodd" : "dataroweven";}
+    <tr class="${odclass}">
+        <td>
+            ${row.k}
+        </td>
+        {for col in cList}
+        <td id="${row.v}-${col.v}" class="txt-right itemnums">
+            &nbsp;
+        </td>
+        {/for}
+        <td id="${row.v}-vtotal" class="txt-right">
+            0
+        </td>
+    </tr>
+    {var i = i + 1;}
+    {/for}
+</tbody>
+<tfoot>
+    <td class="txt-left">
+        小計
+    </td>
+    {for col in cList}
+    <td id="${col.v}-ctotal" class="txt-right">
+        0
+    </td>
+    {/for}
+    <td id="itemtotal" class="txt-right">
+        0
+    </td>
+</tfoot>
+</table>

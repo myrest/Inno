@@ -1,0 +1,12 @@
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\bin\Debug\DbSchemaGenerator.exe.config
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\obj\Debug\DbSchemaGenerator.csprojResolveAssemblyReference.cache
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\obj\Debug\DbSchemaGenerator.Form1.resources
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\obj\Debug\DbSchemaGenerator.Properties.Resources.resources
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\obj\Debug\DbSchemaGenerator.csproj.GenerateResource.Cache
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\bin\Debug\DbSchemaGenerator.exe
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\bin\Debug\DbSchemaGenerator.pdb
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\obj\Debug\DbSchemaGenerator.exe
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\obj\Debug\DbSchemaGenerator.pdb
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\bin\Debug\System.Data.SQLite.dll
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\SerenaHamilton\Documents\Visual Studio 2013\Projects\ConsoleTest\DbSchemaGenerator\bin\Debug\SQLite.Interop.dll

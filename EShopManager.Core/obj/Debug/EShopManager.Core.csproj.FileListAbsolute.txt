@@ -1,0 +1,13 @@
+D:\Inno\EShopManager.Core\obj\Debug\EShopManager.Core.csprojResolveAssemblyReference.cache
+D:\Inno\EShopManager.Core\obj\Debug\EShopManager.Core.Properties.Resources.resources
+D:\Inno\EShopManager.Core\obj\Debug\EShopManager.Core.csproj.GenerateResource.Cache
+D:\Inno\EShopManager.Core\bin\Debug\EShopManager.Core.dll
+D:\Inno\EShopManager.Core\bin\Debug\EShopManager.Core.pdb
+D:\Inno\EShopManager.Core\bin\Debug\Facebook.dll
+D:\Inno\EShopManager.Core\bin\Debug\log4net.dll
+D:\Inno\EShopManager.Core\bin\Debug\Rest.Core.dll
+D:\Inno\EShopManager.Core\bin\Debug\System.Data.SQLite.DLL
+D:\Inno\EShopManager.Core\bin\Debug\Rest.Core.pdb
+D:\Inno\EShopManager.Core\bin\Debug\Facebook.xml
+D:\Inno\EShopManager.Core\obj\Debug\EShopManager.Core.dll
+D:\Inno\EShopManager.Core\obj\Debug\EShopManager.Core.pdb

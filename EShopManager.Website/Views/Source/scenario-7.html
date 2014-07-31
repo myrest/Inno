@@ -1,0 +1,864 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>第3單元：BEST分析-7</title>
+<style type="text/css">
+#header {
+	height: 50px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	background-color: #F2F2F2;
+	z-index: 0;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+}
+#headerlogo {	width: 150px;
+	position: static;
+	left: 629px;
+	top: -5px;
+	z-index: 2;
+	float: left;
+	margin-left: 0px;
+}
+#headerword {
+	width: 740px;
+	position: absolute;
+	font-size: small;
+	height: 48px;
+	float: right;
+	z-index: 1;
+	padding-top: 0px;
+	margin-left: -370px;
+	left: 50%;
+	margin-top: 0px;
+}
+#header #headerword #header-word2 {
+	padding-top: 25px;
+	float: right;
+}
+.body0 {
+	width: 740px;
+	margin-left: -370px;
+	position: absolute;
+	left: 50%;
+	height: 1170px;
+	border-radius: 20px;
+	-webkit-box-shadow: 5px 5px 5px #CCCCCC;
+	box-shadow: 5px 5px 5px #CCCCCC;
+	background-image: url(pic/back-3.jpg);
+	font-size: small;
+	top: 65px;
+}
+#talk0 {
+	width: 250px;
+	z-index: 4;
+	margin-right: 0px;
+	float: right;
+	margin-bottom: 0px;
+	height: 800px;
+	right: 0px;
+	bottom: 0px;
+	position: fixed;
+	top: 50px;
+	-webkit-box-shadow: inset 1px 0px #CCCCCC;
+	box-shadow: inset 1px 0px #CCCCCC;
+	margin-top: 0px;
+	font-size: small;
+	padding-top: 0px;
+	background-color: #FFFFFF;
+}
+#bottom0 {
+	width: 740px;
+	margin-left: -370px;
+	left: 50%;
+	position: absolute;
+	top: 1250px;
+	text-align: center;
+	font-size: small;
+	margin-top: 10px;
+	padding-bottom: 10px;
+}
+#talk0 #talk1 {
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	position: static;
+	-webkit-box-shadow: 0px 0px 0px #CCCCCC;
+	box-shadow: 0px 0px 0px #CCCCCC;
+	width: 260px;
+	border-collapse: collapse;
+	margin-bottom: 0px;
+}
+#talk0 #talk2 {
+	margin-left: 10px;
+	margin-right: 10px;
+	position: static;
+	-webkit-box-shadow: 0px 0px 0px #CCCCCC;
+	box-shadow: 0px 0px 0px #CCCCCC;
+	width: 260px;
+	border-collapse: collapse;
+}
+.body0 #body1 {
+	height: 25px;
+	background-color: #4FA3C7;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	color: #FFFFFF;
+	padding-top: 8px;
+	text-align: center;
+}
+.body0 #body2 {
+	height: 220px;
+	padding-left: 5px;
+}
+.body0 #body3 {
+	height: 850px;
+	padding-left: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	background-color: #FFFFFF;
+	-webkit-box-shadow: 5px 5px 5px #CCCCCC;
+	box-shadow: 5px 5px 5px #CCCCCC;
+	padding-top: 10px;
+}
+.body0 #body4 {
+	height: 300px;
+	padding-left: 10px;
+	margin-left: 15px;
+	margin-right: 15px;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	background-color: #FFFFCC;
+	-webkit-box-shadow: 5px 5px 5px #CCCCCC;
+	box-shadow: 5px 5px 5px #CCCCCC;
+	padding-top: 10px;
+}
+
+#talk0 #talk1 #talk-up1 {
+	background-color: #F2F2F2;
+	height: 20px;
+	color: #000000;
+	border-top-left-radius: 10px;
+	padding-top: 8px;
+}
+
+
+.body0 #body2 #best1 {
+	height: 300px;
+	z-index: 0;
+	float: left;
+	margin-right: 5px;
+	margin-left: 15px;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	background-color: #CCFFFF;
+	-webkit-box-shadow: 5px 5px 5px #CCCCCC;
+	box-shadow: 5px 5px 5px #CCCCCC;
+	padding-top: 10px;
+	padding-left: 5px;
+}
+.body0 #body2 #best2 {
+	width: 22%;
+	height: 300px;
+	float: left;
+	margin-right: 5px;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	background-color: #CCFFFF;
+	-webkit-box-shadow: 5px 5px 5px #CCCCCC;
+	box-shadow: 5px 5px 5px #CCCCCC;
+	padding-left: 5px;
+	padding-top: 10px;
+	margin-left: 5px;
+}
+.body0 #body2 #best3 {
+	width: 22%;
+	height: 300px;
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	background-color: #CCFFFF;
+	-webkit-box-shadow: 5px 5px 5px #CCCCCC;
+	box-shadow: 5px 5px 5px #CCCCCC;
+	padding-left: 5px;
+	padding-top: 10px;
+}
+.body0 #body2 #best4 {
+	width: 22%;
+	height: 300px;
+	float: left;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	background-color: #CCFFFF;
+	-webkit-box-shadow: 5px 5px 5px #CCCCCC;
+	box-shadow: 5px 5px 5px #CCCCCC;
+	margin-left: 5px;
+	margin-right: 10px;
+	padding-left: 5px;
+	padding-top: 10px;
+}
+.body0 #body2 #best-2p {
+	height: 25px;
+	padding-top: 10px;
+	text-shadow: 0px 0px;
+}
+#otherteam {
+	width: 250px;
+	position: fixed;
+	left: 0px;
+	top: 50px;
+	z-index: 4;
+	margin-top: 10px;
+	margin-left: 0px;
+	float: left;
+	margin-bottom: 0px;
+	bottom: 0px;
+	height: 800px;
+	font-size: small;
+	-webkit-box-shadow: 1px 0px 1px #CCCCCC;
+	box-shadow: 1px 0px 1px #CCCCCC;
+	background-color: #FFFFFF;
+}
+#otherteam #otherteam1 {
+	background-color: #FFFFFF;
+}
+#otherteam #otherteam1 #otherteam-up {
+	height: 20px;
+	border-top-right-radius: 10px;
+	background-color: #F2F2F2;
+}
+#otherteam #otherteam1 #otherteam-1-center {
+}
+#otherteam #otherteam2 #otherteam-2-center {
+	padding-left: 10px;
+}
+#otherteam #otherteam2 {
+}
+#otherteam #otherteam2 #otherteam-up2 {
+	height: 20px;
+	border-top-right-radius: 10px;
+	background-color: #F2F2F2;
+	padding-top: 8px;
+}
+#otherteam #otherteam1 #otherteam-up1 {
+	height: 20px;
+	border-top-right-radius: 10px;
+	background-color: #F2F2F2;
+	padding-top: 8px;
+}
+.body0 #body3 #best-5 {
+	width: 24%;
+	height: 250px;
+	z-index: 1;
+	float: left;
+	margin-left: 0px;
+	margin-right: 0px;
+	border-radius: 30px;
+	padding-left: 5px;
+	padding-top: 10px;
+	-webkit-box-shadow: px px;
+	box-shadow: px px;
+}
+.body0 #body3 #best-6 {
+	width: 24%;
+	height: 250px;
+	z-index: 1;
+	float: left;
+	margin-left: 0px;
+	margin-right: 0px;
+	border-radius: 30px;
+	padding-left: 5px;
+	padding-top: 10px;
+	-webkit-box-shadow: px px;
+	box-shadow: px px;
+}
+.body0 #body3 #best-7 {
+	width: 24%;
+	height: 250px;
+	float: left;
+	z-index: 1;
+	border-radius: 30px;
+	padding-left: 5px;
+	padding-top: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	-webkit-box-shadow: px 0px;
+	box-shadow: px 0px;
+}
+.body0 #body3 #best-8 {
+	width: 24%;
+	height: 250px;
+	z-index: 1;
+	float: left;
+	margin-left: 0px;
+	margin-right: 0px;
+	border-radius: 30px;
+	padding-left: 5px;
+	padding-top: 10px;
+	-webkit-box-shadow: px px;
+	box-shadow: px px;
+}
+
+.body0 #body4 #best-5p {
+	width: 24%;
+	height: 250px;
+	z-index: 1;
+	float: left;
+	margin-left: 0px;
+	margin-right: 0px;
+	border-radius: 30px;
+	padding-left: 5px;
+	padding-top: 10px;
+	-webkit-box-shadow: px px;
+	box-shadow: px px;
+}
+.body0 #body4 #best-6p {
+	width: 24%;
+	height: 250px;
+	z-index: 1;
+	float: left;
+	margin-left: 0px;
+	margin-right: 0px;
+	border-radius: 30px;
+	padding-left: 5px;
+	padding-top: 10px;
+	-webkit-box-shadow: px px;
+	box-shadow: px px;
+}
+.body0 #body4 #best-7p {
+	width: 24%;
+	height: 250px;
+	float: left;
+	z-index: 1;
+	border-radius: 30px;
+	padding-left: 5px;
+	padding-top: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	-webkit-box-shadow: px 0px;
+	box-shadow: px 0px;
+}
+.body0 #body4 #best-8p {
+	width: 24%;
+	height: 250px;
+	z-index: 1;
+	float: left;
+	margin-left: 0px;
+	margin-right: 0px;
+	border-radius: 30px;
+	padding-left: 5px;
+	padding-top: 10px;
+	-webkit-box-shadow: px px;
+	box-shadow: px px;
+}
+
+
+
+.body0 #body2-a  {
+	padding-top: 10px;
+	height: 25px;
+	color: #000000;
+	text-shadow: 0px 0px;
+}
+.body0 #body2-b {
+	height: 25px;
+	padding-top: 10px;
+	color: #000000;
+	text-shadow: 0px 0px;
+}
+.body0 #body3 #best-5 #best-9 {
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 30px;
+	text-align: center;
+	padding-top: 5px;
+	background-color: #F2F2F2;
+}
+.body0 #body3 #best-5 #best-10 {
+	background-color: #FFFFCC;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	margin-top: 10px;
+	padding-top: 10px;
+	height: 300px;
+	-webkit-box-shadow: 5px 0px 5px #CCCCCC;
+	box-shadow: 5px 0px 5px #CCCCCC;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.body0 #body3 #best-6 #best-11 {
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 30px;
+	text-align: center;
+	padding-top: 5px;
+	background-color: #F2F2F2;
+}
+.body0 #body3 #best-6 #best-12 {
+	background-color: #FFFFCC;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	margin-top: 10px;
+	padding-top: 10px;
+	height: 300px;
+	-webkit-box-shadow: 5px 0px 5px #CCCCCC;
+	box-shadow: 5px 0px 5px #CCCCCC;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.body0 #body3 #best-7 #best-13 {
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 30px;
+	text-align: center;
+	height: 20px;
+	padding-top: 5px;
+	background-color: #F2F2F2;
+}
+.body0 #body3 #best-7 #best-14 {
+	background-color: #FFFFCC;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	margin-top: 10px;
+	padding-top: 10px;
+	height: 300px;
+	-webkit-box-shadow: 5px 0px 5px #CCCCCC;
+	box-shadow: 5px 0px 5px #CCCCCC;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.body0 #body3 #best-8 #best-15 {
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 30px;
+	text-align: center;
+	height: 20px;
+	padding-top: 5px;
+	background-color: #F2F2F2;
+}
+.body0 #body3 #best-8 #best-16 {
+	background-color: #FFFFCC;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	margin-top: 10px;
+	padding-top: 10px;
+	height: 300px;
+	-webkit-box-shadow: 5px 0px 5px #CCCCCC;
+	box-shadow: 5px 0px 5px #CCCCCC;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.body0 #body3 #best-5 #best-17 {
+	background-color: #CCFFFF;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-top: 10px;
+	padding-top: 10px;
+	height: 110px;
+	-webkit-box-shadow: 5px 0px 5px #CCCCCC;
+	box-shadow: 5px 0px 5px #CCCCCC;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+}
+.body0 #body3 #best-6 #best-18 {
+	background-color: #CCFFFF;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-top: 10px;
+	padding-top: 10px;
+	height: 110px;
+	-webkit-box-shadow: 5px 0px 5px #CCCCCC;
+	box-shadow: 5px 0px 5px #CCCCCC;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+}
+.body0 #body3 #best-7 #best-19 {
+	background-color: #CCFFFF;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-top: 10px;
+	padding-top: 10px;
+	height: 110px;
+	-webkit-box-shadow: 5px 0px 5px #CCCCCC;
+	box-shadow: 5px 0px 5px #CCCCCC;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+}
+.body0 #body3 #best-8 #best-20 {
+	background-color: #CCFFFF;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-top: 10px;
+	padding-top: 10px;
+	height: 110px;
+	-webkit-box-shadow: 5px 0px 5px #CCCCCC;
+	box-shadow: 5px 0px 5px #CCCCCC;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+}
+#talk0 #talk-out1 {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+	-webkit-box-shadow: 0px 1px #CCCCCC;
+	box-shadow: 0px 1px #CCCCCC;
+	padding-left: 10px;
+}
+#talk0 #talk-out2 {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+	-webkit-box-shadow: 0px 1px #CCCCCC;
+	box-shadow: 0px 1px #CCCCCC;
+	padding-left: 10px;
+}
+#talk0 #talk-out1 {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+	-webkit-box-shadow: 0px 1px #CCCCCC;
+	box-shadow: 0px 1px #CCCCCC;
+	padding-left: 10px;
+}
+#talk0 #talk-out2 {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+	-webkit-box-shadow: 0px 1px #CCCCCC;
+	box-shadow: 0px 1px #CCCCCC;
+	padding-left: 10px;
+}
+#talk0 #talk-up2 {
+	height: 20px;
+	padding-top: 8px;
+	color: #000000;
+	background-color: #F2F2F2;
+	margin-top: 10px;
+	border-top-left-radius: 10px;
+	text-align: left;
+}
+.body0 #best-ma1 {
+	margin-left: 15px;
+	margin-right: 15px;
+	padding-left: 10px;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	background-color: #FFCCFF;
+	-webkit-box-shadow: 5px 5px 5px #CCCCCC;
+	box-shadow: 5px 5px 5px #CCCCCC;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.body0 #body-4a {
+	width: 95%;
+	border-radius: 10px;
+	background-color: #F2F2F2;
+	height: 20px;
+	padding-top: 8px;
+	margin-bottom: 10px;
+	text-align: center;
+	margin-left: 10px;
+}
+
+
+
+</style>
+</head>
+
+<body>
+<div id="header">
+  <div id="headerword">
+    <div id="headerlogo"><img src="pic/logo50x150-3.png" width="150" height="50"  alt=""/></div>
+    <div id="header-word2"> HI，劉德華　歡迎回來　我的文章　私人訊息　(登出)</div></div></div>
+<div class="body0"> 
+  <div id="body1">
+    <table width="95%" border="0" align="center">
+      <tr>
+        <td width="15%" align="left"><img src="pic/left-1.png" width="10" height="10"  alt=""/> 往上一頁</td>
+        <td width="70%" align="center">第3單元：BEST分析-7</td>
+        <td width="15%" align="right">往下一頁 <img src="pic/right-1.png" width="10" height="10"  alt=""/></td>
+      </tr>
+    </table>
+  </div>
+  <div id="body2"> 
+    <div id="best-2p"> 　1. 第二次情境分析法結果整理：</div>
+
+    <div id="best-ma1">
+      <table width="95%" border="0" align="center">
+        <tr>
+          <td colspan="5" align="left"></td>
+        </tr>
+        <tr></tr>
+        <tr>
+          <td colspan="5" bgcolor="#FFB7FF">1. 我的新情境故事 ：</td>
+        </tr>
+        <tr>
+          <td width="3%" align="left">&nbsp;</td>
+          <td width="15%">新議題名稱：</td>
+          <td width="82%" colspan="3" align="left">未來教室之規畫</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td valign="top">情境故事說明：</td>
+          <td colspan="3"><textarea name="textarea2" cols="56" rows="3" id="textarea2"></textarea></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;</td>
+          <td valign="top">分鏡圖檔上傳：</td>
+          <td colspan="3" valign="top"><input name="search2" type="search" id="search2" size="40">
+          <input type="button" name="button" id="button" value="瀏覽"></td>
+        </tr>
+        <tr>
+          <td colspan="5" align="right"><input type="button" name="button4" id="button4" value="送出分類"></td>
+        </tr>
+        <tr></tr>
+      </table>
+    </div>
+  </div>
+    <div id="body2-a">　2. 第二次情境分析法結果：</div>    
+ 
+  
+  <div id="body3">
+<div id="body-4a">經由情境故事法所分析出來的結果</div>
+<table width="95%" border="0" align="center">
+  <tr>
+    <td width="69%" valign="top">行政院大陸委員會主任委員王郁琦11日至14日訪問大陸南京、上海。他與大陸國務院台灣事務辦公室主任張志軍11日下午於紫金山莊舉行兩岸事務首長會議，雙方就兩會互設辦事機構、建立聯繫機制、區域經貿整合等議題交換意見。 <img src="pic/pen-1.png" width="11" height="11"  alt=""/></td>
+    <td width="31%" valign="top"><img src="pic/thing-1.jpg" width="200" height="150"  alt=""/></td>
+  </tr>
+  <tr>
+    <td width="69%" valign="top">行政院大陸委員會主任委員王郁琦11日至14日訪問大陸南京、上海。他與大陸國務院台灣事務辦公室主任張志軍11日下午於紫金山莊舉行兩岸事務首長會議，雙方就兩會互設辦事機構、建立聯繫機制、區域經貿整合等議題交換意見。 <img src="pic/pen-1.png" width="11" height="11"  alt=""/></td>
+    <td width="31%" valign="top"><img src="pic/thing-2.jpg" width="200" height="150"  alt=""/></td>
+  </tr>
+  <tr>
+    <td width="69%" valign="top">行政院大陸委員會主任委員王郁琦11日至14日訪問大陸南京、上海。他與大陸國務院台灣事務辦公室主任張志軍11日下午於紫金山莊舉行兩岸事務首長會議，雙方就兩會互設辦事機構、建立聯繫機制、區域經貿整合等議題交換意見。 <img src="pic/pen-1.png" width="11" height="11"  alt=""/></td>
+    <td width="31%" valign="top"><img src="pic/thing-3.jpg" width="200" height="150"  alt=""/></td>
+  </tr>
+  <tr>
+    <td width="69%" valign="top">行政院大陸委員會主任委員王郁琦11日至14日訪問大陸南京、上海。他與大陸國務院台灣事務辦公室主任張志軍11日下午於紫金山莊舉行兩岸事務首長會議，雙方就兩會互設辦事機構、建立聯繫機制、區域經貿整合等議題交換意見。 <img src="pic/pen-1.png" width="11" height="11"  alt=""/></td>
+    <td width="31%" valign="top"><img src="pic/thing-4.jpg" width="200" height="150"  alt=""/></td>
+  </tr>
+  <tr>
+    <td width="69%" valign="top">行政院大陸委員會主任委員王郁琦11日至14日訪問大陸南京、上海。他與大陸國務院台灣事務辦公室主任張志軍11日下午於紫金山莊舉行兩岸事務首長會議，雙方就兩會互設辦事機構、建立聯繫機制、區域經貿整合等議題交換意見。 <img src="pic/pen-1.png" width="11" height="11"  alt=""/></td>
+    <td width="31%" valign="top"><img src="pic/thing-5.jpg" width="200" height="150"  alt=""/></td>
+  </tr>
+  </table>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</div>  
+    </div>
+  </div>
+
+</div>
+
+<div id="bottom0">　Copyright &copy; 2014 Li-Design 設計與文化創新研究室　　關於我們</div>
+<div id="talk0">
+  <div id="talk1">
+    <div id="talk-up1"> 　外部意見</div>
+  </div>
+  <div id="talk-out1">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp2.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">BBB 說：今天天氣很好(20:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out1">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp3.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">AAA 說：好像有點怪的說(20:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out1">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp4.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">CCC 說：那你想要怎麼改才好?(20:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out1">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp1.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">DDD 說：走啊~出去玩(20:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out1">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp2.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">BBB 說：下雨了(0:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out1">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp2.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">BBB 說：下雨了(0:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out1"></div>
+  <div id="talk2"></div>
+  <div id="talk-up2"> 　內部意見</div>
+  <div id="talk-out2">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp3.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">BBB 說：今天天氣很好(20:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out2">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp4.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">BBB 說：今天天氣很好(20:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out2">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp1.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">BBB 說：今天天氣很好(20:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out2">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp1.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">BBB 說：今天天氣很好(20:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out2">
+    <table width="95%" border="0">
+      <tr>
+        <td width="15%"><img src="pic/temp2.jpg" width="30" height="30"  alt=""/></td>
+        <td width="85%">BBB 說：今天天氣很好(20:46)</td>
+      </tr>
+    </table>
+  </div>
+  <div id="talk-out2">
+    <table width="95%" border="0">
+      <tr>
+        <td><input name="textfield" type="text" autofocus id="textfield" size="23">
+          <img src="pic/camara-1.png" width="15" height="12"  alt=""/></td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+  </div>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+</div>
+<div id="otherteam">
+  <div id="otherteam1">
+    <div id="otherteam-up1">　單元</div>
+    <div id="otherteam-1-center">
+      <table width="230" border="0" align="center" cellpadding="3">
+        <tr>
+          <td><img src="pic/slogo-2.jpg" width="22" height="20"  alt=""/>　最新消息</td>
+        </tr>
+        <tr>
+          <td><img src="pic/slogo-2.jpg" width="22" height="20"  alt=""/>　最新發起議題</td>
+        </tr>
+        <tr>
+          <td><img src="pic/slogo-2.jpg" width="22" height="20"  alt=""/>　過去的議題</td>
+        </tr>
+        <tr>
+          <td><img src="pic/slogo-2.jpg" width="22" height="20"  alt=""/>　我的筆記本</td>
+        </tr>
+        <tr>
+          <td><img src="pic/slogo-2.jpg" width="22" height="20"  alt=""/>　知識庫</td>
+        </tr>
+        <tr>
+          <td><img src="pic/slogo-2.jpg" width="22" height="20"  alt=""/>　課程教學</td>
+        </tr>
+        <tr>
+          <td><img src="pic/slogo-2.jpg" width="22" height="20"  alt=""/>　使用說明</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div id="otherteam2">
+    <div id="otherteam-up2">　同伴</div>
+    <div id="otherteam-2-center">
+      <table width="230" border="0" cellpadding="3">
+        <tr>
+          <td colspan="6">在線同伴</td>
+        </tr>
+        <tr>
+          <td width="30"><img src="pic/temp3.jpg" width="30" height="30"  alt=""/></td>
+          <td width="30"><img src="pic/temp4.jpg" width="30" height="30"  alt=""/></td>
+          <td width="30"><img src="pic/temp1.jpg" width="30" height="30"  alt=""/></td>
+          <td width="30"><img src="pic/temp2.jpg" width="30" height="30"  alt=""/></td>
+          <td width="30"><img src="pic/temp3.jpg" width="30" height="30"  alt=""/></td>
+          <td width="30">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="6">離線同伴</td>
+        </tr>
+        <tr>
+          <td width="30"><img src="pic/temp3.jpg" width="30" height="30"  alt=""/></td>
+          <td width="30"><img src="pic/temp4.jpg" width="30" height="30"  alt=""/></td>
+          <td width="30"><img src="pic/temp1.jpg" width="30" height="30"  alt=""/></td>
+          <td width="30"><img src="pic/temp2.jpg" width="30" height="30"  alt=""/></td>
+          <td width="30"><img src="pic/temp3.jpg" width="30" height="30"  alt=""/></td>
+          <td width="30">&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  </div>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

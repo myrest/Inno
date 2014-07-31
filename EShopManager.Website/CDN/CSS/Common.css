@@ -1,0 +1,544 @@
+/* CSS init */
+form
+{
+    display: inline;
+}
+
+.align-right
+{
+    float: right;
+}
+.align-left
+{
+    float: left;
+}
+tbody td.align-center
+{
+    text-align: center;
+}
+.txt-left
+{
+    text-align: left;
+    white-space: nowrap;
+}
+.txt-right
+{
+    text-align: right;
+    white-space: nowrap;
+}
+.hidden
+{
+    display: none;
+}
+div.align-center
+{
+    width: 100%;
+    text-align: center;
+}
+
+/* table affect */
+tr.tbrow
+{
+    background-color: White;
+}
+tr.tbrow td
+{
+    padding: 3px 0 3px 0;
+    text-align: left;
+}
+tr.tbrow:hover
+{
+    background-color: #EEEEEE;
+}
+
+
+/* set input box length
+input
+{
+    width: expression(this.type=="text"?"150px":"style");
+}
+input
+{
+    width: expression(this.type=="password"?"150px":"style");
+}
+input[type=text], input[type=password]
+{
+    width: 150px;
+}
+input.text, input.password
+{
+    width: 150px;
+}
+*/
+#content
+{
+    width: 1024px;
+}
+#jsddm
+{
+    z-index: 9999;
+    height: 28px;
+}
+
+/* dialog setting */
+#dialog
+{
+    display: none;
+    visibility: visible;
+    width: 450px;
+}
+.dialogwithouttitle .ui-dialog-titlebar
+{
+    display: none;
+}
+.dialogwithouttitle .ui-dialog-buttonpane
+{
+    border-width: 0 0 0 0;
+}
+.dialogwithouttitle .ui-button-text
+{
+    padding: 0px 5px 0px 5px;
+}
+.dialogwithouttitle .ui-widget
+{
+    font-size: 14px;
+}
+
+/*Verify image setting */
+#imgVerify
+{
+    border: 1px solid #999999;
+    width: 60px;
+    height: 20px;
+    margin-bottom: -6px;
+}
+
+
+/* Loading */
+.loading
+{
+    background: url(/CDN/Images/common/loading.gif) center center no-repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: #EEEEEE;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    zoom: 1;
+}
+
+/* Cover all page*/
+.action-popup-cover
+{
+    position: absolute;
+    background-color: #000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: Alpha(Opacity=50, FinishOpacity=50, Style=2); /* IE */
+    -moz-opacity: 0.5; /* Moz + FF */
+    opacity: 0.5; /* CSS3 */
+}
+
+/* Popup window setting*/
+.MsgCloseIcon
+{
+    position: relative;
+    float: right;
+    top: 3px;
+    left: -3px;
+}
+#popup-div
+{
+    background: #FFFFFF;
+    border: 1px solid #666666;
+    text-align: center;
+}
+#popup-div .title
+{
+    background: #D0F0FF;
+    margin: 3px;
+    display: block;
+    text-align: left;
+    padding: 0 3px 3px 3px;
+}
+#popup-div iframe
+{
+    width: 100%;
+}
+
+/* icon action*/
+.action
+{
+    border: 0;
+    margin-right: 5px;
+    padding: 0px;
+    float: left;
+    padding: 0px;
+}
+.action-li
+{
+    width: 18px;
+    height: 17px;
+    float: left;
+    margin-right: 3px;
+}
+
+/* Over write jQuery UI for button*/
+.ui-icon
+{
+    display: inline-block;
+    margin-bottom: -3px;
+}
+.ui-button-text-icon-primary .ui-button-text
+{
+    padding: 2px 2px 2px 25px;
+    margin-right: 5px;
+}
+button > span.ui-icon
+{
+    left: 3px;
+}
+
+
+/*Form elem length*/
+.width100
+{
+    width: 100%;
+}
+.rightP5
+{
+    padding-right: 5px;
+}
+
+/*Announcement*/
+.announcementbar
+{
+    background-color: #F0F0F0;
+    height: 20px;
+    margin: 0 3px 3px 0;
+}
+
+/**** JS affect Start ***************************************/
+/* Highlight textbox when focus */
+input.textbox-highlight, .txt-input:hover, .amt-input:hover, .m-input-box:hover, .s-input-box:hover, input.val-changed, textarea.val-changed
+{
+    background-color: #fff6aa;
+    border-color: green;
+    -webkit-box-shadow: inset 1px 1px 1px 1px #ddd;
+    -moz-box-shadow: inset 1px 1px 1px 1px #ddd;
+    box-shadow: inset 1px 1px 1px 1px #ddd;
+}
+
+/**** JS affect END *****************************************/
+
+/**Custom Style**/
+.clickable
+{
+    cursor: pointer;
+}
+
+/** Table**/
+.fancytable
+{
+    border: 1px solid #cccccc;
+    width: auto;
+    border-collapse: collapse;
+}
+.fancytable td
+{
+    border: 1px solid #cccccc;
+    color: #555555;
+    line-height: 28px;
+}
+.headerrow
+{
+    background-color: #DFEBF6;
+}
+.headerrow td
+{
+    text-align: center;
+}
+.datarowodd
+{
+    background-color: #ffffff;
+}
+.dataroweven
+{
+    background-color: #efefef;
+}
+.datarowodd td
+{
+    background-color: #ffffff;
+}
+.dataroweven td
+{
+    background-color: #efefef;
+}
+
+#itemmanagement .itemnum
+{
+    width: 50px;
+}
+#itemmanagement .fancytable
+{
+    display: inline-block;
+}
+
+#itemmanagement .fancytable tfoot
+{
+    background-color: #FDFDCC;
+}
+
+#itemtotal
+{
+    background-color: #F8C9DE;
+}
+
+#NewColor
+{
+    position: fixed;
+    top: 31px;
+    margin-left: 3px;
+}
+
+#itemBackToProd
+{
+    position: fixed;
+    top: 33px;
+    left: 11px;
+}
+
+#NewSize
+{
+    position: fixed;
+}
+
+#itemnumbox
+{
+    display: none;
+    position: absolute;
+    width: 45px;
+}
+
+.SwitchSpan
+{
+    font-size: 12px;
+    background-color: #FFF5AD;
+    color: #FD5E48;
+    padding-left: 3px;
+    padding-top: 1px;
+    line-height: 13px;
+    height: 14px;
+    width: 14px;
+    position: absolute;
+    border-style: solid;
+    border-width: 1px;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+.SwitchSpanFull
+{
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.SwitchSpan:hover
+{
+    opacity: 1;
+    filter: alpha(opacity=100);
+    cursor: pointer;
+}
+
+.hide
+{
+    display: none;
+}
+
+/* For Common Js using Star*/
+.ErrorNotice
+{
+    position: absolute;
+    background-color: #E4F283;
+    color: #FF0000;
+    z-index: 99;
+}
+
+/* For Common Js using End*/
+
+/* Best Step 1 Star*/
+#tbitems .description, #tbitems .related
+{
+    display: block;
+}
+#tbitems .related
+{
+    color: rgb(188, 58, 194);
+}
+/* Best Step 1 End*/
+
+/* Quick Jump to bar */
+.QuickJumpBlock
+{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+
+/*Left and Right block*/
+.LRtab
+{
+    position: fixed;
+    top: 60px;
+    background-color: #A2A2A2;
+    line-height: 28px;
+    width: 8px;
+    height: 135;
+    display: none;
+    padding: 1px;
+    color: White;
+}
+#tableft
+{
+    border-top-right-radius: 10px;
+}
+
+#tabright
+{
+    border-top-left-radius: 10px;
+    right: 0px;
+}
+
+/* Table different color */
+.OddRow /*1*/
+{
+    background-color: #FFFF99;
+}
+.EvenRow /*2*/
+{
+    background-color: inherit;
+}
+
+/*Best GAP GroupName block setting */
+.GroupTable, .GroupTable td
+{
+    vertical-align: top;
+    text-align: left;
+    border-spacing: 0px;
+}
+
+/* New topic listing*/
+.jointopic
+{
+    color: Blue;
+}
+.visit
+{
+    color: Orange;
+}
+.delTopic
+{
+    color: Red;
+}
+
+/*Common left down*/
+.onlinemember
+{
+    padding: 0px 2px 6px 2px;
+}
+
+/* Result */
+
+.resultImage img
+{
+    max-width: 200px;
+    float: right;
+}
+.column3, .column4
+{
+    color: Maroon;
+}
+#RankForm
+{
+    position: absolute;
+    background-color: #FDFFC3;
+    border: 1px solid #E0D15F;
+    left: 95px;
+}
+.CommentListing
+{
+    width: 420px;
+    border: 1px solid #E0D15F;
+    margin: 2px;
+}
+.CommentListing tr
+{
+    border: 1px solid #E0D15F;
+}
+.CommentListing img
+{
+    padding: 3px;
+}
+
+
+/* Scenario */
+.Scenario3MemTab
+{
+    padding: 3px 3px 3px 3px;
+    margin: 3px 21px 3px 3px;
+    border: 1px solid #999999;
+    border-radius: 3px;
+}
+
+.Scenario3List
+{
+    width: 95%;
+}
+
+.Scenario3List .scenarioimg
+{
+    float: right;
+}
+
+.Scenario3List td
+{
+    border-bottom: 1px dotted #999999;
+}
+
+.Scenario3Checked
+{
+    background-color: #CCCCCC;
+}
+
+.rankblock
+{
+    width: 96%; /*roy*/
+    height: auto;
+    z-index: 0;
+    float: left;
+    margin-right: 5px;
+    margin-left: 10px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #FFFFCC;
+    -webkit-box-shadow: 5px 5px 5px #CCCCCC;
+    box-shadow: 5px 5px 5px #CCCCCC;
+    padding-top: 10px;
+    padding-left: 5px;
+    margin-bottom: 15px;
+}
+.valuerankdiv
+{
+    vertical-align:top;
+    width:210px;
+    display:inline-block;
+}
+.valuerankdiv td
+{
+    text-align:center;
+}

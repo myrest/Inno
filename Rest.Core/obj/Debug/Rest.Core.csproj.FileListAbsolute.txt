@@ -1,0 +1,7 @@
+D:\Inno\Rest.Core\bin\Debug\Rest.Core.dll.config
+D:\Inno\Rest.Core\bin\Debug\Rest.Core.dll
+D:\Inno\Rest.Core\bin\Debug\Rest.Core.pdb
+D:\Inno\Rest.Core\bin\Debug\log4net.dll
+D:\Inno\Rest.Core\obj\Debug\Rest.Core.dll
+D:\Inno\Rest.Core\obj\Debug\Rest.Core.pdb
+D:\Inno\Rest.Core\obj\Debug\Rest.Core.csprojResolveAssemblyReference.cache

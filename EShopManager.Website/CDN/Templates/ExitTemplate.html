@@ -1,0 +1,23 @@
+﻿{for obj in data}
+<span>
+    Target RoomId : <input type="text" name="targetroomid" value="${obj.to}" />
+    <select name="lockstatus">
+        <option value="UnLocked" {if obj.l == '1' } selected {/if} >Unlock</option>
+        <option value="Locked" {if obj.l == '0' } selected {/if} >Locked</option>
+    </select>
+    <select name="opentatus">
+        <option value="Open" {if obj.s == '0' } selected {/if} >Open</option>
+        <option value="Close" {if obj.s == '1' } selected {/if} >Close</option>
+    </select>
+    <select name="direction">
+        <option value="East" {if obj.w == '1' } selected {/if} >East</option>
+        <option value="South" {if obj.w == '2' } selected {/if} >South</option>
+        <option value="West" {if obj.w == '3' } selected {/if} >West</option>
+        <option value="North" {if obj.w == '4' } selected {/if} >North</option>
+        <option value="Up" {if obj.w == '5' } selected {/if} >Up</option>
+        <option value="Down" {if obj.w == '6' } selected {/if} >Down</option>
+    </select>
+    <a href="javascript:void(0);" onclick="utility.RemoveSObj(this);">Remove</a>
+    <Br />
+</span>
+{/for}

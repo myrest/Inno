@@ -1,0 +1,41 @@
+﻿{for p in data}
+<div class="body-5a" sn="${p.sn}">
+    <table width="95%" border="0" align="center">
+        <tr>
+            <td rowspan="4" style="width:100px;">
+                <img src="${p.fn}" width="87" alt="" />
+            </td>
+            <td valign="top" colspan="3">
+                暱稱：${p.nk} (${p.un}扮演)
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" colspan="3">
+                議題：${p.su}
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                性別：${p.gui}
+            </td>
+            <td valign="top">
+                年齡：${p.aui}
+            </td>
+            <td valign="top">
+                教育程度：${p.eui}
+            </td>
+        </tr>
+        <tr>
+            <td height="21" valign="top">
+                月收入：${p.saui}
+            </td>
+            <td height="21" valign="top">
+                人格：${p.p}
+            </td>
+            <td height="21" valign="top">
+                職業：${p.c}
+            </td>
+        </tr>
+    </table>
+</div>
+{/for} 

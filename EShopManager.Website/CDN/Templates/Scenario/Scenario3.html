@@ -1,0 +1,20 @@
+﻿<table class="Scenario3List">
+{for p in data}
+    <tr sn="${p.sn}">
+        <td>
+            {if (p.fn.length > 0 && (p.isim == "1"))}
+                <a href="${p.fn}" target="_blank" class="scenarioimg">
+                    <img src="${p.fn}" style="max-height:125px" alt="${p.ufn}" title="${p.ufn}" />
+                </a>
+            {/if}
+            <img src="/pic/pen-1.png" width="11" height="11" class="edit clickable" alt="編輯" title="編輯">
+            ${p.desc}
+            {if (p.fn.length > 0 && (p.isim == "0"))}
+                <a href="${p.fn}" target="_blank">
+                    <span class="ui-icon ui-icon-document" />${p.ufn}
+                </a>
+            {/if}
+        </td>
+    </tr>
+{/for} 
+</table>

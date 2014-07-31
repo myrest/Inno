@@ -1,0 +1,14 @@
+﻿<table widh="95%" class="CommentListing">
+    {var i = 0;}
+    {for p in pList}
+    {var i = i + 1;}
+    <tr class="tbrow">
+        <td>
+            {if i == 1} <span class="ui-icon ui-icon-closethick clickable align-right closeCommentLog" title="關閉"></span> {/if}
+            <img src="${p.icon}" width="30" height="30" class="align-left" />${i}.${p.un}<br />
+            評分：${p.r}(${p.dt})
+            {if p.c.length > 0} <div class="usercomment">${p.c}</div> {/if}
+        </td>
+    </tr>
+    {/for}
+</table>

@@ -1,0 +1,18 @@
+﻿{var i = 0;}
+{for p in pList}
+{var i = i + 1;}
+                <tr class="tbrow" data-sn="${p.sn}">
+                   <td><a href="javascript:void(0);" class="toItem">${p.n}</a><span class="p${p.sn}"></span></td>
+                   <td>${p.t}</td>
+                   <td>
+                    <ul>
+                        <li class="action-li ui-state-default ui-corner-all">
+                            <a href="javascript:void(0);" class="action ui-icon ui-icon-trash delete" title="刪除"></a>
+                        </li>
+                        <li class="action-li ui-state-default ui-corner-all">
+                            <a href="javascript:void(0);" class="action ui-icon ui-icon-document rename" title="更名"></a>
+                        </li>
+                    </ul>
+                   </td>
+                </tr>
+{/for}

@@ -1,0 +1,23 @@
+﻿<table>
+    <tr>
+        <td>
+            <input type="radio" name="result" class="rankvalue" value="1" {if rank== 1}checked="checked"{/if} />1
+            <input type="radio" name="result" class="rankvalue" value="2" {if rank== 2}checked="checked"{/if} />2
+            <input type="radio" name="result" class="rankvalue" value="3" {if rank== 3}checked="checked"{/if} />3
+            <input type="radio" name="result" class="rankvalue" value="4" {if rank== 4}checked="checked"{/if} />4
+            <input type="radio" name="result" class="rankvalue" value="5" {if rank== 5}checked="checked"{/if} />5
+        </td>
+    </tr>
+    <tr>
+        <td>評語：
+            <textarea id="comment" style="width:100%;" rows="4" extMaxLength="50"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="hidden" id="ResultSN" value="${sn}"/>
+            <input type="button" value="取消" id="CloseRankForm" />
+            <input type="button" value="送出" id="SaveRank" />
+        </td>
+    </tr>
+</table>

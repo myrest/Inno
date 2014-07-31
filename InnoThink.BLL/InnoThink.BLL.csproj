@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6BF2BD19-7878-437A-BC42-DBD0646A1BAC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InnoThink.BLL</RootNamespace>
+    <AssemblyName>InnoThink.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Inno\BestGAP.cs" />
+    <Compile Include="Inno\BestIdea.cs" />
+    <Compile Include="Inno\BestIdeaGroup.cs" />
+    <Compile Include="Inno\BestIdeaGroupRank.cs" />
+    <Compile Include="Inno\BestIdeaMemberRank.cs" />
+    <Compile Include="Inno\BestStep1.cs" />
+    <Compile Include="Inno\Board.cs" />
+    <Compile Include="Inno\Results.cs" />
+    <Compile Include="Inno\ResultsRank.cs" />
+    <Compile Include="Inno\ScenarioChar.cs" />
+    <Compile Include="Inno\ScenarioCharRank.cs" />
+    <Compile Include="Inno\ScenarioCharValues.cs" />
+    <Compile Include="Inno\ScenarioCharValuesRank.cs" />
+    <Compile Include="Inno\Settings.cs" />
+    <Compile Include="Inno\TeamGroup.cs" />
+    <Compile Include="Inno\Topic.cs" />
+    <Compile Include="Inno\TopicMember.cs" />
+    <Compile Include="Inno\Users.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InnoThink.DAL\InnoThink.DAL.csproj">
+      <Project>{d769096b-0a8d-4c48-bf96-c1f84f02c312}</Project>
+      <Name>InnoThink.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InnoThinkDomain\InnoThink.Domain.csproj">
+      <Project>{527fe3a5-3a71-4ab7-86f9-3a6b48add98e}</Project>
+      <Name>InnoThink.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rest.Core\Rest.Core.csproj">
+      <Project>{3a850565-71b6-4b0c-b255-2d2a57e37b8b}</Project>
+      <Name>Rest.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
