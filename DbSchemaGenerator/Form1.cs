@@ -5,10 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace DbSchemaGenerator
 {
-
+    public enum GenType
+    {
+        Domain,
+        DAL,
+        BLL
+    }
     public partial class Form1 : Form
     {
         private string SettingFilename = "Config.cfg";
@@ -91,42 +97,66 @@ namespace DbSchemaGenerator
         private void Save_Click(object sender, EventArgs e)
         {
             SaveSetting();
-            CheckAndSetEnv();
-            FileGenerator();
-            MessageBox.Show("Done");
+            if (CheckAndSetEnv())
+            {
+                FileGenerator();
+                MessageBox.Show("Done");
+            }
         }
 
-        private void CheckAndSetEnv()
+        private bool CheckAndSetEnv()
         {
-            //Check Folder is exist.
-            string curNamespace = NameSpace.Text.Trim();
-            string targetPath = TargetFolder.Text.Trim();
-            DomainPath = string.Format(@"{0}\{1}.Domain", targetPath, curNamespace);
-            BLLPath = string.Format(@"{0}\{1}.BLL", targetPath, curNamespace);
-            DALPath = string.Format(@"{0}\{1}.DAL", targetPath, curNamespace);
-            try
+            bool rtn = false;
+            if (string.Compare(TargetFolder.Text, "NoData", true) == 0)
             {
-                if (!Directory.Exists(targetPath))
+                MessageBox.Show("Plese select your out target folder.");
+                FolderSelector.Focus();
+            }
+            else if (string.IsNullOrEmpty(NameSpace.Text.Trim()))
+            {
+                MessageBox.Show("Namespace is not option.");
+                NameSpace.Focus();
+            }
+            else if (string.Compare(FileName.Text, "NoData", true) == 0)
+            {
+                MessageBox.Show("Plese select your database file.");
+                FileSelector.Focus();
+            }
+            else
+            {
+                //Check Folder is exist.
+                string curNamespace = NameSpace.Text.Trim();
+                string targetPath = TargetFolder.Text.Trim();
+                string DBfilename = Path.GetFileNameWithoutExtension(FileName.ToString().Trim());
+                DomainPath = string.Format(@"{0}\{1}.Domain\{2}", targetPath, curNamespace, DBfilename);
+                BLLPath = string.Format(@"{0}\{1}.BLL\{2}", targetPath, curNamespace, DBfilename);
+                DALPath = string.Format(@"{0}\{1}.DAL\{2}", targetPath, curNamespace, DBfilename);
+                try
                 {
-                    Directory.CreateDirectory(targetPath);
+                    if (!Directory.Exists(targetPath))
+                    {
+                        Directory.CreateDirectory(targetPath);
+                    }
+                    if (!Directory.Exists(DomainPath))
+                    {
+                        Directory.CreateDirectory(DomainPath);
+                    }
+                    if (!Directory.Exists(BLLPath))
+                    {
+                        Directory.CreateDirectory(BLLPath);
+                    }
+                    if (!Directory.Exists(DALPath))
+                    {
+                        Directory.CreateDirectory(DALPath);
+                    }
+                    rtn = true;
                 }
-                if (!Directory.Exists(DomainPath))
+                catch (Exception ex)
                 {
-                    Directory.CreateDirectory(DomainPath);
-                }
-                if (!Directory.Exists(BLLPath))
-                {
-                    Directory.CreateDirectory(BLLPath);
-                }
-                if (!Directory.Exists(DALPath))
-                {
-                    Directory.CreateDirectory(DALPath);
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            return rtn;
         }
 
         private void FileGenerator()
@@ -139,6 +169,7 @@ namespace DbSchemaGenerator
                 {
                     string pk = string.Empty;
                     var columns = GetColumnInformationByTable(x, out pk);
+                    string DBfilename = Path.GetFileNameWithoutExtension(FileName.Text);
                     FileCreator.CreateDomainFile(columns, pk, DomainPath, NameSpace.Text.Trim(), x);
                     FileCreator.CreateDALFile(columns, pk, DALPath, NameSpace.Text.Trim(), x);
                     FileCreator.CreateBLLFile(columns, pk, BLLPath, NameSpace.Text.Trim(), x);
@@ -228,10 +259,86 @@ namespace DbSchemaGenerator
 
         private void ReloadSchema_Click(object sender, EventArgs e)
         {
-            //DDLTableListing.DataSource
+            SaveSetting();
+            ReloadSchemaSqlite();
+        }
+
+        private void ReloadSchemaSqlite()
+        {
             var obj = GetTableListing();
             var ds = obj.ToDictionary(x => x, y => y);
             DDLTableListing.DataSource = obj;
+        }
+
+        private void tabMainFunction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabMainFunction.SelectedTab.Name == tabBuildIdv.Name)
+            {
+                ReloadSchemaSqlite();
+            }
+        }
+
+        private void DDLTableListing_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ResetButtons();
+            GenDomain.FlatStyle = FlatStyle.Flat;
+            GetContent(GenType.Domain);
+        }
+
+        private void GetContent(GenType gt)
+        {
+            string pk = string.Empty;
+            string Content = string.Empty;
+            var columns = GetColumnInformationByTable(DDLTableListing.SelectedValue.ToString(), out pk);
+            switch (gt)
+            {
+                case GenType.Domain:
+                    Content = FileCreator.GetDomainContent(columns, pk, DomainPath, NameSpace.Text.Trim(), DDLTableListing.SelectedValue.ToString());
+                    break;
+                case GenType.DAL:
+                    Content = FileCreator.CreateDALContent(columns, pk, DomainPath, NameSpace.Text.Trim(), DDLTableListing.SelectedValue.ToString());
+                    break;
+                case GenType.BLL:
+                    Content = FileCreator.CreateBLLContent(columns, pk, DomainPath, NameSpace.Text.Trim(), DDLTableListing.SelectedValue.ToString());
+                    break;
+                default:
+                    throw new Exception(string.Format("GenType:{0} not found.", gt.ToString()));
+            }
+            ContentBody.Text = Content;
+        }
+
+        private void ResetButtons()
+        {
+            GenDomain.FlatStyle = FlatStyle.Standard;
+            GenBLL.FlatStyle = FlatStyle.Standard;
+            GenDAL.FlatStyle = FlatStyle.Standard;
+        }
+
+        private void GenBLL_Click(object sender, EventArgs e)
+        {
+            ResetButtons();
+            GenBLL.FlatStyle = FlatStyle.Flat;
+            GetContent(GenType.BLL);
+        }
+
+        private void GenDAL_Click(object sender, EventArgs e)
+        {
+            ResetButtons();
+            GenDAL.FlatStyle = FlatStyle.Flat;
+            GetContent(GenType.DAL);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(ContentBody.Text);
+            MessageBox.Show("Copy to Clipboard done.");
+        }
+
+        private void GenDomain_Click(object sender, EventArgs e)
+        {
+            ResetButtons();
+            GenDomain.FlatStyle = FlatStyle.Flat;
+            GetContent(GenType.Domain);
         }
     }
 }

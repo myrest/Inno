@@ -39,25 +39,27 @@
             this.label2 = new System.Windows.Forms.Label();
             this.FolderSelector = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabSqlite = new System.Windows.Forms.TabControl();
+            this.Sqlite = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabMainFunction = new System.Windows.Forms.TabControl();
-            this.DDLTableListing = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tabBuildIdv = new System.Windows.Forms.TabPage();
+            this.ContentBody = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.GenDomain = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.GenBLL = new System.Windows.Forms.Button();
             this.GenDAL = new System.Windows.Forms.Button();
+            this.GenBLL = new System.Windows.Forms.Button();
             this.ReloadSchema = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
+            this.GenDomain = new System.Windows.Forms.Button();
+            this.DDLTableListing = new System.Windows.Forms.ComboBox();
+            this.tabMainFunction = new System.Windows.Forms.TabControl();
+            this.tabSqlite.SuspendLayout();
+            this.Sqlite.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabMainFunction.SuspendLayout();
+            this.tabBuildIdv.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabMainFunction.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -88,9 +90,9 @@
             this.FileName.AutoSize = true;
             this.FileName.Location = new System.Drawing.Point(74, 11);
             this.FileName.Name = "FileName";
-            this.FileName.Size = new System.Drawing.Size(33, 12);
+            this.FileName.Size = new System.Drawing.Size(40, 12);
             this.FileName.TabIndex = 0;
-            this.FileName.Text = "label1";
+            this.FileName.Text = "NoData";
             // 
             // lbNameSpace
             // 
@@ -123,9 +125,9 @@
             this.TargetFolder.AutoSize = true;
             this.TargetFolder.Location = new System.Drawing.Point(90, 49);
             this.TargetFolder.Name = "TargetFolder";
-            this.TargetFolder.Size = new System.Drawing.Size(33, 12);
+            this.TargetFolder.Size = new System.Drawing.Size(40, 12);
             this.TargetFolder.TabIndex = 4;
-            this.TargetFolder.Text = "label1";
+            this.TargetFolder.Text = "NoData";
             // 
             // label2
             // 
@@ -146,15 +148,28 @@
             this.FolderSelector.UseVisualStyleBackColor = true;
             this.FolderSelector.Click += new System.EventHandler(this.FolderSelector_Click);
             // 
-            // tabControl1
+            // tabSqlite
             // 
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(801, 60);
-            this.tabControl1.TabIndex = 7;
+            this.tabSqlite.Controls.Add(this.Sqlite);
+            this.tabSqlite.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabSqlite.Location = new System.Drawing.Point(0, 0);
+            this.tabSqlite.Name = "tabSqlite";
+            this.tabSqlite.SelectedIndex = 0;
+            this.tabSqlite.Size = new System.Drawing.Size(801, 60);
+            this.tabSqlite.TabIndex = 7;
+            // 
+            // Sqlite
+            // 
+            this.Sqlite.Controls.Add(this.FileSelector);
+            this.Sqlite.Controls.Add(this.FileName);
+            this.Sqlite.Controls.Add(this.labFn);
+            this.Sqlite.Location = new System.Drawing.Point(4, 22);
+            this.Sqlite.Name = "Sqlite";
+            this.Sqlite.Padding = new System.Windows.Forms.Padding(3);
+            this.Sqlite.Size = new System.Drawing.Size(793, 34);
+            this.Sqlite.TabIndex = 1;
+            this.Sqlite.Text = "Sqlite setting";
+            this.Sqlite.UseVisualStyleBackColor = true;
             // 
             // tabPage1
             // 
@@ -172,42 +187,105 @@
             this.tabPage1.Text = "Build ALL";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabBuildIdv
             // 
-            this.tabPage2.Controls.Add(this.FileSelector);
-            this.tabPage2.Controls.Add(this.FileName);
-            this.tabPage2.Controls.Add(this.labFn);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(793, 34);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabBuildIdv.Controls.Add(this.ContentBody);
+            this.tabBuildIdv.Controls.Add(this.panel2);
+            this.tabBuildIdv.Controls.Add(this.panel1);
+            this.tabBuildIdv.Controls.Add(this.DDLTableListing);
+            this.tabBuildIdv.Location = new System.Drawing.Point(4, 22);
+            this.tabBuildIdv.Name = "tabBuildIdv";
+            this.tabBuildIdv.Padding = new System.Windows.Forms.Padding(3);
+            this.tabBuildIdv.Size = new System.Drawing.Size(793, 337);
+            this.tabBuildIdv.TabIndex = 0;
+            this.tabBuildIdv.Text = "Build individual";
+            this.tabBuildIdv.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // ContentBody
             // 
-            this.tabPage3.Controls.Add(this.textBox1);
-            this.tabPage3.Controls.Add(this.panel1);
-            this.tabPage3.Controls.Add(this.DDLTableListing);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(793, 337);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.ContentBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ContentBody.Location = new System.Drawing.Point(138, 32);
+            this.ContentBody.Multiline = true;
+            this.ContentBody.Name = "ContentBody";
+            this.ContentBody.ReadOnly = true;
+            this.ContentBody.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.ContentBody.Size = new System.Drawing.Size(652, 273);
+            this.ContentBody.TabIndex = 1;
+            this.ContentBody.WordWrap = false;
             // 
-            // tabMainFunction
+            // panel2
             // 
-            this.tabMainFunction.Controls.Add(this.tabPage1);
-            this.tabMainFunction.Controls.Add(this.tabPage3);
-            this.tabMainFunction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMainFunction.Location = new System.Drawing.Point(0, 60);
-            this.tabMainFunction.Name = "tabMainFunction";
-            this.tabMainFunction.SelectedIndex = 0;
-            this.tabMainFunction.Size = new System.Drawing.Size(801, 363);
-            this.tabMainFunction.TabIndex = 8;
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(138, 305);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(652, 29);
+            this.panel2.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(544, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(103, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Copy to Clipboard";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.GenDAL);
+            this.panel1.Controls.Add(this.GenBLL);
+            this.panel1.Controls.Add(this.ReloadSchema);
+            this.panel1.Controls.Add(this.GenDomain);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(138, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(652, 29);
+            this.panel1.TabIndex = 2;
+            // 
+            // GenDAL
+            // 
+            this.GenDAL.Location = new System.Drawing.Point(574, 3);
+            this.GenDAL.Name = "GenDAL";
+            this.GenDAL.Size = new System.Drawing.Size(75, 23);
+            this.GenDAL.TabIndex = 0;
+            this.GenDAL.TabStop = false;
+            this.GenDAL.Text = "DAL";
+            this.GenDAL.UseVisualStyleBackColor = true;
+            this.GenDAL.Click += new System.EventHandler(this.GenDAL_Click);
+            // 
+            // GenBLL
+            // 
+            this.GenBLL.Location = new System.Drawing.Point(493, 3);
+            this.GenBLL.Name = "GenBLL";
+            this.GenBLL.Size = new System.Drawing.Size(75, 23);
+            this.GenBLL.TabIndex = 0;
+            this.GenBLL.TabStop = false;
+            this.GenBLL.Text = "BLL";
+            this.GenBLL.UseVisualStyleBackColor = true;
+            this.GenBLL.Click += new System.EventHandler(this.GenBLL_Click);
+            // 
+            // ReloadSchema
+            // 
+            this.ReloadSchema.Location = new System.Drawing.Point(6, 3);
+            this.ReloadSchema.Name = "ReloadSchema";
+            this.ReloadSchema.Size = new System.Drawing.Size(95, 23);
+            this.ReloadSchema.TabIndex = 0;
+            this.ReloadSchema.Text = "Reload Schema";
+            this.ReloadSchema.UseVisualStyleBackColor = true;
+            this.ReloadSchema.Click += new System.EventHandler(this.ReloadSchema_Click);
+            // 
+            // GenDomain
+            // 
+            this.GenDomain.Location = new System.Drawing.Point(412, 3);
+            this.GenDomain.Name = "GenDomain";
+            this.GenDomain.Size = new System.Drawing.Size(75, 23);
+            this.GenDomain.TabIndex = 0;
+            this.GenDomain.TabStop = false;
+            this.GenDomain.Text = "Domain";
+            this.GenDomain.UseVisualStyleBackColor = true;
+            this.GenDomain.Click += new System.EventHandler(this.GenDomain_Click);
             // 
             // DDLTableListing
             // 
@@ -218,77 +296,19 @@
             this.DDLTableListing.Name = "DDLTableListing";
             this.DDLTableListing.Size = new System.Drawing.Size(135, 331);
             this.DDLTableListing.TabIndex = 0;
+            this.DDLTableListing.SelectedIndexChanged += new System.EventHandler(this.DDLTableListing_SelectedIndexChanged);
             // 
-            // textBox1
+            // tabMainFunction
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(138, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(652, 296);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.WordWrap = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.GenDAL);
-            this.panel1.Controls.Add(this.GenBLL);
-            this.panel1.Controls.Add(this.ReloadSchema);
-            this.panel1.Controls.Add(this.GenDomain);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(138, 299);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(652, 35);
-            this.panel1.TabIndex = 2;
-            // 
-            // GenDomain
-            // 
-            this.GenDomain.Location = new System.Drawing.Point(407, 7);
-            this.GenDomain.Name = "GenDomain";
-            this.GenDomain.Size = new System.Drawing.Size(75, 23);
-            this.GenDomain.TabIndex = 0;
-            this.GenDomain.Text = "Domain";
-            this.GenDomain.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(237, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Generator code to Clipboard";
-            // 
-            // GenBLL
-            // 
-            this.GenBLL.Location = new System.Drawing.Point(488, 7);
-            this.GenBLL.Name = "GenBLL";
-            this.GenBLL.Size = new System.Drawing.Size(75, 23);
-            this.GenBLL.TabIndex = 0;
-            this.GenBLL.Text = "BLL";
-            this.GenBLL.UseVisualStyleBackColor = true;
-            // 
-            // GenDAL
-            // 
-            this.GenDAL.Location = new System.Drawing.Point(569, 7);
-            this.GenDAL.Name = "GenDAL";
-            this.GenDAL.Size = new System.Drawing.Size(75, 23);
-            this.GenDAL.TabIndex = 0;
-            this.GenDAL.Text = "DAL";
-            this.GenDAL.UseVisualStyleBackColor = true;
-            // 
-            // ReloadSchema
-            // 
-            this.ReloadSchema.Location = new System.Drawing.Point(3, 7);
-            this.ReloadSchema.Name = "ReloadSchema";
-            this.ReloadSchema.Size = new System.Drawing.Size(95, 23);
-            this.ReloadSchema.TabIndex = 0;
-            this.ReloadSchema.Text = "Reload Schema";
-            this.ReloadSchema.UseVisualStyleBackColor = true;
-            this.ReloadSchema.Click += new System.EventHandler(this.ReloadSchema_Click);
+            this.tabMainFunction.Controls.Add(this.tabPage1);
+            this.tabMainFunction.Controls.Add(this.tabBuildIdv);
+            this.tabMainFunction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabMainFunction.Location = new System.Drawing.Point(0, 60);
+            this.tabMainFunction.Name = "tabMainFunction";
+            this.tabMainFunction.SelectedIndex = 0;
+            this.tabMainFunction.Size = new System.Drawing.Size(801, 363);
+            this.tabMainFunction.TabIndex = 8;
+            this.tabMainFunction.SelectedIndexChanged += new System.EventHandler(this.tabMainFunction_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -296,19 +316,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 423);
             this.Controls.Add(this.tabMainFunction);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabSqlite);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.tabControl1.ResumeLayout(false);
+            this.tabSqlite.ResumeLayout(false);
+            this.Sqlite.ResumeLayout(false);
+            this.Sqlite.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabMainFunction.ResumeLayout(false);
+            this.tabBuildIdv.ResumeLayout(false);
+            this.tabBuildIdv.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tabMainFunction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -326,19 +346,20 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button FolderSelector;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabSqlite;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage Sqlite;
+        private System.Windows.Forms.TabPage tabBuildIdv;
         private System.Windows.Forms.TabControl tabMainFunction;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ContentBody;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button GenDAL;
         private System.Windows.Forms.Button GenBLL;
         private System.Windows.Forms.Button GenDomain;
         private System.Windows.Forms.ComboBox DDLTableListing;
         private System.Windows.Forms.Button ReloadSchema;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button1;
 
 
 

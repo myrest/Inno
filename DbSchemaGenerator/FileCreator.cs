@@ -43,7 +43,8 @@ namespace DbSchemaGenerator
             return rtn;
         }
 
-        internal static void CreateDomainFile(Dictionary<string, string> columns, string pk, string DomainPath, string NameSpace, string TableName)
+        #region Domain
+        internal static string GetDomainContent(Dictionary<string, string> columns, string pk, string DomainPath, string NameSpace, string TableName)
         {
             string curNamespace = string.Format("{0}.Domain.{1}", NameSpace, TableName);
             StringBuilder sb = new StringBuilder();
@@ -97,6 +98,12 @@ namespace {0}
 }}
 ", TableName);
             #endregion
+            return sb.ToString();
+        }
+
+        internal static void CreateDomainFile(Dictionary<string, string> columns, string pk, string DomainPath, string NameSpace, string TableName)
+        {
+            string Content = GetDomainContent(columns, pk, DomainPath, NameSpace, TableName);
 
             if (!DomainPath.EndsWith("\\"))
             {
@@ -107,13 +114,15 @@ namespace {0}
 
             using (FileStream fs = File.Create(DomainFileOutPutPath))
             {
-                Byte[] info = new UTF8Encoding(true).GetBytes(sb.ToString());
+                Byte[] info = new UTF8Encoding(true).GetBytes(Content);
                 fs.Write(info, 0, info.Length);
             }
 
         }
+        #endregion
 
-        internal static void CreateDALFile(Dictionary<string, string> columns, string pk, string DALPath, string NameSpace, string TableName)
+        #region DAL
+        internal static string CreateDALContent(Dictionary<string, string> columns, string pk, string DALPath, string NameSpace, string TableName)
         {
             pk = (string.IsNullOrEmpty(pk)) ? "NoPk" : pk;
             string curNamespace = string.Format("{0}.DAL.{1}", NameSpace, TableName);
@@ -266,6 +275,12 @@ namespace {1}
 
 }}", NameSpace, curNamespace, TableName, pk);
             #endregion
+            return sb.ToString();
+        }
+
+        internal static void CreateDALFile(Dictionary<string, string> columns, string pk, string DALPath, string NameSpace, string TableName)
+        {
+            string Content = CreateDALContent(columns, pk, DALPath, NameSpace, TableName);
             if (!DALPath.EndsWith("\\"))
             {
                 DALPath += "\\";
@@ -275,12 +290,14 @@ namespace {1}
 
             using (FileStream fs = File.Create(DomainFileOutPutPath))
             {
-                Byte[] info = new UTF8Encoding(true).GetBytes(sb.ToString());
+                Byte[] info = new UTF8Encoding(true).GetBytes(Content);
                 fs.Write(info, 0, info.Length);
             }
         }
+        #endregion
 
-        internal static void CreateBLLFile(Dictionary<string, string> columns, string pk, string BLLPath, string NameSpace, string TableName)
+        #region BLL
+        internal static string CreateBLLContent(Dictionary<string, string> columns, string pk, string BLLPath, string NameSpace, string TableName)
         {
             pk = (string.IsNullOrEmpty(pk)) ? "NoPk" : pk;
             string curNamespace = string.Format("{0}.BLL.{1}", NameSpace, TableName);
@@ -379,6 +396,12 @@ namespace {1}
     #endregion
 }}", NameSpace, curNamespace, TableName, pk);
             #endregion
+            return sb.ToString();
+        }
+
+        internal static void CreateBLLFile(Dictionary<string, string> columns, string pk, string BLLPath, string NameSpace, string TableName)
+        {
+            string Content = CreateBLLContent(columns, pk, BLLPath, NameSpace, TableName);
             if (!BLLPath.EndsWith("\\"))
             {
                 BLLPath += "\\";
@@ -388,9 +411,10 @@ namespace {1}
 
             using (FileStream fs = File.Create(DomainFileOutPutPath))
             {
-                Byte[] info = new UTF8Encoding(true).GetBytes(sb.ToString());
+                Byte[] info = new UTF8Encoding(true).GetBytes(Content);
                 fs.Write(info, 0, info.Length);
             }
         }
+        #endregion
     }
 }
