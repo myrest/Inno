@@ -1,0 +1,546 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
+<%@ Import Namespace="InnoThink.Core.Cache.Board" %>
+<%@ Import Namespace="InnoThink.Core.DB" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <% Html.RenderPartial("~/Views/Shared/UserControls/CssReferences.ascx"); %>
+    <style type="text/css">
+        #header
+        {
+            height: 50px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 0px;
+            background-color: #F2F2F2;
+            z-index: 0;
+        }
+        body
+        {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+        }
+        #headerlogo
+        {
+            width: 150px;
+            position: static;
+            left: 629px;
+            top: -5px;
+            z-index: 2;
+            float: left;
+            margin-left: 0px;
+        }
+        #headerword
+        {
+            width: 740px;
+            position: absolute;
+            font-size: small;
+            height: 48px;
+            float: right;
+            z-index: 1;
+            padding-top: 0px;
+            margin-left: -370px;
+            left: 50%;
+            margin-top: 0px;
+        }
+        #header #headerword #header-word2
+        {
+            padding-top: 25px;
+            float: right;
+        }
+        .body0
+        {
+            width: 740px;
+            margin-left: -370px;
+            position: relative;
+            left: 50%;
+            border-radius: 20px;
+            -webkit-box-shadow: 5px 5px 5px #CCCCCC;
+            box-shadow: 5px 5px 5px #CCCCCC;
+            background-image: url(/pic/back-3.jpg);
+            font-size: small;
+            top: 8px;
+        }
+        #talk0
+        {
+            width: 250px;
+            z-index: 4;
+            margin-right: 0px;
+            float: right;
+            margin-bottom: 0px;
+            height: auto;
+            overflow-x: hidden;
+            overflow-y: auto;
+            right: 0px;
+            bottom: 0px;
+            position: fixed;
+            top: 50px;
+            -webkit-box-shadow: 0px 0px;
+            box-shadow: 0px 0px;
+            margin-top: 0px;
+            font-size: small;
+            padding-top: 0px;
+            background-color: #FFFFFF;
+        }
+        #bottom0
+        {
+            width: 740px;
+            margin-left: -370px;
+            left: 50%;
+            position: relative;
+            text-align: center;
+            font-size: small;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            top: 22px;
+        }
+        #talk0 #talk1
+        {
+            margin-top: 10px;
+            margin-right: 10px;
+            position: static;
+            -webkit-box-shadow: 0px 0px 0px #CCCCCC;
+            box-shadow: 0px 0px 0px #CCCCCC;
+            width: 260px;
+            border-collapse: collapse;
+            margin-bottom: 0px;
+        }
+        #talk0 #talk2
+        {
+            margin-left: 10px;
+            margin-right: 10px;
+            position: static;
+            -webkit-box-shadow: 0px 0px 0px #CCCCCC;
+            box-shadow: 0px 0px 0px #CCCCCC;
+            width: 260px;
+            border-collapse: collapse;
+        }
+        .body0 #body1
+        {
+            height: 25px;
+            background-color: #4FA3C7;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            color: #FFFFFF;
+            padding-top: 8px;
+            text-align: center;
+        }
+        
+        #body1 table
+        {
+            color: #FFFFFF;
+        }
+        
+        #talk0 #talk1 #talk-up1
+        {
+            background-color: #F2F2F2;
+            height: 20px;
+            color: #000000;
+            border-top-left-radius: 10px;
+            padding-top: 8px;
+        }
+        
+        #otherteam
+        {
+            width: 250px;
+            position: fixed;
+            left: 0px;
+            top: 50px;
+            z-index: 4;
+            margin-top: 10px;
+            margin-left: 0px;
+            float: left;
+            margin-bottom: 0px;
+            bottom: 0px;
+            height: 800px;
+            font-size: small;
+            -webkit-box-shadow: 1px 0px 1px #CCCCCC;
+            box-shadow: 1px 0px 1px #CCCCCC;
+            background-color: #FFFFFF;
+        }
+        #otherteam #otherteam1
+        {
+            background-color: #FFFFFF;
+        }
+        #otherteam #otherteam1 #otherteam-up
+        {
+            height: 20px;
+            border-top-right-radius: 10px;
+            background-color: #F2F2F2;
+        }
+        #otherteam #otherteam1 #otherteam-1-center
+        {
+        }
+        #otherteam #otherteam2 #otherteam-2-center
+        {
+            padding-left: 10px;
+        }
+        #otherteam #otherteam2
+        {
+        }
+        #otherteam #otherteam2 #otherteam-up2
+        {
+            height: 20px;
+            border-top-right-radius: 10px;
+            background-color: #F2F2F2;
+            padding-top: 8px;
+        }
+        #otherteam #otherteam1 #otherteam-up1
+        {
+            height: 20px;
+            border-top-right-radius: 10px;
+            background-color: #F2F2F2;
+            padding-top: 8px;
+        }
+        
+        #talk0 #talk-out1
+        {
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 5px;
+            -webkit-box-shadow: 0px 1px #CCCCCC;
+            box-shadow: 0px 1px #CCCCCC;
+            padding-left: 10px;
+        }
+        #talk0 #talk-out2
+        {
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 5px;
+            -webkit-box-shadow: 0px 1px #CCCCCC;
+            box-shadow: 0px 1px #CCCCCC;
+            padding-left: 10px;
+        }
+        #talk0 #talk-up2
+        {
+            height: 20px;
+            padding-top: 8px;
+            color: #000000;
+            background-color: #F2F2F2;
+            margin-top: 10px;
+            border-top-left-radius: 10px;
+            text-align: left;
+        }
+        .body0 #body-2
+        {
+            float: left;
+            width: 500px;
+            height: 300px;
+        }
+        .body0 #body-3
+        {
+            float: right;
+            width: 240px;
+            height: 700px;
+        }
+        .body0 #body-4
+        {
+            float: left;
+            width: 500px;
+            height: 700px;
+        }
+        .body0 #body-4 #body4-1a
+        {
+            height: 25px;
+            background-color: #F2F2F2;
+            padding-top: 8px;
+        }
+        .body0 #body-4 #body4-1b
+        {
+            width: 31%;
+            float: left;
+            height: 150px;
+            margin-bottom: 10px;
+            background-color: #FFFFFF;
+            margin-left: 10px;
+        }
+        .body0 #body-4 #body4-1c
+        {
+            width: 29%;
+            float: left;
+            background-color: #FFFFFF;
+            padding-left: 10px;
+            margin-left: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .body0 #body-4 #body4-1c #body-1d
+        {
+            height: 20px;
+            background-color: #F2F2F2;
+            -webkit-box-shadow: px px;
+            box-shadow: px px;
+            text-align: center;
+            margin-right: 10px;
+            padding-top: 8px;
+        }
+        .body0 #body-3 #body3-1a
+        {
+            height: 210px;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+        }
+        .body0 #body-3 #body3-2a
+        {
+            height: 200px;
+            padding-top: 8px;
+            background-color: #FFFFFF;
+        }
+        .body0 #body-3 #body3-3a
+        {
+            height: 250px;
+            padding-top: 8px;
+        }
+        .body0 #body-3 #body3-2a #body3-2ax1
+        {
+            margin-left: 10px;
+            margin-right: 10px;
+            height: 25px;
+            padding-top: 8px;
+            background-color: #F2F2F2;
+            border-radius: 10px;
+            -webkit-box-shadow: 5px 5px 5px #CCCCCC;
+            box-shadow: 5px 5px 5px #CCCCCC;
+        }
+        .body0 #body-3 #body3-3a #body3-3ax1
+        {
+            margin-left: 10px;
+            margin-right: 10px;
+            height: 25px;
+            padding-top: 8px;
+            background-color: #F2F2F2;
+            border-radius: 10px;
+            -webkit-box-shadow: 5px 5px 5px #CCCCCC;
+            box-shadow: 5px 5px 5px #CCCCCC;
+            margin-bottom: 10px;
+        }
+        body, table, p, div, span
+        {
+            font-size: small;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="header" runat="server" />
+</head>
+<body>
+    <div id="header">
+        <div id="headerword">
+            <div id="headerlogo" class="clickable">
+                <img src="/pic/logo50x150-3.png" width="150" height="50" alt="" /></div>
+            <div id="header-word2">
+                <% Html.RenderPartial("~/Views/Shared/UserControls/UserInformationBar.ascx"); %>
+            </div>
+        </div>
+    </div>
+    <div id="MainContent">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        <%
+            bool IsTeamMember = false;
+            if (ViewData["IsTeamMember"] != null)
+            {
+                IsTeamMember = (bool)ViewData["IsTeamMember"];
+            }
+        %>
+        <div id="bottom0">
+            Copyright &copy; 2014 Li-Design 設計與文化創新研究室 關於我們
+        </div>
+    </div>
+    <div id="talk0">
+        <div id="talk1"  class="clickable">
+            <div id="talk-up1">
+                外部意見</div>
+        </div>
+        <span id="PublicBlock">
+            <%
+                List<BoardModel> PublicBoard = new List<BoardModel>() { };
+                if (ViewData["PublicBoard"] != null)
+                {
+                    PublicBoard = (List<BoardModel>)ViewData["PublicBoard"];
+                }
+                foreach (var item in PublicBoard)
+                {
+            %>
+            <div class="Div1">
+                <table width="95%" border="0">
+                    <tr>
+                        <td width="15%">
+                            <img src="<%=item.ImagePath %>" width="30" height="30" alt="" />
+                        </td>
+                        <td width="85%">
+                            <span title="<%=item.LoginId %>">
+                                <% =item.UserName %></span> 說：<%=item.Content %>(<%=item.DateUI %>)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <%
+                }
+            %>
+        </span>
+        <div id="talk-out1">
+            <table width="95%" border="0">
+                <tr>
+                    <td>
+                        <input name="PublicMessage" type="text" id="PublicMessage" size="23" extMaxLength="50" />
+                        <img src="/pic/camara-1.png" width="15" height="12" alt="" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <span id="BoardTemplate" style="display: none; visibility: hidden;">
+            <div class="Div1">
+                <table width="95%" border="0">
+                    <tr>
+                        <td width="15%">
+                            <img width="30" height="30" alt="" class="img" />
+                        </td>
+                        <td width="85%">
+                            <span title="" class="loginid"></span>說：<span class="msg"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </span>
+        <%
+            if (IsTeamMember)
+            {
+        %>
+        <div id="talk2">
+        </div>
+        <div id="talk-up2">
+            內部意見</div>
+        <span id="PrivateBlock">
+            <%
+                List<BoardModel> PrivateBoard = new List<BoardModel>() { };
+                if (ViewData["PrivateBoard"] != null)
+                {
+                    PrivateBoard = (List<BoardModel>)ViewData["PrivateBoard"];
+                }
+                foreach (var item in PrivateBoard)
+                {
+            %>
+            <div class="Div1">
+                <table width="95%" border="0">
+                    <tr>
+                        <td width="15%">
+                            <img src="<%=item.ImagePath %>" width="30" height="30" alt="" />
+                        </td>
+                        <td width="85%">
+                            <span title="<%=item.LoginId %>">
+                                <% =item.UserName %></span> 說：<%=item.Content %>(<%=item.DateUI %>)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <%
+                }
+            %>
+        </span>
+        <div id="talk-out2">
+            <table width="95%" border="0">
+                <tr>
+                    <td>
+                        <input name="PirvateMessage" type="text" id="PirvateMessage" size="23" extMaxLength="50" />
+                        <img src="/pic/camara-1.png" width="15" height="12" alt="" />
+                    </td>
+                </tr>
+            </table>
+            <p>
+                &nbsp;</p>
+        </div>
+        <%
+            }
+        %>
+    </div>
+    <div id="tableft" class="clickable LRtab">
+        C<br />
+        L<br />
+        I<br />
+        C<br />
+        K<br />
+    </div>
+    <div id="tabright" class="clickable LRtab">
+        C<br />
+        L<br />
+        I<br />
+        C<br />
+        K<br />
+    </div>
+    <div id="otherteam">
+        <div id="otherteam1">
+            <div id="otherteam-up1" class="clickable">
+                單元</div>
+            <div id="otherteam-1-center">
+                <% Html.RenderPartial("~/Views/Shared/UnitList.ascx"); %>
+            </div>
+        </div>
+        <%
+            List<DbTopicMemberModel> online = (List<DbTopicMemberModel>)ViewData["OnlineTeamMember"];
+            List<DbTopicMemberModel> offline = (List<DbTopicMemberModel>)ViewData["OfflineTeamMember"];
+            string HiddenClass = "hide";
+            if (online == null)
+            {
+                online = new List<DbTopicMemberModel>() { };
+            }
+            if (offline == null)
+            {
+                offline = new List<DbTopicMemberModel>() { };
+            }
+            if (online.Count() > 0 || offline.Count() > 0)
+            {
+                HiddenClass = string.Empty;
+            }
+        %>
+        <div id="otherteam2" class="<%=HiddenClass %>">
+            <div id="otherteam-up2">
+                團隊成員</div>
+            <div id="otherteam-2-center">
+                <table width="230" border="0" cellpadding="3">
+                    <tr>
+                        <td>
+                            上線成員
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="topicOnline">
+                            <%
+                                foreach (var item in online)
+                                {
+                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", item.Picture, item.UserName, item.UserSN));
+                                }
+                            %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            離線成員
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="topicOffline">
+                            <%
+                                foreach (var item in offline)
+                                {
+                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", item.Picture, item.UserName, item.UserSN));
+                                }
+                            %>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="dialog">
+    </div>
+    <% Html.RenderPartial("~/Views/Shared/UserControls/ScriptReferences.ascx"); %>
+    <script type="text/javascript" src="<%= Url.CdnContent("/js/lib/jquery.signalR-1.1.2.min.js") %>"></script>
+    <script src="../signalr/hubs"></script>
+    <asp:ContentPlaceHolder ID="JSContent" runat="server" />
+</body>
+</html>
