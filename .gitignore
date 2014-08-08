@@ -28,3 +28,8 @@
 /InnoThinkDomain/*.user
 /UnitTest.Rest.Core/*.user
 /EShopManager.Website/Views/Source/jfu-CSharp-Example-master/jfuExample/jfuExample/obj/Debug/*.cache
+/InnoThink.Core/bin
+/InnoThink.Core/obj
+/InnoThink.Website/bin
+/InnoThink.Website/obj
+/UnitTest.Rest.Core/bin
