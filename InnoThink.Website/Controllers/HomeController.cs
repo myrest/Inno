@@ -2,6 +2,7 @@
 using InnoThink.Core.MVC.BaseController;
 using Rest.Core.Utility;
 using System.Web.Mvc;
+using InnoThink.BLL.Users;
 
 namespace InnoThink.Website.Controllers
 {
@@ -18,6 +19,8 @@ namespace InnoThink.Website.Controllers
 
         public ActionResult Index()
         {
+            var um = new Users_Manager();
+            var t = um.GetAll();
             return View();
         }
     }

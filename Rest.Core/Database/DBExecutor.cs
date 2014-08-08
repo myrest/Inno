@@ -57,6 +57,10 @@ namespace Rest.Core
             {
 #if DEBUG
                 dbFolder = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName + "\\App_Data";
+                if (!Directory.Exists(dbFolder))
+                {
+                    dbFolder = @"F:\Roy桌面\周亞寬\Inno\InnoThink.Website\App_Data";
+                }
 #endif
             }
             string strDbFileName = String.Format("{0}\\{1}", dbFolder, DataBaseFileName);
