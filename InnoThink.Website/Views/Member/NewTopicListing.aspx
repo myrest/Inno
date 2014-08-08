@@ -18,17 +18,13 @@
         </div>
         <table>
             <tr>
-                <td>
-                    &nbsp;
+                <td>&nbsp;
                 </td>
-                <td>
-                    議題
+                <td>議題
                 </td>
-                <td>
-                    隊名
+                <td>隊名
                 </td>
-                <td>
-                    &nbsp;
+                <td>&nbsp;
                 </td>
             </tr>
             <%

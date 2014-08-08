@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using InnoThink.Core.MVC.BaseController;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Constancy;
-using InnoThink.Website.Models;
+﻿using InnoThink.Core.Constancy;
 using InnoThink.Core.DB;
-using CWB.Web.Configuration;
+using InnoThink.Core.MVC.BaseController;
+using InnoThink.Website.Models;
 using Rest.Core.Utility;
+using System;
+using System.Web.Mvc;
 
 namespace InnoThink.Website.Controllers
 {
@@ -18,6 +13,7 @@ namespace InnoThink.Website.Controllers
         //
         // GET: /Product/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(AdminController));
+
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
         private static readonly DbUserTable dbUser = new DbUserTable() { };
         private static readonly DbTeamGroupTable dbTG = new DbTeamGroupTable() { };
@@ -25,7 +21,6 @@ namespace InnoThink.Website.Controllers
         public AdminController()
             : base(Permission.Private)
         {
-
         }
 
         public ActionResult AdjustUserPosition()

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
@@ -6,9 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
-using InnoThink.Core.Constancy;
-using InnoThink.Core.Utility;
-using Rest.Core.Utility;
 
 namespace InnoThink.Core.Utility
 {
@@ -42,7 +41,7 @@ namespace InnoThink.Core.Utility
                 dbFolder = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName + "\\App_Data";
 #endif
             }
-            
+
             string strDbFileName = String.Format("{0}\\{1}.oo", dbFolder, dbName);
 
             if (File.Exists(strDbFileName))
@@ -91,6 +90,7 @@ namespace InnoThink.Core.Utility
         }
 
         #region ExecuteNonQuery
+
         protected int ExecuteNonQuery(string commandText)
         {
             return ExecuteNonQuery(CommandType.Text, commandText, null);
@@ -175,6 +175,7 @@ namespace InnoThink.Core.Utility
         #endregion ExecuteNonQuery
 
         #region ExecuteReader
+
         protected List<T> ExecuteReader<T>(string commandText, Func<SQLiteDataReader, List<T>> cbFunction)
         {
             return ExecuteReader<T>(CommandType.Text, commandText, new List<SQLiteParameter>() { }, cbFunction);
@@ -213,7 +214,7 @@ namespace InnoThink.Core.Utility
             return rtnT;
         }
 
-        #endregion
+        #endregion ExecuteReader
 
         #region ExecuteReader for Count
 
@@ -229,6 +230,7 @@ namespace InnoThink.Core.Utility
                     case "DateTime":
                         vValue = Convert.ToDateTime(ColumnValue).ToString("yyyy-MM-dd HH:mm:ss");
                         break;
+
                     default:
                         vValue = ColumnValue.ToString();
                         break;
@@ -327,7 +329,8 @@ namespace InnoThink.Core.Utility
             }
             return irnt;
         }
-        #endregion
+
+        #endregion ExecuteReader for Count
 
         protected int ExecuteInsert(string commandText, IList<SQLiteParameter> paraList)
         {
@@ -368,6 +371,5 @@ namespace InnoThink.Core.Utility
             }
             return irnt;
         }
-
     }
 }

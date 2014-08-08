@@ -1,32 +1,37 @@
-using InnoThink.Domain;
 using InnoThink.Domain.TopicMember;
-using InnoThink.Domain.Constancy;
-using Rest.Core.Constancy;
 using Rest.Core;
-using System;
+using Rest.Core.Constancy;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace InnoThink.DAL.TopicMember
 {
     #region interface
+
     public interface ITopicMember_Repo
     {
         TopicMember_Info GetByID(long SN);
+
         IEnumerable<TopicMember_Info> GetAll();
+
         IEnumerable<TopicMember_Info> GetByParam(TopicMember_Filter Filter, string _orderby = "");
+
         IEnumerable<TopicMember_Info> GetByParam(TopicMember_Filter Filter, string[] fieldNames, string _orderby = "");
+
         long Insert(TopicMember_Info data);
+
         int Update(long SN, TopicMember_Info data, IEnumerable<string> columns);
+
         int Delete(long SN);
     }
-    #endregion
+
+    #endregion interface
 
     #region Implementation
+
     public class TopicMember_Repo
     {
         #region Operation: Select
+
         public TopicMember_Info GetByID(long SN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
@@ -75,9 +80,11 @@ namespace InnoThink.DAL.TopicMember
                 return result;
             }
         }
-        #endregion
+
+        #endregion Operation: Select
 
         #region Operation: Insert
+
         public long Insert(TopicMember_Info data)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
@@ -86,9 +93,11 @@ namespace InnoThink.DAL.TopicMember
                 return NewID;
             }
         }
-        #endregion
+
+        #endregion Operation: Insert
 
         #region Operation: Update
+
         public int Update(long SN, TopicMember_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
@@ -96,9 +105,11 @@ namespace InnoThink.DAL.TopicMember
                 return db.Update(data, SN, columns);
             }
         }
-        #endregion
+
+        #endregion Operation: Update
 
         #region Operation: Delete
+
         public int Delete(long SN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
@@ -106,12 +117,13 @@ namespace InnoThink.DAL.TopicMember
                 return db.Delete("TopicMember", "SN", null, SN);
             }
         }
-        #endregion
 
-        #region public function
-        #endregion
+        #endregion Operation: Delete
+
+
 
         #region private function
+
         private Rest.Core.PetaPoco.Sql ConstructSQL(TopicMember_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
@@ -125,12 +137,11 @@ namespace InnoThink.DAL.TopicMember
             if (filter != null)
             {
                 //if (filter.ID != 0)
-                    //SQLStr.Append(" AND SN=@0", filter.ID);
-                    //Should updat the filter for wide search
+                //SQLStr.Append(" AND SN=@0", filter.ID);
+                //Should updat the filter for wide search
 
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
-
             }
             return SQLStr;
         }
@@ -139,8 +150,9 @@ namespace InnoThink.DAL.TopicMember
         {
             return string.Join(", ", fieldNames);
         }
-        #endregion
-    }
-    #endregion
 
+        #endregion private function
+    }
+
+    #endregion Implementation
 }

@@ -9,8 +9,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
-        #header
-        {
+        #header {
             height: 50px;
             margin-left: 0px;
             margin-right: 0px;
@@ -18,14 +17,14 @@
             background-color: #F2F2F2;
             z-index: 0;
         }
-        body
-        {
+
+        body {
             margin-left: 0px;
             margin-top: 0px;
             margin-right: 0px;
         }
-        #headerlogo
-        {
+
+        #headerlogo {
             width: 150px;
             position: static;
             left: 629px;
@@ -34,8 +33,8 @@
             float: left;
             margin-left: 0px;
         }
-        #headerword
-        {
+
+        #headerword {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -47,13 +46,13 @@
             left: 50%;
             margin-top: 0px;
         }
-        #header #headerword #header-word2
-        {
+
+        #header #headerword #header-word2 {
             padding-top: 25px;
             float: right;
         }
-        #bottom0
-        {
+
+        #bottom0 {
             width: 740px;
             margin-left: -370px;
             left: 50%;
@@ -65,8 +64,8 @@
             padding-bottom: 10px;
             display: inline-block;
         }
-        #talk0 #talk1
-        {
+
+        #talk0 #talk1 {
             margin-top: 10px;
             margin-right: 10px;
             position: static;
@@ -76,8 +75,8 @@
             border-collapse: collapse;
             margin-bottom: 0px;
         }
-        #talk0 #talk2
-        {
+
+        #talk0 #talk2 {
             margin-left: 10px;
             margin-right: 10px;
             position: static;
@@ -86,8 +85,8 @@
             width: 260px;
             border-collapse: collapse;
         }
-        .body0 #body1
-        {
+
+        .body0 #body1 {
             height: 25px;
             background-color: #4FA3C7;
             border-top-left-radius: 20px;
@@ -96,8 +95,8 @@
             padding-top: 8px;
             text-align: center;
         }
-        .body0 #body2
-        {
+
+        .body0 #body2 {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -109,19 +108,16 @@
             box-shadow: 5px 5px 5px #CCCCCC;
             padding-top: 10px;
         }
-        
-        #talk0 #talk1 #talk-up1
-        {
+
+        #talk0 #talk1 #talk-up1 {
             background-color: #F2F2F2;
             height: 20px;
             color: #000000;
             border-top-left-radius: 10px;
             padding-top: 8px;
         }
-        
-        
-        #otherteam
-        {
+
+        #otherteam {
             width: 250px;
             position: fixed;
             left: 0px;
@@ -138,48 +134,46 @@
             box-shadow: 1px 0px 1px #CCCCCC;
             background-color: #FFFFFF;
         }
-        #otherteam #otherteam1
-        {
-            background-color: #FFFFFF;
-        }
-        #otherteam #otherteam1 #otherteam-up
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-        }
-        #otherteam #otherteam1 #otherteam-1-center
-        {
-        }
-        #otherteam #otherteam2 #otherteam-2-center
-        {
-            padding-left: 10px;
-        }
-        #otherteam #otherteam2
-        {
-        }
-        #otherteam #otherteam2 #otherteam-up2
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        #otherteam #otherteam1 #otherteam-up1
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        
-        table.body0 .Div1
-        {
+
+            #otherteam #otherteam1 {
+                background-color: #FFFFFF;
+            }
+
+                #otherteam #otherteam1 #otherteam-up {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                }
+
+                #otherteam #otherteam1 #otherteam-1-center {
+                }
+
+            #otherteam #otherteam2 #otherteam-2-center {
+                padding-left: 10px;
+            }
+
+            #otherteam #otherteam2 {
+            }
+
+                #otherteam #otherteam2 #otherteam-up2 {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                    padding-top: 8px;
+                }
+
+            #otherteam #otherteam1 #otherteam-up1 {
+                height: 20px;
+                border-top-right-radius: 10px;
+                background-color: #F2F2F2;
+                padding-top: 8px;
+            }
+
+        table.body0 .Div1 {
             padding-top: 9px;
         }
-        
-        .body0 #body-3
-        {
+
+        .body0 #body-3 {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -193,13 +187,13 @@
             padding-top: 10px;
             width: 94%;
         }
-        .body0 #body-5
-        {
+
+        .body0 #body-5 {
             height: 15pt;
             padding-top: 10px;
         }
-        .body0 #body-3 #body-4a
-        {
+
+        .body0 #body-3 #body-4a {
             width: 95%;
             border-radius: 10px;
             background-color: #F2F2F2;
@@ -208,8 +202,8 @@
             margin-bottom: 10px;
             text-align: center;
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -217,8 +211,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -226,8 +220,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-up2
-        {
+
+        #talk0 #talk-up2 {
             height: 20px;
             padding-top: 8px;
             color: #000000;
@@ -264,20 +258,19 @@
                     %>
                 </div>
                 <div id="body-5" style="<%=HideStyle%>">
-                    1. 草稿：</div>
+                    1. 草稿：
+                </div>
                 <div id="body2" style="<%=HideStyle%>">
                     <table width="95%" border="0" align="center">
                         <tr>
-                            <td width="13%" valign="top">
-                                主旨：
+                            <td width="13%" valign="top">主旨：
                             </td>
                             <td width="87%">
                                 <input name="column1" type="text" id="column1" size="40">
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                說明：
+                            <td valign="top">說明：
                             </td>
                             <td>
                                 <textarea name="column2" cols="56" rows="3" id="column2"></textarea>
@@ -294,35 +287,33 @@
                         </tr>
                         -->
                         <tr>
-                            <td valign="top">
-                                備註：
+                            <td valign="top">備註：
                             </td>
                             <td>
                                 <input name="column4" type="text" id="column4" size="40">
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                相關檔案：
+                            <td valign="top">相關檔案：
                             </td>
                             <td align="left">
                                 <form id="file_upload" runat="server">
-                                <div id="filediv">
-                                    <input type="file" name="Uploadfile" multiple="">
-                                    <button>
-                                        上傳</button>
-                                    <div>
-                                        檔案上傳</div>
-                                </div>
-                                <table id="files">
-                                </table>
+                                    <div id="filediv">
+                                        <input type="file" name="Uploadfile" multiple="">
+                                        <button>
+                                            上傳</button>
+                                        <div>
+                                            檔案上傳
+                                        </div>
+                                    </div>
+                                    <table id="files">
+                                    </table>
                                 </form>
                                 <span id="deluploadfile"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                &nbsp;
+                            <td valign="top">&nbsp;
                             </td>
                             <td align="right">
                                 <button id="savebtn">
@@ -342,8 +333,9 @@
                 </div>
                 <div id="body-3">
                     <div id="body-4a">
-                        議題 ：<% =ViewData["Subject"]%></div>
-                        <span id="RankForm"></span>
+                        議題 ：<% =ViewData["Subject"]%>
+                    </div>
+                    <span id="RankForm"></span>
                     <table width="95%" border="0" id="tbitems">
                         <!-- Data template start -->
                         <tr class="hidden" id="itemTemplate">
@@ -367,7 +359,7 @@
                             </td>
                         </tr>
                         <!-- Data template end -->
-                        <% 
+                        <%
                             int i = 0;
                             foreach (var item in Model.Listing)
                             {
@@ -398,17 +390,20 @@
                                 <span class="resultImage"><a href="<% =item.ServerFileName %>" target="_blank">
                                     <% =image %></a></span>
                                 <div class="column2">
-                                    <% =item.Column2 %></div>
+                                    <% =item.Column2 %>
+                                </div>
                                 <div class="column3">
-                                    <% =item.Column3 %></div>
+                                    <% =item.Column3 %>
+                                </div>
                                 <div class="column4">
-                                    <% =item.Column4 %></div>
+                                    <% =item.Column4 %>
+                                </div>
                                 <span class="resultdoc">
                                     <% =doc %></span>
                                 <div class="score">
                                     評分：
                                     <%
-                                        //string chkflag = (item.Value.UserSn == Model.LeaderVoteTo) ? " Checked=\"checked\"" : "";
+                                //string chkflag = (item.Value.UserSn == Model.LeaderVoteTo) ? " Checked=\"checked\"" : "";
                                 string[] flag = { "", "", "", "", "" };
                                 flag[0] = (item.MyRank == 1) ? " Checked=\"checked\"" : "";
                                 flag[1] = (item.MyRank == 2) ? " Checked=\"checked\"" : "";
@@ -417,10 +412,10 @@
                                 flag[4] = (item.MyRank == 5) ? " Checked=\"checked\"" : "";
                                     %>
                                     <input type="radio" class="resultrank" name="rank<% =item.SN %>" value="1" <% =flag[0] %> />1
-                                    <input type="radio" class="resultrank" name="rank<% =item.SN %>" value="2" <% =flag[1] %>  />2
-                                    <input type="radio" class="resultrank" name="rank<% =item.SN %>" value="3" <% =flag[2] %>  />3
-                                    <input type="radio" class="resultrank" name="rank<% =item.SN %>" value="4" <% =flag[3] %>  />4
-                                    <input type="radio" class="resultrank" name="rank<% =item.SN %>" value="5" <% =flag[4] %>  />5
+                                    <input type="radio" class="resultrank" name="rank<% =item.SN %>" value="2" <% =flag[1] %> />2
+                                    <input type="radio" class="resultrank" name="rank<% =item.SN %>" value="3" <% =flag[2] %> />3
+                                    <input type="radio" class="resultrank" name="rank<% =item.SN %>" value="4" <% =flag[3] %> />4
+                                    <input type="radio" class="resultrank" name="rank<% =item.SN %>" value="5" <% =flag[4] %> />5
                                     <span class="ranknotic">(平均：<% =item.RankingAvg%>分 / <%=item.TotalVote %>人評分 / <% =item.ComNum %>人回應)</span>
                                     <span class="ui-icon ui-icon-comment clickable commentlog" title="觀看評分"></span>
                                 </div>
@@ -672,8 +667,6 @@
 
             }
         }
-
-
     </script>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/SyncInno.js") %>"></script>
 </asp:Content>

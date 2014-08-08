@@ -1,16 +1,10 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.Utility;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Data.SQLite;
-using InnoThink.Core.Constancy;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using InnoThink.Core.Model.Topic;
-using CWB.Web.Configuration;
-using System.IO;
-using System.Web;
-using Rest.Core.Utility;
 
 namespace InnoThink.Core.DB
 {
@@ -75,8 +69,8 @@ namespace InnoThink.Core.DB
             string strCMD = @"insert into BestIdea
             (
                 TopicSN, UserSN, LastUpdate, Type, Idea, Description
-            ) 
-            values 
+            )
+            values
             (
                 @TopicSN, @UserSN, @LastUpdate, @Type, @Idea, @Description
             )";
@@ -146,8 +140,8 @@ namespace InnoThink.Core.DB
         public List<DbBest4DataModel> GetAllViewDataByTopicSN(int TopicSN)
         {
             const string strCMD = @"
-                Select b.Type, m.BestIdeaSN, Idea, avg(m.Rank) as Ranking 
-                From bestidea b inner join bestideamemberrank m 
+                Select b.Type, m.BestIdeaSN, Idea, avg(m.Rank) as Ranking
+                From bestidea b inner join bestideamemberrank m
                     on b.SN = m.BestIdeaSN
                 Where b.TopicSN = @TopicSN
                 Group by m.BestIdeaSN, b.Idea, b.Type ";

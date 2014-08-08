@@ -51,7 +51,6 @@ tr.tbrow:hover
     background-color: #EEEEEE;
 }
 
-
 /* set input box length
 input
 {
@@ -112,7 +111,6 @@ input.text, input.password
     height: 20px;
     margin-bottom: -6px;
 }
-
 
 /* Loading */
 .loading
@@ -203,7 +201,6 @@ button > span.ui-icon
 {
     left: 3px;
 }
-
 
 /*Form elem length*/
 .width100
@@ -484,7 +481,6 @@ input.textbox-highlight, .txt-input:hover, .amt-input:hover, .m-input-box:hover,
 {
     padding: 3px;
 }
-
 
 /* Scenario */
 .Scenario3MemTab

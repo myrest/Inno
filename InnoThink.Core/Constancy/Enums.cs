@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace InnoThink.Core.Constancy
+﻿namespace InnoThink.Core.Constancy
 {
     public enum DataBaseName
     {

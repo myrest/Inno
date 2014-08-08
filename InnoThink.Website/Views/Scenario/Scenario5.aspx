@@ -9,8 +9,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
-        #header
-        {
+        #header {
             height: 50px;
             margin-left: 0px;
             margin-right: 0px;
@@ -18,14 +17,14 @@
             background-color: #F2F2F2;
             z-index: 0;
         }
-        body
-        {
+
+        body {
             margin-left: 0px;
             margin-top: 0px;
             margin-right: 0px;
         }
-        #headerlogo
-        {
+
+        #headerlogo {
             width: 150px;
             position: static;
             left: 629px;
@@ -34,8 +33,8 @@
             float: left;
             margin-left: 0px;
         }
-        #headerword
-        {
+
+        #headerword {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -47,13 +46,13 @@
             left: 50%;
             margin-top: 0px;
         }
-        #header #headerword #header-word2
-        {
+
+        #header #headerword #header-word2 {
             padding-top: 25px;
             float: right;
         }
-        #talk0 #talk1
-        {
+
+        #talk0 #talk1 {
             margin-top: 10px;
             margin-left: 10px;
             margin-right: 10px;
@@ -64,8 +63,8 @@
             border-collapse: collapse;
             margin-bottom: 0px;
         }
-        #talk0 #talk2
-        {
+
+        #talk0 #talk2 {
             margin-left: 10px;
             margin-right: 10px;
             position: static;
@@ -74,8 +73,8 @@
             width: 260px;
             border-collapse: collapse;
         }
-        .body0 #body1
-        {
+
+        .body0 #body1 {
             height: 25px;
             background-color: #4FA3C7;
             border-top-left-radius: 20px;
@@ -84,13 +83,13 @@
             padding-top: 8px;
             text-align: center;
         }
-        .body0 #body2
-        {
+
+        .body0 #body2 {
             height: auto;
             padding-left: 5px;
         }
-        .body0 #body3
-        {
+
+        .body0 #body3 {
             height: 580px;
             padding-left: 5px;
             margin-left: 15px;
@@ -101,8 +100,8 @@
             -webkit-box-shadow: 5px 5px 5px #CCCCCC;
             box-shadow: 5px 5px 5px #CCCCCC;
         }
-        .body0 #body4
-        {
+
+        .body0 #body4 {
             height: 300px;
             padding-left: 10px;
             margin-left: 15px;
@@ -114,18 +113,16 @@
             box-shadow: 5px 5px 5px #CCCCCC;
             padding-top: 10px;
         }
-        
-        #talk0 #talk1 #talk-up1
-        {
+
+        #talk0 #talk1 #talk-up1 {
             background-color: #F2F2F2;
             height: 20px;
             color: #000000;
             border-top-left-radius: 10px;
             padding-top: 8px;
         }
-        
-        .body0 #body2 #best1
-        {
+
+        .body0 #body2 #best1 {
             width: 96%; /*roy*/
             height: auto;
             z-index: 0;
@@ -141,8 +138,8 @@
             padding-left: 5px;
             margin-bottom: 15px;
         }
-        .body0 #body2 #best2
-        {
+
+        .body0 #body2 #best2 {
             width: 96%; /*roy*/
             height: auto;
             float: left;
@@ -157,8 +154,8 @@
             margin-left: 5px;
             margin-bottom: 15px;
         }
-        .body0 #body2 #best3
-        {
+
+        .body0 #body2 #best3 {
             width: 96%; /*roy*/
             height: auto;
             float: left;
@@ -172,8 +169,8 @@
             padding-left: 5px;
             padding-top: 10px;
         }
-        .body0 #body2 #best4
-        {
+
+        .body0 #body2 #best4 {
             width: 96%; /*roy*/
             height: auto;
             float: left;
@@ -187,14 +184,14 @@
             padding-left: 5px;
             padding-top: 10px;
         }
-        .body0 #body2 #best0
-        {
+
+        .body0 #body2 #best0 {
             height: 25px;
             padding-top: 10px;
             text-shadow: 0px 0px;
         }
-        #otherteam
-        {
+
+        #otherteam {
             width: 250px;
             position: fixed;
             left: 0px;
@@ -211,42 +208,42 @@
             box-shadow: 1px 0px 1px #CCCCCC;
             background-color: #FFFFFF;
         }
-        #otherteam #otherteam1
-        {
-            background-color: #FFFFFF;
-        }
-        #otherteam #otherteam1 #otherteam-up
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-        }
-        #otherteam #otherteam1 #otherteam-1-center
-        {
-        }
-        #otherteam #otherteam2 #otherteam-2-center
-        {
-            padding-left: 10px;
-        }
-        #otherteam #otherteam2
-        {
-        }
-        #otherteam #otherteam2 #otherteam-up2
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        #otherteam #otherteam1 #otherteam-up1
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        .body0 #body3 #best-5
-        {
+
+            #otherteam #otherteam1 {
+                background-color: #FFFFFF;
+            }
+
+                #otherteam #otherteam1 #otherteam-up {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                }
+
+                #otherteam #otherteam1 #otherteam-1-center {
+                }
+
+            #otherteam #otherteam2 #otherteam-2-center {
+                padding-left: 10px;
+            }
+
+            #otherteam #otherteam2 {
+            }
+
+                #otherteam #otherteam2 #otherteam-up2 {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                    padding-top: 8px;
+                }
+
+            #otherteam #otherteam1 #otherteam-up1 {
+                height: 20px;
+                border-top-right-radius: 10px;
+                background-color: #F2F2F2;
+                padding-top: 8px;
+            }
+
+        .body0 #body3 #best-5 {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -259,8 +256,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body3 #best-6
-        {
+
+        .body0 #body3 #best-6 {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -273,8 +270,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body3 #best-7
-        {
+
+        .body0 #body3 #best-7 {
             width: 24%;
             height: 250px;
             float: left;
@@ -287,8 +284,8 @@
             -webkit-box-shadow: px 0px;
             box-shadow: px 0px;
         }
-        .body0 #body3 #best-8
-        {
+
+        .body0 #body3 #best-8 {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -301,9 +298,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        
-        .body0 #body4 #best-5p
-        {
+
+        .body0 #body4 #best-5p {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -316,8 +312,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body4 #best-6p
-        {
+
+        .body0 #body4 #best-6p {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -330,8 +326,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body4 #best-7p
-        {
+
+        .body0 #body4 #best-7p {
             width: 24%;
             height: 250px;
             float: left;
@@ -344,8 +340,8 @@
             -webkit-box-shadow: px 0px;
             box-shadow: px 0px;
         }
-        .body0 #body4 #best-8p
-        {
+
+        .body0 #body4 #best-8p {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -358,25 +354,22 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        
-        
-        
-        .body0 #body2-a
-        {
+
+        .body0 #body2-a {
             padding-top: 10px;
             height: 25px;
             color: #000000;
             text-shadow: 0px 0px;
         }
-        .body0 #body2-b
-        {
+
+        .body0 #body2-b {
             height: 25px;
             padding-top: 10px;
             color: #000000;
             text-shadow: 0px 0px;
         }
-        .body0 #body3 #best-5 #best-9
-        {
+
+        .body0 #body3 #best-5 #best-9 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
@@ -384,8 +377,8 @@
             padding-top: 5px;
             background-color: #CCCCCC;
         }
-        .body0 #body3 #best-5 #best-10
-        {
+
+        .body0 #body3 #best-5 #best-10 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -397,9 +390,8 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        
-        .body0 #body3 #best-6 #best-11
-        {
+
+        .body0 #body3 #best-6 #best-11 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
@@ -407,8 +399,8 @@
             padding-top: 5px;
             background-color: #CCCCCC;
         }
-        .body0 #body3 #best-6 #best-12
-        {
+
+        .body0 #body3 #best-6 #best-12 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -420,8 +412,8 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        .body0 #body3 #best-7 #best-13
-        {
+
+        .body0 #body3 #best-7 #best-13 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
@@ -430,8 +422,8 @@
             padding-top: 5px;
             background-color: #CCCCCC;
         }
-        .body0 #body3 #best-7 #best-14
-        {
+
+        .body0 #body3 #best-7 #best-14 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -443,8 +435,8 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        .body0 #body3 #best-8 #best-15
-        {
+
+        .body0 #body3 #best-8 #best-15 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
@@ -453,8 +445,8 @@
             padding-top: 5px;
             background-color: #CCCCCC;
         }
-        .body0 #body3 #best-8 #best-16
-        {
+
+        .body0 #body3 #best-8 #best-16 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -466,8 +458,8 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        .body0 #body3 #best-5 #best-17
-        {
+
+        .body0 #body3 #best-5 #best-17 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -482,8 +474,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        .body0 #body3 #best-6 #best-18
-        {
+
+        .body0 #body3 #best-6 #best-18 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -498,8 +490,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        .body0 #body3 #best-7 #best-19
-        {
+
+        .body0 #body3 #best-7 #best-19 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -514,8 +506,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        .body0 #body3 #best-8 #best-20
-        {
+
+        .body0 #body3 #best-8 #best-20 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -530,8 +522,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -539,8 +531,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -548,8 +540,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -557,8 +549,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -566,8 +558,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-up2
-        {
+
+        #talk0 #talk-up2 {
             height: 20px;
             padding-top: 8px;
             color: #000000;
@@ -666,19 +658,19 @@
                                         </td>
                                         <td align="center" valign="top" <% =strBGColor %>>
                                             <%
-                                    for (int x = 1; x < 6; x++)
-                                    {
-                                        string selected = (x == vp.Rank) ? "checked=\"checked\"" : "";
-                                        string radiosample = "<label for=\"id{0}\"><input type=\"radio\" name=\"{1}{2}\" id=\"id{0}\" value=\"{3}\" {4}>{3}</label>";
-                                        string radio = string.Format(radiosample, x.ToString() + vp.ScenarioCharValueSN, rdoName, vp.ScenarioCharValueSN, x, selected);
-                                        Response.Write(radio);
-                                    }
+                                        for (int x = 1; x < 6; x++)
+                                        {
+                                            string selected = (x == vp.Rank) ? "checked=\"checked\"" : "";
+                                            string radiosample = "<label for=\"id{0}\"><input type=\"radio\" name=\"{1}{2}\" id=\"id{0}\" value=\"{3}\" {4}>{3}</label>";
+                                            string radio = string.Format(radiosample, x.ToString() + vp.ScenarioCharValueSN, rdoName, vp.ScenarioCharValueSN, x, selected);
+                                            Response.Write(radio);
+                                        }
                                             %>
                                         </td>
                                     </tr>
                                     <%
-                                }
-                                BtnBGColor = (j % 2 == 1) ? "" : bgColor;
+                                    }
+                                    BtnBGColor = (j % 2 == 1) ? "" : bgColor;
                                     %>
                                     <tr>
                                         <td colspan="2" align="right" valign="top" <%=BtnBGColor %>>
@@ -729,7 +721,7 @@
                     utility.ajaxQuiet('ScenarioService/Scenario5Save', para);
                 }
             }
-            ,SaveCharData: function () {
+            , SaveCharData: function () {
                 var Ranks = Step.GetData($(this));
                 if (Ranks.length > 0) {
                     var para = {
@@ -754,8 +746,6 @@
                 }
             }
         }
-
-
     </script>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/SyncInno.js") %>"></script>
 </asp:Content>

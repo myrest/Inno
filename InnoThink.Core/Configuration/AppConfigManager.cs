@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using InnoThink.Core.Configuration;
+﻿using InnoThink.Core.Configuration;
 
 namespace CWB.Web.Configuration
 {

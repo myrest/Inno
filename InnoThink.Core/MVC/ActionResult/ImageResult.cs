@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using Rest.Core.Utility;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using InnoThink.Core.Utility;
-using Rest.Core.Utility;
+using System.Web.Mvc;
 
 namespace InnoThink.Core.MVC
 {

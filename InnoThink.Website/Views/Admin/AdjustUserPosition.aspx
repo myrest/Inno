@@ -13,15 +13,15 @@
             管理使用者權限
         </div>
         登入帳號:<input type="text" id="UserLoginId" /><br />
-        調整權限為:<label for="sys"><input type="radio" name="Position" id="sys"  value="111" />
+        調整權限為:<label for="sys"><input type="radio" name="Position" id="sys" value="111" />
             系統管理者</label>&nbsp;
         <label for="admin">
-            <input type="radio" name="Position" id="admin"  value="11" />
+            <input type="radio" name="Position" id="admin" value="11" />
             一般管理者</label>&nbsp;
         <label for="user">
             <input type="radio" name="Position" id="user" value="1" checked="checked" />
             使用者</label>
-            <br />
+        <br />
         <input type="button" id="savebtn" value="送出" />
     </div>
 </asp:Content>

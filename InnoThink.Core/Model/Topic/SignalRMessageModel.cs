@@ -1,8 +1,5 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using InnoThink.Core.Constancy;
 using System.Runtime.Serialization;
 
 namespace InnoThink.Core.Model.Topic
@@ -12,6 +9,7 @@ namespace InnoThink.Core.Model.Topic
     {
         [DataMember(Name = "t")]
         public SignalRMessageType MessageType { get; set; }
+
         [DataMember(Name = "d")]
         public MessageUnit data { get; set; }
     }

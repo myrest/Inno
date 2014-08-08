@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using InnoThink.Core.Constancy;
+using System;
 using System.Web;
-using log4net;
-using InnoThink.Core.Constancy;
 
 namespace InnoThink.Core
 {
@@ -30,6 +26,7 @@ namespace InnoThink.Core
             this.trading._OrignFileName = string.Empty;
             this.trading._tempInt = 0;
         }
+
         public void Logout()
         {
             Trading ordTrading = (Trading)HttpContext.Current.Session[TradingSessionKey];
@@ -53,21 +50,30 @@ namespace InnoThink.Core
             isLogined = false;
             sn = 0;
         }
+
         public string LoginId { get; set; }
+
         public bool isLogined { get; set; }
+
         public int sn { get; set; }
+
         public int Position { get; set; }
+
         //public string FBToken { get; set; }
         public string Picture { get; set; }
+
         public string UserName { get; set; }
 
         public string _tempFileName { get; set; }
+
         public string _OrignFileName { get; set; }
+
         public bool _isImage { get; set; }
 
         private int __tempInt;
+
         /// <summary>
-        /// Set the temp Int value, when set this value will clear "_tempFileName" at the same time. 
+        /// Set the temp Int value, when set this value will clear "_tempFileName" at the same time.
         /// </summary>
         public int _tempInt
         {

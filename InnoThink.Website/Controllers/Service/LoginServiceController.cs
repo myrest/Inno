@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using InnoThink.Core.Utility;
-using InnoThink.Core.DB;
-using InnoThink.Website.Models;
-using CWB.Web;
-using CWB.Web.Configuration;
-using InnoThink.Core.Constancy;
+﻿using CWB.Web.Configuration;
 using InnoThink.Core;
-using InnoThink.Core.MVC.BaseController;
-using InnoThink.Core.Model;
 using InnoThink.Core.Cache.SignalR;
+using InnoThink.Core.Constancy;
+using InnoThink.Core.DB;
+using InnoThink.Core.Model;
+using InnoThink.Core.MVC.BaseController;
+using InnoThink.Core.Utility;
 using InnoThink.Website.Communication;
+using InnoThink.Website.Models;
 using Rest.Core.Utility;
+using System;
+using System.Web.Mvc;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -23,6 +19,7 @@ namespace InnoThink.Website.Controllers.Service
         //
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(LoginServiceController));
+
         private static readonly DbUserTable dbUser = new DbUserTable() { };
 
         public LoginServiceController()
@@ -154,6 +151,5 @@ namespace InnoThink.Website.Controllers.Service
             r.setMessage("您已登出。");
             return Json(r, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

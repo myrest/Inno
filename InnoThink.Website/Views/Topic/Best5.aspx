@@ -8,12 +8,11 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
-        .emptyLine
-        {
-            line-height : 1px;
+        .emptyLine {
+            line-height: 1px;
         }
-        #header
-        {
+
+        #header {
             height: 50px;
             margin-left: 0px;
             margin-right: 0px;
@@ -21,14 +20,14 @@
             background-color: #F2F2F2;
             z-index: 0;
         }
-        body
-        {
+
+        body {
             margin-left: 0px;
             margin-top: 0px;
             margin-right: 0px;
         }
-        #headerlogo
-        {
+
+        #headerlogo {
             width: 150px;
             position: static;
             left: 629px;
@@ -37,8 +36,8 @@
             float: left;
             margin-left: 0px;
         }
-        #headerword
-        {
+
+        #headerword {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -50,13 +49,13 @@
             left: 50%;
             margin-top: 0px;
         }
-        #header #headerword #header-word2
-        {
+
+        #header #headerword #header-word2 {
             padding-top: 25px;
             float: right;
         }
-        .body0
-        {
+
+        .body0 {
             width: 740px;
             margin-left: -370px;
             left: 50%;
@@ -66,8 +65,8 @@
             background-image: url(/pic/back-3.jpg);
             font-size: small;
         }
-        #bottom0
-        {
+
+        #bottom0 {
             width: 740px;
             margin-left: -370px;
             left: 50%;
@@ -77,8 +76,8 @@
             margin-top: 10px;
             padding-bottom: 10px;
         }
-        #talk0 #talk1
-        {
+
+        #talk0 #talk1 {
             margin-top: 10px;
             margin-left: 10px;
             margin-right: 10px;
@@ -89,8 +88,8 @@
             border-collapse: collapse;
             margin-bottom: 0px;
         }
-        #talk0 #talk2
-        {
+
+        #talk0 #talk2 {
             margin-left: 10px;
             margin-right: 10px;
             position: static;
@@ -99,8 +98,8 @@
             width: 260px;
             border-collapse: collapse;
         }
-        .body0 #body1
-        {
+
+        .body0 #body1 {
             height: 25px;
             background-color: #4FA3C7;
             border-top-left-radius: 20px;
@@ -109,12 +108,12 @@
             padding-top: 8px;
             text-align: center;
         }
-        .body0 #body2
-        {
+
+        .body0 #body2 {
             padding-left: 5px;
         }
-        .body0 #body3
-        {
+
+        .body0 #body3 {
             height: 580px;
             padding-left: 5px;
             margin-left: 15px;
@@ -125,8 +124,8 @@
             -webkit-box-shadow: 5px 5px 5px #CCCCCC;
             box-shadow: 5px 5px 5px #CCCCCC;
         }
-        .body0 #body4
-        {
+
+        .body0 #body4 {
             height: 300px;
             padding-left: 10px;
             margin-left: 15px;
@@ -138,18 +137,16 @@
             box-shadow: 5px 5px 5px #CCCCCC;
             padding-top: 10px;
         }
-        
-        #talk0 #talk1 #talk-up1
-        {
+
+        #talk0 #talk1 #talk-up1 {
             background-color: #F2F2F2;
             height: 20px;
             color: #000000;
             border-top-left-radius: 10px;
             padding-top: 8px;
         }
-        
-        .body0 #body2 .importblock
-        {
+
+        .body0 #body2 .importblock {
             width: 98%;
             z-index: 0;
             float: left;
@@ -164,8 +161,8 @@
             padding-left: 5px;
             margin-bottom: 15px;
         }
-        .body0 #body2 #best2
-        {
+
+        .body0 #body2 #best2 {
             width: 47%;
             height: 200px;
             float: left;
@@ -180,8 +177,8 @@
             margin-left: 5px;
             margin-bottom: 15px;
         }
-        .body0 #body2 #best3
-        {
+
+        .body0 #body2 #best3 {
             width: 47%;
             height: 200px;
             float: left;
@@ -195,8 +192,8 @@
             padding-left: 5px;
             padding-top: 10px;
         }
-        .body0 #body2 #best4
-        {
+
+        .body0 #body2 #best4 {
             width: 47%;
             height: 200px;
             float: left;
@@ -210,14 +207,14 @@
             padding-left: 5px;
             padding-top: 10px;
         }
-        .body0 #body2 #best0
-        {
+
+        .body0 #body2 #best0 {
             height: 25px;
             padding-top: 10px;
             text-shadow: 0px 0px;
         }
-        #otherteam
-        {
+
+        #otherteam {
             width: 250px;
             position: fixed;
             left: 0px;
@@ -234,42 +231,42 @@
             box-shadow: 1px 0px 1px #CCCCCC;
             background-color: #FFFFFF;
         }
-        #otherteam #otherteam1
-        {
-            background-color: #FFFFFF;
-        }
-        #otherteam #otherteam1 #otherteam-up
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-        }
-        #otherteam #otherteam1 #otherteam-1-center
-        {
-        }
-        #otherteam #otherteam2 #otherteam-2-center
-        {
-            padding-left: 10px;
-        }
-        #otherteam #otherteam2
-        {
-        }
-        #otherteam #otherteam2 #otherteam-up2
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        #otherteam #otherteam1 #otherteam-up1
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        .body0 #body3 #best-5
-        {
+
+            #otherteam #otherteam1 {
+                background-color: #FFFFFF;
+            }
+
+                #otherteam #otherteam1 #otherteam-up {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                }
+
+                #otherteam #otherteam1 #otherteam-1-center {
+                }
+
+            #otherteam #otherteam2 #otherteam-2-center {
+                padding-left: 10px;
+            }
+
+            #otherteam #otherteam2 {
+            }
+
+                #otherteam #otherteam2 #otherteam-up2 {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                    padding-top: 8px;
+                }
+
+            #otherteam #otherteam1 #otherteam-up1 {
+                height: 20px;
+                border-top-right-radius: 10px;
+                background-color: #F2F2F2;
+                padding-top: 8px;
+            }
+
+        .body0 #body3 #best-5 {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -282,8 +279,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body3 #best-6
-        {
+
+        .body0 #body3 #best-6 {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -296,8 +293,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body3 #best-7
-        {
+
+        .body0 #body3 #best-7 {
             width: 24%;
             height: 250px;
             float: left;
@@ -310,8 +307,8 @@
             -webkit-box-shadow: px 0px;
             box-shadow: px 0px;
         }
-        .body0 #body3 #best-8
-        {
+
+        .body0 #body3 #best-8 {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -324,9 +321,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        
-        .body0 #body4 #best-5p
-        {
+
+        .body0 #body4 #best-5p {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -339,8 +335,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body4 #best-6p
-        {
+
+        .body0 #body4 #best-6p {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -353,8 +349,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body4 #best-7p
-        {
+
+        .body0 #body4 #best-7p {
             width: 24%;
             height: 250px;
             float: left;
@@ -367,8 +363,8 @@
             -webkit-box-shadow: px 0px;
             box-shadow: px 0px;
         }
-        .body0 #body4 #best-8p
-        {
+
+        .body0 #body4 #best-8p {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -381,25 +377,22 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        
-        
-        
-        .body0 #body2-a
-        {
+
+        .body0 #body2-a {
             padding-top: 10px;
             height: 25px;
             color: #000000;
             text-shadow: 0px 0px;
         }
-        .body0 #body2-b
-        {
+
+        .body0 #body2-b {
             height: 25px;
             padding-top: 10px;
             color: #000000;
             text-shadow: 0px 0px;
         }
-        .body0 #body3 #best-5 #best-9
-        {
+
+        .body0 #body3 #best-5 #best-9 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
@@ -407,8 +400,8 @@
             padding-top: 5px;
             background-color: #CCCCCC;
         }
-        .body0 #body3 #best-5 #best-10
-        {
+
+        .body0 #body3 #best-5 #best-10 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -420,9 +413,8 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        
-        .body0 #body3 #best-6 #best-11
-        {
+
+        .body0 #body3 #best-6 #best-11 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
@@ -430,8 +422,8 @@
             padding-top: 5px;
             background-color: #CCCCCC;
         }
-        .body0 #body3 #best-6 #best-12
-        {
+
+        .body0 #body3 #best-6 #best-12 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -443,8 +435,8 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        .body0 #body3 #best-7 #best-13
-        {
+
+        .body0 #body3 #best-7 #best-13 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
@@ -453,8 +445,8 @@
             padding-top: 5px;
             background-color: #CCCCCC;
         }
-        .body0 #body3 #best-7 #best-14
-        {
+
+        .body0 #body3 #best-7 #best-14 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -466,8 +458,8 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        .body0 #body3 #best-8 #best-15
-        {
+
+        .body0 #body3 #best-8 #best-15 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
@@ -476,8 +468,8 @@
             padding-top: 5px;
             background-color: #CCCCCC;
         }
-        .body0 #body3 #best-8 #best-16
-        {
+
+        .body0 #body3 #best-8 #best-16 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -489,8 +481,8 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        .body0 #body3 #best-5 #best-17
-        {
+
+        .body0 #body3 #best-5 #best-17 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -505,8 +497,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        .body0 #body3 #best-6 #best-18
-        {
+
+        .body0 #body3 #best-6 #best-18 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -521,8 +513,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        .body0 #body3 #best-7 #best-19
-        {
+
+        .body0 #body3 #best-7 #best-19 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -537,8 +529,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        .body0 #body3 #best-8 #best-20
-        {
+
+        .body0 #body3 #best-8 #best-20 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -553,8 +545,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -562,8 +554,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -571,8 +563,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -580,8 +572,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -589,8 +581,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-up2
-        {
+
+        #talk0 #talk-up2 {
             height: 20px;
             padding-top: 8px;
             color: #000000;
@@ -632,7 +624,8 @@
                 </div>
                 <div id="body2">
                     <div id="best0">
-                        1. BEST 第2次重要性分析</div>
+                        1. BEST 第2次重要性分析
+                    </div>
                     <table width="98%">
                         <colgroup>
                             <col width="50%" />
@@ -645,16 +638,13 @@
                                 <div class="importblock">
                                     <table width="90%" border="0" align="center">
                                         <tr>
-                                            <td colspan="2" align="left" bgcolor="#99FFFF">
-                                                B 重要性分析：
+                                            <td colspan="2" align="left" bgcolor="#99FFFF">B 重要性分析：
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td width="35%" align="left" valign="top">
-                                                &nbsp;
+                                            <td width="35%" align="left" valign="top">&nbsp;
                                             </td>
-                                            <td width="58%" align="center" valign="top">
-                                                1 最不重要← →5 最重要
+                                            <td width="58%" align="center" valign="top">1 最不重要← →5 最重要
                                             </td>
                                         </tr>
                                         <%
@@ -692,8 +682,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" align="right" valign="top" class="emptyLine">
-                                                &nbsp;
+                                            <td colspan="2" align="right" valign="top" class="emptyLine">&nbsp;
                                             </td>
                                         </tr>
                                     </table>
@@ -703,16 +692,13 @@
                                 <div class="importblock">
                                     <table width="90%" border="0" align="center">
                                         <tr>
-                                            <td colspan="2" align="left" bgcolor="#99FFFF">
-                                                E 重要性分析：
+                                            <td colspan="2" align="left" bgcolor="#99FFFF">E 重要性分析：
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td width="35%" align="left" valign="top">
-                                                &nbsp;
+                                            <td width="35%" align="left" valign="top">&nbsp;
                                             </td>
-                                            <td width="58%" align="center" valign="top">
-                                                1 最不重要← →5 最重要
+                                            <td width="58%" align="center" valign="top">1 最不重要← →5 最重要
                                             </td>
                                         </tr>
                                         <%
@@ -750,8 +736,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" align="right" valign="top" class="emptyLine">
-                                                &nbsp;
+                                            <td colspan="2" align="right" valign="top" class="emptyLine">&nbsp;
                                             </td>
                                         </tr>
                                     </table>
@@ -763,16 +748,13 @@
                                 <div class="importblock">
                                     <table width="90%" border="0" align="center">
                                         <tr>
-                                            <td colspan="2" align="left" bgcolor="#99FFFF">
-                                                S 重要性分析：
+                                            <td colspan="2" align="left" bgcolor="#99FFFF">S 重要性分析：
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td width="35%" align="left" valign="top">
-                                                &nbsp;
+                                            <td width="35%" align="left" valign="top">&nbsp;
                                             </td>
-                                            <td width="58%" align="center" valign="top">
-                                                1 最不重要← →5 最重要
+                                            <td width="58%" align="center" valign="top">1 最不重要← →5 最重要
                                             </td>
                                         </tr>
                                         <%
@@ -810,8 +792,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" align="right" valign="top" class="emptyLine">
-                                                &nbsp;
+                                            <td colspan="2" align="right" valign="top" class="emptyLine">&nbsp;
                                             </td>
                                         </tr>
                                     </table>
@@ -821,16 +802,13 @@
                                 <div class="importblock">
                                     <table width="90%" border="0" align="center">
                                         <tr>
-                                            <td colspan="2" align="left" bgcolor="#99FFFF">
-                                                T 重要性分析：
+                                            <td colspan="2" align="left" bgcolor="#99FFFF">T 重要性分析：
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td width="35%" align="left" valign="top">
-                                                &nbsp;
+                                            <td width="35%" align="left" valign="top">&nbsp;
                                             </td>
-                                            <td width="58%" align="center" valign="top">
-                                                1 最不重要← →5 最重要
+                                            <td width="58%" align="center" valign="top">1 最不重要← →5 最重要
                                             </td>
                                         </tr>
                                         <%
@@ -868,8 +846,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" align="right" valign="top" class="emptyLine">
-                                                &nbsp;
+                                            <td colspan="2" align="right" valign="top" class="emptyLine">&nbsp;
                                             </td>
                                         </tr>
                                     </table>
@@ -931,7 +908,7 @@
             }
             , syncUI: function (data) {
                 //check sn is existing.
-                //var ItemNums = 
+                //var ItemNums =
                 var $objtype = $('#BlockType' + data.TypeUI);
                 var $html = Step.$Template.clone();
                 $html = $html.find('.itemsn').html($objtype.length + 1).end()
@@ -952,8 +929,6 @@
 
             }
         }
-
-
     </script>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/SyncInno.js") %>"></script>
 </asp:Content>

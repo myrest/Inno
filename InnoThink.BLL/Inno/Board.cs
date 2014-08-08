@@ -1,37 +1,44 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using InnoThink.DAL.Board;
 using InnoThink.Domain.Board;
-using Rest.Core.Constancy;
 using Rest.Core.Utility;
+using System;
+using System.Collections.Generic;
 
 namespace InnoThink.BLL.Board
 {
     #region interface
+
     public interface IBoard_Manager
     {
         Board_Info GetByID(long NoPk);
+
         IEnumerable<Board_Info> GetAll();
+
         IEnumerable<Board_Info> GetByParameter(Board_Filter Filter, string _orderby = "");
+
         long Insert(Board_Info data);
+
         bool Update(long NoPk, Board_Info data, IEnumerable<string> columns);
+
         int Delete(long NoPk);
+
         bool IsExist(long NoPk);
     }
-    #endregion
+
+    #endregion interface
 
     #region implementation
+
     public class Board_Manager : IBoard_Manager
     {
-        #region public properties
-        #endregion
-
         #region private fields
+
         private readonly static SysLog log = SysLog.GetLogger(typeof(Board_Manager));
-        #endregion
+
+        #endregion private fields
 
         #region Operation: Select
+
         public Board_Info GetByID(long NoPk)
         {
             return new Board_Repo().GetByID(NoPk);
@@ -46,9 +53,11 @@ namespace InnoThink.BLL.Board
         {
             return new Board_Repo().GetByParam(Filter, _orderby);
         }
-        #endregion
+
+        #endregion Operation: Select
 
         #region Operation: Raw Insert
+
         public long Insert(Board_Info data)
         {
             long newID = 0;
@@ -62,31 +71,36 @@ namespace InnoThink.BLL.Board
             }
             return newID;
         }
-        #endregion
+
+        #endregion Operation: Raw Insert
 
         #region Operation: Raw Update
+
         public bool Update(long NoPk, Board_Info data, IEnumerable<string> columns)
         {
             return new Board_Repo().Update(NoPk, data, columns) > 0;
         }
-        #endregion
+
+        #endregion Operation: Raw Update
 
         #region Operation: Delete
+
         public int Delete(long NoPk)
         {
             return new Board_Repo().Delete(NoPk);
         }
-        #endregion
+
+        #endregion Operation: Delete
 
         #region public functions
+
         public bool IsExist(long NoPk)
         {
             return (GetByID(NoPk) != null);
         }
-        #endregion
 
-        #region private functions
-        #endregion
+        #endregion public functions
     }
-    #endregion
+
+    #endregion implementation
 }

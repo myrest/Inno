@@ -1,32 +1,37 @@
-using InnoThink.Domain;
 using InnoThink.Domain.ScenarioCharRank;
-using InnoThink.Domain.Constancy;
-using Rest.Core.Constancy;
 using Rest.Core;
-using System;
+using Rest.Core.Constancy;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace InnoThink.DAL.ScenarioCharRank
 {
     #region interface
+
     public interface IScenarioCharRank_Repo
     {
         ScenarioCharRank_Info GetByID(long NoPk);
+
         IEnumerable<ScenarioCharRank_Info> GetAll();
+
         IEnumerable<ScenarioCharRank_Info> GetByParam(ScenarioCharRank_Filter Filter, string _orderby = "");
+
         IEnumerable<ScenarioCharRank_Info> GetByParam(ScenarioCharRank_Filter Filter, string[] fieldNames, string _orderby = "");
+
         long Insert(ScenarioCharRank_Info data);
+
         int Update(long NoPk, ScenarioCharRank_Info data, IEnumerable<string> columns);
+
         int Delete(long NoPk);
     }
-    #endregion
+
+    #endregion interface
 
     #region Implementation
+
     public class ScenarioCharRank_Repo
     {
         #region Operation: Select
+
         public ScenarioCharRank_Info GetByID(long NoPk)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
@@ -75,9 +80,11 @@ namespace InnoThink.DAL.ScenarioCharRank
                 return result;
             }
         }
-        #endregion
+
+        #endregion Operation: Select
 
         #region Operation: Insert
+
         public long Insert(ScenarioCharRank_Info data)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
@@ -86,9 +93,11 @@ namespace InnoThink.DAL.ScenarioCharRank
                 return NewID;
             }
         }
-        #endregion
+
+        #endregion Operation: Insert
 
         #region Operation: Update
+
         public int Update(long NoPk, ScenarioCharRank_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
@@ -96,9 +105,11 @@ namespace InnoThink.DAL.ScenarioCharRank
                 return db.Update(data, NoPk, columns);
             }
         }
-        #endregion
+
+        #endregion Operation: Update
 
         #region Operation: Delete
+
         public int Delete(long NoPk)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
@@ -106,12 +117,13 @@ namespace InnoThink.DAL.ScenarioCharRank
                 return db.Delete("ScenarioCharRank", "NoPk", null, NoPk);
             }
         }
-        #endregion
 
-        #region public function
-        #endregion
+        #endregion Operation: Delete
+
+
 
         #region private function
+
         private Rest.Core.PetaPoco.Sql ConstructSQL(ScenarioCharRank_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
@@ -125,12 +137,11 @@ namespace InnoThink.DAL.ScenarioCharRank
             if (filter != null)
             {
                 //if (filter.ID != 0)
-                    //SQLStr.Append(" AND NoPk=@0", filter.ID);
-                    //Should updat the filter for wide search
+                //SQLStr.Append(" AND NoPk=@0", filter.ID);
+                //Should updat the filter for wide search
 
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
-
             }
             return SQLStr;
         }
@@ -139,8 +150,9 @@ namespace InnoThink.DAL.ScenarioCharRank
         {
             return string.Join(", ", fieldNames);
         }
-        #endregion
-    }
-    #endregion
 
+        #endregion private function
+    }
+
+    #endregion Implementation
 }

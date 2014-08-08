@@ -1,37 +1,44 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using InnoThink.DAL.ScenarioCharValues;
 using InnoThink.Domain.ScenarioCharValues;
-using Rest.Core.Constancy;
 using Rest.Core.Utility;
+using System;
+using System.Collections.Generic;
 
 namespace InnoThink.BLL.ScenarioCharValues
 {
     #region interface
+
     public interface IScenarioCharValues_Manager
     {
         ScenarioCharValues_Info GetByID(long SN);
+
         IEnumerable<ScenarioCharValues_Info> GetAll();
+
         IEnumerable<ScenarioCharValues_Info> GetByParameter(ScenarioCharValues_Filter Filter, string _orderby = "");
+
         long Insert(ScenarioCharValues_Info data);
+
         bool Update(long SN, ScenarioCharValues_Info data, IEnumerable<string> columns);
+
         int Delete(long SN);
+
         bool IsExist(long SN);
     }
-    #endregion
+
+    #endregion interface
 
     #region implementation
+
     public class ScenarioCharValues_Manager : IScenarioCharValues_Manager
     {
-        #region public properties
-        #endregion
-
         #region private fields
+
         private readonly static SysLog log = SysLog.GetLogger(typeof(ScenarioCharValues_Manager));
-        #endregion
+
+        #endregion private fields
 
         #region Operation: Select
+
         public ScenarioCharValues_Info GetByID(long SN)
         {
             return new ScenarioCharValues_Repo().GetByID(SN);
@@ -46,9 +53,11 @@ namespace InnoThink.BLL.ScenarioCharValues
         {
             return new ScenarioCharValues_Repo().GetByParam(Filter, _orderby);
         }
-        #endregion
+
+        #endregion Operation: Select
 
         #region Operation: Raw Insert
+
         public long Insert(ScenarioCharValues_Info data)
         {
             long newID = 0;
@@ -62,31 +71,36 @@ namespace InnoThink.BLL.ScenarioCharValues
             }
             return newID;
         }
-        #endregion
+
+        #endregion Operation: Raw Insert
 
         #region Operation: Raw Update
+
         public bool Update(long SN, ScenarioCharValues_Info data, IEnumerable<string> columns)
         {
             return new ScenarioCharValues_Repo().Update(SN, data, columns) > 0;
         }
-        #endregion
+
+        #endregion Operation: Raw Update
 
         #region Operation: Delete
+
         public int Delete(long SN)
         {
             return new ScenarioCharValues_Repo().Delete(SN);
         }
-        #endregion
+
+        #endregion Operation: Delete
 
         #region public functions
+
         public bool IsExist(long SN)
         {
             return (GetByID(SN) != null);
         }
-        #endregion
 
-        #region private functions
-        #endregion
+        #endregion public functions
     }
-    #endregion
+
+    #endregion implementation
 }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CWB.Web.Configuration;
+﻿using CWB.Web.Configuration;
+using System;
 
 namespace InnoThink.Core.Utility
 {
@@ -83,18 +80,25 @@ namespace InnoThink.Core.Utility
             {
                 case IconPathType.Temp:
                     return AppConfigManager.SystemSetting.FileUpLoadTempFolder;
+
                 case IconPathType.PersonIcon:
                     return AppConfigManager.SystemSetting.FileUpLoadIcon;
+
                 case IconPathType.TeamLogo:
                     return AppConfigManager.SystemSetting.FileUpLoadTeamLogo;
+
                 case IconPathType.Best:
                     return AppConfigManager.SystemSetting.FileUpLoadBest;
+
                 case IconPathType.GAP:
                     return AppConfigManager.SystemSetting.FileUpLoadBestGAP;
+
                 case IconPathType.Result:
                     return AppConfigManager.SystemSetting.FileUpLoadResult;
+
                 case IconPathType.Scenario:
                     return AppConfigManager.SystemSetting.FileUpLoadScenario;
+
                 default:
                     throw new Exception("IconType not deside using which setting.");
             }
@@ -108,6 +112,5 @@ namespace InnoThink.Core.Utility
             }
             return Words;
         }
-
     }
 }

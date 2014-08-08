@@ -1,24 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using InnoThink.Core.Utility;
-using InnoThink.Core.DB;
-using InnoThink.Website.Models;
-using CWB.Web;
-using CWB.Web.Configuration;
+﻿using InnoThink.Core.Cache.Board;
 using InnoThink.Core.Constancy;
-using InnoThink.Core;
+using InnoThink.Core.DB;
 using InnoThink.Core.MVC.BaseController;
-using InnoThink.Website.Models.Topic;
+using InnoThink.Core.Utility;
 using InnoThink.Website.Communication;
-using InnoThink.Core.Model.Topic;
-using System.Web.Script.Serialization;
-using Newtonsoft.Json;
-using System.IO;
-using InnoThink.Core.Cache.Board;
+using InnoThink.Website.Models;
 using Rest.Core.Utility;
+using System;
+using System.Web.Mvc;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -27,6 +16,7 @@ namespace InnoThink.Website.Controllers.Service
         //
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(BoardServiceController));
+
         private static readonly DbUserTable dbUser = new DbUserTable() { };
 
         public BoardServiceController()
@@ -68,7 +58,5 @@ namespace InnoThink.Website.Controllers.Service
             result.JsonReturnCode = 1;
             return result;
         }
-
-
     }
 }

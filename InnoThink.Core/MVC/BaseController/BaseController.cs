@@ -1,20 +1,19 @@
-﻿using System.Text;
-using System.Web.Mvc;
-using InnoThink.Core.MVC;
-using InnoThink.Core.Utility;
-using InnoThink.Core;
-using System.Web;
-using CWB.Web.Configuration;
+﻿using CWB.Web.Configuration;
 using InnoThink.Core.Constancy;
 using InnoThink.Core.MVC.ReturnResult;
 using Rest.Core.Utility;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
 
 namespace InnoThink.Core.MVC.BaseController
 {
     public class BaseController : Controller
     {
         private static readonly SysLog Log = SysLog.GetLogger(typeof(BaseController));
+
         protected Permission ControllerPermision { get; set; }
+
         protected bool isAdmin = false;
         protected bool isSys = false;
         private readonly string Admins = "royadmin";

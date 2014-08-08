@@ -8,8 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
-        #header
-        {
+        #header {
             height: 50px;
             margin-left: 0px;
             margin-right: 0px;
@@ -17,14 +16,14 @@
             background-color: #F2F2F2;
             z-index: 0;
         }
-        body
-        {
+
+        body {
             margin-left: 0px;
             margin-top: 0px;
             margin-right: 0px;
         }
-        #headerlogo
-        {
+
+        #headerlogo {
             width: 150px;
             position: static;
             left: 629px;
@@ -33,8 +32,8 @@
             float: left;
             margin-left: 0px;
         }
-        #headerword
-        {
+
+        #headerword {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -46,13 +45,13 @@
             left: 50%;
             margin-top: 0px;
         }
-        #header #headerword #header-word2
-        {
+
+        #header #headerword #header-word2 {
             padding-top: 25px;
             float: right;
         }
-        .body0
-        {
+
+        .body0 {
             width: 740px;
             margin-left: -370px;
             position: relative;
@@ -66,8 +65,8 @@
             top: 8px;
             padding-bottom: 17px;
         }
-        #bottom0
-        {
+
+        #bottom0 {
             width: 740px;
             margin-left: -370px;
             left: 50%;
@@ -79,8 +78,8 @@
             padding-bottom: 10px;
             display: inline-block;
         }
-        #talk0 #talk1
-        {
+
+        #talk0 #talk1 {
             margin-top: 10px;
             margin-right: 10px;
             position: static;
@@ -90,8 +89,8 @@
             border-collapse: collapse;
             margin-bottom: 0px;
         }
-        #talk0 #talk2
-        {
+
+        #talk0 #talk2 {
             margin-left: 10px;
             margin-right: 10px;
             position: static;
@@ -100,8 +99,8 @@
             width: 260px;
             border-collapse: collapse;
         }
-        .body0 #body1
-        {
+
+        .body0 #body1 {
             height: 25px;
             background-color: #4FA3C7;
             border-top-left-radius: 20px;
@@ -110,8 +109,8 @@
             padding-top: 8px;
             text-align: center;
         }
-        .body0 #body2
-        {
+
+        .body0 #body2 {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -123,19 +122,16 @@
             box-shadow: 5px 5px 5px #CCCCCC;
             padding-top: 10px;
         }
-        
-        #talk0 #talk1 #talk-up1
-        {
+
+        #talk0 #talk1 #talk-up1 {
             background-color: #F2F2F2;
             height: 20px;
             color: #000000;
             border-top-left-radius: 10px;
             padding-top: 8px;
         }
-        
-        
-        #otherteam
-        {
+
+        #otherteam {
             width: 250px;
             position: fixed;
             left: 0px;
@@ -152,48 +148,46 @@
             box-shadow: 1px 0px 1px #CCCCCC;
             background-color: #FFFFFF;
         }
-        #otherteam #otherteam1
-        {
-            background-color: #FFFFFF;
-        }
-        #otherteam #otherteam1 #otherteam-up
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-        }
-        #otherteam #otherteam1 #otherteam-1-center
-        {
-        }
-        #otherteam #otherteam2 #otherteam-2-center
-        {
-            padding-left: 10px;
-        }
-        #otherteam #otherteam2
-        {
-        }
-        #otherteam #otherteam2 #otherteam-up2
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        #otherteam #otherteam1 #otherteam-up1
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        
-        table.body0 .Div1
-        {
+
+            #otherteam #otherteam1 {
+                background-color: #FFFFFF;
+            }
+
+                #otherteam #otherteam1 #otherteam-up {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                }
+
+                #otherteam #otherteam1 #otherteam-1-center {
+                }
+
+            #otherteam #otherteam2 #otherteam-2-center {
+                padding-left: 10px;
+            }
+
+            #otherteam #otherteam2 {
+            }
+
+                #otherteam #otherteam2 #otherteam-up2 {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                    padding-top: 8px;
+                }
+
+            #otherteam #otherteam1 #otherteam-up1 {
+                height: 20px;
+                border-top-right-radius: 10px;
+                background-color: #F2F2F2;
+                padding-top: 8px;
+            }
+
+        table.body0 .Div1 {
             padding-top: 9px;
         }
-        
-        .body0 #body-3
-        {
+
+        .body0 #body-3 {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -207,13 +201,13 @@
             padding-top: 10px;
             width: 94%;
         }
-        .body0 #body-5
-        {
+
+        .body0 #body-5 {
             height: 15pt;
             padding-top: 10px;
         }
-        .body0 #body-3 #body-4a
-        {
+
+        .body0 #body-3 #body-4a {
             width: 95%;
             border-radius: 10px;
             background-color: #F2F2F2;
@@ -222,8 +216,8 @@
             margin-bottom: 10px;
             text-align: center;
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -231,8 +225,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -240,8 +234,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-up2
-        {
+
+        #talk0 #talk-up2 {
             height: 20px;
             padding-top: 8px;
             color: #000000;
@@ -279,7 +273,8 @@
                     %>
                 </div>
                 <div id="body-5" style="<%=HideStyle%>">
-                    1. 資料填寫：</div>
+                    1. 資料填寫：
+                </div>
                 <div id="body2" style="<%=HideStyle%>">
                     <table width="95%" border="0" align="center">
                         <colgroup>
@@ -289,16 +284,14 @@
                             <col width="auto" />
                         </colgroup>
                         <tr>
-                            <td colspan="4" valign="top" bgcolor="#FFFF99">
-                                1. 隊長投票結果：
+                            <td colspan="4" valign="top" bgcolor="#FFFF99">1. 隊長投票結果：
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4" valign="top">
                                 <table>
                                     <tr>
-                                        <td valign="top">
-                                            隊長人選：
+                                        <td valign="top">隊長人選：
                                         </td>
                                         <td>
                                             <%
@@ -308,7 +301,7 @@
                                                 {
                                                     leaderpic = leader.First().Value.Picture;
                                                 }
-                                            
+
                                             %>
                                             <img src="<% =leaderpic %>" alt="" />
                                         </td>
@@ -322,8 +315,7 @@
                                                     <td>
                                                         <% =item.Value.UserName %>
                                                     </td>
-                                                    <td>
-                                                        票數：<% =item.Value.VoteNums %>票
+                                                    <td>票數：<% =item.Value.VoteNums %>票
                                                         <%
                                                         if (item.Value.UserSn == Model.LeaderUserSN)
                                                         {
@@ -339,16 +331,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="4" bgcolor="#FFFF99">
-                                2. 我的團隊：(由隊長填寫)
+                            <td colspan="4" bgcolor="#FFFF99">2. 我的團隊：(由隊長填寫)
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                &nbsp;
+                            <td>&nbsp;
                             </td>
-                            <td>
-                                隊名：
+                            <td>隊名：
                             </td>
                             <td>
                                 <%
@@ -374,11 +363,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                &nbsp;
+                            <td>&nbsp;
                             </td>
-                            <td>
-                                議題：
+                            <td>議題：
                             </td>
                             <td>
                                 <%
@@ -400,11 +387,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                &nbsp;
+                            <td>&nbsp;
                             </td>
-                            <td>
-                                目的：
+                            <td>目的：
                             </td>
                             <td>
                                 <%
@@ -426,11 +411,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                &nbsp;
+                            <td>&nbsp;
                             </td>
-                            <td>
-                                團隊 LOGO：
+                            <td>團隊 LOGO：
                             </td>
                             <td>
                                 <%
@@ -438,15 +421,16 @@
                                     {
                                 %>
                                 <form id="file_upload" runat="server">
-                                <div id="filediv">
-                                    <input type="file" name="Uploadfile" multiple="">
-                                    <button>
-                                        上傳</button>
-                                    <div>
-                                        檔案上傳</div>
-                                </div>
-                                <table id="files">
-                                </table>
+                                    <div id="filediv">
+                                        <input type="file" name="Uploadfile" multiple="">
+                                        <button>
+                                            上傳</button>
+                                        <div>
+                                            檔案上傳
+                                        </div>
+                                    </div>
+                                    <table id="files">
+                                    </table>
                                 </form>
                                 <%
                                     }
@@ -458,11 +442,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                &nbsp;
+                            <td valign="top">&nbsp;
                             </td>
-                            <td valign="top">
-                                工作分配：
+                            <td valign="top">工作分配：
                             </td>
                             <td colspan="2">
                                 <table>
@@ -499,18 +481,16 @@
                             {
                         %>
                         <tr>
-                            <td valign="top">
-                                &nbsp;
+                            <td valign="top">&nbsp;
                             </td>
-                            <td valign="top">
-                                &nbsp;
+                            <td valign="top">&nbsp;
                             </td>
                             <td colspan="2" align="right">
                                 <input type="button" name="saveData" id="saveData" value="填寫完畢">
                             </td>
                         </tr>
                         <%
-                            }    
+                            }
                         %>
                     </table>
                 </div>
@@ -519,11 +499,11 @@
                 </div>
                 <div id="body-3">
                     <div id="body-4a">
-                        團隊成員介紹</div>
+                        團隊成員介紹
+                    </div>
                     <table width="95%" border="0" align="center" id="TeamInfo">
                         <tr>
-                            <td height="21">
-                                成立時間：
+                            <td height="21">成立時間：
                             </td>
                             <td colspan="2" valign="top">
                                 <span id="UIDateCreated">
@@ -538,12 +518,12 @@
                                     <span id="UITeamName">
                                         <% =Model.TeamName %></span>
                                     <br>
-                                    LOGO</p>
+                                    LOGO
+                                </p>
                             </td>
                         </tr>
                         <tr>
-                            <td width="15%">
-                                議題：
+                            <td width="15%">議題：
                             </td>
                             <td colspan="2" valign="top">
                                 <span id="UISubject">
@@ -551,8 +531,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td width="15%">
-                                目的：
+                            <td width="15%">目的：
                             </td>
                             <td colspan="2" valign="top">
                                 <span id="UITarget">
@@ -560,8 +539,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td width="15%" height="9" rowspan="5">
-                                工作分配：
+                            <td width="15%" height="9" rowspan="5">工作分配：
                             </td>
                             <td colspan="2" valign="top">
                                 <span id="UIJobList">
@@ -591,11 +569,9 @@
                                 }
                                 %>
                             </td>
-                            <td width="27%" valign="top">
-                                姓名：<span class="username"><% =item.Value.UserName %></span>
+                            <td width="27%" valign="top">姓名：<span class="username"><% =item.Value.UserName %></span>
                             </td>
-                            <td valign="top">
-                                專長領域：<span class="Profess"><% =item.Value.Professional %></span>
+                            <td valign="top">專長領域：<span class="Profess"><% =item.Value.Professional %></span>
                             </td>
                         </tr>
                         <tr class="<% =item.Value.UserSn %>">
@@ -718,8 +694,6 @@
                 $('#UIJobList').html(joblist);
             }
         }
-
-
     </script>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/SyncInno.js") %>"></script>
 </asp:Content>

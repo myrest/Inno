@@ -7,8 +7,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <!-- link href="<%= Url.CdnContent("/CSS/Login.css") %>" rel="stylesheet" type="text/css" /-->
     <style type="text/css">
-        #header0
-        {
+        #header0 {
             margin-top: 0px;
             height: 50px;
             z-index: 3;
@@ -21,8 +20,8 @@
             top: 0px;
             right: 0px;
         }
-        #headerlogo
-        {
+
+        #headerlogo {
             width: 150px;
             position: static;
             left: 629px;
@@ -31,8 +30,8 @@
             float: left;
             margin-left: 0px;
         }
-        #headerword
-        {
+
+        #headerword {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -43,13 +42,13 @@
             margin-left: -370px;
             left: 50%;
         }
-        #header0 #head3
-        {
+
+        #header0 #head3 {
             width: 400px;
             height: 60px;
         }
-        #header0 #body0
-        {
+
+        #header0 #body0 {
             height: 450px;
             background-image: url(/pic/back-3.jpg);
             position: absolute;
@@ -62,8 +61,8 @@
             -webkit-box-shadow: 5px 5px 5px;
             box-shadow: 5px 5px 5px;
         }
-        #header0 #body1
-        {
+
+        #header0 #body1 {
             width: 300px;
             position: absolute;
             left: 466px;
@@ -71,11 +70,11 @@
             height: 321px;
             z-index: 3;
         }
-        #header0 #body1 #body2
-        {
-        }
-        #header0 #body2
-        {
+
+            #header0 #body1 #body2 {
+            }
+
+        #header0 #body2 {
             width: 300px;
             position: absolute;
             left: 780px;
@@ -83,8 +82,8 @@
             height: 321px;
             z-index: 3;
         }
-        #header0 #bottom0
-        {
+
+        #header0 #bottom0 {
             text-align: center;
             margin-top: 10px;
             font-size: small;
@@ -94,26 +93,26 @@
             width: 740px;
             margin-left: -370px;
         }
-        #header0 #body0 #body3
-        {
+
+        #header0 #body0 #body3 {
             width: 430px;
             float: left;
             height: 350px;
-            font-family: Cambria, "Hoefler Text" , "Liberation Serif" , Times, "Times New Roman" , serif;
+            font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
             font-size: x-large;
             font-style: normal;
             font-weight: bolder;
             margin-left: 10px;
         }
-        #header0 #body0 #body4
-        {
+
+        #header0 #body0 #body4 {
             width: 300px;
             float: right;
             height: 350px;
         }
-        #header0 #body0 #body5
-        {
-            font-family: "Gill Sans" , "Gill Sans MT" , "Myriad Pro" , "DejaVu Sans Condensed" , Helvetica, Arial, sans-serif;
+
+        #header0 #body0 #body5 {
+            font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
             font-size: small;
             color: #FFFFFF;
             height: 25px;
@@ -123,16 +122,16 @@
             background-color: #4FA3C7;
             text-align: center;
         }
-        #header0 #body0 #body3 #body7
-        {
+
+        #header0 #body0 #body3 #body7 {
             font-weight: normal;
             font-size: small;
             margin-top: -70px;
             margin-left: 30px;
             line-height: 200%;
         }
-        #header0 #body0 #body3 #body8
-        {
+
+        #header0 #body0 #body3 #body8 {
             margin-top: -10px;
             padding-top: 0px;
             float: right;
@@ -141,8 +140,8 @@
             text-align: center;
             font-weight: normal;
         }
-        #header0 #body0 #body4 #body9
-        {
+
+        #header0 #body0 #body4 #body9 {
             font-size: small;
             padding-left: 0px;
             font-weight: bold;
@@ -153,16 +152,16 @@
             width: 250px;
             float: right;
         }
-        #header0 #headerword #header-word2
-        {
+
+        #header0 #headerword #header-word2 {
             width: 540px;
             float: right;
             padding-top: 25px;
             line-height: 120%;
             text-align: right;
         }
-        #headeridpass
-        {
+
+        #headeridpass {
             width: 306px;
             position: static;
             font-size: small;
@@ -178,7 +177,8 @@
     <div id="header0">
         <div id="headerword">
             <div id="headerlogo">
-                <img src="pic/logo50x150-3.png" width="150" height="50" alt="" /></div>
+                <img src="pic/logo50x150-3.png" width="150" height="50" alt="" />
+            </div>
             <div id="headeridpass">
                 帳號
                 <label for="username">
@@ -194,38 +194,49 @@
             </div>
         </div>
         <p>
-            &nbsp;</p>
+            &nbsp;
+        </p>
         <div id="body0">
             <div id="body5">
-                我們不只是在想，而是在創造。 InnoThink means I am not only thinking but also creating.</div>
-            <p style="float:right;padding-right:4px;margin-top:4px;">
-            <fb:login-button show-faces="false" width="500" max-rows="5" data-size="small" data-auto-logout-link="false" scope="email"></fb:login-button>
+                我們不只是在想，而是在創造。 InnoThink means I am not only thinking but also creating.
+            </div>
+            <p style="float: right; padding-right: 4px; margin-top: 4px;">
+                <fb:login-button show-faces="false" width="500" max-rows="5" data-size="small" data-auto-logout-link="false" scope="email"></fb:login-button>
             </p>
             <div id="body3">
                 歡迎來到 InnoThink。
                 <p>
-                    &nbsp;</p>
+                    &nbsp;
+                </p>
                 <div id="body7">
-                    讓我們一起探索創新思維的世界，從創意中發展出創新元素，再從創新中發掘市場需求，進而打造創業元素。</div>
+                    讓我們一起探索創新思維的世界，從創意中發展出創新元素，再從創新中發掘市場需求，進而打造創業元素。
+                </div>
                 <div id="body8">
                     <p>
-                        <img src="pic/pc-1.png" width="370" height="193" alt="" /></p>
+                        <img src="pic/pc-1.png" width="370" height="193" alt="" />
+                    </p>
                     <p>
-                        跨平台 PC、Pad、筆電、手持式 智慧手機均可參與討論。</p>
+                        跨平台 PC、Pad、筆電、手持式 智慧手機均可參與討論。
+                    </p>
                 </div>
                 <p>
-                    &nbsp;</p>
+                    &nbsp;
+                </p>
             </div>
             <div id="body4">
                 <p>
-                    &nbsp;</p>
+                    &nbsp;
+                </p>
                 <p>
-                    &nbsp;</p>
+                    &nbsp;
+                </p>
                 <p>
-                    &nbsp;</p>
+                    &nbsp;
+                </p>
                 <div id="body9">
                     <p>
-                        初次來到InnoThink ? 免費註冊</p>
+                        初次來到InnoThink ? 免費註冊
+                    </p>
                     <p>
                         帳號：
                         <input type="text" id="NewId" size="20">
@@ -238,17 +249,20 @@
                         確認密碼：
                         <input type="password" id="NewConfPwd" size="15">
                     </p>
-                        <input type="button" id="btnRegNewOne" value="註冊 InnoThink">
+                    <input type="button" id="btnRegNewOne" value="註冊 InnoThink">
                     </p>
                 </div>
             </div>
             <p>
-                &nbsp;</p>
+                &nbsp;
+            </p>
         </div>
         <div id="bottom0">
-            Copyright &copy; 2014 Li-Design 設計與文化創新研究室 關於我們</div>
+            Copyright &copy; 2014 Li-Design 設計與文化創新研究室 關於我們
+        </div>
         <p>
-            &nbsp;</p>
+            &nbsp;
+        </p>
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">

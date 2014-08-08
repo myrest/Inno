@@ -1,11 +1,11 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.Model;
+using InnoThink.Core.Utility;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
-using InnoThink.Core.Constancy;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using Rest.Core.Utility;
 
 namespace InnoThink.Core.DB
 {
@@ -170,11 +170,11 @@ namespace InnoThink.Core.DB
 
         public bool AddNewUser(DbUserModel obj)
         {
-            const string strCMD = @"insert into Users 
+            const string strCMD = @"insert into Users
                 (
                     LoginId, Password, Status, UserName, Picture
-                ) 
-                values 
+                )
+                values
                 (
                     @LoginId, @Password, @Status, @UserName, @Picture
                 )";
@@ -205,7 +205,6 @@ namespace InnoThink.Core.DB
         }
     }
 
-
     public class DbUserModel
     {
         public int SN;
@@ -218,6 +217,4 @@ namespace InnoThink.Core.DB
         public string Professional;
         public int TeamGroupSN;
     }
-
-
 }

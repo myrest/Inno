@@ -1,18 +1,18 @@
-﻿using System;
+﻿using CWB.Web.Configuration;
+using InnoThink.Core.Constancy;
+using InnoThink.Core.DB;
+using InnoThink.Core.MVC.BaseController;
+using InnoThink.Core.Utility;
+using InnoThink.Website.Communication;
+using InnoThink.Website.Models;
+using Newtonsoft.Json;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using InnoThink.Core.MVC.BaseController;
-using InnoThink.Core.Utility;
-using InnoThink.Core.DB;
-using InnoThink.Website.Models;
-using InnoThink.Core.Constancy;
-using InnoThink.Website.Communication;
-using CWB.Web.Configuration;
-using System.IO;
-using Newtonsoft.Json;
-using Rest.Core.Utility;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -40,7 +40,9 @@ namespace InnoThink.Website.Controllers.Service
             {
                 case ResultType.SCENARIO_3:
                 case ResultType.SCENARIO_7:
+
                     #region SCENARIO_3 only using Column2 for 事件描述
+
                     if (string.IsNullOrEmpty(Column2))
                     {
                         List<string> errmsg = new List<string>() { };
@@ -50,10 +52,15 @@ namespace InnoThink.Website.Controllers.Service
                         }
                         rtn.setErrorMessage(string.Join(Environment.NewLine, errmsg.ToArray()));
                     }
-                    #endregion
+
+                    #endregion SCENARIO_3 only using Column2 for 事件描述
+
                     break;
+
                 default:
+
                     #region Default using Column1, Column2 for "類別", "說明"
+
                     if (string.IsNullOrEmpty(Column1) || string.IsNullOrEmpty(Column2))
                     {
                         List<string> errmsg = new List<string>() { };
@@ -67,7 +74,9 @@ namespace InnoThink.Website.Controllers.Service
                         }
                         rtn.setErrorMessage(string.Join(Environment.NewLine, errmsg.ToArray()));
                     }
-                    #endregion
+
+                    #endregion Default using Column1, Column2 for "類別", "說明"
+
                     break;
             }
             return rtn;
@@ -138,16 +147,25 @@ namespace InnoThink.Website.Controllers.Service
         public class Scenario2SaveObj
         {
             public int AgeRang { get; set; }
+
             public int Edu { get; set; }
+
             public int Gender { get; set; }
+
             public int Salary { get; set; }
+
             public int TopicSN { get; set; }
 
             public string Career { get; set; }
+
             public string CareerOther { get; set; }
+
             public string Personality { get; set; }
+
             public string PersonalityOther { get; set; }
+
             public string Subject { get; set; }
+
             public string NickName { get; set; }
         }
 
@@ -405,7 +423,9 @@ namespace InnoThink.Website.Controllers.Service
                 UserSN = sessionData.trading.sn;
             }
             ScenarioCharResultViewModel result = new ScenarioCharResultViewModel(UserSN) { };
+
             #region Char information and result.
+
             var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.FirstTime);
             if (list != null)
             {
@@ -430,7 +450,8 @@ namespace InnoThink.Website.Controllers.Service
                 });
             }
             result.Descriptions = Scenario3Result;
-            #endregion
+
+            #endregion Char information and result.
 
             result.ValuePotion = dbScenario.GetAllVPByScenarioCharSN(result.Data.SN);
 
@@ -624,6 +645,7 @@ namespace InnoThink.Website.Controllers.Service
         }
 
         #region Goto Scenario start
+
         [HttpPost]
         public JsonResult GotoScenario1(int TopicSN)
         {
@@ -700,6 +722,7 @@ namespace InnoThink.Website.Controllers.Service
             result = TopicServiceController.ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
-        #endregion
+
+        #endregion Goto Scenario start
     }
 }

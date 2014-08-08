@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.DB;
 using InnoThink.Core.MVC.BaseController;
 using InnoThink.Core.Utility;
-using InnoThink.Core.Constancy;
 using InnoThink.Website.Models;
-using InnoThink.Core.DB;
-using CWB.Web.Configuration;
 using Rest.Core.Utility;
+using System;
+using System.Web.Mvc;
 
 namespace InnoThink.Website.Controllers
 {
@@ -18,6 +14,7 @@ namespace InnoThink.Website.Controllers
         //
         // GET: /Product/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(MemberController));
+
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
         private static readonly DbUserTable dbUser = new DbUserTable() { };
         private static readonly DbTopicMemberTable dbTopicMem = new DbTopicMemberTable() { };
@@ -25,7 +22,6 @@ namespace InnoThink.Website.Controllers
         public MemberController()
             : base(Permission.Private)
         {
-
         }
 
         public ActionResult UserInfo()

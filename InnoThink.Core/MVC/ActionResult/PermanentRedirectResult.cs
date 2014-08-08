@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 
 namespace InnoThink.Core.MVC
@@ -10,7 +7,6 @@ namespace InnoThink.Core.MVC
     {
         private string _url;
         private int _statusCode;
-
 
         public PermanentRedirectResult(string url)
         {
@@ -46,7 +42,5 @@ namespace InnoThink.Core.MVC
             context.HttpContext.Response.ExpiresAbsolute = DateTime.Now;
             context.HttpContext.Response.RedirectLocation = _url;
         }
-
-
     }
 }

@@ -1,16 +1,11 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.Utility;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Data.SQLite;
-using InnoThink.Core.Constancy;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using InnoThink.Core.Model.Topic;
-using CWB.Web.Configuration;
-using System.IO;
-using System.Web;
-using Rest.Core.Utility;
+using System.Linq;
 
 namespace InnoThink.Core.DB
 {
@@ -109,8 +104,8 @@ namespace InnoThink.Core.DB
             string strCMD = @"insert into BestIdeaGroup
             (
                 GroupName, BestIdeaSNs, TopicSN, Type
-            ) 
-            values 
+            )
+            values
             (
                 @GroupName, @BestIdeaSNs, @TopicSN, @Type
             )";
@@ -190,8 +185,8 @@ namespace InnoThink.Core.DB
         public List<DbBest6DataModel> GetAllViewDataByTopicSN(int TopicSN)
         {
             const string strCMD = @"
-                Select a.Type, b.BestIdeaGroupSN, a.GroupName, avg(b.Rank) as Ranking 
-                From BestIdeaGroup a inner join BestIdeaGroupRank b 
+                Select a.Type, b.BestIdeaGroupSN, a.GroupName, avg(b.Rank) as Ranking
+                From BestIdeaGroup a inner join BestIdeaGroupRank b
                     on a.SN = b.BestIdeaGroupSN
                 Where a.TopicSN = @TopicSN
                 Group by b.BestIdeaGroupSN, a.GroupName, a.Type ";
@@ -207,7 +202,6 @@ namespace InnoThink.Core.DB
                 return new List<DbBest6DataModel>() { };
             }
         }
-
     }
 
     public class DbBestIdeaGroupMember
@@ -290,5 +284,4 @@ namespace InnoThink.Core.DB
         /// </summary>
         public decimal Ranking;
     }
-
 }

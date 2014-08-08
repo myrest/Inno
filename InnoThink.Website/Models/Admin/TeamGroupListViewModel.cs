@@ -1,8 +1,6 @@
-﻿using System;
-using System.Runtime.Serialization;
-using InnoThink.Core.Utility;
+﻿using InnoThink.Core.DB;
 using System.Collections.Generic;
-using InnoThink.Core.DB;
+using System.Runtime.Serialization;
 
 namespace InnoThink.Website.Models
 {

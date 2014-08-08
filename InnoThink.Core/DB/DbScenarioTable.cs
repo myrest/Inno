@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Data.SQLite;
+﻿using CWB.Web.Configuration;
+using InnoThink.Core.BLLModel;
 using InnoThink.Core.Constancy;
 using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using InnoThink.Core.Model.Topic;
-using CWB.Web.Configuration;
-using System.IO;
-using System.Web;
-using System.Drawing;
-using System.Runtime.Serialization;
-using InnoThink.Core.BLLModel;
 using Rest.Core.Utility;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Web;
 
 namespace InnoThink.Core.DB
 {
@@ -130,8 +127,8 @@ namespace InnoThink.Core.DB
             string strCMD = @"insert into ScenarioChar
             (
                 TopicSN, NickName, Gender, AgeRang, Edu, Salary, Personality, Subject, Career, ServerFileName, UserFileName, IsImage, UserSN, LastUpdate, ScenarioType
-            ) 
-            values 
+            )
+            values
             (
                 @TopicSN, @NickName, @Gender, @AgeRang, @Edu, @Salary, @Personality, @Subject, @Career, @ServerFileName, @UserFileName, @IsImage, @UserSN, @LastUpdate, @ScenarioType
             )";
@@ -166,7 +163,7 @@ namespace InnoThink.Core.DB
                 //Set the image to new filename.
                 Model.ServerFileName = NewName;
                 //Update image to new filename.
-                strCMD = @"Update ScenarioChar set 
+                strCMD = @"Update ScenarioChar set
                             ServerFileName = @ServerFileName
                             , UserFileName = @UserFileName
                             , IsImage = @IsImage
@@ -251,6 +248,7 @@ namespace InnoThink.Core.DB
         }
 
         #region Scenario char values
+
         /// <summary>
         /// Insert new record.
         /// </summary>
@@ -261,8 +259,8 @@ namespace InnoThink.Core.DB
             string strCMD = @"insert into ScenarioCharValues
             (
                 ScenarioCharSN, Description, LastUpdate, UserSN
-            ) 
-            values 
+            )
+            values
             (
                 @ScenarioCharSN, @Description, @LastUpdate, @UserSN
             )";
@@ -311,9 +309,11 @@ namespace InnoThink.Core.DB
                 return null;
             }
         }
-        #endregion
+
+        #endregion Scenario char values
 
         #region Scenario char values Rank
+
         private List<DbScenarioCharValueRankModel> getScenarioCharValueRankCallBack(SQLiteDataReader sdr)
         {
             List<DbScenarioCharValueRankModel> listResult = new List<DbScenarioCharValueRankModel>() { };
@@ -336,6 +336,7 @@ namespace InnoThink.Core.DB
             }
             return listResult;
         }
+
         private List<ScenarioCharValueRankUI> getScenarioCharValueRankUICallBack(SQLiteDataReader sdr)
         {
             List<ScenarioCharValueRankUI> rtn = new List<ScenarioCharValueRankUI>() { };
@@ -363,6 +364,7 @@ namespace InnoThink.Core.DB
             }
             return rtn;
         }
+
         public List<ScenarioCharValueRankUI> GetRankByUserSN(int TopicSN, ScenarioType type, int UserSN)
         {
             const string strCMD = @"
@@ -389,8 +391,8 @@ namespace InnoThink.Core.DB
             {
                 return null;
             }
-
         }
+
         public void InsertOrReplaceScenarioCharValueRank(DbScenarioCharValueRankModel model)
         {
             Dictionary<string, string> para = new Dictionary<string, string>() { };
@@ -403,8 +405,8 @@ namespace InnoThink.Core.DB
                 const string strCMD = @"insert into ScenarioCharValuesRank
                     (
                         ScenarioCharValueSN, Rank, LastUpdate, UserSN
-                    ) 
-                    values 
+                    )
+                    values
                     (
                         @ScenarioCharValueSN, @Rank, @LastUpdate, @UserSN
                     )";
@@ -457,9 +459,10 @@ namespace InnoThink.Core.DB
             }
         }
 
-        #endregion
+        #endregion Scenario char values Rank
 
         #region Scenario char rank
+
         public List<ScenarioCharValueRankUI> GetCharRankByTopic(int TopicSN, ScenarioType type, int UserSN)
         {
             //Here ScenarioCharValueSN actually is ScenarioCharSN
@@ -487,6 +490,7 @@ namespace InnoThink.Core.DB
                 return null;
             }
         }
+
         public void InsertOrReplaceScenarioCharRank(DbScenarioCharValueRankModel model)
         {
             //in Char voteting, ScenarioCharValueSN eq ScenarioCharSN
@@ -500,8 +504,8 @@ namespace InnoThink.Core.DB
                 const string strCMD = @"insert into ScenarioCharRank
                     (
                         ScenarioCharSN, Rank, LastUpdate, UserSN
-                    ) 
-                    values 
+                    )
+                    values
                     (
                         @ScenarioCharSN, @Rank, @LastUpdate, @UserSN
                     )";
@@ -527,6 +531,7 @@ namespace InnoThink.Core.DB
                 ExecuteNonQuery(strCMD, listPara);
             }
         }
+
         public List<ScenarioRankModel> GetCharAvgRankByTopic(int TopicSN, ScenarioType type)
         {
             const string strCMD = @"
@@ -550,8 +555,8 @@ namespace InnoThink.Core.DB
                 return null;
             }
         }
-        #endregion
 
+        #endregion Scenario char rank
     }
 
     [DataContract]
@@ -578,6 +583,7 @@ namespace InnoThink.Core.DB
         /// 性別
         /// </summary>
         public GenderType Gender;
+
         [DataMember(Name = "gui")]
         public string GenderUI
         {
@@ -599,6 +605,7 @@ namespace InnoThink.Core.DB
         /// 年齡
         /// </summary>
         public AgeRangType AgeRang;
+
         [DataMember(Name = "aui")]
         public string AgeRangUI
         {
@@ -609,24 +616,31 @@ namespace InnoThink.Core.DB
                 {
                     case AgeRangType.Be11_17:
                         return "11~17歲";
+
                     case AgeRangType.Be18_25:
                         return "11~25歲";
+
                     case AgeRangType.Be26_30:
                         return "26~30歲";
+
                     case AgeRangType.Be31_40:
                         return "31~40歲";
+
                     case AgeRangType.Be41_50:
                         return "41~50歲";
+
                     case AgeRangType.Be51_60:
                         return "51~60歲";
+
                     case AgeRangType.Over61:
                         return "60歲以上";
+
                     case AgeRangType.Under10:
                         return "10歲以下";
+
                     default:
                         return "未知";
                 }
-
             }
         }
 
@@ -634,6 +648,7 @@ namespace InnoThink.Core.DB
         /// 教育程度
         /// </summary>
         public EduType Edu;
+
         [DataMember(Name = "eui")]
         public string EduUI
         {
@@ -644,18 +659,25 @@ namespace InnoThink.Core.DB
                 {
                     case EduType.Doctor:
                         return "博士";
+
                     case EduType.Elementary:
                         return "國小";
+
                     case EduType.JuniorHighSchool:
                         return "國中";
+
                     case EduType.Kindergarten:
                         return "幼稚園";
+
                     case EduType.Master:
                         return "研究所";
+
                     case EduType.SeniorHighSchool:
                         return "高中";
+
                     case EduType.University:
                         return "大學";
+
                     default:
                         return "其它";
                 }
@@ -666,6 +688,7 @@ namespace InnoThink.Core.DB
         /// 月薪
         /// </summary>
         public SalaryType Salary;
+
         [DataMember(Name = "saui")]
         public string SalaryUI
         {
@@ -676,21 +699,29 @@ namespace InnoThink.Core.DB
                 {
                     case SalaryType.Over70k:
                         return "70,001 以上";
+
                     case SalaryType.Under10k:
                         return "10,000 以下";
+
                     case SalaryType.Under20k:
                         return "10,001 ~ 20,000";
+
                     case SalaryType.Under30k:
                         return "20,001 ~ 30,000";
+
                     case SalaryType.Under40k:
                         return "30,001 ~ 40,000";
+
                     case SalaryType.Under50k:
                         return "40,001 ~ 50,000";
+
                     case SalaryType.Under60k:
                         return "50,001 ~ 60,000";
+
                     case SalaryType.Under70k:
                         return "60,001 ~ 70,000";
-                    default :
+
+                    default:
                         return "未知";
                 }
             }
@@ -749,7 +780,6 @@ namespace InnoThink.Core.DB
         public string UserName;
 
         public ScenarioType Type;
-
     }
 
     [DataContract]
@@ -757,6 +787,7 @@ namespace InnoThink.Core.DB
     {
         [DataMember(Name = "t")]
         public string Title;
+
         [DataMember(Name = "d")]
         public List<KeyValue> Data;
     }
@@ -781,6 +812,7 @@ namespace InnoThink.Core.DB
 
         //Below is for UI using purpose.
         public string Subject;
+
         public string Description;
     }
 

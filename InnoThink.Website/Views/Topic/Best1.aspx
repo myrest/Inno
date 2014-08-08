@@ -8,8 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
-        #header
-        {
+        #header {
             height: 50px;
             margin-left: 0px;
             margin-right: 0px;
@@ -17,14 +16,14 @@
             background-color: #F2F2F2;
             z-index: 0;
         }
-        body
-        {
+
+        body {
             margin-left: 0px;
             margin-top: 0px;
             margin-right: 0px;
         }
-        #headerlogo
-        {
+
+        #headerlogo {
             width: 150px;
             position: static;
             left: 629px;
@@ -33,8 +32,8 @@
             float: left;
             margin-left: 0px;
         }
-        #headerword
-        {
+
+        #headerword {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -46,13 +45,13 @@
             left: 50%;
             margin-top: 0px;
         }
-        #header #headerword #header-word2
-        {
+
+        #header #headerword #header-word2 {
             padding-top: 25px;
             float: right;
         }
-        #bottom0
-        {
+
+        #bottom0 {
             width: 740px;
             margin-left: -370px;
             left: 50%;
@@ -64,8 +63,8 @@
             padding-bottom: 10px;
             display: inline-block;
         }
-        #talk0 #talk1
-        {
+
+        #talk0 #talk1 {
             margin-top: 10px;
             margin-right: 10px;
             position: static;
@@ -75,8 +74,8 @@
             border-collapse: collapse;
             margin-bottom: 0px;
         }
-        #talk0 #talk2
-        {
+
+        #talk0 #talk2 {
             margin-left: 10px;
             margin-right: 10px;
             position: static;
@@ -85,8 +84,8 @@
             width: 260px;
             border-collapse: collapse;
         }
-        .body0 #body1
-        {
+
+        .body0 #body1 {
             height: 25px;
             background-color: #4FA3C7;
             border-top-left-radius: 20px;
@@ -95,8 +94,8 @@
             padding-top: 8px;
             text-align: center;
         }
-        .body0 #body2
-        {
+
+        .body0 #body2 {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -108,19 +107,16 @@
             box-shadow: 5px 5px 5px #CCCCCC;
             padding-top: 10px;
         }
-        
-        #talk0 #talk1 #talk-up1
-        {
+
+        #talk0 #talk1 #talk-up1 {
             background-color: #F2F2F2;
             height: 20px;
             color: #000000;
             border-top-left-radius: 10px;
             padding-top: 8px;
         }
-        
-        
-        #otherteam
-        {
+
+        #otherteam {
             width: 250px;
             position: fixed;
             left: 0px;
@@ -137,48 +133,46 @@
             box-shadow: 1px 0px 1px #CCCCCC;
             background-color: #FFFFFF;
         }
-        #otherteam #otherteam1
-        {
-            background-color: #FFFFFF;
-        }
-        #otherteam #otherteam1 #otherteam-up
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-        }
-        #otherteam #otherteam1 #otherteam-1-center
-        {
-        }
-        #otherteam #otherteam2 #otherteam-2-center
-        {
-            padding-left: 10px;
-        }
-        #otherteam #otherteam2
-        {
-        }
-        #otherteam #otherteam2 #otherteam-up2
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        #otherteam #otherteam1 #otherteam-up1
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        
-        table.body0 .Div1
-        {
+
+            #otherteam #otherteam1 {
+                background-color: #FFFFFF;
+            }
+
+                #otherteam #otherteam1 #otherteam-up {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                }
+
+                #otherteam #otherteam1 #otherteam-1-center {
+                }
+
+            #otherteam #otherteam2 #otherteam-2-center {
+                padding-left: 10px;
+            }
+
+            #otherteam #otherteam2 {
+            }
+
+                #otherteam #otherteam2 #otherteam-up2 {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                    padding-top: 8px;
+                }
+
+            #otherteam #otherteam1 #otherteam-up1 {
+                height: 20px;
+                border-top-right-radius: 10px;
+                background-color: #F2F2F2;
+                padding-top: 8px;
+            }
+
+        table.body0 .Div1 {
             padding-top: 9px;
         }
-        
-        .body0 #body-3
-        {
+
+        .body0 #body-3 {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -192,13 +186,13 @@
             padding-top: 10px;
             width: 94%;
         }
-        .body0 #body-5
-        {
+
+        .body0 #body-5 {
             height: 15pt;
             padding-top: 10px;
         }
-        .body0 #body-3 #body-4a
-        {
+
+        .body0 #body-3 #body-4a {
             width: 95%;
             border-radius: 10px;
             background-color: #F2F2F2;
@@ -207,8 +201,8 @@
             margin-bottom: 10px;
             text-align: center;
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -216,8 +210,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -225,8 +219,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-up2
-        {
+
+        #talk0 #talk-up2 {
             height: 20px;
             padding-top: 8px;
             color: #000000;
@@ -247,63 +241,61 @@
         <tr>
             <td>
                 <div id="body1">
-                <%
-                    QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "第2單元BEST", ControlSubTitle = "BEST分析-1" };
-                    ViewData["QCBAR"] = QCBAR;
-                    Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");
-                    bool IsTeamMember = (bool)ViewData["IsTeamMember"];
-                    bool NotTeamMember = !IsTeamMember;
-                    string HideEditClass = string.Empty;
-                    string HideStyle = string.Empty;
-                    if (NotTeamMember)
-                    {
-                        HideEditClass = "hide";
-                        HideStyle = "display:none;";
-                    }
-                %>
+                    <%
+                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "第2單元BEST", ControlSubTitle = "BEST分析-1" };
+                        ViewData["QCBAR"] = QCBAR;
+                        Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");
+                        bool IsTeamMember = (bool)ViewData["IsTeamMember"];
+                        bool NotTeamMember = !IsTeamMember;
+                        string HideEditClass = string.Empty;
+                        string HideStyle = string.Empty;
+                        if (NotTeamMember)
+                        {
+                            HideEditClass = "hide";
+                            HideStyle = "display:none;";
+                        }
+                    %>
                 </div>
                 <div id="body-5" style="<%=HideStyle%>">
-                    1. 現有市場分析：</div>
+                    1. 現有市場分析：
+                </div>
                 <div id="body2" style="<%=HideStyle%>">
                     <table width="95%" border="0" align="center">
                         <tr>
-                            <td width="13%" valign="top">
-                                類別：
+                            <td width="13%" valign="top">類別：
                             </td>
                             <td width="87%">
                                 <input name="category" type="text" id="category" size="40">
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                說明：
+                            <td valign="top">說明：
                             </td>
                             <td>
                                 <textarea name="description" cols="56" rows="3" id="description"></textarea>
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                相關圖檔：
+                            <td valign="top">相關圖檔：
                             </td>
                             <td align="left">
                                 <form id="file_upload" runat="server">
-                                <div id="filediv">
-                                    <input type="file" name="Uploadfile" multiple="">
-                                    <button>
-                                        上傳</button>
-                                    <div>
-                                        檔案上傳</div>
-                                </div>
-                                <table id="files">
-                                </table>
+                                    <div id="filediv">
+                                        <input type="file" name="Uploadfile" multiple="">
+                                        <button>
+                                            上傳</button>
+                                        <div>
+                                            檔案上傳
+                                        </div>
+                                    </div>
+                                    <table id="files">
+                                    </table>
                                 </form>
                                 <span id="deluploadfile"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                參考文獻：
+                            <td valign="top">參考文獻：
                             </td>
                             <td align="left">
                                 <input name="related" type="text" id="related" size="40">
@@ -311,36 +303,34 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                &nbsp;
+                            <td valign="top">&nbsp;
                             </td>
-                            <td align="left">
-                                例如：王小明，2014，創新思考手冊，大米出版社。
+                            <td align="left">例如：王小明，2014，創新思考手冊，大米出版社。
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                &nbsp;
+                            <td valign="top">&nbsp;
                             </td>
                             <td align="right">
                                 <button id="savebtn">
                                     新增</button>
-                                    <span id="btnofupdate" class="hidden">
-                                <button id="updatebtn">
-                                    修改</button>
-                                <button id="cancle">
-                                    取消</button>
-                                    </span>
+                                <span id="btnofupdate" class="hidden">
+                                    <button id="updatebtn">
+                                        修改</button>
+                                    <button id="cancle">
+                                        取消</button>
+                                </span>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="Div1">
-                    2. 團隊資料展示：<span id="notice" style="background-color:rgb(255, 195, 195);" class="hidden">資料已更新</span>
+                    2. 團隊資料展示：<span id="notice" style="background-color: rgb(255, 195, 195);" class="hidden">資料已更新</span>
                 </div>
                 <div id="body-3">
                     <div id="body-4a">
-                        議題 ：<% =ViewData["Subject"] %></div>
+                        議題 ：<% =ViewData["Subject"] %>
+                    </div>
                     <table width="95%" border="0" id="tbitems">
                         <tr class="hidden" id="itemTemplate">
                             <td width="3%" valign="top">
@@ -354,7 +344,7 @@
                                 <span class="description"></span><span class="related"></span><span class="image"></span>
                             </td>
                         </tr>
-                        <% 
+                        <%
                             int i = 0;
                             foreach (var item in Model.Listing)
                             {
@@ -535,8 +525,6 @@
 
             }
         }
-
-
     </script>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/SyncInno.js") %>"></script>
 </asp:Content>

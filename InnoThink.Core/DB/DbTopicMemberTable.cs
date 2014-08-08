@@ -1,12 +1,11 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.Utility;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Data.SQLite;
-using InnoThink.Core.Constancy;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using Rest.Core.Utility;
+using System.Linq;
 
 namespace InnoThink.Core.DB
 {
@@ -46,11 +45,11 @@ namespace InnoThink.Core.DB
         {
             if (!CheckUsersSNIsExist(TopicSN, UsersSN))
             {
-                string strCMD = @"insert into TopicMember 
+                string strCMD = @"insert into TopicMember
                     (
                         TopicSN, UsersSN
-                    ) 
-                    values 
+                    )
+                    values
                     (
                         @TopicSN, @UsersSN
                     )";
@@ -162,7 +161,6 @@ namespace InnoThink.Core.DB
             ExecuteNonQuery(strCMD, listPara);
         }
     }
-
 
     public class DbTopicMemberModel
     {

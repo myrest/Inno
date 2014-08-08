@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/TopicStep.Master" Inherits="System.Web.Mvc.ViewPage" %>
+
 <%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
 <%@ Import Namespace="InnoThink.Website.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -7,26 +8,22 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<%
-    TopicSimpleViewModel Model = (TopicSimpleViewModel)ViewData["Model"];
-%>
+    <%
+        TopicSimpleViewModel Model = (TopicSimpleViewModel)ViewData["Model"];
+    %>
     <div class="body0">
         <div id="body1">
             已參加並且正在進行中的議題
         </div>
         <table>
             <tr>
-                <td>
-                    &nbsp;
+                <td>&nbsp;
                 </td>
-                <td>
-                    議題
+                <td>議題
                 </td>
-                <td>
-                    隊名
+                <td>隊名
                 </td>
-                <td>
-                    &nbsp;
+                <td>&nbsp;
                 </td>
             </tr>
             <%
@@ -36,7 +33,7 @@
                     foreach (var item in Model.DataResult)
                     {
                         i++;
-                        %>
+            %>
             <tr>
                 <td>
                     <%=i %>
@@ -51,7 +48,7 @@
                     <a href="#" class="Start" data-id="<%=item.SN %>">開始討論</a>
                 </td>
             </tr>
-                        <%
+            <%
                     }
                 }
             %>

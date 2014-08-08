@@ -8,8 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
-        #header
-        {
+        #header {
             height: 50px;
             margin-left: 0px;
             margin-right: 0px;
@@ -17,14 +16,14 @@
             background-color: #F2F2F2;
             z-index: 0;
         }
-        body
-        {
+
+        body {
             margin-left: 0px;
             margin-top: 0px;
             margin-right: 0px;
         }
-        #headerlogo
-        {
+
+        #headerlogo {
             width: 150px;
             position: static;
             left: 629px;
@@ -33,8 +32,8 @@
             float: left;
             margin-left: 0px;
         }
-        #headerword
-        {
+
+        #headerword {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -46,13 +45,13 @@
             left: 50%;
             margin-top: 0px;
         }
-        #header #headerword #header-word2
-        {
+
+        #header #headerword #header-word2 {
             padding-top: 25px;
             float: right;
         }
-        .body0
-        {
+
+        .body0 {
             width: 740px;
             margin-left: -370px;
             left: 50%;
@@ -61,10 +60,10 @@
             box-shadow: 5px 5px 5px #CCCCCC;
             background-image: url(/pic/back-3.jpg);
             font-size: small;
-            display:inline-block;
+            display: inline-block;
         }
-        #bottom0
-        {
+
+        #bottom0 {
             margin-left: -370px;
             left: 50%;
             position: relative;
@@ -73,8 +72,8 @@
             margin-top: 10px;
             padding-bottom: 10px;
         }
-        #talk0 #talk1
-        {
+
+        #talk0 #talk1 {
             margin-top: 10px;
             margin-left: 10px;
             margin-right: 10px;
@@ -85,8 +84,8 @@
             border-collapse: collapse;
             margin-bottom: 0px;
         }
-        #talk0 #talk2
-        {
+
+        #talk0 #talk2 {
             margin-left: 10px;
             margin-right: 10px;
             position: static;
@@ -95,8 +94,8 @@
             width: 260px;
             border-collapse: collapse;
         }
-        .body0 #body1
-        {
+
+        .body0 #body1 {
             height: 25px;
             background-color: #4FA3C7;
             border-top-left-radius: 20px;
@@ -105,13 +104,13 @@
             padding-top: 8px;
             text-align: center;
         }
-        .body0 #body2
-        {
+
+        .body0 #body2 {
             padding-left: 5px;
             display: inline-block;
         }
-        .body0 #body3
-        {
+
+        .body0 #body3 {
             padding-left: 5px;
             margin-left: 15px;
             margin-right: 15px;
@@ -120,11 +119,11 @@
             background-color: #FFFFFF;
             -webkit-box-shadow: 5px 5px 5px #CCCCCC;
             box-shadow: 5px 5px 5px #CCCCCC;
-            display:inline-block;
-            display:flex;
+            display: inline-block;
+            display: flex;
         }
-        .body0 #body4
-        {
+
+        .body0 #body4 {
             height: 300px;
             padding-left: 10px;
             margin-left: 15px;
@@ -136,19 +135,16 @@
             box-shadow: 5px 5px 5px #CCCCCC;
             padding-top: 10px;
         }
-        
-        #talk0 #talk1 #talk-up1
-        {
+
+        #talk0 #talk1 #talk-up1 {
             background-color: #F2F2F2;
             height: 20px;
             color: #000000;
             border-top-left-radius: 10px;
             padding-top: 8px;
         }
-        
-        
-        .body0 #body2 .bestblock
-        {
+
+        .body0 #body2 .bestblock {
             z-index: 0;
             float: left;
             margin-left: 15px;
@@ -160,14 +156,14 @@
             padding-top: 10px;
             padding-left: 5px;
         }
-        .body0 #body2 #best0
-        {
+
+        .body0 #body2 #best0 {
             height: 25px;
             padding-top: 10px;
             text-shadow: 0px 0px;
         }
-        #otherteam
-        {
+
+        #otherteam {
             width: 250px;
             position: fixed;
             left: 0px;
@@ -184,42 +180,42 @@
             box-shadow: 1px 0px 1px #CCCCCC;
             background-color: #FFFFFF;
         }
-        #otherteam #otherteam1
-        {
-            background-color: #FFFFFF;
-        }
-        #otherteam #otherteam1 #otherteam-up
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-        }
-        #otherteam #otherteam1 #otherteam-1-center
-        {
-        }
-        #otherteam #otherteam2 #otherteam-2-center
-        {
-            padding-left: 10px;
-        }
-        #otherteam #otherteam2
-        {
-        }
-        #otherteam #otherteam2 #otherteam-up2
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        #otherteam #otherteam1 #otherteam-up1
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        .body0 #body3 .best-5
-        {
+
+            #otherteam #otherteam1 {
+                background-color: #FFFFFF;
+            }
+
+                #otherteam #otherteam1 #otherteam-up {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                }
+
+                #otherteam #otherteam1 #otherteam-1-center {
+                }
+
+            #otherteam #otherteam2 #otherteam-2-center {
+                padding-left: 10px;
+            }
+
+            #otherteam #otherteam2 {
+            }
+
+                #otherteam #otherteam2 #otherteam-up2 {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                    padding-top: 8px;
+                }
+
+            #otherteam #otherteam1 #otherteam-up1 {
+                height: 20px;
+                border-top-right-radius: 10px;
+                background-color: #F2F2F2;
+                padding-top: 8px;
+            }
+
+        .body0 #body3 .best-5 {
             width: 24%;
             float: left;
             margin-left: 0px;
@@ -227,10 +223,10 @@
             border-radius: 30px;
             padding-left: 5px;
             padding-top: 10px;
-            display:inline-block;
+            display: inline-block;
         }
-        .body0 #body3 #best-6
-        {
+
+        .body0 #body3 #best-6 {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -243,8 +239,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body3 #best-7
-        {
+
+        .body0 #body3 #best-7 {
             width: 24%;
             height: 250px;
             float: left;
@@ -257,8 +253,8 @@
             -webkit-box-shadow: px 0px;
             box-shadow: px 0px;
         }
-        .body0 #body3 #best-8
-        {
+
+        .body0 #body3 #best-8 {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -271,9 +267,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        
-        .body0 #body4 .best-5p
-        {
+
+        .body0 #body4 .best-5p {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -286,8 +281,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body4 #best-6p
-        {
+
+        .body0 #body4 #best-6p {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -300,8 +295,8 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        .body0 #body4 #best-7p
-        {
+
+        .body0 #body4 #best-7p {
             width: 24%;
             height: 250px;
             float: left;
@@ -314,8 +309,8 @@
             -webkit-box-shadow: px 0px;
             box-shadow: px 0px;
         }
-        .body0 #body4 #best-8p
-        {
+
+        .body0 #body4 #best-8p {
             width: 24%;
             height: 250px;
             z-index: 1;
@@ -328,37 +323,34 @@
             -webkit-box-shadow: px px;
             box-shadow: px px;
         }
-        
-        
-        
-        .body0 #body2-a
-        {
+
+        .body0 #body2-a {
             padding-top: 10px;
             height: 25px;
             color: #000000;
             text-shadow: 0px 0px;
         }
-        .body0 #body2-b
-        {
+
+        .body0 #body2-b {
             height: 25px;
             padding-top: 10px;
             color: #000000;
             text-shadow: 0px 0px;
         }
-        .body0 #body3 .best-5 .best-9
-        {
+
+        .body0 #body3 .best-5 .best-9 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
             text-align: center;
             background-color: #F2F2F2;
         }
-        .best-9
-        {
+
+        .best-9 {
             padding: 5px 0px 5px 0px;
         }
-        .body0 #body3 .best-5 #best-10
-        {
+
+        .body0 #body3 .best-5 #best-10 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -370,9 +362,8 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        
-        .body0 #body3 #best-6 #best-11
-        {
+
+        .body0 #body3 #best-6 #best-11 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
@@ -380,8 +371,8 @@
             padding-top: 5px;
             background-color: #F2F2F2;
         }
-        .body0 #body3 #best-6 #best-12
-        {
+
+        .body0 #body3 #best-6 #best-12 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -393,31 +384,8 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        .body0 #body3 #best-7 #best-13
-        {
-            margin-left: 5px;
-            margin-right: 5px;
-            border-radius: 30px;
-            text-align: center;
-            height: 20px;
-            padding-top: 5px;
-            background-color: #F2F2F2;
-        }
-        .body0 #body3 #best-7 #best-14
-        {
-            background-color: #FFFFCC;
-            border-top-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            margin-top: 10px;
-            padding-top: 10px;
-            height: 300px;
-            -webkit-box-shadow: 5px 0px 5px #CCCCCC;
-            box-shadow: 5px 0px 5px #CCCCCC;
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-        .body0 #body3 #best-8 #best-15
-        {
+
+        .body0 #body3 #best-7 #best-13 {
             margin-left: 5px;
             margin-right: 5px;
             border-radius: 30px;
@@ -426,8 +394,8 @@
             padding-top: 5px;
             background-color: #F2F2F2;
         }
-        .body0 #body3 #best-8 #best-16
-        {
+
+        .body0 #body3 #best-7 #best-14 {
             background-color: #FFFFCC;
             border-top-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -439,8 +407,31 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        .body0 #body3 .best-5 .best-17
-        {
+
+        .body0 #body3 #best-8 #best-15 {
+            margin-left: 5px;
+            margin-right: 5px;
+            border-radius: 30px;
+            text-align: center;
+            height: 20px;
+            padding-top: 5px;
+            background-color: #F2F2F2;
+        }
+
+        .body0 #body3 #best-8 #best-16 {
+            background-color: #FFFFCC;
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            margin-top: 10px;
+            padding-top: 10px;
+            height: 300px;
+            -webkit-box-shadow: 5px 0px 5px #CCCCCC;
+            box-shadow: 5px 0px 5px #CCCCCC;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .body0 #body3 .best-5 .best-17 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -455,8 +446,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        .body0 #body3 #best-6 #best-18
-        {
+
+        .body0 #body3 #best-6 #best-18 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -471,8 +462,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        .body0 #body3 #best-7 #best-19
-        {
+
+        .body0 #body3 #best-7 #best-19 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -487,8 +478,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        .body0 #body3 #best-8 #best-20
-        {
+
+        .body0 #body3 #best-8 #best-20 {
             background-color: #CCFFFF;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -503,8 +494,8 @@
             padding-right: 5px;
             text-align: center;
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -512,8 +503,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -521,8 +512,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -530,8 +521,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -539,8 +530,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-up2
-        {
+
+        #talk0 #talk-up2 {
             height: 20px;
             padding-top: 8px;
             color: #000000;
@@ -588,12 +579,12 @@
                 </div>
                 <div id="body2" style="<%=HideStyle%>">
                     <div id="best0">
-                        1. 整理 BEST 便條紙</div>
+                        1. 整理 BEST 便條紙
+                    </div>
                     <div class="bestblock">
                         <table width="85%" border="0" align="center" id="bestB">
                             <tr>
-                                <td align="center">
-                                    B 分類標題
+                                <td align="center">B 分類標題
                                 </td>
                             </tr>
                             <tr>
@@ -602,13 +593,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td valign="top">
-                                    &nbsp;
+                                <td valign="top">&nbsp;
                                 </td>
                             </tr>
                             <tr>
-                                <td valign="top" bgcolor="#99FFFF">
-                                    分類包含內容：
+                                <td valign="top" bgcolor="#99FFFF">分類包含內容：
                                 </td>
                             </tr>
                             <%
@@ -636,8 +625,7 @@
                                 </td>
                             </tr>
                             <tr style="line-height: 4px;">
-                                <td>
-                                    &nbsp;
+                                <td>&nbsp;
                                 </td>
                             </tr>
                         </table>
@@ -645,8 +633,7 @@
                     <div class="bestblock">
                         <table width="85%" border="0" align="center" id="bestE">
                             <tr>
-                                <td align="center">
-                                    E 分類標題
+                                <td align="center">E 分類標題
                                 </td>
                             </tr>
                             <tr>
@@ -655,13 +642,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td valign="top">
-                                    &nbsp;
+                                <td valign="top">&nbsp;
                                 </td>
                             </tr>
                             <tr>
-                                <td valign="top" bgcolor="#99FFFF">
-                                    分類包含內容：
+                                <td valign="top" bgcolor="#99FFFF">分類包含內容：
                                 </td>
                             </tr>
                             <%
@@ -689,8 +674,7 @@
                                 </td>
                             </tr>
                             <tr style="line-height: 4px;">
-                                <td>
-                                    &nbsp;
+                                <td>&nbsp;
                                 </td>
                             </tr>
                         </table>
@@ -698,8 +682,7 @@
                     <div class="bestblock">
                         <table width="85%" border="0" align="center" id="bestS">
                             <tr>
-                                <td align="center">
-                                    S 分類標題
+                                <td align="center">S 分類標題
                                 </td>
                             </tr>
                             <tr>
@@ -708,13 +691,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td valign="top">
-                                    &nbsp;
+                                <td valign="top">&nbsp;
                                 </td>
                             </tr>
                             <tr>
-                                <td valign="top" bgcolor="#99FFFF">
-                                    分類包含內容：
+                                <td valign="top" bgcolor="#99FFFF">分類包含內容：
                                 </td>
                             </tr>
                             <%
@@ -742,8 +723,7 @@
                                 </td>
                             </tr>
                             <tr style="line-height: 4px;">
-                                <td>
-                                    &nbsp;
+                                <td>&nbsp;
                                 </td>
                             </tr>
                         </table>
@@ -751,8 +731,7 @@
                     <div class="bestblock">
                         <table width="85%" border="0" align="center" id="bestT">
                             <tr>
-                                <td align="center">
-                                    T 分類標題
+                                <td align="center">T 分類標題
                                 </td>
                             </tr>
                             <tr>
@@ -761,13 +740,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td valign="top">
-                                    &nbsp;
+                                <td valign="top">&nbsp;
                                 </td>
                             </tr>
                             <tr>
-                                <td valign="top" bgcolor="#99FFFF">
-                                    分類包含內容：
+                                <td valign="top" bgcolor="#99FFFF">分類包含內容：
                                 </td>
                             </tr>
                             <%
@@ -795,8 +772,7 @@
                                 </td>
                             </tr>
                             <tr style="line-height: 4px;">
-                                <td>
-                                    &nbsp;
+                                <td>&nbsp;
                                 </td>
                             </tr>
                         </table>
@@ -813,21 +789,20 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="left">
-                                包含：
+                            <td align="left">包含：
                             </td>
                         </tr>
                     </table>
                 </div>
                 <!-- Template end-->
                 <div id="body2-a">
-                    2. BEST 分類結果 <span id="notice" style="background-color: rgb(255, 195, 195);" class="hidden">
-                        資料已更新</span>
+                    2. BEST 分類結果 <span id="notice" style="background-color: rgb(255, 195, 195);" class="hidden">資料已更新</span>
                 </div>
                 <div id="body3">
                     <div id="resultB" class="best-5">
                         <div class="best-9">
-                            B 分類結果</div>
+                            B 分類結果
+                        </div>
                         <%
                             int i = 0;
                             foreach (var item in GroupB)
@@ -847,8 +822,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left">
-                                        包含：
+                                    <td align="left">包含：
                                     </td>
                                 </tr>
                                 <%
@@ -871,7 +845,8 @@
                     </div>
                     <div id="resultE" class="best-5">
                         <div class="best-9">
-                            E 分類結果</div>
+                            E 分類結果
+                        </div>
                         <%
                             i = 0;
                             foreach (var item in GroupE)
@@ -891,8 +866,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left">
-                                        包含：
+                                    <td align="left">包含：
                                     </td>
                                 </tr>
                                 <%
@@ -915,7 +889,8 @@
                     </div>
                     <div id="resultS" class="best-5">
                         <div class="best-9">
-                            S 分類結果</div>
+                            S 分類結果
+                        </div>
                         <%
                             i = 0;
                             foreach (var item in GroupS)
@@ -935,8 +910,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left">
-                                        包含：
+                                    <td align="left">包含：
                                     </td>
                                 </tr>
                                 <%
@@ -959,7 +933,8 @@
                     </div>
                     <div id="resultT" class="best-5">
                         <div class="best-9">
-                            T 分類結果</div>
+                            T 分類結果
+                        </div>
                         <%
                             i = 0;
                             foreach (var item in GroupT)
@@ -979,8 +954,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left">
-                                        包含：
+                                    <td align="left">包含：
                                     </td>
                                 </tr>
                                 <%
@@ -1170,8 +1144,6 @@
 
             }
         }
-
-
     </script>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/SyncInno.js") %>"></script>
 </asp:Content>

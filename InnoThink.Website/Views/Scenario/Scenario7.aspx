@@ -10,8 +10,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
-        #header
-        {
+        #header {
             height: 50px;
             margin-left: 0px;
             margin-right: 0px;
@@ -19,14 +18,14 @@
             background-color: #F2F2F2;
             z-index: 0;
         }
-        body
-        {
+
+        body {
             margin-left: 0px;
             margin-top: 0px;
             margin-right: 0px;
         }
-        #headerlogo
-        {
+
+        #headerlogo {
             width: 150px;
             position: static;
             left: 629px;
@@ -35,8 +34,8 @@
             float: left;
             margin-left: 0px;
         }
-        #headerword
-        {
+
+        #headerword {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -48,13 +47,13 @@
             left: 50%;
             margin-top: 0px;
         }
-        #header #headerword #header-word2
-        {
+
+        #header #headerword #header-word2 {
             padding-top: 25px;
             float: right;
         }
-        #bottom0
-        {
+
+        #bottom0 {
             width: 740px;
             margin-left: -370px;
             left: 50%;
@@ -66,8 +65,8 @@
             padding-bottom: 10px;
             display: inline-block;
         }
-        #talk0 #talk1
-        {
+
+        #talk0 #talk1 {
             margin-top: 10px;
             margin-right: 10px;
             position: static;
@@ -77,8 +76,8 @@
             border-collapse: collapse;
             margin-bottom: 0px;
         }
-        #talk0 #talk2
-        {
+
+        #talk0 #talk2 {
             margin-left: 10px;
             margin-right: 10px;
             position: static;
@@ -87,8 +86,8 @@
             width: 260px;
             border-collapse: collapse;
         }
-        .body0 #body1
-        {
+
+        .body0 #body1 {
             height: 25px;
             background-color: #4FA3C7;
             border-top-left-radius: 20px;
@@ -97,8 +96,8 @@
             padding-top: 8px;
             text-align: center;
         }
-        .body0 #body2
-        {
+
+        .body0 #body2 {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -110,19 +109,16 @@
             box-shadow: 5px 5px 5px #CCCCCC;
             padding-top: 10px;
         }
-        
-        #talk0 #talk1 #talk-up1
-        {
+
+        #talk0 #talk1 #talk-up1 {
             background-color: #F2F2F2;
             height: 20px;
             color: #000000;
             border-top-left-radius: 10px;
             padding-top: 8px;
         }
-        
-        
-        #otherteam
-        {
+
+        #otherteam {
             width: 250px;
             position: fixed;
             left: 0px;
@@ -139,48 +135,46 @@
             box-shadow: 1px 0px 1px #CCCCCC;
             background-color: #FFFFFF;
         }
-        #otherteam #otherteam1
-        {
-            background-color: #FFFFFF;
-        }
-        #otherteam #otherteam1 #otherteam-up
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-        }
-        #otherteam #otherteam1 #otherteam-1-center
-        {
-        }
-        #otherteam #otherteam2 #otherteam-2-center
-        {
-            padding-left: 10px;
-        }
-        #otherteam #otherteam2
-        {
-        }
-        #otherteam #otherteam2 #otherteam-up2
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        #otherteam #otherteam1 #otherteam-up1
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        
-        table.body0 .Div1
-        {
+
+            #otherteam #otherteam1 {
+                background-color: #FFFFFF;
+            }
+
+                #otherteam #otherteam1 #otherteam-up {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                }
+
+                #otherteam #otherteam1 #otherteam-1-center {
+                }
+
+            #otherteam #otherteam2 #otherteam-2-center {
+                padding-left: 10px;
+            }
+
+            #otherteam #otherteam2 {
+            }
+
+                #otherteam #otherteam2 #otherteam-up2 {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                    padding-top: 8px;
+                }
+
+            #otherteam #otherteam1 #otherteam-up1 {
+                height: 20px;
+                border-top-right-radius: 10px;
+                background-color: #F2F2F2;
+                padding-top: 8px;
+            }
+
+        table.body0 .Div1 {
             padding-top: 9px;
         }
-        
-        .body0 #body-3
-        {
+
+        .body0 #body-3 {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -194,13 +188,13 @@
             padding-top: 10px;
             width: 94%;
         }
-        .body0 #body-5
-        {
+
+        .body0 #body-5 {
             height: 15pt;
             padding-top: 10px;
         }
-        .body0 #body-3 #body-4a
-        {
+
+        .body0 #body-3 #body-4a {
             width: 95%;
             border-radius: 10px;
             background-color: #F2F2F2;
@@ -209,8 +203,8 @@
             margin-bottom: 10px;
             /*text-align: center;*/
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -218,8 +212,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -227,8 +221,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-up2
-        {
+
+        #talk0 #talk-up2 {
             height: 20px;
             padding-top: 8px;
             color: #000000;
@@ -237,8 +231,8 @@
             border-top-left-radius: 10px;
             text-align: left;
         }
-        .body-5a
-        {
+
+        .body-5a {
             -webkit-box-shadow: 0px 1px #CCCCCC;
             box-shadow: 0px 1px #CCCCCC;
             width: 95%;
@@ -276,12 +270,12 @@
                     %>
                 </div>
                 <div id="body-5" style="<%=HideStyle%>">
-                    1. 第二次情境分析法結果整理：</div>
-                <div id="body2" style="background-color:#FFCCFF; <%=HideStyle%>" >
+                    1. 第二次情境分析法結果整理：
+                </div>
+                <div id="body2" style="background-color: #FFCCFF; <%=HideStyle%>">
                     <table width="95%" border="0" align="center">
                         <tr>
-                            <td colspan="3" valign="top" bgcolor="#FFB7FF">
-                                1. 我的身份：
+                            <td colspan="3" valign="top" bgcolor="#FFB7FF">1. 我的身份：
                             </td>
                         </tr>
                         <tr>
@@ -290,16 +284,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3" valign="top" bgcolor="#FFB7FF">
-                                2. 我的新情境故事：
+                            <td colspan="3" valign="top" bgcolor="#FFB7FF">2. 我的新情境故事：
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                &nbsp;
+                            <td valign="top">&nbsp;
                             </td>
-                            <td valign="top">
-                                事件描述：
+                            <td valign="top">事件描述：
                             </td>
                             <td valign="top">
                                 <textarea name="column2" cols="50" rows="3" id="column2" extmaxlength="4000"></textarea>
@@ -307,33 +298,30 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                &nbsp;
+                            <td valign="top">&nbsp;
                             </td>
-                            <td valign="top">
-                                事件圖畫：
+                            <td valign="top">事件圖畫：
                             </td>
                             <td valign="top">
                                 <form id="file_upload" runat="server">
-                                <div id="filediv">
-                                    <input type="file" name="Uploadfile" multiple="" />
-                                    <button>
-                                        上傳</button>
-                                    <div>
-                                        檔案上傳</div>
-                                </div>
-                                <table id="files" style="display:inline;">
-                                </table>
+                                    <div id="filediv">
+                                        <input type="file" name="Uploadfile" multiple="" />
+                                        <button>
+                                            上傳</button>
+                                        <div>
+                                            檔案上傳
+                                        </div>
+                                    </div>
+                                    <table id="files" style="display: inline;">
+                                    </table>
                                 </form>
                                 <span id="deluploadfile"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td width="3%" valign="top">
-                                &nbsp;
+                            <td width="3%" valign="top">&nbsp;
                             </td>
-                            <td width="12%" align="right" valign="top">
-                                &nbsp;
+                            <td width="12%" align="right" valign="top">&nbsp;
                             </td>
                             <td width="85%" align="right" valign="top">
                                 <button id="savebtn">
@@ -352,7 +340,8 @@
                     2. 情境分鏡描述：<span id="notice" style="background-color: rgb(255, 195, 195);" class="hidden">資料已更新</span>
                 </div>
                 <div id="body-3">
-                    <div id="body-4a">成員：
+                    <div id="body-4a">
+                        成員：
                         <%
                             //At the fist time login will using the current user for UI display.
                             foreach (var item in AllMember)
@@ -388,7 +377,6 @@
             $('.Scenario3MemTab').on('click', Step.GetDataByUserSN);
             $('#cancle').on('click', Step.CancleUpdate);
             $('#updatebtn').on('click', Step.UpdateData);
-
 
             //$('#deleteimage').on('click', Step.DeleteImage);
             //Step.$Template = $('#itemTemplate').clone().removeClass('hidden').removeAttr('id');

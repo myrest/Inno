@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Data.SQLite;
+﻿using CWB.Web.Configuration;
 using InnoThink.Core.Constancy;
 using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using InnoThink.Core.Model.Topic;
-using CWB.Web.Configuration;
-using System.IO;
-using System.Web;
-using System.Drawing;
-using System.Runtime.Serialization;
 using Rest.Core.Utility;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Web;
 
 namespace InnoThink.Core.DB
 {
@@ -91,8 +88,8 @@ namespace InnoThink.Core.DB
             string strCMD = @"insert into Results
             (
                 TopicSN, Result, Column1, Column2, Column3, Column4, ServerFileName, UserFileName, IsImage, UserSN, LastUpdate
-            ) 
-            values 
+            )
+            values
             (
                 @TopicSN, @Result, @Column1, @Column2, @Column3, @Column4, @ServerFileName, @UserFileName, @IsImage, @UserSN, @LastUpdate
             )";
@@ -121,7 +118,7 @@ namespace InnoThink.Core.DB
                 //Set the image to new filename.
                 Model.ServerFileName = NewName;
                 //Update image to new filename.
-                strCMD = @"Update Results set 
+                strCMD = @"Update Results set
                             ServerFileName = @ServerFileName
                             , UserFileName = @UserFileName
                             , IsImage = @IsImage
@@ -325,7 +322,7 @@ namespace InnoThink.Core.DB
         public int TopicSN;
 
         /// <summary>
-        /// 結果類別, 0:草槁, 1:表板, 2:發表 
+        /// 結果類別, 0:草槁, 1:表板, 2:發表
         /// </summary>
         public ResultType Result;
 
@@ -374,10 +371,10 @@ namespace InnoThink.Core.DB
         /// </summary>
         public DateTime LastUpdate;
 
-
         //Add Ranking in
         //MyRank,Ranking,rcnt
         public int MyRank;
+
         public decimal RankingAvg;
         public int TotalVote;
         public int CommentNum;
@@ -394,6 +391,7 @@ namespace InnoThink.Core.DB
         public string Image { get; set; }
 
         private DateTime _UpdateDateTime { get; set; }
+
         public DateTime UpdateDateTime
         {
             get
@@ -408,7 +406,7 @@ namespace InnoThink.Core.DB
         }
 
         [DataMember(Name = "dt")]
-        public string DateTimeUI{ get; set; }
+        public string DateTimeUI { get; set; }
 
         [DataMember(Name = "r")]
         public int Rank { get; set; }
@@ -416,5 +414,4 @@ namespace InnoThink.Core.DB
         [DataMember(Name = "c")]
         public string Comment { get; set; }
     }
-
 }

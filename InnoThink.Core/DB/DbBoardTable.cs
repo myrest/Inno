@@ -1,19 +1,18 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.Utility;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
-using InnoThink.Core.Constancy;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
 using System.Runtime.Serialization;
-using Rest.Core.Utility;
 
 namespace InnoThink.Core.DB
 {
     public class DbBoardTable : BaseDAO
     {
         private readonly static SysLog log = SysLog.GetLogger(typeof(DbBoardTable));
-        
+
         public DbBoardTable()
         {
             base.init(typeof(DbBoardTable).ToString(), DataBaseName.InnoThinkMain);
@@ -68,8 +67,8 @@ namespace InnoThink.Core.DB
             int PublishType = 0;
             string strCMD = string.Empty;
             strCMD = @"select b.*, u.UserName, u.LoginId, b.UserSN, b.Picture
-                        from board b inner join Users u on b.UserSN = U.SN 
-                        Where b.TopicSN = @TopicSN 
+                        from board b inner join Users u on b.UserSN = U.SN
+                        Where b.TopicSN = @TopicSN
                             and b.PublishType = @PublishType
                         ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
@@ -91,7 +90,7 @@ namespace InnoThink.Core.DB
             // PublishType --> 發布範圍，0 -> 內部，1 -> 外部
             string strCMD = string.Empty;
             strCMD = @"select b.*, u.UserName, u.LoginId, b.UserSN, u.Picture
-                        from board b inner join Users u on b.UserSN = U.SN 
+                        from board b inner join Users u on b.UserSN = U.SN
                         Where b.PublishType = @PublishType
                         ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
@@ -134,7 +133,6 @@ namespace InnoThink.Core.DB
             });
         }
     }
-
 
     [DataContract]
     public class DbBoardContent : DbBoardTableModel

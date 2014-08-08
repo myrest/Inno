@@ -1,18 +1,16 @@
-﻿using System.Drawing;
-using System.Web.Mvc;
+﻿using CWB.Web.Configuration;
 using InnoThink.Core.Constancy;
-using InnoThink.Core.MVC;
-using InnoThink.Website.Models.Image;
-using System.Web;
-using CWB.Web.Configuration;
+using InnoThink.Core.MVC.BaseController;
+using InnoThink.Core.Utility;
+using InnoThink.Website.Communication;
 using InnoThink.Website.Models.FileUpload;
 using System;
-using InnoThink.Core.Utility;
-using InnoThink.Core.MVC.BaseController;
+using System.Drawing;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.IO;
-using InnoThink.Website.Communication;
+using System.Web;
+using System.Web.Mvc;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -20,7 +18,10 @@ namespace InnoThink.Website.Controllers.Service
     {
         private static readonly long ImageMaxLengthLimit = 2 * 1024 * 1024;
 
-        public FileUploadServiceController() : base(Permission.Private) { }
+        public FileUploadServiceController()
+            : base(Permission.Private)
+        {
+        }
 
         [HttpPost]
         public JsonResult UploadPersonIcon(HttpPostedFileBase Uploadfile)
@@ -269,15 +270,15 @@ namespace InnoThink.Website.Controllers.Service
         private static string GetMd5Hash(MD5 md5Hash, string input)
         {
             int MaxLength = 10;
-            // Convert the input string to a byte array and compute the hash. 
+            // Convert the input string to a byte array and compute the hash.
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-            // Create a new Stringbuilder to collect the bytes 
+            // Create a new Stringbuilder to collect the bytes
             // and create a string.
             StringBuilder sBuilder = new StringBuilder();
 
-            // Loop through each byte of the hashed data  
-            // and format each one as a hexadecimal string. 
+            // Loop through each byte of the hashed data
+            // and format each one as a hexadecimal string.
             for (int i = 0; i < data.Length; i++)
             {
                 sBuilder.Append(data[i].ToString("x2"));
@@ -291,6 +292,5 @@ namespace InnoThink.Website.Controllers.Service
             }
             return result;
         }
-
     }
 }

@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Facebook;
-using System.Collections;
+﻿using Facebook;
 using InnoThink.Core.Model;
 using Rest.Core.Utility;
+using System;
 
 namespace InnoThink.Core.Utility
 {
     public class FBUtility
     {
         private static readonly SysLog log = SysLog.GetLogger(typeof(FBUtility));
+
         public static FacebookPersonAuth GetUserID(string token)
         {
             var client = new FacebookClient(token);

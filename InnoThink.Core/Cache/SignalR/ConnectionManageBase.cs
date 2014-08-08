@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace InnoThink.Core.Cache.SignalR
 {
@@ -48,7 +46,7 @@ namespace InnoThink.Core.Cache.SignalR
                 CacheObj.TopicSN = TopicSN;
                 //Same User sn only can apply to one connection id.
                 //Need remove other connection.
-                AllConnections.Remove(AllConnections.Find(x=>x.UserSN == CacheObj.UserSN && x.ConnectionID != ConnectionId));
+                AllConnections.Remove(AllConnections.Find(x => x.UserSN == CacheObj.UserSN && x.ConnectionID != ConnectionId));
             }
             else
             {
@@ -58,7 +56,6 @@ namespace InnoThink.Core.Cache.SignalR
                     TopicSN = TopicSN
                 });
             }
-
         }
 
         public static void Update(string ConnectionId, int UserSN)
@@ -98,8 +95,9 @@ namespace InnoThink.Core.Cache.SignalR
     public class ConnectionObject
     {
         public int TopicSN { get; set; }
+
         public string ConnectionID { get; set; }
+
         public int UserSN { get; set; }
     }
-
 }

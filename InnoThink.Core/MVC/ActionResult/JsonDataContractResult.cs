@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Rest.Core.Utility;
+using System;
 using System.Runtime.Serialization.Json;
 using System.Web;
 using System.Web.Mvc;
-using InnoThink.Core.Utility;
-using Rest.Core.Utility;
 
 namespace InnoThink.Core.MVC
 {
@@ -37,7 +36,7 @@ namespace InnoThink.Core.MVC
             }
             if (Data != null)
             {
-                // Use the DataContractJsonSerializer instead of the JavaScriptSerializer 
+                // Use the DataContractJsonSerializer instead of the JavaScriptSerializer
                 DataContractJsonSerializer serializer = JsonSerializerHelper.GetSerializer(Data.GetType());
                 serializer.WriteObject(response.OutputStream, Data);
             }

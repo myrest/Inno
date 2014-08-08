@@ -15,16 +15,14 @@
         </div>
         <table>
             <tr>
-                <td>
-                    議題：
+                <td>議題：
                 </td>
                 <td>
                     <input type="text" id="subject" size="80" />
                 </td>
             </tr>
             <tr>
-                <td>
-                    開放範圍：
+                <td>開放範圍：
                 </td>
                 <td>
                     <label for="all">

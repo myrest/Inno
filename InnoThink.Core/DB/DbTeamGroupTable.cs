@@ -1,13 +1,10 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.Utility;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Data.SQLite;
-using InnoThink.Core.Constancy;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using InnoThink.Core.Model.Topic;
-using Rest.Core.Utility;
 
 namespace InnoThink.Core.DB
 {
@@ -40,11 +37,11 @@ namespace InnoThink.Core.DB
 
         public bool AddNewGroupName(string Name)
         {
-            const string strCMD = @"insert into TeamGroup 
+            const string strCMD = @"insert into TeamGroup
             (
                 GroupName, LastUpdate
-            ) 
-            values 
+            )
+            values
             (
                 @GroupName, @LastUpdate
             )";
@@ -116,22 +113,21 @@ namespace InnoThink.Core.DB
         }
     }
 
-
     public class DbTeamGroupModel
     {
         /// <summary>
         /// 流水號
         /// </summary>
         public int SN;
+
         /// <summary>
         /// 團隊名稱
         /// </summary>
         public string GroupName;
+
         /// <summary>
         /// 最後更新日期
         /// </summary>
         public DateTime LastUpdate;
     }
-
-
 }

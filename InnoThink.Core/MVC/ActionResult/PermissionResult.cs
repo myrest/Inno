@@ -26,4 +26,4 @@ namespace InnoThink.Core.MVC
         ServerError = 300,
         PermissionDeny = 400
     }
- }
+}

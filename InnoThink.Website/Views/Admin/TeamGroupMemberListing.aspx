@@ -20,14 +20,11 @@
         請輸入要新增的登入帳號
         <table>
             <tr>
-                <td>
-                    &nbsp;
+                <td>&nbsp;
                 </td>
-                <td>
-                    成員
+                <td>成員
                 </td>
-                <td>
-                    功能
+                <td>功能
                 </td>
             </tr>
             <%
@@ -45,8 +42,7 @@
                 <td>
                     <%=item.UserName %>(<%=item.LoginId %>)
                 </td>
-                <td>
-                    &nbsp;&nbsp;<a href="#" class="del" data-sn="<%=item.SN %>">刪除</a>
+                <td>&nbsp;&nbsp;<a href="#" class="del" data-sn="<%=item.SN %>">刪除</a>
                 </td>
             </tr>
             <%

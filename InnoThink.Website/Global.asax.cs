@@ -1,19 +1,18 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
-using Microsoft.AspNet.SignalR;
-using System.Web;
-using System.IO;
-using InnoThink.Core.Utility;
-using CWB.Web.Configuration;
-using InnoThink.Core.Configuration;
-using System;
-using System.Threading;
+﻿using CWB.Web.Configuration;
 using InnoThink.Core.Cache.Board;
+using InnoThink.Core.Configuration;
+using Microsoft.AspNet.SignalR;
 using Rest.Core.Utility;
+using System;
+using System.IO;
+using System.Threading;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace InnoThink.Website
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode,
     // visit http://go.microsoft.com/?LinkId=9394801
     public class InnoThinkApplication : System.Web.HttpApplication
     {
@@ -21,6 +20,7 @@ namespace InnoThink.Website
         private static readonly object syncRoot = new object();
         private string configurationFolder;
         public static bool isWatcherUpdate;
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
@@ -47,7 +47,6 @@ namespace InnoThink.Website
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Default", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
         }
 
         protected void Application_Start()
@@ -83,7 +82,6 @@ namespace InnoThink.Website
             BoardCache.InitialCache();
 
             Log.Debug("Application_Start end");
-
         }
 
         public static void InitializeUiConfigurationManager(string configurationFolderPath)
@@ -93,7 +91,6 @@ namespace InnoThink.Website
             {
                 AppConfigManager.SystemSetting = XmlSerializerHelper.ToObj<SystemSetting>(GetXml(configurationFolderPath, "SystemSetting.config"));
             }
-
         }
 
         private static string GetXml(string configurationFolderPath, string fileName)

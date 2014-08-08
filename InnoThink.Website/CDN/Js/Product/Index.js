@@ -211,9 +211,7 @@ var Item = {
                 utility.showPopUp(data.msg, 1);
             }
         });
-
     }
-
 };
 
 var Product =
@@ -280,7 +278,6 @@ var Product =
                 utility.showPopUp(data.msg, 1);
             }
         });
-
     },
     _AddNew: function () {
         var prdname = Product.$NewProduct.val();

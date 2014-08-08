@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Data.SQLite;
+﻿using CWB.Web.Configuration;
 using InnoThink.Core.Constancy;
 using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using InnoThink.Core.Model.Topic;
-using CWB.Web.Configuration;
+using Rest.Core.Utility;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
 using System.IO;
 using System.Web;
-using Rest.Core.Utility;
 
 namespace InnoThink.Core.DB
 {
@@ -56,8 +53,8 @@ namespace InnoThink.Core.DB
             string strCMD = @"insert into BestStep1
             (
                 TopicSN, Category, Description, Image, Related, UserSN, LastUpdate
-            ) 
-            values 
+            )
+            values
             (
                 @TopicSN, @Category, @Description, @Image, @Related, @UserSN, @LastUpdate
             )";
@@ -145,7 +142,6 @@ namespace InnoThink.Core.DB
         }
     }
 
-
     public class DbBestStep1Model
     {
         /// <summary>
@@ -188,6 +184,4 @@ namespace InnoThink.Core.DB
         /// </summary>
         public DateTime LastUpdate;
     }
-
-
 }

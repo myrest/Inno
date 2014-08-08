@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using InnoThink.Core.Utility;
-using InnoThink.Core.DB;
-using InnoThink.Website.Models;
-using CWB.Web;
-using CWB.Web.Configuration;
-using InnoThink.Core.Constancy;
-using InnoThink.Core;
-using InnoThink.Core.MVC.BaseController;
-using System.IO;
+﻿using CWB.Web.Configuration;
 using InnoThink.Core.Cache.Board;
+using InnoThink.Core.Constancy;
+using InnoThink.Core.DB;
+using InnoThink.Core.MVC.BaseController;
+using InnoThink.Core.Utility;
+using InnoThink.Website.Models;
 using Rest.Core.Utility;
+using System;
+using System.IO;
+using System.Web.Mvc;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -22,6 +17,7 @@ namespace InnoThink.Website.Controllers.Service
         //
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(MemberServiceController));
+
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
         private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
         private static readonly DbUserTable dbUser = new DbUserTable() { };
@@ -30,6 +26,7 @@ namespace InnoThink.Website.Controllers.Service
             : base(Permission.Private)
         {
         }
+
         [HttpPost]
         public JsonResult NewTopic(string Subject, int opento)
         {
@@ -129,7 +126,7 @@ namespace InnoThink.Website.Controllers.Service
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
-        
+
         [HttpPost]
         public JsonResult UpdateMyInfo(string Professional, string UserName)
         {

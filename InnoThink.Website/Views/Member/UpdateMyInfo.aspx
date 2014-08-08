@@ -25,36 +25,35 @@
         </div>
         <table>
             <tr>
-                <td>
-                    名稱：
+                <td>名稱：
                 </td>
                 <td>
                     <input type="text" id="UserName" value="<% =Model.UserName %>" />
                 </td>
             </tr>
             <tr>
-                <td>
-                    個人專長：
+                <td>個人專長：
                 </td>
                 <td>
                     <input type="text" id="Professional" value="<% =Model.Professional %>" />
                 </td>
             </tr>
             <tr>
-            <td>
-            <span id="icon"><% =Picture %></span>
-            </td>
+                <td>
+                    <span id="icon"><% =Picture %></span>
+                </td>
                 <td>
                     <form id="file_upload" runat="server">
-                    <div id="filediv">
-                        <input type="file" name="Uploadfile" multiple="">
-                        <button>
-                            上傳</button>
-                        <div>
-                            檔案上傳</div>
-                    </div>
-                    <table id="files">
-                    </table>
+                        <div id="filediv">
+                            <input type="file" name="Uploadfile" multiple="">
+                            <button>
+                                上傳</button>
+                            <div>
+                                檔案上傳
+                            </div>
+                        </div>
+                        <table id="files">
+                        </table>
                     </form>
                 </td>
             </tr>

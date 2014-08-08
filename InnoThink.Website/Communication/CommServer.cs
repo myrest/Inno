@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using InnoThink.Core;
+using InnoThink.Core.Cache.SignalR;
+using InnoThink.Core.Constancy;
+using InnoThink.Core.DB;
+using InnoThink.Core.Model.Topic;
+using InnoThink.Core.Utility;
+using InnoThink.Website.Models;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Cache.SignalR;
-using InnoThink.Core.Model.Topic;
-using InnoThink.Core.DB;
-using InnoThink.Core.MVC;
-using InnoThink.Core;
-using InnoThink.Core.Constancy;
-using InnoThink.Website.Models;
 using Rest.Core.Utility;
+using System;
+using System.Collections.Generic;
 
 namespace InnoThink.Website.Communication
 {
@@ -19,10 +17,13 @@ namespace InnoThink.Website.Communication
     {
         // Singleton instance
         private static readonly SysLog Log = SysLog.GetLogger(typeof(CommServer));
+
         private readonly static Lazy<CommServer> _Instance = new Lazy<CommServer>(() => new CommServer(GlobalHost.ConnectionManager.GetHubContext<CommHub>().Clients));
+
         public delegate void Broadcast(string SystemMessage);
 
         private IHubConnectionContext Clients { get; set; }
+
         public CommServer(IHubConnectionContext clients)
         {
             this.Clients = clients;
@@ -76,7 +77,6 @@ namespace InnoThink.Website.Communication
         {
             //put initial action in here
         }
-
 
         //第1單元介紹：認識朋友-1 initial
         internal void initUnit1(HubCallerContext Context, int sn)
@@ -141,24 +141,28 @@ namespace InnoThink.Website.Communication
                         Clients.Client(x).syncResultDraft(model);
                     });
                     break;
+
                 case ResultType.DASHBOARD:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncResultDashboard(model);
                     });
                     break;
+
                 case ResultType.PRESENTATION:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncResultPresentation(model);
                     });
                     break;
+
                 case ResultType.SCENARIO_1:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncScenario1(model);
                     });
                     break;
+
                 case ResultType.SCENARIO_3:
                     //just using the same parse rule for UI display information.
                     ScenarioCharResultViewModel result3 = new ScenarioCharResultViewModel(0) { };
@@ -169,6 +173,7 @@ namespace InnoThink.Website.Communication
                         Clients.Client(x).syncScenario3(result3.AllDescript);
                     });
                     break;
+
                 case ResultType.SCENARIO_7:
                     //just using the same parse rule for UI display information.
                     ScenarioCharResultViewModel result7 = new ScenarioCharResultViewModel(0) { };
@@ -179,10 +184,10 @@ namespace InnoThink.Website.Communication
                         Clients.Client(x).syncScenario7(result7.AllDescript);
                     });
                     break;
+
                 default:
                     throw new Exception("Type not in defined");
             }
-
         }
 
         internal void syncUIResultScore(DbResultsScoreModel model)
@@ -197,22 +202,24 @@ namespace InnoThink.Website.Communication
                         Clients.Client(x).syncRSDraft(model);
                     });
                     break;
+
                 case ResultType.DASHBOARD:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncRSDashboard(model);
                     });
                     break;
+
                 case ResultType.PRESENTATION:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncRSPresentation(model);
                     });
                     break;
+
                 default:
                     throw new Exception("");
             }
-
         }
 
         internal void syncUIBest1(DbBestStep1Model model)

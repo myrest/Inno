@@ -1,13 +1,12 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.Model.Topic;
+using InnoThink.Core.Utility;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Data.SQLite;
-using InnoThink.Core.Constancy;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using InnoThink.Core.Model.Topic;
-using Rest.Core.Utility;
+using System.Linq;
 
 namespace InnoThink.Core.DB
 {
@@ -105,11 +104,11 @@ namespace InnoThink.Core.DB
 
         public bool AddNewTopic(string Subject, string LoginId, TopicPublishType opento, int TeamGroupSN)
         {
-            const string strCMD = @"insert into Topic 
+            const string strCMD = @"insert into Topic
             (
                 Subject, CreatedLoginId, DateCreated, PublishType, TeamGroupSN
-            ) 
-            values 
+            )
+            values
             (
                 @Subject, @CreatedLoginId, @DateCreated, @PublishType, @TeamGroupSN
             )";
@@ -150,11 +149,11 @@ namespace InnoThink.Core.DB
 
         public DbTopicModel getFirstTopicByUsersSN(int UsersSN)
         {
-            const string strCMD = @"select t.* from Topic t 
-                                    inner join TopicMember tm on tm.TopicSN = t.SN 
-                                    where tm.UsersSN = @UsersSN 
-                                        and DateClosed is null 
-                                    order by t.SN desc 
+            const string strCMD = @"select t.* from Topic t
+                                    inner join TopicMember tm on tm.TopicSN = t.SN
+                                    where tm.UsersSN = @UsersSN
+                                        and DateClosed is null
+                                    order by t.SN desc
                                     limit 0,1 ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@UsersSN", UsersSN));
@@ -183,6 +182,7 @@ namespace InnoThink.Core.DB
                                 where DateClosed is null and m.UsersSn = " + Sn + @"
                                 order by DateCreated desc  " + p.LimitSql;
                     break;
+
                 case TopicStatus.Closed:
                     strCMD = @"select t.* from Topic t
                                 inner join TopicMember m on
@@ -190,6 +190,7 @@ namespace InnoThink.Core.DB
                                 where DateClosed is not null and m.UsersSn = " + Sn + @"
                                 order by DateCreated desc  " + p.LimitSql;
                     break;
+
                 default:
                     throw new Exception("The Topic Status not under control.");
             }
@@ -212,12 +213,12 @@ namespace InnoThink.Core.DB
             return itemList;
         }
 
-        public List<DbTopicModel> GetAllTopicByStatus(TopicStatus Status, int TeamGroupSN, string LoginId )
+        public List<DbTopicModel> GetAllTopicByStatus(TopicStatus Status, int TeamGroupSN, string LoginId)
         {
             Paging p = new Paging();
             //TopicPublishType: Private->0, TeamGroup->1, All->2
-            string strCMD = @"select * from Topic 
-                            where DateClosed is {0} 
+            string strCMD = @"select * from Topic
+                            where DateClosed is {0}
                                 and (
                                     (PublishType = 1 and TeamGroupSN = {1})
                                     or (PublishType = 2)
@@ -227,13 +228,16 @@ namespace InnoThink.Core.DB
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@LoginId", LoginId));
 
-            switch (Status){
+            switch (Status)
+            {
                 case TopicStatus.InProcess:
                     strCMD = string.Format(strCMD, "null", TeamGroupSN, LoginId, p.LimitSql);
                     break;
+
                 case TopicStatus.Closed:
                     strCMD = string.Format(strCMD, "not null", TeamGroupSN, LoginId, p.LimitSql);
                     break;
+
                 default:
                     throw new Exception("The Topic Status not under control.");
             }
@@ -338,7 +342,6 @@ namespace InnoThink.Core.DB
 
             strCMD = "Delete from BestIdeaMemberRank where BestIdeaSN not in(select sn from BestIdea )";
             ExecuteNonQuery(strCMD);
-
         }
 
         public bool IsTeamMember(int TopicSN, int UserSN)
@@ -357,51 +360,60 @@ namespace InnoThink.Core.DB
         /// 流水號
         /// </summary>
         public int SN;
+
         /// <summary>
         /// 議題
         /// </summary>
         public string Subject;
+
         /// <summary>
         /// 隊名
         /// </summary>
         public string TeamName;
+
         /// <summary>
         /// 目地
         /// </summary>
         public string Target;
+
         /// <summary>
         /// 團隊Logo
         /// </summary>
         public string LogoImg;
+
         /// <summary>
         /// 隊長帳號
         /// </summary>
         public string LeaderLoginId;
+
         /// <summary>
         /// 現行步驟
         /// </summary>
         public int Step;
+
         /// <summary>
         /// 議題建立時間
         /// </summary>
         public DateTime DateCreated;
+
         /// <summary>
         /// 議題建立者
         /// </summary>
         public string CreatedLoginId;
+
         /// <summary>
         /// 議題關閉時間
         /// </summary>
         public DateTime DateClosed;
+
         /// <summary>
         /// 開放範圍
         /// </summary>
         public TopicPublishType PublishType;
+
         /// <summary>
         /// 開放至團體流水號
         /// </summary>
         public int TeamGroupSN;
     }
-
-
 }

@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Collections.ObjectModel;
-using System.Dynamic;
-using System.Collections;
-using System.Linq;
-
 
 namespace Rest.Core.Utility
 {
@@ -57,8 +52,11 @@ namespace Rest.Core.Utility
 
             return serializer;
         }
+
         /*
+
         #region Dynamic deserialize json object
+
         public override object Deserialize(IDictionary<string, object> dictionary, Type type, JavaScriptSerializer serializer)
         {
             if (dictionary == null)
@@ -76,9 +74,11 @@ namespace Rest.Core.Utility
         {
             get { return new ReadOnlyCollection<Type>(new List<Type>(new[] { typeof(object) })); }
         }
-        #endregion
+
+        #endregion Dynamic deserialize json object
 
         #region Nested type: DynamicJsonObject
+
         private sealed class DynamicJsonObject : DynamicObject
         {
             private readonly IDictionary<string, object> _dictionary;
@@ -130,7 +130,6 @@ namespace Rest.Core.Utility
                                 sb.AppendFormat("\"{0}\"", arrayValue);
                             else
                                 sb.AppendFormat("{0}", arrayValue);
-
                         }
                         sb.Append("]");
                     }
@@ -190,7 +189,9 @@ namespace Rest.Core.Utility
                 return result;
             }
         }
-        #endregion
+
+        #endregion Nested type: DynamicJsonObject
+
          * */
     }
 }

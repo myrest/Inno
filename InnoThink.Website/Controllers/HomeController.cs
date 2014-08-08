@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using InnoThink.Core.Constancy;
 using InnoThink.Core.MVC.BaseController;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Constancy;
 using Rest.Core.Utility;
+using System.Web.Mvc;
 
 namespace InnoThink.Website.Controllers
 {
@@ -19,13 +14,11 @@ namespace InnoThink.Website.Controllers
         public HomeController()
             : base(Permission.Private)
         {
-
         }
 
         public ActionResult Index()
         {
             return View();
         }
-
     }
 }

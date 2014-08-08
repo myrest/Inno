@@ -1,16 +1,11 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.Utility;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Data.SQLite;
-using InnoThink.Core.Constancy;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using InnoThink.Core.Model.Topic;
-using CWB.Web.Configuration;
-using System.IO;
-using System.Web;
-using Rest.Core.Utility;
+using System.Linq;
 
 namespace InnoThink.Core.DB
 {
@@ -55,8 +50,8 @@ namespace InnoThink.Core.DB
             string strCMD = @"insert into BestIdeaGroupRank
             (
                 BestIdeaGroupSN, Rank, UserSN
-            ) 
-            values 
+            )
+            values
             (
                 @BestIdeaGroupSN, @Rank, @UserSN
             )";
@@ -88,10 +83,10 @@ namespace InnoThink.Core.DB
 
         public List<DbBestIdeaGroupRankModel> GetAllByTopicSN(int TopicSN, int UserSN)
         {
-            const string strCMD = @"select b.BestIdeaGroupSN as BestIdeaGroupSN, B.Type as Type, B.GroupName as GroupName, ifnull(A.Rank,0) as Rank from 
+            const string strCMD = @"select b.BestIdeaGroupSN as BestIdeaGroupSN, B.Type as Type, B.GroupName as GroupName, ifnull(A.Rank,0) as Rank from
                                     (select bi.sn as BestIdeaGroupSN, bi.Type, GroupName from BestIdeaGroup bi
                                     where bi.TopicSN = @TopicSN) b
-                                    left outer join 
+                                    left outer join
                                     (select * from BestIdeaGroupRank br
                                     where br.UserSN = @UserSN) a
                                     on a.BestIdeaGroupSN = b.BestIdeaGroupSN
@@ -158,6 +153,7 @@ namespace InnoThink.Core.DB
         public int Rank;
 
         #region 以下資料來源為BestIdeaGroup
+
         /// <summary>
         /// Best類別B, E, S, T -> 0, 1, 2, 3
         /// Only for UI display, wont' using in Insert and update
@@ -175,10 +171,9 @@ namespace InnoThink.Core.DB
                 return Type.ToString();
             }
         }
-        #endregion
+
+        #endregion 以下資料來源為BestIdeaGroup
 
         public string GroupName;
     }
-
-
 }

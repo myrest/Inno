@@ -18,14 +18,11 @@
         </div>
         <table>
             <tr>
-                <td>
-                    &nbsp;
+                <td>&nbsp;
                 </td>
-                <td>
-                    團隊名稱
+                <td>團隊名稱
                 </td>
-                <td>
-                    功能
+                <td>功能
                 </td>
             </tr>
             <%

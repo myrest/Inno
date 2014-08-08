@@ -1,10 +1,8 @@
-﻿using System;
+﻿using InnoThink.Core.DB;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using InnoThink.Core.Utility;
-using System.Collections.Generic;
-using InnoThink.Core.DB;
-using InnoThink.Core.Model.Topic;
 
 namespace InnoThink.Website.Models
 {
@@ -12,23 +10,25 @@ namespace InnoThink.Website.Models
     public class ScenarioCharResultViewModel : ResultBase
     {
         private int _UserSN { get; set; }
-        
+
         public ScenarioCharResultViewModel(int UserSN)
         {
             _UserSN = UserSN;
         }
 
         public int TopicSN { get; set; }
+
         //Char listing.
         public List<DbScenarioCharModel> Listing { get; set; }
+
         //Story listing.
         public List<DbResultsModel> Descriptions { get; set; }
-
 
         [DataMember(Name = "vp")]
         public List<DbScenarioCharValueModel> ValuePotion { get; set; }
 
         /**********Below method is for UI only, support get method.***************/
+
         //Current UserSN's Char. get the datat from Listing.
         [DataMember(Name = "info")]
         public DbScenarioCharModel Data
@@ -48,6 +48,7 @@ namespace InnoThink.Website.Models
                 return rtn;
             }
         }
+
         //Listing is for UI using purpose.
         [DataMember(Name = "d")]
         public List<ScenarioDescript> AllDescript

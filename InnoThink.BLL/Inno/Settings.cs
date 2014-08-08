@@ -1,37 +1,44 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using InnoThink.DAL.Settings;
 using InnoThink.Domain.Settings;
-using Rest.Core.Constancy;
 using Rest.Core.Utility;
+using System;
+using System.Collections.Generic;
 
 namespace InnoThink.BLL.Settings
 {
     #region interface
+
     public interface ISettings_Manager
     {
         Settings_Info GetByID(long NoPk);
+
         IEnumerable<Settings_Info> GetAll();
+
         IEnumerable<Settings_Info> GetByParameter(Settings_Filter Filter, string _orderby = "");
+
         long Insert(Settings_Info data);
+
         bool Update(long NoPk, Settings_Info data, IEnumerable<string> columns);
+
         int Delete(long NoPk);
+
         bool IsExist(long NoPk);
     }
-    #endregion
+
+    #endregion interface
 
     #region implementation
+
     public class Settings_Manager : ISettings_Manager
     {
-        #region public properties
-        #endregion
-
         #region private fields
+
         private readonly static SysLog log = SysLog.GetLogger(typeof(Settings_Manager));
-        #endregion
+
+        #endregion private fields
 
         #region Operation: Select
+
         public Settings_Info GetByID(long NoPk)
         {
             return new Settings_Repo().GetByID(NoPk);
@@ -46,9 +53,11 @@ namespace InnoThink.BLL.Settings
         {
             return new Settings_Repo().GetByParam(Filter, _orderby);
         }
-        #endregion
+
+        #endregion Operation: Select
 
         #region Operation: Raw Insert
+
         public long Insert(Settings_Info data)
         {
             long newID = 0;
@@ -62,31 +71,36 @@ namespace InnoThink.BLL.Settings
             }
             return newID;
         }
-        #endregion
+
+        #endregion Operation: Raw Insert
 
         #region Operation: Raw Update
+
         public bool Update(long NoPk, Settings_Info data, IEnumerable<string> columns)
         {
             return new Settings_Repo().Update(NoPk, data, columns) > 0;
         }
-        #endregion
+
+        #endregion Operation: Raw Update
 
         #region Operation: Delete
+
         public int Delete(long NoPk)
         {
             return new Settings_Repo().Delete(NoPk);
         }
-        #endregion
+
+        #endregion Operation: Delete
 
         #region public functions
+
         public bool IsExist(long NoPk)
         {
             return (GetByID(NoPk) != null);
         }
-        #endregion
 
-        #region private functions
-        #endregion
+        #endregion public functions
     }
-    #endregion
+
+    #endregion implementation
 }

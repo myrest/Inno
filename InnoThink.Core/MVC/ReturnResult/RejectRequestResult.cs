@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using log4net;
 using System.Text;
 using System.Web.Mvc;
-using log4net;
-using System.Globalization;
-using InnoThink.Core;
 
 namespace InnoThink.Core.MVC.ReturnResult
 {

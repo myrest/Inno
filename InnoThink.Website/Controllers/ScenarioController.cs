@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.DB;
 using InnoThink.Core.MVC.BaseController;
 using InnoThink.Core.Utility;
-using InnoThink.Core.DB;
-using InnoThink.Core.Constancy;
 using InnoThink.Website.Models;
 using Rest.Core.Utility;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace InnoThink.Website.Controllers
 {
@@ -17,16 +15,15 @@ namespace InnoThink.Website.Controllers
         //
         // GET: /Scenario/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(TopicController));
+
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
         private static readonly DbUserTable dbUser = new DbUserTable() { };
         private static readonly DbResultsTable dbResult = new DbResultsTable() { };
         private static readonly DbScenarioTable dbScenario = new DbScenarioTable() { };
 
-
         public ScenarioController()
             : base(Permission.Private)
         {
-
         }
 
         public void doResultView(int TopicSN, ResultType Result)
@@ -99,7 +96,7 @@ namespace InnoThink.Website.Controllers
         {
             TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
-            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.sn) { }; 
+            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.sn) { };
             var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.FirstTime);
             if (list != null)
             {
@@ -172,7 +169,7 @@ namespace InnoThink.Website.Controllers
 
             //Build Char setting
             ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.sn) { };
-           //Need to get all the rank for the each char.
+            //Need to get all the rank for the each char.
             var charRank = dbScenario.GetCharAvgRankByTopic(TopicSN, ScenarioType.FirstTime);
             var charValueRank = dbScenario.GetCharValueAvgRankByTopic(TopicSN, ScenarioType.FirstTime);
             List<ScenarioRankModel> AllRank = new List<ScenarioRankModel>() { };
@@ -242,6 +239,5 @@ namespace InnoThink.Website.Controllers
 
             return View();
         }
-
     }
 }

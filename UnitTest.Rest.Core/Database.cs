@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rest.Core.Utility;
-using InnoThink.Domain;
-using InnoThink.Domain.Constancy;
-using Rest.Core.Constancy;
-using InnoThink.BLL.BestGAP;
+﻿using InnoThink.BLL.BestGAP;
 using InnoThink.Domain.BestGAP;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace UnitTest.RestCore
@@ -60,7 +53,6 @@ namespace UnitTest.RestCore
 
             obj = bm.GetByID(newid);
             Assert.IsNull(obj);
-
         }
     }
 }

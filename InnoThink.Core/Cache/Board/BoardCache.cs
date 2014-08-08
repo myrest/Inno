@@ -1,11 +1,8 @@
-﻿using System;
+﻿using InnoThink.Core.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using InnoThink.Core.Cache.SignalR;
 using System.Timers;
-using InnoThink.Core.DB;
-using InnoThink.Core.Utility;
 
 namespace InnoThink.Core.Cache.Board
 {
@@ -46,8 +43,7 @@ namespace InnoThink.Core.Cache.Board
 
         private static void AddBoardFromDB(DbBoardContent BoardData, Dictionary<int, List<BoardModel>> target)
         {
-
-            if (!target.Any(x=> x.Key == BoardData.TopicSN))
+            if (!target.Any(x => x.Key == BoardData.TopicSN))
             {
                 target[BoardData.TopicSN] = new List<BoardModel>() { };
             }
@@ -87,9 +83,11 @@ namespace InnoThink.Core.Cache.Board
                 case 0:
                     TargetBoard = PrivateBoard;
                     break;
+
                 case 1:
                     TargetBoard = PublicBoard;
                     break;
+
                 default:
                     throw new Exception(string.Format("Board Type [{0}] is not defined.", BoardType));
             }
@@ -198,16 +196,20 @@ namespace InnoThink.Core.Cache.Board
                 target.Add(TopicSN, new List<BoardModel>() { model });
             }
         }
-
     }
 
     public class BoardModel
     {
         public string ImagePath { get; set; }
+
         public string UserName { get; set; }
+
         public string LoginId { get; set; }
+
         public int UserSN { get; set; }
+
         public DateTime DateCreated { get; set; }
+
         public string DateUI
         {
             get
@@ -215,7 +217,9 @@ namespace InnoThink.Core.Cache.Board
                 return DateCreated.ToString("HH:mm:ss");
             }
         }
+
         public string Content { get; set; }
+
         public bool Saved { get; set; }
     }
 }

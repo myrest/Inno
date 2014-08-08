@@ -2,12 +2,9 @@
 using Rest.Core.PetaPoco;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Web;
 
 namespace Rest.Core
@@ -16,6 +13,7 @@ namespace Rest.Core
     {
         //Put all the connection for each Database, redurce the check db file is exist. only pass the test will add in the variable.
         private static Dictionary<DataBaseName, string> DbListing = new Dictionary<DataBaseName, string>() { };
+
         private static Object SyncLock = new Object();
         private DataBaseName DbName;
 

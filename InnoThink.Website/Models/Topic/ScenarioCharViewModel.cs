@@ -1,10 +1,7 @@
-﻿using System;
+﻿using InnoThink.Core.DB;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using InnoThink.Core.Utility;
-using System.Collections.Generic;
-using InnoThink.Core.DB;
-using InnoThink.Core.Model.Topic;
 
 namespace InnoThink.Website.Models
 {
@@ -12,13 +9,17 @@ namespace InnoThink.Website.Models
     public class ScenarioCharViewModel : ResultBase
     {
         private int _UserSN { get; set; }
+
         public ScenarioCharViewModel(int UserSN)
         {
             _UserSN = UserSN;
         }
+
         public int TopicSN { get; set; }
-        [DataMember(Name="d")]
+
+        [DataMember(Name = "d")]
         public List<DbScenarioCharModel> Listing { get; set; }
+
         public DbScenarioCharModel Data
         {
             get

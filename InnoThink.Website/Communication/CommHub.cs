@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using InnoThink.Core.Cache.SignalR;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
-using System;
+using System.Threading.Tasks;
 using System.Web;
-using InnoThink.Core.Cache.SignalR;
 
 namespace InnoThink.Website.Communication
 {
@@ -12,14 +11,18 @@ namespace InnoThink.Website.Communication
     {
         private readonly CommServer commServer;
 
-        public CommHub() : this(CommServer.Instance) { }
+        public CommHub()
+            : this(CommServer.Instance)
+        {
+        }
+
         public CommHub(CommServer obj)
         {
             commServer = obj;
         }
 
-
         #region Connect, Disconnect and Reconnect event.
+
         //Client connect event.
         public override Task OnConnected()
         {
@@ -49,7 +52,8 @@ namespace InnoThink.Website.Communication
         {
             return base.OnReconnected();
         }
-        #endregion
+
+        #endregion Connect, Disconnect and Reconnect event.
 
         public void init()
         {

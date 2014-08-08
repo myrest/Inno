@@ -282,7 +282,6 @@ var utility = {
             position: ['center', 100],
             buttons: btn
         });
-
     }
    , popupUrl: function (url, title, id, w, h, scrolling) {
        if (!scrolling) { scrolling = "no"; }
@@ -429,10 +428,10 @@ var KeyPressHelper = {
     // allow backspace, tab, delete, enter, numbers and keypad numbers, arrows
     isNumeric: function(e) {
         if (e.shiftKey) return false; // to prevent shift key combination
-        
+
         var code = this.getCode(e);
         return (code == 8 || code == 110 || code == 190 ||
-        code == 9 || 
+        code == 9 ||
         code == 46 ||
         code == 13 ||
         code >= 48 && code <= 57 ||
@@ -534,7 +533,6 @@ var PageInitial = {
     }
 }
 
-
 //JQuery extantion start.
 jQuery.fn.center = function (x) {
     var pers;
@@ -611,7 +609,6 @@ var ErrorHelper = {
         $('.ErrorNotice').fadeOut(2000, function () { $(this).remove(); });
     }
 }
-
 
 $(function () {
     PageInitial.InitialPopupAnchor();
@@ -825,10 +822,8 @@ $(function () {
         $(document).on("focus", "input:text.integer,input:text.integer-format", function () {
             $(this).select();
         });
-
     });
     //#endregion //Format number and check integer and decimal input
-
 
     //regesiter logout event
     $('.logout').click(utility.logout);
@@ -858,11 +853,6 @@ $(function () {
         });
     }
 
-
-
-
-
-
     /*
     var err = '<%=ViewData["errmsg"] %>';
     if (err.length > 0) {
@@ -875,7 +865,6 @@ $(function () {
     }
     */
 });
-
 
 //jQuery extension
 $.fn.serializeObject = function () {

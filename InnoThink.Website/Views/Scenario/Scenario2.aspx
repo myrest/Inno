@@ -10,8 +10,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
-        #header
-        {
+        #header {
             height: 50px;
             margin-left: 0px;
             margin-right: 0px;
@@ -19,14 +18,14 @@
             background-color: #F2F2F2;
             z-index: 0;
         }
-        body
-        {
+
+        body {
             margin-left: 0px;
             margin-top: 0px;
             margin-right: 0px;
         }
-        #headerlogo
-        {
+
+        #headerlogo {
             width: 150px;
             position: static;
             left: 629px;
@@ -35,8 +34,8 @@
             float: left;
             margin-left: 0px;
         }
-        #headerword
-        {
+
+        #headerword {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -48,13 +47,13 @@
             left: 50%;
             margin-top: 0px;
         }
-        #header #headerword #header-word2
-        {
+
+        #header #headerword #header-word2 {
             padding-top: 25px;
             float: right;
         }
-        #bottom0
-        {
+
+        #bottom0 {
             width: 740px;
             margin-left: -370px;
             left: 50%;
@@ -66,8 +65,8 @@
             padding-bottom: 10px;
             display: inline-block;
         }
-        #talk0 #talk1
-        {
+
+        #talk0 #talk1 {
             margin-top: 10px;
             margin-right: 10px;
             position: static;
@@ -77,8 +76,8 @@
             border-collapse: collapse;
             margin-bottom: 0px;
         }
-        #talk0 #talk2
-        {
+
+        #talk0 #talk2 {
             margin-left: 10px;
             margin-right: 10px;
             position: static;
@@ -87,8 +86,8 @@
             width: 260px;
             border-collapse: collapse;
         }
-        .body0 #body1
-        {
+
+        .body0 #body1 {
             height: 25px;
             background-color: #4FA3C7;
             border-top-left-radius: 20px;
@@ -97,8 +96,8 @@
             padding-top: 8px;
             text-align: center;
         }
-        .body0 #body2
-        {
+
+        .body0 #body2 {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -110,19 +109,16 @@
             box-shadow: 5px 5px 5px #CCCCCC;
             padding-top: 10px;
         }
-        
-        #talk0 #talk1 #talk-up1
-        {
+
+        #talk0 #talk1 #talk-up1 {
             background-color: #F2F2F2;
             height: 20px;
             color: #000000;
             border-top-left-radius: 10px;
             padding-top: 8px;
         }
-        
-        
-        #otherteam
-        {
+
+        #otherteam {
             width: 250px;
             position: fixed;
             left: 0px;
@@ -139,48 +135,46 @@
             box-shadow: 1px 0px 1px #CCCCCC;
             background-color: #FFFFFF;
         }
-        #otherteam #otherteam1
-        {
-            background-color: #FFFFFF;
-        }
-        #otherteam #otherteam1 #otherteam-up
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-        }
-        #otherteam #otherteam1 #otherteam-1-center
-        {
-        }
-        #otherteam #otherteam2 #otherteam-2-center
-        {
-            padding-left: 10px;
-        }
-        #otherteam #otherteam2
-        {
-        }
-        #otherteam #otherteam2 #otherteam-up2
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        #otherteam #otherteam1 #otherteam-up1
-        {
-            height: 20px;
-            border-top-right-radius: 10px;
-            background-color: #F2F2F2;
-            padding-top: 8px;
-        }
-        
-        table.body0 .Div1
-        {
+
+            #otherteam #otherteam1 {
+                background-color: #FFFFFF;
+            }
+
+                #otherteam #otherteam1 #otherteam-up {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                }
+
+                #otherteam #otherteam1 #otherteam-1-center {
+                }
+
+            #otherteam #otherteam2 #otherteam-2-center {
+                padding-left: 10px;
+            }
+
+            #otherteam #otherteam2 {
+            }
+
+                #otherteam #otherteam2 #otherteam-up2 {
+                    height: 20px;
+                    border-top-right-radius: 10px;
+                    background-color: #F2F2F2;
+                    padding-top: 8px;
+                }
+
+            #otherteam #otherteam1 #otherteam-up1 {
+                height: 20px;
+                border-top-right-radius: 10px;
+                background-color: #F2F2F2;
+                padding-top: 8px;
+            }
+
+        table.body0 .Div1 {
             padding-top: 9px;
         }
-        
-        .body0 #body-3
-        {
+
+        .body0 #body-3 {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -194,13 +188,13 @@
             padding-top: 10px;
             width: 94%;
         }
-        .body0 #body-5
-        {
+
+        .body0 #body-5 {
             height: 15pt;
             padding-top: 10px;
         }
-        .body0 #body-3 #body-4a
-        {
+
+        .body0 #body-3 #body-4a {
             width: 95%;
             border-radius: 10px;
             background-color: #F2F2F2;
@@ -209,8 +203,8 @@
             margin-bottom: 10px;
             text-align: center;
         }
-        #talk0 #talk-out1
-        {
+
+        #talk0 #talk-out1 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -218,8 +212,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-out2
-        {
+
+        #talk0 #talk-out2 {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -227,8 +221,8 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-        #talk0 #talk-up2
-        {
+
+        #talk0 #talk-up2 {
             height: 20px;
             padding-top: 8px;
             color: #000000;
@@ -237,8 +231,8 @@
             border-top-left-radius: 10px;
             text-align: left;
         }
-        .body-5a
-        {
+
+        .body-5a {
             -webkit-box-shadow: 0px 1px #CCCCCC;
             box-shadow: 0px 1px #CCCCCC;
             width: 95%;
@@ -273,7 +267,8 @@
                     %>
                 </div>
                 <div id="body-5" style="<%=HideStyle%>">
-                    1. 角色扮演：</div>
+                    1. 角色扮演：
+                </div>
                 <div id="body2" style="<%=HideStyle%>">
                     <table width="95%" border="0" align="center" id="charForm">
                         <tr>
@@ -286,8 +281,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                2. 性別：
+                            <td valign="top">2. 性別：
                             </td>
                             <td valign="top">
                                 <input type="radio" name="Gender" value="0" <% =(Model.Data.Gender == GenderType.Male)?"checked":"" %> />
@@ -297,8 +291,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top" bgcolor="#FFFF99">
-                                3. 年齡：
+                            <td valign="top" bgcolor="#FFFF99">3. 年齡：
                             </td>
                             <td valign="top" bgcolor="#FFFF99">
                                 <input type="radio" name="AgeRang" value="0" <% =((int)Model.Data.AgeRang == 0)?"checked":"" %> />
@@ -312,8 +305,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                            </td>
+                            <td valign="top"></td>
                             <td valign="top">
                                 <input type="radio" name="AgeRang" value="4" <% =((int)Model.Data.AgeRang == 4)?"checked":"" %> />
                                 31~40歲
@@ -326,8 +318,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top" bgcolor="#FFFF99">
-                                4. 教育程度：
+                            <td valign="top" bgcolor="#FFFF99">4. 教育程度：
                             </td>
                             <td valign="top" bgcolor="#FFFF99">
                                 <input type="radio" name="Edu" value="0" <% =((int)Model.Data.Edu == 0)?"checked":"" %> />
@@ -347,27 +338,26 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                5. 職業：
+                            <td valign="top">5. 職業：
                             </td>
                             <td valign="top">
-                            <% 
-                                //The empty element must at the last one.
-                                string[] CareerArr = { "學生", "老師", "上班族", "設計師", "勞工", "公務員", ""};
-                                int CareerIndex = Array.IndexOf<string>(CareerArr, Model.Data.Career);
-                                string CareerOther = string.Empty;
-                                if (CareerIndex > -1)
-                                {
-                                    CareerArr = new string[CareerArr.Length];
-                                    CareerArr[CareerIndex] = "checked";
-                                }
-                                else
-                                {
-                                    //Make the last element status is checked.
-                                    CareerArr[CareerArr.Length - 1] = "checked";
-                                    CareerOther = Model.Data.Career;
-                                }
-                            %>
+                                <%
+                                    //The empty element must at the last one.
+                                    string[] CareerArr = { "學生", "老師", "上班族", "設計師", "勞工", "公務員", "" };
+                                    int CareerIndex = Array.IndexOf<string>(CareerArr, Model.Data.Career);
+                                    string CareerOther = string.Empty;
+                                    if (CareerIndex > -1)
+                                    {
+                                        CareerArr = new string[CareerArr.Length];
+                                        CareerArr[CareerIndex] = "checked";
+                                    }
+                                    else
+                                    {
+                                        //Make the last element status is checked.
+                                        CareerArr[CareerArr.Length - 1] = "checked";
+                                        CareerOther = Model.Data.Career;
+                                    }
+                                %>
                                 <input type="radio" name="Career" value="學生" <% =CareerArr[0]%> />
                                 學生
                                 <input type="radio" name="Career" value="老師" <% =CareerArr[1]%> />
@@ -382,17 +372,15 @@
                                 公務員
                                 <input type="radio" name="Career" id="CareerOtherOption" value="" <% =CareerArr[6]%> />
                                 其他：
-                                <input name="CareerOther" type="text" id="CareerOther" size="16" value="<% =CareerOther%>" /> 
+                                <input name="CareerOther" type="text" id="CareerOther" size="16" value="<% =CareerOther%>" />
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top" bgcolor="#FFFF99">
-                                6. 月收入：
-                            <% 
+                            <td valign="top" bgcolor="#FFFF99">6. 月收入：
+                            <%
                                 string[] SalaryArr = new string[8];
                                 SalaryArr[(int)Model.Data.Salary] = "checked";
                             %>
-
                             </td>
                             <td valign="top" bgcolor="#FFFF99">
                                 <input type="radio" name="Salary" value="0" <%=SalaryArr[0] %> />
@@ -406,8 +394,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                &nbsp;
+                            <td valign="top">&nbsp;
                             </td>
                             <td valign="top">
                                 <input type="radio" name="Salary" value="4" <%=SalaryArr[4] %> />
@@ -421,9 +408,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top" bgcolor="#FFFF99">
-                                7. 人格：
-                            <% 
+                            <td valign="top" bgcolor="#FFFF99">7. 人格：
+                            <%
                                 string[] PersonArr = { "衝動", "溫和", "穩重", "暴躁", "柔弱", "" };
                                 int PersonIndex = Array.IndexOf<string>(PersonArr, Model.Data.Personality);
                                 string PersonOther = string.Empty;
@@ -456,42 +442,39 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                8. 長相：
+                            <td valign="top">8. 長相：
                             </td>
                             <td align="left" valign="top">
                                 <form id="file_upload" runat="server">
-                                <div id="filediv">
-                                    <input type="file" name="Uploadfile" multiple="" />
-                                    <button>
-                                        上傳</button>
-                                    <div>
-                                        檔案上傳</div>
-                                </div>
-                                <table id="files" style="display:inline;">
-                                </table>
+                                    <div id="filediv">
+                                        <input type="file" name="Uploadfile" multiple="" />
+                                        <button>
+                                            上傳</button>
+                                        <div>
+                                            檔案上傳
+                                        </div>
+                                    </div>
+                                    <table id="files" style="display: inline;">
+                                    </table>
                                 </form>
                                 <span id="deluploadfile">
-                                <%
-                                    if (!string.IsNullOrEmpty(Model.Data.UserFileName))
-                                    {
-                                        Response.Write(string.Format("{0}<button id=\"deleteimage\" class=\"ui-state-default ui-corner-all ui-icon ui-icon-cancel clickable\" title=\"刪除\" />", Model.Data.UserFileName));
-                                    }
-                                %>
+                                    <%
+                                        if (!string.IsNullOrEmpty(Model.Data.UserFileName))
+                                        {
+                                            Response.Write(string.Format("{0}<button id=\"deleteimage\" class=\"ui-state-default ui-corner-all ui-icon ui-icon-cancel clickable\" title=\"刪除\" />", Model.Data.UserFileName));
+                                        }
+                                    %>
                                 </span>(請畫出來)
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top" bgcolor="#FFFF99">
-                                &nbsp;
+                            <td valign="top" bgcolor="#FFFF99">&nbsp;
                             </td>
-                            <td align="left" valign="top" bgcolor="#FFFF99">
-                                &nbsp;
+                            <td align="left" valign="top" bgcolor="#FFFF99">&nbsp;
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                9. 我的議題：
+                            <td valign="top">9. 我的議題：
                             </td>
                             <td align="left" valign="top">
                                 <input name="Subject" type="text" id="Subject" size="40" value="<%=Model.Data.Subject %>" />
@@ -499,11 +482,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                &nbsp;
+                            <td valign="top">&nbsp;
                             </td>
                             <td align="right" valign="top">
-                                <button id="savebtn" >寫完送出</button>
+                                <button id="savebtn">寫完送出</button>
                             </td>
                         </tr>
                     </table>
@@ -513,7 +495,8 @@
                 </div>
                 <div id="body-3">
                     <div id="body-4a">
-                        扮演角色資料</div>
+                        扮演角色資料
+                    </div>
                     <span id="CharBlock"></span>
                 </div>
             </td>
@@ -621,8 +604,6 @@
                 }, 3000);
             }
         }
-
-
     </script>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/SyncInno.js") %>"></script>
 </asp:Content>

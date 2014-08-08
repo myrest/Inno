@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace InnoThink.Core.DB
+﻿namespace InnoThink.Core.DB
 {
     public class Paging
     {
@@ -34,6 +29,7 @@ namespace InnoThink.Core.DB
                 }
             }
         }
+
         public int totalRecord
         {
             get { return _totalRecord; }
@@ -55,6 +51,7 @@ namespace InnoThink.Core.DB
                 }
             }
         }
+
         public string LimitSql
         {
             get

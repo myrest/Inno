@@ -1,7 +1,10 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
     <% Html.RenderPartial("~/Views/Shared/UserControls/CssReferences.ascx"); %>
     <asp:ContentPlaceHolder ID="header" runat="server" />
 </head>

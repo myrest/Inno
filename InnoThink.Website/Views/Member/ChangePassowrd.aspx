@@ -15,24 +15,21 @@
         </div>
         <table>
             <tr>
-                <td>
-                    新密碼：
+                <td>新密碼：
                 </td>
                 <td>
                     <input type="password" name="NewPassword" id="NewPassword" autofocus />
                 </td>
             </tr>
             <tr>
-                <td>
-                    確認新密碼：
+                <td>確認新密碼：
                 </td>
                 <td>
                     <input type="password" name="ConfPassword" id="ConfPassword" />
                 </td>
             </tr>
             <tr>
-                <td>
-                    舊密碼：
+                <td>舊密碼：
                 </td>
                 <td>
                     <input type="password" name="OldPassword" id="OldPassword" />

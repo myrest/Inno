@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Data.SQLite;
+﻿using CWB.Web.Configuration;
 using InnoThink.Core.Constancy;
 using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using InnoThink.Core.Model.Topic;
-using CWB.Web.Configuration;
-using System.IO;
-using System.Web;
 using Rest.Core.Utility;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
+using System.IO;
+using System.Linq;
+using System.Web;
 
 namespace InnoThink.Core.DB
 {
     public class DbBestGAPTable : BaseDAO
     {
         private readonly static SysLog log = SysLog.GetLogger(typeof(DbBestGAPTable));
+
         //private readonly static DbBestIdeaTable dbBestIdea = new DbBestIdeaTable() { };
         private readonly static DbBestIdeaGroupTable dbBestIdeaGrp = new DbBestIdeaGroupTable() { };
+
         private static Dictionary<int, DbBestIdeaGroup> BestIdeaGroupCache = new Dictionary<int, DbBestIdeaGroup>() { };
 
         public DbBestGAPTable()
@@ -94,8 +94,8 @@ namespace InnoThink.Core.DB
             string strCMD = @"insert into BestGAP
             (
                 TopicSN, MyGAP, Description, Document, BestIdeaGroupSNs, UserSN, LastUpdate
-            ) 
-            values 
+            )
+            values
             (
                 @TopicSN, @MyGAP, @Description, @Document, @BestIdeaGroupSNs, @UserSN, @LastUpdate
             )";
@@ -247,6 +247,4 @@ namespace InnoThink.Core.DB
         /// </summary>
         public List<DbBestGAPMemberModel> IdeaDetails;
     }
-
-
 }

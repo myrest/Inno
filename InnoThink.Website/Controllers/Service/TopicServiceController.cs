@@ -1,23 +1,21 @@
-﻿using System;
+﻿using CWB.Web.Configuration;
+using InnoThink.Core;
+using InnoThink.Core.Constancy;
+using InnoThink.Core.DB;
+using InnoThink.Core.Model.Topic;
+using InnoThink.Core.MVC.BaseController;
+using InnoThink.Core.Utility;
+using InnoThink.Website.Communication;
+using InnoThink.Website.Models;
+using InnoThink.Website.Models.Topic;
+using Newtonsoft.Json;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using InnoThink.Core.Utility;
-using InnoThink.Core.DB;
-using InnoThink.Website.Models;
-using CWB.Web;
-using CWB.Web.Configuration;
-using InnoThink.Core.Constancy;
-using InnoThink.Core;
-using InnoThink.Core.MVC.BaseController;
-using InnoThink.Website.Models.Topic;
-using InnoThink.Website.Communication;
-using InnoThink.Core.Model.Topic;
-using System.Web.Script.Serialization;
-using Newtonsoft.Json;
-using System.IO;
-using Rest.Core.Utility;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -26,6 +24,7 @@ namespace InnoThink.Website.Controllers.Service
         //
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(TopicServiceController));
+
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
         private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
         private static readonly DbUserTable dbUser = new DbUserTable() { };
@@ -53,7 +52,6 @@ namespace InnoThink.Website.Controllers.Service
             result.setMessage("資料已刪除。");
             return Json(result, JsonRequestBehavior.DenyGet);
         }
-
 
         [HttpPost]
         public JsonResult UpdateUnit1Description(UpdateUnit1DescriptionUI data)
@@ -103,6 +101,7 @@ namespace InnoThink.Website.Controllers.Service
             ResultBase result = new ResultBase() { };
 
             #region Process Topic related
+
             DbTopicModel Topic = dbTopic.getTopicBySN(Paras.TopicSN);
             //Deal with topic information.
             Topic.Subject = Paras.Subject;
@@ -121,9 +120,11 @@ namespace InnoThink.Website.Controllers.Service
                 f.MoveTo(FileDisc);
             }
             dbTopic.UpdateTopic(Topic);
-            #endregion
+
+            #endregion Process Topic related
 
             #region Process Topic Member related.
+
             var Jobs = JsonConvert.DeserializeObject<List<string>>(Paras.HandleJob_ALL);
             Jobs.ForEach(x =>
             {
@@ -134,7 +135,8 @@ namespace InnoThink.Website.Controllers.Service
                 dbTopMem.UpdateTopicMember(TopicMem);
             });
             //dbTopMem.UpdateTopicMember
-            #endregion
+
+            #endregion Process Topic Member related.
 
             //need update client's information for step 1.
 
@@ -359,46 +361,59 @@ namespace InnoThink.Website.Controllers.Service
                             case 0:
                                 result.Message = "/Topic/Step0?TopicSN=" + Topic.SN;
                                 break;
+
                             case 1:
                                 result.Message = "/Topic/Step1?TopicSN=" + Topic.SN;
                                 break;
+
                             case 11:
                                 result.Message = "/Topic/Best1?TopicSN=" + Topic.SN;
                                 break;
+
                             case 12:
                                 result.Message = "/Topic/Best2?TopicSN=" + Topic.SN;
                                 break;
+
                             case 13:
                                 result.Message = "/Topic/Best3?TopicSN=" + Topic.SN;
                                 break;
+
                             case 14:
                                 result.Message = "/Topic/Best4?TopicSN=" + Topic.SN;
                                 break;
+
                             case 15:
                                 result.Message = "/Topic/Best5?TopicSN=" + Topic.SN;
                                 break;
+
                             case 16:
                                 result.Message = "/Topic/Best6?TopicSN=" + Topic.SN;
                                 break;
-                                //情境分析法開始
+                            //情境分析法開始
                             case 31:
                                 result.Message = "/Scenario/Scenario1?TopicSN=" + Topic.SN;
                                 break;
+
                             case 32:
                                 result.Message = "/Scenario/Scenario2?TopicSN=" + Topic.SN;
                                 break;
+
                             case 33:
                                 result.Message = "/Scenario/Scenario3?TopicSN=" + Topic.SN;
                                 break;
+
                             case 34:
                                 result.Message = "/Scenario/Scenario4?TopicSN=" + Topic.SN;
                                 break;
+
                             case 35:
                                 result.Message = "/Scenario/Scenario5?TopicSN=" + Topic.SN;
                                 break;
+
                             case 36:
                                 result.Message = "/Scenario/Scenario6?TopicSN=" + Topic.SN;
                                 break;
+
                             case 37:
                                 result.Message = "/Scenario/Scenario7?TopicSN=" + Topic.SN;
                                 break;
@@ -406,12 +421,15 @@ namespace InnoThink.Website.Controllers.Service
                             case 9901:
                                 result.Message = "/Topic/Result1?TopicSN=" + Topic.SN;
                                 break;
+
                             case 9902:
                                 result.Message = "/Topic/Result2?TopicSN=" + Topic.SN;
                                 break;
+
                             case 9903:
                                 result.Message = "/Topic/Result3?TopicSN=" + Topic.SN;
                                 break;
+
                             default:
                                 result.setException("該功能處於施工中。", "CheckTopic");
                                 break;
@@ -891,7 +909,6 @@ namespace InnoThink.Website.Controllers.Service
             result.JsonReturnCode = 1;
             return Json(result, JsonRequestBehavior.DenyGet);
         }
-
 
         [HttpPost]
         public JsonResult UpdateBestIdeaGroup(int BestIdeaGroupSN, string GroupName, string BestIdeaSNs)

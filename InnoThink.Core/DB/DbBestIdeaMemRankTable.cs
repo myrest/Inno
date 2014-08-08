@@ -1,16 +1,11 @@
-﻿using System;
+﻿using InnoThink.Core.Constancy;
+using InnoThink.Core.Utility;
+using Rest.Core.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Data.SQLite;
-using InnoThink.Core.Constancy;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Model;
-using InnoThink.Core.Model.Topic;
-using CWB.Web.Configuration;
-using System.IO;
-using System.Web;
-using Rest.Core.Utility;
+using System.Linq;
 
 namespace InnoThink.Core.DB
 {
@@ -55,8 +50,8 @@ namespace InnoThink.Core.DB
             string strCMD = @"insert into BestIdeaMemberRank
             (
                 BestIdeaSN, Rank, UserSN
-            ) 
-            values 
+            )
+            values
             (
                 @BestIdeaSN, @Rank, @UserSN
             )";
@@ -88,10 +83,10 @@ namespace InnoThink.Core.DB
 
         public List<DbBestIdeaMemRankModel> GetAllByTopicSN(int TopicSN, int UserSN)
         {
-            const string strCMD = @"select b.BestIdeaSN as BestIdeaSN, B.Type as Type, B.Idea as Idea, ifnull(A.Rank,0) as Rank from 
+            const string strCMD = @"select b.BestIdeaSN as BestIdeaSN, B.Type as Type, B.Idea as Idea, ifnull(A.Rank,0) as Rank from
                                     (select bi.sn as BestIdeaSN, bi.Type, Idea from BestIdea bi
                                     where bi.TopicSN = @TopicSN) b
-                                    left outer join 
+                                    left outer join
                                     (select * from BestIdeaMemberRank br
                                     where br.UserSN = @UserSN) a
                                     on a.BestIdeaSN = b.BestIdeaSN
@@ -158,6 +153,7 @@ namespace InnoThink.Core.DB
         public int Rank;
 
         #region 以下資料來源為BestIdea
+
         /// <summary>
         /// Best類別B, E, S, T -> 0, 1, 2, 3
         /// Only for UI display, wont' using in Insert and update
@@ -177,8 +173,7 @@ namespace InnoThink.Core.DB
         }
 
         public string Idea;
-        #endregion
+
+        #endregion 以下資料來源為BestIdea
     }
-
-
 }

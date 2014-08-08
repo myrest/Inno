@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace InnoThink.Domain.Constancy
+﻿namespace InnoThink.Domain.Constancy
 {
     public enum SessionKeys
     {

@@ -1,14 +1,16 @@
-﻿using System.Drawing;
-using System.Web.Mvc;
-using InnoThink.Core.Constancy;
+﻿using InnoThink.Core.Constancy;
 using InnoThink.Core.MVC;
 using InnoThink.Website.Models.Image;
+using System.Drawing;
+using System.Web.Mvc;
 
 namespace InnoThink.Website.Controllers.Service
 {
     public class ImageServiceController : Controller
     {
-        public ImageServiceController() { }
+        public ImageServiceController()
+        {
+        }
 
         //
         // GET: /ImageService/

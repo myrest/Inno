@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Rest.Core.Utility;
+using System;
 using System.Runtime.Serialization;
-using InnoThink.Core.Utility;
-using Rest.Core.Utility;
 
 namespace InnoThink.Website.Models
 {

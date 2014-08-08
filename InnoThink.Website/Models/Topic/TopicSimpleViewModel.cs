@@ -1,9 +1,7 @@
-﻿using System;
+﻿using InnoThink.Core.DB;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using InnoThink.Core.Utility;
-using System.Collections.Generic;
-using InnoThink.Core.DB;
 
 namespace InnoThink.Website.Models
 {
@@ -11,6 +9,7 @@ namespace InnoThink.Website.Models
     public class TopicSimpleViewModel : ResultBase
     {
         private List<DbTopicViewModel> _DataResult { get; set; }
+
         [DataMember(Name = "d")]
         public List<DbTopicViewModel> DataResult
         {
@@ -35,6 +34,7 @@ namespace InnoThink.Website.Models
 
         //Store data get from database.
         private List<DbTopicModel> _DBResult { get; set; }
+
         public List<DbTopicModel> DBResult
         {
             get
@@ -63,7 +63,6 @@ namespace InnoThink.Website.Models
                 }).ToList();
             }
         }
-
     }
 
     [DataContract]

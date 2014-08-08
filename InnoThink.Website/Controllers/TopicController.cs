@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using InnoThink.Core.MVC.BaseController;
-using InnoThink.Core.Utility;
-using InnoThink.Core.Constancy;
-using InnoThink.Website.Models;
-using InnoThink.Core.DB;
-using InnoThink.Core.Model.Topic;
+﻿using InnoThink.Core;
 using InnoThink.Core.Cache.Board;
 using InnoThink.Core.Cache.SignalR;
-using InnoThink.Core;
+using InnoThink.Core.Constancy;
+using InnoThink.Core.DB;
+using InnoThink.Core.Model.Topic;
+using InnoThink.Core.MVC.BaseController;
+using InnoThink.Core.Utility;
+using InnoThink.Website.Models;
 using Rest.Core.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace InnoThink.Website.Controllers
 {
@@ -21,6 +20,7 @@ namespace InnoThink.Website.Controllers
         //
         // GET: /Product/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(TopicController));
+
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
         private static readonly DbUserTable dbUser = new DbUserTable() { };
         private static readonly DbTopicMemberTable dbTopicMember = new DbTopicMemberTable() { };
@@ -35,7 +35,6 @@ namespace InnoThink.Website.Controllers
         public TopicController()
             : base(Permission.Private)
         {
-
         }
 
         public static void MakeBoardViewModel(int TopicSN, ViewDataDictionary viewdata, Trading trading, bool isAdmin)
@@ -113,7 +112,7 @@ namespace InnoThink.Website.Controllers
             Step1ViewModel model = new Step1ViewModel()
             {
                 //LeaderName = --Should put Leader's name, here is Leader's login id.
-                //TeamMembers = --Should get from topic member 
+                //TeamMembers = --Should get from topic member
                 //LeaderUserSN = --Should get from user object.
                 LogoImage = string.Format("<img src=\"{0}\" />", StringUtility.ConvertTeamLogoPath(Topic.LogoImg)),
                 Subject = Topic.Subject,
@@ -292,8 +291,5 @@ namespace InnoThink.Website.Controllers
             ViewData["Model"] = GroupModel;
             return View();
         }
-
-
-
     }
 }

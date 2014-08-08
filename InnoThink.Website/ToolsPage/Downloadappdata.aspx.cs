@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.IO;
+using System.Web;
 
 namespace InnoThink.Website.ToolsPage
 {
@@ -33,7 +29,6 @@ namespace InnoThink.Website.ToolsPage
                         Response.AddHeader("Content-Disposition", "attachment;filename=" + fname);
                         Response.ContentType = "application/octet-stream";
                     }
-
 
                     byte[] bytes = new byte[(int)fileStream.Length];
                     fileStream.Read(bytes, 0, bytes.Length);
