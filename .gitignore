@@ -33,3 +33,4 @@
 /InnoThink.Website/bin
 /InnoThink.Website/obj
 /UnitTest.Rest.Core/bin
+/InnoThink.Website/App_Data/*.log
