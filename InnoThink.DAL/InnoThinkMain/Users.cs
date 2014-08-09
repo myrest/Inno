@@ -1,91 +1,84 @@
-using InnoThink.Domain.Settings;
-using Rest.Core;
+using InnoThink.Domain;
+using InnoThink.Domain.Users;
+using InnoThink.Domain.Constancy;
 using Rest.Core.Constancy;
+using Rest.Core;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace InnoThink.DAL.Settings
+namespace InnoThink.DAL.Users
 {
     #region interface
-
-    public interface ISettings_Repo
+    public interface IUsers_Repo
     {
-        Settings_Info GetByID(long NoPk);
-
-        IEnumerable<Settings_Info> GetAll();
-
-        IEnumerable<Settings_Info> GetByParam(Settings_Filter Filter, string _orderby = "");
-
-        IEnumerable<Settings_Info> GetByParam(Settings_Filter Filter, string[] fieldNames, string _orderby = "");
-
-        long Insert(Settings_Info data);
-
-        int Update(long NoPk, Settings_Info data, IEnumerable<string> columns);
-
-        int Delete(long NoPk);
+        Users_Info GetByID(long UsersSN);
+        IEnumerable<Users_Info> GetAll();
+        IEnumerable<Users_Info> GetByParam(Users_Filter Filter, string _orderby = "");
+        IEnumerable<Users_Info> GetByParam(Users_Filter Filter, string[] fieldNames, string _orderby = "");
+        long Insert(Users_Info data);
+        int Update(long UsersSN, Users_Info data, IEnumerable<string> columns);
+        int Delete(long UsersSN);
     }
-
-    #endregion interface
+    #endregion
 
     #region Implementation
-
-    public class Settings_Repo
+    public class Users_Repo
     {
         #region Operation: Select
-
-        public Settings_Info GetByID(long NoPk)
+        public Users_Info GetByID(long UsersSN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM Settings")
-                .Append("WHERE NoPk=@0", NoPk);
+                .Append("SELECT * FROM Users")
+                .Append("WHERE UsersSN=@0", UsersSN);
 
-                var result = db.SingleOrDefault<Settings_Info>(SQLStr);
+                var result = db.SingleOrDefault<Users_Info>(SQLStr);
                 return result;
             }
         }
 
-        public IEnumerable<Settings_Info> GetAll()
+        public IEnumerable<Users_Info> GetAll()
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM Settings");
-                var result = db.Query<Settings_Info>(SQLStr);
+                    .Append("SELECT * FROM Users");
+                var result = db.Query<Users_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public IEnumerable<Settings_Info> GetByParam(Settings_Filter Filter, string _orderby = "")
+        public IEnumerable<Users_Info> GetByParam(Users_Filter Filter, string _orderby = "")
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
                 var SQLStr = ConstructSQL(Filter, new string[] { "*" }, _orderby);
 
-                var result = db.Query<Settings_Info>(SQLStr);
+                var result = db.Query<Users_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public IEnumerable<Settings_Info> GetByParam(Settings_Filter Filter, string[] fieldNames, string _orderby = "")
+        public IEnumerable<Users_Info> GetByParam(Users_Filter Filter, string[] fieldNames, string _orderby = "")
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Query<Settings_Info>(SQLStr);
+                var result = db.Query<Users_Info>(SQLStr);
 
                 return result;
             }
         }
-
-        #endregion Operation: Select
+        #endregion
 
         #region Operation: Insert
-
-        public long Insert(Settings_Info data)
+        public long Insert(Users_Info data)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
@@ -93,55 +86,51 @@ namespace InnoThink.DAL.Settings
                 return NewID;
             }
         }
-
-        #endregion Operation: Insert
+        #endregion
 
         #region Operation: Update
-
-        public int Update(long NoPk, Settings_Info data, IEnumerable<string> columns)
+        public int Update(long UsersSN, Users_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
-                return db.Update(data, NoPk, columns);
+                return db.Update(data, UsersSN, columns);
             }
         }
-
-        #endregion Operation: Update
+        #endregion
 
         #region Operation: Delete
-
-        public int Delete(long NoPk)
+        public int Delete(long UsersSN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
-                return db.Delete("Settings", "NoPk", null, NoPk);
+                return db.Delete("Users", "UsersSN", null, UsersSN);
             }
         }
+        #endregion
 
-        #endregion Operation: Delete
-
-
+        #region public function
+        #endregion
 
         #region private function
-
-        private Rest.Core.PetaPoco.Sql ConstructSQL(Settings_Filter filter)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(Users_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
         }
 
-        private Rest.Core.PetaPoco.Sql ConstructSQL(Settings_Filter filter, string[] fieldNames, string _orderby)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(Users_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM Settings")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM Users")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
                 //if (filter.ID != 0)
-                //SQLStr.Append(" AND NoPk=@0", filter.ID);
-                //Should updat the filter for wide search
+                    //SQLStr.Append(" AND UsersSN=@0", filter.ID);
+                    //Should updat the filter for wide search
 
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
+
             }
             return SQLStr;
         }
@@ -150,9 +139,8 @@ namespace InnoThink.DAL.Settings
         {
             return string.Join(", ", fieldNames);
         }
-
-        #endregion private function
+        #endregion
     }
+    #endregion
 
-    #endregion Implementation
 }

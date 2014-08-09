@@ -1,47 +1,41 @@
-using InnoThink.DAL.TeamGroup;
-using InnoThink.Domain.TeamGroup;
-using Rest.Core.Utility;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using InnoThink.DAL.TeamGroup;
+using InnoThink.Domain.TeamGroup;
+using Rest.Core.Constancy;
+using Rest.Core.Utility;
 
 namespace InnoThink.BLL.TeamGroup
 {
+    /*
     #region interface
-
     public interface ITeamGroup_Manager
     {
-        TeamGroup_Info GetByID(long SN);
-
+        TeamGroup_Info GetByID(long TeamGroupSN);
         IEnumerable<TeamGroup_Info> GetAll();
-
         IEnumerable<TeamGroup_Info> GetByParameter(TeamGroup_Filter Filter, string _orderby = "");
-
         long Insert(TeamGroup_Info data);
-
-        bool Update(long SN, TeamGroup_Info data, IEnumerable<string> columns);
-
-        int Delete(long SN);
-
-        bool IsExist(long SN);
+        bool Update(long TeamGroupSN, TeamGroup_Info data, IEnumerable<string> columns);
+        int Delete(long TeamGroupSN);
+        bool IsExist(long TeamGroupSN);
     }
-
-    #endregion interface
-
+    #endregion
+    */
     #region implementation
-
-    public class TeamGroup_Manager : ITeamGroup_Manager
+    public class TeamGroup_Manager //: ITeamGroup_Manager
     {
+        #region public properties
+        #endregion
+
         #region private fields
-
         private readonly static SysLog log = SysLog.GetLogger(typeof(TeamGroup_Manager));
-
-        #endregion private fields
+        #endregion
 
         #region Operation: Select
-
-        public TeamGroup_Info GetByID(long SN)
+        public TeamGroup_Info GetByID(long TeamGroupSN)
         {
-            return new TeamGroup_Repo().GetByID(SN);
+            return new TeamGroup_Repo().GetByID(TeamGroupSN);
         }
 
         public IEnumerable<TeamGroup_Info> GetAll()
@@ -53,11 +47,9 @@ namespace InnoThink.BLL.TeamGroup
         {
             return new TeamGroup_Repo().GetByParam(Filter, _orderby);
         }
-
-        #endregion Operation: Select
+        #endregion
 
         #region Operation: Raw Insert
-
         public long Insert(TeamGroup_Info data)
         {
             long newID = 0;
@@ -71,36 +63,31 @@ namespace InnoThink.BLL.TeamGroup
             }
             return newID;
         }
-
-        #endregion Operation: Raw Insert
+        #endregion
 
         #region Operation: Raw Update
-
-        public bool Update(long SN, TeamGroup_Info data, IEnumerable<string> columns)
+        public bool Update(long TeamGroupSN, TeamGroup_Info data, IEnumerable<string> columns)
         {
-            return new TeamGroup_Repo().Update(SN, data, columns) > 0;
+            return new TeamGroup_Repo().Update(TeamGroupSN, data, columns) > 0;
         }
-
-        #endregion Operation: Raw Update
+        #endregion
 
         #region Operation: Delete
-
-        public int Delete(long SN)
+        public int Delete(long TeamGroupSN)
         {
-            return new TeamGroup_Repo().Delete(SN);
+            return new TeamGroup_Repo().Delete(TeamGroupSN);
         }
-
-        #endregion Operation: Delete
+        #endregion
 
         #region public functions
-
-        public bool IsExist(long SN)
+        public bool IsExist(long TeamGroupSN)
         {
-            return (GetByID(SN) != null);
+            return (GetByID(TeamGroupSN) != null);
         }
+        #endregion
 
-        #endregion public functions
+        #region private functions
+        #endregion
     }
-
-    #endregion implementation
+    #endregion
 }

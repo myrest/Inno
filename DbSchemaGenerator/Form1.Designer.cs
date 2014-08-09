@@ -79,7 +79,7 @@
             // labFn
             // 
             this.labFn.AutoSize = true;
-            this.labFn.Location = new System.Drawing.Point(10, 11);
+            this.labFn.Location = new System.Drawing.Point(34, 11);
             this.labFn.Name = "labFn";
             this.labFn.Size = new System.Drawing.Size(58, 12);
             this.labFn.TabIndex = 0;
@@ -88,7 +88,7 @@
             // FileName
             // 
             this.FileName.AutoSize = true;
-            this.FileName.Location = new System.Drawing.Point(74, 11);
+            this.FileName.Location = new System.Drawing.Point(98, 11);
             this.FileName.Name = "FileName";
             this.FileName.Size = new System.Drawing.Size(40, 12);
             this.FileName.TabIndex = 0;
@@ -155,7 +155,7 @@
             this.tabSqlite.Location = new System.Drawing.Point(0, 0);
             this.tabSqlite.Name = "tabSqlite";
             this.tabSqlite.SelectedIndex = 0;
-            this.tabSqlite.Size = new System.Drawing.Size(801, 60);
+            this.tabSqlite.Size = new System.Drawing.Size(801, 61);
             this.tabSqlite.TabIndex = 7;
             // 
             // Sqlite
@@ -166,7 +166,7 @@
             this.Sqlite.Location = new System.Drawing.Point(4, 22);
             this.Sqlite.Name = "Sqlite";
             this.Sqlite.Padding = new System.Windows.Forms.Padding(3);
-            this.Sqlite.Size = new System.Drawing.Size(793, 34);
+            this.Sqlite.Size = new System.Drawing.Size(793, 35);
             this.Sqlite.TabIndex = 1;
             this.Sqlite.Text = "Sqlite setting";
             this.Sqlite.UseVisualStyleBackColor = true;
@@ -182,7 +182,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(793, 337);
+            this.tabPage1.Size = new System.Drawing.Size(793, 336);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Build ALL";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -303,10 +303,10 @@
             this.tabMainFunction.Controls.Add(this.tabPage1);
             this.tabMainFunction.Controls.Add(this.tabBuildIdv);
             this.tabMainFunction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMainFunction.Location = new System.Drawing.Point(0, 60);
+            this.tabMainFunction.Location = new System.Drawing.Point(0, 61);
             this.tabMainFunction.Name = "tabMainFunction";
             this.tabMainFunction.SelectedIndex = 0;
-            this.tabMainFunction.Size = new System.Drawing.Size(801, 363);
+            this.tabMainFunction.Size = new System.Drawing.Size(801, 362);
             this.tabMainFunction.TabIndex = 8;
             this.tabMainFunction.SelectedIndexChanged += new System.EventHandler(this.tabMainFunction_SelectedIndexChanged);
             // 

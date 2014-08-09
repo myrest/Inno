@@ -40,29 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Inno\BestGAP.cs" />
-    <Compile Include="Inno\BestIdea.cs" />
-    <Compile Include="Inno\BestIdeaGroup.cs" />
-    <Compile Include="Inno\BestIdeaGroupRank.cs" />
-    <Compile Include="Inno\BestIdeaMemberRank.cs" />
-    <Compile Include="Inno\BestStep1.cs" />
-    <Compile Include="Inno\Board.cs" />
-    <Compile Include="Inno\Results.cs" />
-    <Compile Include="Inno\ResultsRank.cs" />
-    <Compile Include="Inno\ScenarioChar.cs" />
-    <Compile Include="Inno\ScenarioCharRank.cs" />
-    <Compile Include="Inno\ScenarioCharValues.cs" />
-    <Compile Include="Inno\ScenarioCharValuesRank.cs" />
-    <Compile Include="Inno\Settings.cs" />
-    <Compile Include="Inno\TeamGroup.cs" />
-    <Compile Include="Inno\Topic.cs" />
-    <Compile Include="Inno\TopicMember.cs" />
-    <Compile Include="Inno\Users.cs" />
+    <Compile Include="InnoThinkMain\BackofficeUser.cs" />
+    <Compile Include="InnoThinkMain\TeamGroup.cs" />
+    <Compile Include="InnoThinkMain\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InnoThinkDomain\InnoThink.Domain.csproj">
-      <Project>{527fe3a5-3a71-4ab7-86f9-3a6b48add98e}</Project>
+    <ProjectReference Include="..\InnoThink.Domain\InnoThink.Domain.csproj">
+      <Project>{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}</Project>
       <Name>InnoThink.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Rest.Core\Rest.Core.csproj">

@@ -42,28 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Inno\BestGAP.cs" />
-    <Compile Include="Inno\BestIdea.cs" />
-    <Compile Include="Inno\BestIdeaGroup.cs" />
-    <Compile Include="Inno\BestIdeaGroupRank.cs" />
-    <Compile Include="Inno\BestIdeaMemberRank.cs" />
-    <Compile Include="Inno\BestStep1.cs" />
-    <Compile Include="Inno\Board.cs" />
+    <Compile Include="InnoThinkMain\BackofficeUser.cs" />
+    <Compile Include="InnoThinkMain\TeamGroup.cs" />
+    <Compile Include="InnoThinkMain\Users.cs" />
     <Compile Include="Constancy\Enums.cs" />
     <Compile Include="Constancy\EnumScenario.cs" />
     <Compile Include="Constancy\Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Inno\Results.cs" />
-    <Compile Include="Inno\ResultsRank.cs" />
-    <Compile Include="Inno\ScenarioChar.cs" />
-    <Compile Include="Inno\ScenarioCharRank.cs" />
-    <Compile Include="Inno\ScenarioCharValues.cs" />
-    <Compile Include="Inno\ScenarioCharValuesRank.cs" />
-    <Compile Include="Inno\Settings.cs" />
-    <Compile Include="Inno\TeamGroup.cs" />
-    <Compile Include="Inno\Topic.cs" />
-    <Compile Include="Inno\TopicMember.cs" />
-    <Compile Include="Inno\Users.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rest.Core\Rest.Core.csproj">

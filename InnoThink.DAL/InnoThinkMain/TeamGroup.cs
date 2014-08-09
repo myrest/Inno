@@ -1,44 +1,39 @@
+using InnoThink.Domain;
 using InnoThink.Domain.TeamGroup;
-using Rest.Core;
+using InnoThink.Domain.Constancy;
 using Rest.Core.Constancy;
+using Rest.Core;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace InnoThink.DAL.TeamGroup
 {
     #region interface
-
     public interface ITeamGroup_Repo
     {
-        TeamGroup_Info GetByID(long SN);
-
+        TeamGroup_Info GetByID(long TeamGroupSN);
         IEnumerable<TeamGroup_Info> GetAll();
-
         IEnumerable<TeamGroup_Info> GetByParam(TeamGroup_Filter Filter, string _orderby = "");
-
         IEnumerable<TeamGroup_Info> GetByParam(TeamGroup_Filter Filter, string[] fieldNames, string _orderby = "");
-
         long Insert(TeamGroup_Info data);
-
-        int Update(long SN, TeamGroup_Info data, IEnumerable<string> columns);
-
-        int Delete(long SN);
+        int Update(long TeamGroupSN, TeamGroup_Info data, IEnumerable<string> columns);
+        int Delete(long TeamGroupSN);
     }
-
-    #endregion interface
+    #endregion
 
     #region Implementation
-
     public class TeamGroup_Repo
     {
         #region Operation: Select
-
-        public TeamGroup_Info GetByID(long SN)
+        public TeamGroup_Info GetByID(long TeamGroupSN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
                 .Append("SELECT * FROM TeamGroup")
-                .Append("WHERE SN=@0", SN);
+                .Append("WHERE TeamGroupSN=@0", TeamGroupSN);
 
                 var result = db.SingleOrDefault<TeamGroup_Info>(SQLStr);
                 return result;
@@ -80,11 +75,9 @@ namespace InnoThink.DAL.TeamGroup
                 return result;
             }
         }
-
-        #endregion Operation: Select
+        #endregion
 
         #region Operation: Insert
-
         public long Insert(TeamGroup_Info data)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
@@ -93,37 +86,32 @@ namespace InnoThink.DAL.TeamGroup
                 return NewID;
             }
         }
-
-        #endregion Operation: Insert
+        #endregion
 
         #region Operation: Update
-
-        public int Update(long SN, TeamGroup_Info data, IEnumerable<string> columns)
+        public int Update(long TeamGroupSN, TeamGroup_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
-                return db.Update(data, SN, columns);
+                return db.Update(data, TeamGroupSN, columns);
             }
         }
-
-        #endregion Operation: Update
+        #endregion
 
         #region Operation: Delete
-
-        public int Delete(long SN)
+        public int Delete(long TeamGroupSN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
-                return db.Delete("TeamGroup", "SN", null, SN);
+                return db.Delete("TeamGroup", "TeamGroupSN", null, TeamGroupSN);
             }
         }
+        #endregion
 
-        #endregion Operation: Delete
-
-
+        #region public function
+        #endregion
 
         #region private function
-
         private Rest.Core.PetaPoco.Sql ConstructSQL(TeamGroup_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
@@ -137,11 +125,12 @@ namespace InnoThink.DAL.TeamGroup
             if (filter != null)
             {
                 //if (filter.ID != 0)
-                //SQLStr.Append(" AND SN=@0", filter.ID);
-                //Should updat the filter for wide search
+                    //SQLStr.Append(" AND TeamGroupSN=@0", filter.ID);
+                    //Should updat the filter for wide search
 
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
+
             }
             return SQLStr;
         }
@@ -150,9 +139,8 @@ namespace InnoThink.DAL.TeamGroup
         {
             return string.Join(", ", fieldNames);
         }
-
-        #endregion private function
+        #endregion
     }
+    #endregion
 
-    #endregion Implementation
 }

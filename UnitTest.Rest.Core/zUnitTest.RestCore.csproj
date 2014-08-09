@@ -67,10 +67,6 @@
       <Project>{d769096b-0a8d-4c48-bf96-c1f84f02c312}</Project>
       <Name>InnoThink.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InnoThinkDomain\InnoThink.Domain.csproj">
-      <Project>{527fe3a5-3a71-4ab7-86f9-3a6b48add98e}</Project>
-      <Name>InnoThink.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Rest.Core\Rest.Core.csproj">
       <Project>{3a850565-71b6-4b0c-b255-2d2a57e37b8b}</Project>
       <Name>Rest.Core</Name>

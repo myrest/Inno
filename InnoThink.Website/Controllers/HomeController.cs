@@ -19,8 +19,6 @@ namespace InnoThink.Website.Controllers
 
         public ActionResult Index()
         {
-            var um = new Users_Manager();
-            var t = um.GetAll();
             return View();
         }
     }

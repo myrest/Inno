@@ -27,6 +27,7 @@ namespace DbSchemaGenerator
                     break;
                 case "DATE":
                 case "TIME":
+                case "TIMESTAMP":
                     SqlDataType = "DateTime";
                     break;
                 case "REAL":
@@ -57,6 +58,7 @@ using System.Text;
 
 namespace {0}
 {{
+    /*
     #region interface
     public interface I{1}_Info
     {{", curNamespace, TableName);
@@ -68,11 +70,12 @@ namespace {0}
             sb.AppendFormat(@"
     }}
     #endregion
+    */
 
     #region Implementation
     [Rest.Core.PetaPoco.TableName(""{0}"")]
     [Rest.Core.PetaPoco.PrimaryKey(""{1}"")]
-    public class {0}_Info : I{0}_Info
+    public class {0}_Info //: I{0}_Info
     {{
         #region private fields", TableName, pk);
             foreach (var item in columns)
@@ -313,6 +316,7 @@ using Rest.Core.Utility;
 
 namespace {1}
 {{
+    /*
     #region interface
     public interface I{2}_Manager
     {{
@@ -325,9 +329,9 @@ namespace {1}
         bool IsExist(long {3});
     }}
     #endregion
-
+    */
     #region implementation
-    public class {2}_Manager : I{2}_Manager
+    public class {2}_Manager //: I{2}_Manager
     {{
         #region public properties
         #endregion

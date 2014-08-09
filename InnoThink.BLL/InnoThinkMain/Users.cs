@@ -1,47 +1,41 @@
-using InnoThink.DAL.Users;
-using InnoThink.Domain.Users;
-using Rest.Core.Utility;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using InnoThink.DAL.Users;
+using InnoThink.Domain.Users;
+using Rest.Core.Constancy;
+using Rest.Core.Utility;
 
 namespace InnoThink.BLL.Users
 {
+    /*
     #region interface
-
     public interface IUsers_Manager
     {
-        Users_Info GetByID(long SN);
-
+        Users_Info GetByID(long UsersSN);
         IEnumerable<Users_Info> GetAll();
-
         IEnumerable<Users_Info> GetByParameter(Users_Filter Filter, string _orderby = "");
-
         long Insert(Users_Info data);
-
-        bool Update(long SN, Users_Info data, IEnumerable<string> columns);
-
-        int Delete(long SN);
-
-        bool IsExist(long SN);
+        bool Update(long UsersSN, Users_Info data, IEnumerable<string> columns);
+        int Delete(long UsersSN);
+        bool IsExist(long UsersSN);
     }
-
-    #endregion interface
-
+    #endregion
+    */
     #region implementation
-
-    public class Users_Manager : IUsers_Manager
+    public class Users_Manager //: IUsers_Manager
     {
+        #region public properties
+        #endregion
+
         #region private fields
-
         private readonly static SysLog log = SysLog.GetLogger(typeof(Users_Manager));
-
-        #endregion private fields
+        #endregion
 
         #region Operation: Select
-
-        public Users_Info GetByID(long SN)
+        public Users_Info GetByID(long UsersSN)
         {
-            return new Users_Repo().GetByID(SN);
+            return new Users_Repo().GetByID(UsersSN);
         }
 
         public IEnumerable<Users_Info> GetAll()
@@ -53,11 +47,9 @@ namespace InnoThink.BLL.Users
         {
             return new Users_Repo().GetByParam(Filter, _orderby);
         }
-
-        #endregion Operation: Select
+        #endregion
 
         #region Operation: Raw Insert
-
         public long Insert(Users_Info data)
         {
             long newID = 0;
@@ -71,36 +63,31 @@ namespace InnoThink.BLL.Users
             }
             return newID;
         }
-
-        #endregion Operation: Raw Insert
+        #endregion
 
         #region Operation: Raw Update
-
-        public bool Update(long SN, Users_Info data, IEnumerable<string> columns)
+        public bool Update(long UsersSN, Users_Info data, IEnumerable<string> columns)
         {
-            return new Users_Repo().Update(SN, data, columns) > 0;
+            return new Users_Repo().Update(UsersSN, data, columns) > 0;
         }
-
-        #endregion Operation: Raw Update
+        #endregion
 
         #region Operation: Delete
-
-        public int Delete(long SN)
+        public int Delete(long UsersSN)
         {
-            return new Users_Repo().Delete(SN);
+            return new Users_Repo().Delete(UsersSN);
         }
-
-        #endregion Operation: Delete
+        #endregion
 
         #region public functions
-
-        public bool IsExist(long SN)
+        public bool IsExist(long UsersSN)
         {
-            return (GetByID(SN) != null);
+            return (GetByID(UsersSN) != null);
         }
+        #endregion
 
-        #endregion public functions
+        #region private functions
+        #endregion
     }
-
-    #endregion implementation
+    #endregion
 }

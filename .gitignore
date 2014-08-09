@@ -34,3 +34,6 @@
 /InnoThink.Website/obj
 /UnitTest.Rest.Core/bin
 /InnoThink.Website/App_Data/*.log
+/InnoThink.Domain/obj/Debug
+/InnoThink.Core/*.user
+/InnoThink.Domain/*.user

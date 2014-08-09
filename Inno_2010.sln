@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoThink.BLL", "InnoThink.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoThink.DAL", "InnoThink.DAL\InnoThink.DAL.csproj", "{D769096B-0A8D-4C48-BF96-C1F84F02C312}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoThink.Domain", "InnoThinkDomain\InnoThink.Domain.csproj", "{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rest.Core", "Rest.Core\Rest.Core.csproj", "{3A850565-71B6-4B0C-B255-2D2A57E37B8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zUnitTest.RestCore", "UnitTest.Rest.Core\zUnitTest.RestCore.csproj", "{2DD7D94B-D64B-46EE-A117-2F1359B76A75}"
@@ -14,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoThink.Core", "InnoThink.Core\InnoThink.Core.csproj", "{8FFF0967-6CDC-404D-A0F8-1D2D75756E9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoThink.Website", "InnoThink.Website\InnoThink.Website.csproj", "{7472181A-EAAB-4364-B606-F657B7F4A0A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoThink.Domain", "InnoThink.Domain\InnoThink.Domain.csproj", "{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -38,12 +38,6 @@ Global
 		{D769096B-0A8D-4C48-BF96-C1F84F02C312}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D769096B-0A8D-4C48-BF96-C1F84F02C312}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D769096B-0A8D-4C48-BF96-C1F84F02C312}.Release|x86.ActiveCfg = Release|Any CPU
-		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Release|x86.ActiveCfg = Release|Any CPU
 		{3A850565-71B6-4B0C-B255-2D2A57E37B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A850565-71B6-4B0C-B255-2D2A57E37B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A850565-71B6-4B0C-B255-2D2A57E37B8B}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -70,6 +64,12 @@ Global
 		{7472181A-EAAB-4364-B606-F657B7F4A0A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7472181A-EAAB-4364-B606-F657B7F4A0A9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7472181A-EAAB-4364-B606-F657B7F4A0A9}.Release|x86.ActiveCfg = Release|Any CPU
+		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
