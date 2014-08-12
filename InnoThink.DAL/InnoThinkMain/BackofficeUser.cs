@@ -13,12 +13,13 @@ namespace InnoThink.DAL.BackofficeUser
     #region interface
     public interface IBackofficeUser_Repo
     {
-        BackofficeUser_Info GetByID(long BackofficeUserSN);
+        BackofficeUser_Info GetBySN(long BackofficeUserSN);
         IEnumerable<BackofficeUser_Info> GetAll();
         IEnumerable<BackofficeUser_Info> GetByParam(BackofficeUser_Filter Filter, string _orderby = "");
         IEnumerable<BackofficeUser_Info> GetByParam(BackofficeUser_Filter Filter, string[] fieldNames, string _orderby = "");
         long Insert(BackofficeUser_Info data);
         int Update(long BackofficeUserSN, BackofficeUser_Info data, IEnumerable<string> columns);
+        int Update(BackofficeUser_Info data);
         int Delete(long BackofficeUserSN);
     }
     #endregion
@@ -27,7 +28,7 @@ namespace InnoThink.DAL.BackofficeUser
     public class BackofficeUser_Repo
     {
         #region Operation: Select
-        public BackofficeUser_Info GetByID(long BackofficeUserSN)
+        public BackofficeUser_Info GetBySN(long BackofficeUserSN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
@@ -94,6 +95,14 @@ namespace InnoThink.DAL.BackofficeUser
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
                 return db.Update(data, BackofficeUserSN, columns);
+            }
+        }
+
+        public int Update(BackofficeUser_Info data)
+        {
+            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            {
+                return db.Update(data);
             }
         }
         #endregion

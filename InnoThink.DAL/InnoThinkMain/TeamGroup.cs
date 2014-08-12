@@ -13,12 +13,13 @@ namespace InnoThink.DAL.TeamGroup
     #region interface
     public interface ITeamGroup_Repo
     {
-        TeamGroup_Info GetByID(long TeamGroupSN);
+        TeamGroup_Info GetBySN(long TeamGroupSN);
         IEnumerable<TeamGroup_Info> GetAll();
         IEnumerable<TeamGroup_Info> GetByParam(TeamGroup_Filter Filter, string _orderby = "");
         IEnumerable<TeamGroup_Info> GetByParam(TeamGroup_Filter Filter, string[] fieldNames, string _orderby = "");
         long Insert(TeamGroup_Info data);
         int Update(long TeamGroupSN, TeamGroup_Info data, IEnumerable<string> columns);
+        int Update(TeamGroup_Info data);
         int Delete(long TeamGroupSN);
     }
     #endregion
@@ -27,7 +28,7 @@ namespace InnoThink.DAL.TeamGroup
     public class TeamGroup_Repo
     {
         #region Operation: Select
-        public TeamGroup_Info GetByID(long TeamGroupSN)
+        public TeamGroup_Info GetBySN(long TeamGroupSN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
@@ -94,6 +95,14 @@ namespace InnoThink.DAL.TeamGroup
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
                 return db.Update(data, TeamGroupSN, columns);
+            }
+        }
+
+        public int Update(TeamGroup_Info data)
+        {
+            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            {
+                return db.Update(data);
             }
         }
         #endregion

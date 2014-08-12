@@ -13,11 +13,12 @@ namespace InnoThink.BLL.User
     #region interface
     public interface IUser_Manager
     {
-        User_Info GetByID(long UserSN);
+        User_Info GetBySN(long UserSN);
         IEnumerable<User_Info> GetAll();
         IEnumerable<User_Info> GetByParameter(User_Filter Filter, string _orderby = "");
         long Insert(User_Info data);
         bool Update(long UserSN, User_Info data, IEnumerable<string> columns);
+        bool Update(User_Info data);
         int Delete(long UserSN);
         bool IsExist(long UserSN);
     }
@@ -34,7 +35,7 @@ namespace InnoThink.BLL.User
         #endregion
 
         #region Operation: Select
-        public User_Info GetByID(long UserSN)
+        public User_Info GetBySN(long UserSN)
         {
             return new User_Repo().GetByID(UserSN);
         }
@@ -71,6 +72,7 @@ namespace InnoThink.BLL.User
         {
             return new User_Repo().Update(UserSN, data, columns) > 0;
         }
+
         public bool Update(User_Info data)
         {
             return new User_Repo().Update(data) > 0;

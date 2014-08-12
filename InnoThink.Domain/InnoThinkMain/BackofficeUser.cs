@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace InnoThink.Domain.BackofficeUser
+namespace InnoThink.Domain
 {
     /*
     #region interface
@@ -47,7 +47,15 @@ namespace InnoThink.Domain.BackofficeUser
 
     public class BackofficeUser_Filter
     {
-        //You can copy above BackofficeUser_Info field for search criteria
+        public int? BackofficeUserSN { get; set; }
+        public string Encode { get; set; }
+        public DateTime? LastUpdate { get; set; }
+        public string LastUpdator { get; set; }
+        public int? Level { get; set; }
+        public string LoginId { get; set; }
+        public string Password { get; set; }
+        public string UserName { get; set; }
+        //You can copy/modify above BackofficeUser_Info field for search criteria
     }
     #endregion
 }

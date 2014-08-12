@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace InnoThink.Domain.TeamGroup
+namespace InnoThink.Domain
 {
     /*
     #region interface
@@ -39,7 +39,11 @@ namespace InnoThink.Domain.TeamGroup
 
     public class TeamGroup_Filter
     {
-        //You can copy above TeamGroup_Info field for search criteria
+        public string GroupName { get; set; }
+        public string LastUpdate { get; set; }
+        public int? MaxUsers { get; set; }
+        public int? TeamGroupSN { get; set; }
+        //You can copy/modify above TeamGroup_Info field for search criteria
     }
     #endregion
 }

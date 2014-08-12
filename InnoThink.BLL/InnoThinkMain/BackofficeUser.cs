@@ -12,11 +12,12 @@ namespace InnoThink.BLL.BackofficeUser
     #region interface
     public interface IBackofficeUser_Manager
     {
-        BackofficeUser_Info GetByID(long BackofficeUserSN);
+        BackofficeUser_Info GetBySN(long BackofficeUserSN);
         IEnumerable<BackofficeUser_Info> GetAll();
         IEnumerable<BackofficeUser_Info> GetByParameter(BackofficeUser_Filter Filter, string _orderby = "");
         long Insert(BackofficeUser_Info data);
         bool Update(long BackofficeUserSN, BackofficeUser_Info data, IEnumerable<string> columns);
+        bool Update(BackofficeUser_Info data);
         int Delete(long BackofficeUserSN);
         bool IsExist(long BackofficeUserSN);
     }
@@ -33,7 +34,7 @@ namespace InnoThink.BLL.BackofficeUser
         #endregion
 
         #region Operation: Select
-        public BackofficeUser_Info GetByID(long BackofficeUserSN)
+        public BackofficeUser_Info GetBySN(long BackofficeUserSN)
         {
             return new BackofficeUser_Repo().GetByID(BackofficeUserSN);
         }
@@ -69,6 +70,11 @@ namespace InnoThink.BLL.BackofficeUser
         public bool Update(long BackofficeUserSN, BackofficeUser_Info data, IEnumerable<string> columns)
         {
             return new BackofficeUser_Repo().Update(BackofficeUserSN, data, columns) > 0;
+        }
+
+        public bool Update(BackofficeUser_Info data)
+        {
+            return new BackofficeUser_Repo().Update(data) > 0;
         }
         #endregion
 

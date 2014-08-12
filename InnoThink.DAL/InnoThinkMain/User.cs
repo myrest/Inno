@@ -14,12 +14,13 @@ namespace InnoThink.DAL.User
     #region interface
     public interface IUser_Repo
     {
-        User_Info GetByID(long UserSN);
+        User_Info GetBySN(long UserSN);
         IEnumerable<User_Info> GetAll();
         IEnumerable<User_Info> GetByParam(User_Filter Filter, string _orderby = "");
         IEnumerable<User_Info> GetByParam(User_Filter Filter, string[] fieldNames, string _orderby = "");
         long Insert(User_Info data);
         int Update(long UserSN, User_Info data, IEnumerable<string> columns);
+        int Update(User_Info data);
         int Delete(long UserSN);
     }
     #endregion
@@ -28,7 +29,7 @@ namespace InnoThink.DAL.User
     public class User_Repo
     {
         #region Operation: Select
-        public User_Info GetByID(long UserSN)
+        public User_Info GetBySN(long UserSN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
@@ -97,6 +98,7 @@ namespace InnoThink.DAL.User
                 return db.Update(data, UserSN, columns);
             }
         }
+
         public int Update(User_Info data)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))

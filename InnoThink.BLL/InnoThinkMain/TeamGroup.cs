@@ -12,11 +12,12 @@ namespace InnoThink.BLL.TeamGroup
     #region interface
     public interface ITeamGroup_Manager
     {
-        TeamGroup_Info GetByID(long TeamGroupSN);
+        TeamGroup_Info GetBySN(long TeamGroupSN);
         IEnumerable<TeamGroup_Info> GetAll();
         IEnumerable<TeamGroup_Info> GetByParameter(TeamGroup_Filter Filter, string _orderby = "");
         long Insert(TeamGroup_Info data);
         bool Update(long TeamGroupSN, TeamGroup_Info data, IEnumerable<string> columns);
+        bool Update(TeamGroup_Info data);
         int Delete(long TeamGroupSN);
         bool IsExist(long TeamGroupSN);
     }
@@ -33,7 +34,7 @@ namespace InnoThink.BLL.TeamGroup
         #endregion
 
         #region Operation: Select
-        public TeamGroup_Info GetByID(long TeamGroupSN)
+        public TeamGroup_Info GetBySN(long TeamGroupSN)
         {
             return new TeamGroup_Repo().GetByID(TeamGroupSN);
         }
@@ -69,6 +70,11 @@ namespace InnoThink.BLL.TeamGroup
         public bool Update(long TeamGroupSN, TeamGroup_Info data, IEnumerable<string> columns)
         {
             return new TeamGroup_Repo().Update(TeamGroupSN, data, columns) > 0;
+        }
+
+        public bool Update(TeamGroup_Info data)
+        {
+            return new TeamGroup_Repo().Update(data) > 0;
         }
         #endregion
 

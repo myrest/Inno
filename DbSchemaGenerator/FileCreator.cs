@@ -9,11 +9,12 @@ namespace DbSchemaGenerator
 {
     public class FileCreator
     {
-        private static string MapTypeSqlite(KeyValuePair<string, string> item)
+        private static string MapTypeSqlite(KeyValuePair<string, string> item, bool isFilter = false)
         {
             string SqlDataType = item.Value;
             string SqlDataName = item.Key;
             string rtn = string.Empty;
+            string AllowNull = (isFilter) ? "?" : "";
             switch (SqlDataType)
             {
                 case "TEXT":
@@ -24,17 +25,21 @@ namespace DbSchemaGenerator
                 case "INT":
                 case "NUMERIC":
                     SqlDataType = SqlDataName.StartsWith("is") ? "bool" : "int";
+                    SqlDataType += AllowNull;
                     break;
                 case "DATE":
                 case "TIME":
                 case "TIMESTAMP":
                     SqlDataType = "DateTime";
+                    SqlDataType += AllowNull;
                     break;
                 case "REAL":
                     SqlDataType = "decimal";
+                    SqlDataType += AllowNull;
                     break;
                 case "BLOB":
                     SqlDataType = "object";
+                    SqlDataType += AllowNull;
                     break;
                 default:
                     MessageBox.Show("Can't mapping the type of [" + SqlDataType + "]");
@@ -47,7 +52,7 @@ namespace DbSchemaGenerator
         #region Domain
         internal static string GetDomainContent(Dictionary<string, string> columns, string pk, string DomainPath, string NameSpace, string TableName)
         {
-            string curNamespace = string.Format("{0}.Domain.{1}", NameSpace, TableName);
+            string curNamespace = string.Format("{0}.Domain", NameSpace);
             StringBuilder sb = new StringBuilder();
             #region Create Domain StringBuilder
             sb.AppendFormat(@"using System;
@@ -94,12 +99,17 @@ namespace {0}
     }}
 
     public class {0}_Filter
-    {{
-        //You can copy above {0}_Info field for search criteria
+    {{", TableName);
+            foreach (var item in columns)
+            {
+                sb.AppendFormat(@"
+        public {0}", MapTypeSqlite(item, true));
+            }
+            sb.AppendFormat(@"
+        //You can copy/modify above {0}_Info field for search criteria
     }}
     #endregion
-}}
-", TableName);
+}}", TableName);
             #endregion
             return sb.ToString();
         }
@@ -146,12 +156,13 @@ namespace {1}
     #region interface
     public interface I{2}_Repo
     {{
-        {2}_Info GetByID(long {3});
+        {2}_Info GetBySN(long {3});
         IEnumerable<{2}_Info> GetAll();
         IEnumerable<{2}_Info> GetByParam({2}_Filter Filter, string _orderby = """");
         IEnumerable<{2}_Info> GetByParam({2}_Filter Filter, string[] fieldNames, string _orderby = """");
         long Insert({2}_Info data);
         int Update(long {3}, {2}_Info data, IEnumerable<string> columns);
+        int Update({2}_Info data);
         int Delete(long {3});
     }}
     #endregion
@@ -160,7 +171,7 @@ namespace {1}
     public class {2}_Repo
     {{
         #region Operation: Select
-        public {2}_Info GetByID(long {3})
+        public {2}_Info GetBySN(long {3})
         {{
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {{
@@ -227,6 +238,14 @@ namespace {1}
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {{
                 return db.Update(data, {3}, columns);
+            }}
+        }}
+
+        public int Update({2}_Info data)
+        {{
+            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            {{
+                return db.Update(data);
             }}
         }}
         #endregion
@@ -320,11 +339,12 @@ namespace {1}
     #region interface
     public interface I{2}_Manager
     {{
-        {2}_Info GetByID(long {3});
+        {2}_Info GetBySN(long {3});
         IEnumerable<{2}_Info> GetAll();
         IEnumerable<{2}_Info> GetByParameter({2}_Filter Filter, string _orderby = """");
         long Insert({2}_Info data);
         bool Update(long {3}, {2}_Info data, IEnumerable<string> columns);
+        bool Update({2}_Info data);
         int Delete(long {3});
         bool IsExist(long {3});
     }}
@@ -341,7 +361,7 @@ namespace {1}
         #endregion
 
         #region Operation: Select
-        public {2}_Info GetByID(long {3})
+        public {2}_Info GetBySN(long {3})
         {{
             return new {2}_Repo().GetByID({3});
         }}
@@ -378,6 +398,11 @@ namespace {1}
         {{
             return new {2}_Repo().Update({3}, data, columns) > 0;
         }}
+
+        public bool Update({2}_Info data)
+        {{
+            return new {2}_Repo().Update(data) > 0;
+        }}
         #endregion
 
         #region Operation: Delete
@@ -399,6 +424,8 @@ namespace {1}
     }}
     #endregion
 }}", NameSpace, curNamespace, TableName, pk);
+            //NameSpace = InnoThink.Domain
+            //curNameSpace = 
             #endregion
             return sb.ToString();
         }
