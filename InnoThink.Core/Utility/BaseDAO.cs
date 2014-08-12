@@ -42,7 +42,7 @@ namespace InnoThink.Core.Utility
 #endif
             }
 
-            string strDbFileName = String.Format("{0}\\{1}.oo", dbFolder, dbName);
+            string strDbFileName = String.Format("{0}\\{1}.oo2", dbFolder, dbName);
 
             if (File.Exists(strDbFileName))
             {

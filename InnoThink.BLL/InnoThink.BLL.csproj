@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="InnoThinkMain\BackofficeUser.cs" />
     <Compile Include="InnoThinkMain\TeamGroup.cs" />
-    <Compile Include="InnoThinkMain\Users.cs" />
+    <Compile Include="InnoThinkMain\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

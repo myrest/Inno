@@ -13,7 +13,6 @@ namespace InnoThink.Core.DB
     public class DbTopicTable : BaseDAO
     {
         private readonly static SysLog log = SysLog.GetLogger(typeof(DbTopicTable));
-        private readonly static DbUserTable dbUser = new DbUserTable() { };
 
         public DbTopicTable()
         {

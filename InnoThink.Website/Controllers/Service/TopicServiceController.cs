@@ -16,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using InnoThink.BLL.User;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -27,7 +28,7 @@ namespace InnoThink.Website.Controllers.Service
 
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
         private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
-        private static readonly DbUserTable dbUser = new DbUserTable() { };
+        
         private static readonly DbBestStep1Table dbBest1 = new DbBestStep1Table() { };
         private static readonly DbBestIdeaTable dbBestIdea = new DbBestIdeaTable() { };
         private static readonly DbBestIdeaMemRankTable dbBestIdeaMemRank = new DbBestIdeaMemRankTable() { };
@@ -57,12 +58,13 @@ namespace InnoThink.Website.Controllers.Service
         public JsonResult UpdateUnit1Description(UpdateUnit1DescriptionUI data)
         {
             ResultBase result = new ResultBase() { };
-            DbTopicMemberModel TopicMember = dbTopMem.getTopicMember(data.TopicSN, sessionData.trading.sn);
+            DbTopicMemberModel TopicMember = dbTopMem.getTopicMember(data.TopicSN, sessionData.trading.UserSN);
             TopicMember.LeaderSNVoteTo = data.LeaderVote;
             TopicMember.Description = data.Descript;
             dbTopMem.UpdateTopicMember(TopicMember);
             //Get user object.
-            var User = dbUser.getUserBySN(sessionData.trading.sn);
+            User_Manager um = new User_Manager();
+            var User = um.GetByID(sessionData.trading.UserSN);
 
             //Get all team member vote for leader.
             List<DbTopicMemberModel> TeamMembers = dbTopMem.getALLTopicMember(data.TopicSN);
@@ -70,7 +72,7 @@ namespace InnoThink.Website.Controllers.Service
 
             //Update date topic inofrmation for leader login id.
             int LeaderSN = LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key;
-            var User_Leader = dbUser.getUserBySN(LeaderSN);
+            var User_Leader = um.GetByID(LeaderSN);
             var TopicInfo = dbTopic.getTopicBySN(data.TopicSN);
             TopicInfo.LeaderLoginId = User_Leader.LoginId;
             dbTopic.UpdateTopic(TopicInfo);
@@ -84,10 +86,10 @@ namespace InnoThink.Website.Controllers.Service
                     Name = User.UserName,
                     Picture = StringUtility.ConvertPicturePath(User.Picture),
                     Professional = User.Professional,
-                    SN = User.SN,
+                    SN = User.UserSN,
                     Description = data.Descript.Replace("\n", "<BR>"),
                     Votes = LeaderVotes,
-                    LeaderName = dbUser.getUserBySN(LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key).UserName
+                    LeaderName = um.GetByID(LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key).UserName
                 }
             };
             CommServer.Instance.Unit1update(data.TopicSN, msg);
@@ -288,7 +290,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase() { };
             //Get the first joined topic.
-            var topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.sn);
+            var topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.UserSN);
             if (topic != null && topic.SN > 0)
             {
                 result = GetTopicNextStep(topic.SN);
@@ -310,9 +312,10 @@ namespace InnoThink.Website.Controllers.Service
             List<DbTopicMemberModel> TeamMembers = dbTopMem.getALLTopicMember(TopicSN);
             var LeaderVotes = TeamMembers.ToDictionary(x => x.UserSN, x => TeamMembers.Where(y => y.LeaderSNVoteTo == x.UserSN).Count());
             int LeaderSN = LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key;
-            var User_Leader = dbUser.getUserBySN(LeaderSN);
+            User_Manager um = new User_Manager();
+            var User_Leader = um.GetByID(LeaderSN);
             var TopicInfo = dbTopic.getTopicBySN(TopicSN);
-            if (LeaderSN == trading.sn)
+            if (LeaderSN == trading.UserSN)
             {
                 //set the step for the topic.
                 TopicInfo.Step = GotoStep;
@@ -503,7 +506,7 @@ namespace InnoThink.Website.Controllers.Service
                     ServerFileName = sessionData.trading._tempFileName,
                     UserFileName = sessionData.trading._OrignFileName,
                     TopicSN = TopicSN,
-                    UserSN = sessionData.trading.sn,
+                    UserSN = sessionData.trading.UserSN,
                     IsImage = sessionData.trading._isImage ? 1 : 0
                 };
                 int NewSN = dbResult.Add(model);
@@ -528,7 +531,7 @@ namespace InnoThink.Website.Controllers.Service
                 Related = Related,
                 TopicSN = TopicSN,
                 Image = sessionData.trading._tempFileName,
-                UserSN = sessionData.trading.sn
+                UserSN = sessionData.trading.UserSN
             };
             int NewSN = dbBest1.Add(model);
             sessionData.ClearTempValue();
@@ -714,7 +717,7 @@ namespace InnoThink.Website.Controllers.Service
                 Idea = Idea,
                 TopicSN = TopicSN,
                 Type = EnumHelper.GetEnumByName<BestType>(BType),
-                UserSN = sessionData.trading.sn
+                UserSN = sessionData.trading.UserSN
             };
             int NewSN = dbBestIdea.Add(model);
             sessionData.ClearTempValue();
@@ -758,7 +761,7 @@ namespace InnoThink.Website.Controllers.Service
             ResultBase result = new ResultBase() { };
             try
             {
-                var syncObj = dbResult.InsertOrReplaceRank(sessionData.trading.sn, SN, Rank, Comment);
+                var syncObj = dbResult.InsertOrReplaceRank(sessionData.trading.UserSN, SN, Rank, Comment);
                 result.setMessage("Done");
                 CommServer.Instance.syncUIResultScore(syncObj);
             }
@@ -802,7 +805,7 @@ namespace InnoThink.Website.Controllers.Service
                 {
                     BestIdeaSN = Convert.ToInt32(RankArr[0]),
                     Rank = Convert.ToInt32(RankArr[1]),
-                    UserSN = sessionData.trading.sn
+                    UserSN = sessionData.trading.UserSN
                 };
                 dbBestIdeaMemRank.InsertOrReplace(model);
             });
@@ -824,7 +827,7 @@ namespace InnoThink.Website.Controllers.Service
                 {
                     BestIdeaGroupSN = Convert.ToInt32(RankArr[0]),
                     Rank = Convert.ToInt32(RankArr[1]),
-                    UserSN = sessionData.trading.sn
+                    UserSN = sessionData.trading.UserSN
                 };
                 dbBestIdeaGrpRank.InsertOrReplace(model);
             });
@@ -840,7 +843,7 @@ namespace InnoThink.Website.Controllers.Service
             var model = dbTopic.getTopicBySN(TopicSN);
             if (model.DateClosed == DateTime.MinValue)
             {
-                dbTopMem.LeaveTopic(TopicSN, sessionData.trading.sn);
+                dbTopMem.LeaveTopic(TopicSN, sessionData.trading.UserSN);
                 result.setMessage("您已退出該議題討論。");
             }
             else
@@ -894,7 +897,7 @@ namespace InnoThink.Website.Controllers.Service
                 Description = Description,
                 Document = sessionData.trading._tempFileName,
                 MyGAP = MyGAP,
-                UserSN = sessionData.trading.sn,
+                UserSN = sessionData.trading.UserSN,
                 IdeaDetails = SubItem
             };
             int NewSN = dbBestGAP.Add(model);

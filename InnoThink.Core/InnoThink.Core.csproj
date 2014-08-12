@@ -118,9 +118,7 @@
     <Compile Include="DB\DbBoardTable.cs" />
     <Compile Include="DB\DbTopicMemberTable.cs" />
     <Compile Include="DB\DbTopicTable.cs" />
-    <Compile Include="DB\DbUserTable.cs" />
     <Compile Include="DB\Paging.cs" />
-    <Compile Include="Model\FacebookPersonAuth.cs" />
     <Compile Include="Model\Topic\SignalRMessageModel.cs" />
     <Compile Include="Model\Topic\TeamMemberUIModel.cs" />
     <Compile Include="MVC\ActionResult\ImageResult.cs" />
@@ -169,6 +167,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InnoThink.Domain\InnoThink.Domain.csproj">
+      <Project>{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}</Project>
+      <Name>InnoThink.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rest.Core\Rest.Core.csproj">
       <Project>{3a850565-71b6-4b0c-b255-2d2a57e37b8b}</Project>
       <Name>Rest.Core</Name>

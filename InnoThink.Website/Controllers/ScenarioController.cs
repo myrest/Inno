@@ -17,7 +17,7 @@ namespace InnoThink.Website.Controllers
         private static readonly SysLog Log = SysLog.GetLogger(typeof(TopicController));
 
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
-        private static readonly DbUserTable dbUser = new DbUserTable() { };
+        
         private static readonly DbResultsTable dbResult = new DbResultsTable() { };
         private static readonly DbScenarioTable dbScenario = new DbScenarioTable() { };
 
@@ -31,7 +31,7 @@ namespace InnoThink.Website.Controllers
             TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
             ResultViewModel Model = new ResultViewModel() { };
-            var list = dbResult.GetAllByTopicSN(TopicSN, Result, sessionData.trading.sn);
+            var list = dbResult.GetAllByTopicSN(TopicSN, Result, sessionData.trading.UserSN);
             //Change image path.
             list.ForEach(x =>
             {
@@ -58,7 +58,7 @@ namespace InnoThink.Website.Controllers
             sessionData.ClearTempValue();
 
             //Get ScenarioChar infor
-            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.sn) { };
+            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.UserSN) { };
             var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.FirstTime);
             if (list != null)
             {
@@ -96,7 +96,7 @@ namespace InnoThink.Website.Controllers
         {
             TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
-            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.sn) { };
+            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.UserSN) { };
             var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.FirstTime);
             if (list != null)
             {
@@ -146,9 +146,9 @@ namespace InnoThink.Website.Controllers
             sessionData.ClearTempValue();
 
             //miss username for result.
-            List<ScenarioCharValueRankUI> result = dbScenario.GetRankByUserSN(TopicSN, ScenarioType.FirstTime, sessionData.trading.sn);
+            List<ScenarioCharValueRankUI> result = dbScenario.GetRankByUserSN(TopicSN, ScenarioType.FirstTime, sessionData.trading.UserSN);
             //Get all the char for vote.
-            List<ScenarioCharValueRankUI> resultChar = dbScenario.GetCharRankByTopic(TopicSN, ScenarioType.FirstTime, sessionData.trading.sn);
+            List<ScenarioCharValueRankUI> resultChar = dbScenario.GetCharRankByTopic(TopicSN, ScenarioType.FirstTime, sessionData.trading.UserSN);
             if (resultChar != null)
             {
                 result.Add(new ScenarioCharValueRankUI()
@@ -168,7 +168,7 @@ namespace InnoThink.Website.Controllers
             sessionData.ClearTempValue();
 
             //Build Char setting
-            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.sn) { };
+            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.UserSN) { };
             //Need to get all the rank for the each char.
             var charRank = dbScenario.GetCharAvgRankByTopic(TopicSN, ScenarioType.FirstTime);
             var charValueRank = dbScenario.GetCharValueAvgRankByTopic(TopicSN, ScenarioType.FirstTime);
@@ -207,7 +207,7 @@ namespace InnoThink.Website.Controllers
             sessionData.ClearTempValue();
 
             //Get ScenarioChar infor
-            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.sn) { };
+            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.UserSN) { };
             var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.SecondTime);
             if (list != null)
             {

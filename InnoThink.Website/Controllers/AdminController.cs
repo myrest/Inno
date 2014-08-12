@@ -4,7 +4,10 @@ using InnoThink.Core.MVC.BaseController;
 using InnoThink.Website.Models;
 using Rest.Core.Utility;
 using System;
+using System.Linq;
 using System.Web.Mvc;
+using InnoThink.BLL.User;
+using InnoThink.Domain.User;
 
 namespace InnoThink.Website.Controllers
 {
@@ -15,7 +18,7 @@ namespace InnoThink.Website.Controllers
         private static readonly SysLog Log = SysLog.GetLogger(typeof(AdminController));
 
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
-        private static readonly DbUserTable dbUser = new DbUserTable() { };
+        
         private static readonly DbTeamGroupTable dbTG = new DbTeamGroupTable() { };
 
         public AdminController()
@@ -56,7 +59,12 @@ namespace InnoThink.Website.Controllers
             try
             {
                 var tg = dbTG.getTeamGroupBySN(SN);
-                var users = dbUser.GetUserByTeamGroupSN(SN);
+
+                User_Manager um = new User_Manager();
+                var users = um.GetByParameter(new User_Filter()
+                {
+                    TeamGroupSN = SN
+                }).ToList();
                 model.TeamGroupName = tg.GroupName;
                 model.TeamGroupSN = SN;
                 model.DataResult = users;

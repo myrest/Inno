@@ -215,7 +215,7 @@ namespace InnoThink.Website.Controllers.Service
                 {
                     //Using LoginId MD5 for template file name.
                     MD5 md5hash = MD5.Create();
-                    string FileName = PreFix + GetMd5Hash(md5hash, sessionData.trading.sn.ToString()) + Path.GetExtension(Uploadfile.FileName);
+                    string FileName = PreFix + GetMd5Hash(md5hash, sessionData.trading.UserSN.ToString()) + Path.GetExtension(Uploadfile.FileName);
                     result.FileName = Uploadfile.FileName;//User's uploaded file name.
                     result.FileType = Uploadfile.ContentType;
                     result.FileSize = ConvertFileSize(Uploadfile.ContentLength);

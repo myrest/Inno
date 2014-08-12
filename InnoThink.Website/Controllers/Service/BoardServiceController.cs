@@ -8,6 +8,7 @@ using InnoThink.Website.Models;
 using Rest.Core.Utility;
 using System;
 using System.Web.Mvc;
+using InnoThink.BLL.User;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -17,7 +18,7 @@ namespace InnoThink.Website.Controllers.Service
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(BoardServiceController));
 
-        private static readonly DbUserTable dbUser = new DbUserTable() { };
+        
 
         public BoardServiceController()
             : base(Permission.Private)
@@ -41,7 +42,8 @@ namespace InnoThink.Website.Controllers.Service
         private ResultBase SendBoardMessage(string Message, int TopicSN, int PublishType)
         {
             ResultBase result = new ResultBase() { };
-            var user = dbUser.getUserBySN(sessionData.trading.sn);
+            User_Manager um = new User_Manager();
+            var user = um.GetByID(sessionData.trading.UserSN);
             DbBoardContent model = new DbBoardContent()
             {
                 Content = Message,
@@ -51,7 +53,7 @@ namespace InnoThink.Website.Controllers.Service
                 UserIcon = StringUtility.ConvertPicturePath(user.Picture),
                 UserLoginId = user.LoginId,
                 UserName = user.UserName,
-                UserSN = user.SN
+                UserSN = user.UserSN
             };
             BoardCache.AddBoardMessage(model);
             CommServer.Instance.syncUIBoardMessage(model);

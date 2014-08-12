@@ -2,7 +2,6 @@
 using InnoThink.Core.MVC.BaseController;
 using Rest.Core.Utility;
 using System.Web.Mvc;
-using InnoThink.BLL.Users;
 
 namespace InnoThink.Website.Controllers
 {

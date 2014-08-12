@@ -10,7 +10,11 @@ using InnoThink.Website.Communication;
 using InnoThink.Website.Models;
 using Rest.Core.Utility;
 using System;
+using System.Linq;
 using System.Web.Mvc;
+using InnoThink.BLL.User;
+using InnoThink.Domain.Facebook;
+using InnoThink.Domain.User;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -20,7 +24,7 @@ namespace InnoThink.Website.Controllers.Service
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(LoginServiceController));
 
-        private static readonly DbUserTable dbUser = new DbUserTable() { };
+        
 
         public LoginServiceController()
             : base(Permission.Public)
@@ -34,12 +38,16 @@ namespace InnoThink.Website.Controllers.Service
             {
                 trading = sessionData.trading;
             }
-            var user = dbUser.getUserByLoginId(LoginId);
+            User_Manager um = new User_Manager();
+            var user = um.GetByParameter(new Domain.User.User_Filter()
+            {
+                LoginId = LoginId
+            }).FirstOrDefault();
+
             trading.LoginId = LoginId;
             trading.Picture = user.Picture;
             trading.UserName = user.UserName;
-            trading.sn = user.SN;
-            trading.Position = user.Position;
+            trading.UserSN = user.UserSN;
             sessionData.trading = trading;
         }
 
@@ -49,7 +57,8 @@ namespace InnoThink.Website.Controllers.Service
             ResultBase result = new ResultBase();
             sessionData.trading = new Trading();
             FacebookPersonAuth FBObject = FBUtility.GetUserID(token);
-            if (dbUser.FBLoginCheck(FBObject))
+            User_Manager um = new User_Manager();
+            if (um.FBLoginCheck(FBObject))
             {
                 MakeTrading(FBObject.Email);
                 sessionData.trading.isLogined = true;
@@ -66,14 +75,15 @@ namespace InnoThink.Website.Controllers.Service
         public JsonResult SignalrLogin(string ConnectionId)
         {
             ResultBase result = new ResultBase();
-            if (sessionData.trading != null && sessionData.trading.sn > 0)
+            if (sessionData.trading != null && sessionData.trading.UserSN > 0)
             {
-                ConnectionManageBase.Update(ConnectionId, sessionData.trading.sn);
+                ConnectionManageBase.Update(ConnectionId, sessionData.trading.UserSN);
             }
             //Sync all the team member at the same TopicSN
-            DbUserModel user = dbUser.getUserBySN(sessionData.trading.sn);
+            User_Manager um = new User_Manager();
+            var user = um.GetByID(sessionData.trading.UserSN);
             user.Picture = StringUtility.ConvertPicturePath(user.Picture);
-            var cacheobj = ConnectionManageBase.GetByUserSN(sessionData.trading.sn);
+            var cacheobj = ConnectionManageBase.GetByUserSN(sessionData.trading.UserSN);
             CommServer.Instance.syncOnlineUser(cacheobj.TopicSN, user);
             result.setMessage("Done");
             return Json(result, JsonRequestBehavior.DenyGet);
@@ -92,7 +102,8 @@ namespace InnoThink.Website.Controllers.Service
                 }
                 else
                 {
-                    if (dbUser.isPasswordCorrect(username, password))
+                    User_Manager um = new User_Manager();
+                    if (um.isPasswordCorrect(username, password))
                     {
                         result.setMessage("登入成功。");
                         MakeTrading(username);
@@ -116,21 +127,25 @@ namespace InnoThink.Website.Controllers.Service
         [HttpPost]
         public JsonResult Registry(string username, string password)
         {
-            bool userIsExist = dbUser.CheckIdIsExist(username);
             ResultBase result = new ResultBase() { };
-            if (userIsExist)
+            User_Manager um = new User_Manager();
+            var user = um.GetByParameter(new Domain.User.User_Filter()
             {
-                result.setException(new Exception("這個帳號已經註冊過了。"), "Registry");
+                LoginId = username
+            }).FirstOrDefault();
+            if (user != null)
+            {
+                result.setErrorMessage("這個帳號已經註冊過了。");
             }
             else
             {
-                dbUser.AddNewUser(new DbUserModel()
+                um.Insert(new Domain.User.User_Info()
                 {
                     LoginId = username,
                     Password = password,
                     Status = 1,
-                    Position = 1,
-                    UserName = username
+                    UserName = username,
+                    Picture = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT1kUj3CKnEap-jazJzzVSOH6e8eWH5fGoiqVNF_lRlv0s8Kzt2Mg"
                 });
 
                 MakeTrading(username);

@@ -86,7 +86,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             if (UserSN == 0)
             {
-                UserSN = sessionData.trading.sn;
+                UserSN = sessionData.trading.UserSN;
             }
             ResultBase rtn = doValidation(Column1, Column2, Column3, Column4, TopicSN, Result);
             if (rtn.JsonReturnCode > 0)
@@ -118,14 +118,14 @@ namespace InnoThink.Website.Controllers.Service
         [HttpPost]
         public JsonResult Scenario1(string Column1, string Column2, string Column3, string Column4, int TopicSN)
         {
-            ResultBase result = doResultSave(Column1, Column2, Column3, Column4, TopicSN, ResultType.SCENARIO_1, sessionData.trading.sn);
+            ResultBase result = doResultSave(Column1, Column2, Column3, Column4, TopicSN, ResultType.SCENARIO_1, sessionData.trading.UserSN);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
         public JsonResult Scenario3(string Column1, string Column2, string Column3, string Column4, int TopicSN)
         {
-            ResultBase result = doResultSave(Column1, Column2, Column3, Column4, TopicSN, ResultType.SCENARIO_3, sessionData.trading.sn);
+            ResultBase result = doResultSave(Column1, Column2, Column3, Column4, TopicSN, ResultType.SCENARIO_3, sessionData.trading.UserSN);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
@@ -138,7 +138,7 @@ namespace InnoThink.Website.Controllers.Service
 
         public JsonResult GetALLScenarioByTopicSN(int TopicSN)
         {
-            ScenarioCharViewModel result = new ScenarioCharViewModel(sessionData.trading.sn) { };
+            ScenarioCharViewModel result = new ScenarioCharViewModel(sessionData.trading.UserSN) { };
             var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.FirstTime);
             result.Listing = list;
             return Json(result, JsonRequestBehavior.DenyGet);
@@ -180,7 +180,7 @@ namespace InnoThink.Website.Controllers.Service
                     Career = (string.IsNullOrEmpty(obj.Career) ? obj.CareerOther : obj.Career),
                     Edu = (EduType)obj.Edu,
                     Gender = (GenderType)obj.Gender,
-                    UserSN = sessionData.trading.sn,
+                    UserSN = sessionData.trading.UserSN,
                     SN = 0,
                     TopicSN = obj.TopicSN,
                     NickName = obj.NickName,
@@ -272,7 +272,7 @@ namespace InnoThink.Website.Controllers.Service
                     Career = (string.IsNullOrEmpty(obj.Career) ? obj.CareerOther : obj.Career),
                     Edu = (EduType)obj.Edu,
                     Gender = (GenderType)obj.Gender,
-                    UserSN = sessionData.trading.sn,
+                    UserSN = sessionData.trading.UserSN,
                     SN = 0,
                     TopicSN = obj.TopicSN,
                     NickName = obj.NickName,
@@ -347,7 +347,7 @@ namespace InnoThink.Website.Controllers.Service
 
         public JsonResult GetAllItemList2(int TopicSN)
         {
-            ScenarioCharViewModel result = new ScenarioCharViewModel(sessionData.trading.sn) { };
+            ScenarioCharViewModel result = new ScenarioCharViewModel(sessionData.trading.UserSN) { };
             var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.FirstTime);
             if (list != null)
             {
@@ -364,7 +364,7 @@ namespace InnoThink.Website.Controllers.Service
 
         public JsonResult GetAllItemList6(int TopicSN)
         {
-            ScenarioCharViewModel result = new ScenarioCharViewModel(sessionData.trading.sn) { };
+            ScenarioCharViewModel result = new ScenarioCharViewModel(sessionData.trading.UserSN) { };
             var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.SecondTime);
             if (list != null)
             {
@@ -383,7 +383,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             if (UserSN == 0)
             {
-                UserSN = sessionData.trading.sn;
+                UserSN = sessionData.trading.UserSN;
             }
 
             ScenarioCharResultViewModel result = new ScenarioCharResultViewModel(UserSN) { };
@@ -420,7 +420,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             if (UserSN == 0)
             {
-                UserSN = sessionData.trading.sn;
+                UserSN = sessionData.trading.UserSN;
             }
             ScenarioCharResultViewModel result = new ScenarioCharResultViewModel(UserSN) { };
 
@@ -463,7 +463,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             if (UserSN == 0)
             {
-                UserSN = sessionData.trading.sn;
+                UserSN = sessionData.trading.UserSN;
             }
 
             ScenarioCharResultViewModel result = new ScenarioCharResultViewModel(UserSN) { };
@@ -535,7 +535,7 @@ namespace InnoThink.Website.Controllers.Service
                             model = new DbScenarioCharValueModel()
                             {
                                 Description = Description,
-                                UserSN = sessionData.trading.sn,
+                                UserSN = sessionData.trading.UserSN,
                                 ScenarioCharSN = ScenarioCharSN,
                                 SN = ScenarioCharVpSN
                             };
@@ -575,7 +575,7 @@ namespace InnoThink.Website.Controllers.Service
                     model = new DbScenarioCharValueModel()
                     {
                         Description = Description,
-                        UserSN = sessionData.trading.sn,
+                        UserSN = sessionData.trading.UserSN,
                         ScenarioCharSN = ScenarioSN
                     };
                     model.SN = dbScenario.AddValue(model);
@@ -604,7 +604,7 @@ namespace InnoThink.Website.Controllers.Service
                     {
                         Rank = Convert.ToInt32(RankArr[1]),
                         ScenarioCharValueSN = Convert.ToInt32(RankArr[0]),
-                        UserSN = sessionData.trading.sn
+                        UserSN = sessionData.trading.UserSN
                     };
                     dbScenario.InsertOrReplaceScenarioCharValueRank(model);
                 });
@@ -631,7 +631,7 @@ namespace InnoThink.Website.Controllers.Service
                     {
                         Rank = Convert.ToInt32(RankArr[1]),
                         ScenarioCharValueSN = Convert.ToInt32(RankArr[0]),
-                        UserSN = sessionData.trading.sn
+                        UserSN = sessionData.trading.UserSN
                     };
                     dbScenario.InsertOrReplaceScenarioCharRank(model);
                 });

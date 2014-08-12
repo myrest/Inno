@@ -48,16 +48,14 @@ namespace InnoThink.Core
         {
             LoginId = default(string);
             isLogined = false;
-            sn = 0;
+            UserSN = 0;
         }
 
         public string LoginId { get; set; }
 
         public bool isLogined { get; set; }
 
-        public int sn { get; set; }
-
-        public int Position { get; set; }
+        public int UserSN { get; set; }
 
         //public string FBToken { get; set; }
         public string Picture { get; set; }

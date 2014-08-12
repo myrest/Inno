@@ -9,6 +9,7 @@ using Rest.Core.Utility;
 using System;
 using System.IO;
 using System.Web.Mvc;
+using InnoThink.BLL.User;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -20,7 +21,7 @@ namespace InnoThink.Website.Controllers.Service
 
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
         private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
-        private static readonly DbUserTable dbUser = new DbUserTable() { };
+        
 
         public MemberServiceController()
             : base(Permission.Private)
@@ -51,7 +52,8 @@ namespace InnoThink.Website.Controllers.Service
                     }
                     else
                     {
-                        var user = dbUser.getUserBySN(sessionData.trading.sn);
+                        User_Manager um = new User_Manager();
+                        var user = um.GetByID(sessionData.trading.UserSN);
                         TopicPublishType opentype = EnumHelper.GetEnumByName<TopicPublishType>(opento.ToString());
                         if (opentype == TopicPublishType.TeamGroup && user.TeamGroupSN < 1)
                         {
@@ -80,10 +82,10 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase();
             //Check is therea re joined topic.
-            var topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.sn);
+            var topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.UserSN);
             if (topic == null || topic.SN == 0)
             {
-                bool isJoinSuccess = dbTopMem.AddNewTopicMember(SN, sessionData.trading.sn);
+                bool isJoinSuccess = dbTopMem.AddNewTopicMember(SN, sessionData.trading.UserSN);
                 if (isJoinSuccess)
                 {
                     result.JsonReturnCode = 1;
@@ -106,13 +108,14 @@ namespace InnoThink.Website.Controllers.Service
         public JsonResult ChangePassword(string NewPassword, string OldPassword)
         {
             ResultBase result = new ResultBase();
-            var user = dbUser.getUserBySN(sessionData.trading.sn);
-            if (user != null && user.SN > 0)
+            User_Manager um = new User_Manager();
+            var user = um.GetByID(sessionData.trading.UserSN);
+            if (user != null && user.UserSN > 0)
             {
                 if (string.Compare(user.Password, OldPassword) == 0)
                 {
                     user.Password = NewPassword;
-                    dbUser.UpdateUserInfo(user);
+                    um.Update(user);
                     result.setMessage("變更密碼完成。");
                 }
                 else
@@ -128,12 +131,15 @@ namespace InnoThink.Website.Controllers.Service
         }
 
         [HttpPost]
-        public JsonResult UpdateMyInfo(string Professional, string UserName)
+        public JsonResult UpdateMyInfo(string Professional, string UserName, int TeamGroupSN)
         {
             ResultBase result = new ResultBase();
-            DbUserModel user = dbUser.getUserBySN(sessionData.trading.sn);
+            User_Manager um = new User_Manager();
+            var user = um.GetByID(sessionData.trading.UserSN);
+
             user.Professional = Professional;
             user.UserName = UserName;
+            user.TeamGroupSN = TeamGroupSN;
             if (!string.IsNullOrEmpty(sessionData.trading._tempFileName))
             {
                 //user has upload person icon, need update the value.
@@ -146,10 +152,10 @@ namespace InnoThink.Website.Controllers.Service
                 f.MoveTo(FileDisc);
                 //Update Cache picture
                 string NewPicPath = StringUtility.ConvertPicturePath(user.Picture);
-                BoardCache.ChangePersionPicture(sessionData.trading.sn, NewPicPath);
+                BoardCache.ChangePersionPicture(sessionData.trading.UserSN, NewPicPath);
             }
 
-            dbUser.UpdateUserInfo(user);
+            um.Update(user.UserSN, user, new string[] { "*" });
             result.JsonReturnCode = 1;
             result.Message = "資料已更新。";
             return Json(result, JsonRequestBehavior.DenyGet);

@@ -329,7 +329,7 @@
     <Content Include="Views\Shared\Error.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\InnoThinkMain.oo" />
+    <None Include="App_Data\InnoThinkMain..bak.oo" />
     <Content Include="Views\Shared\TopicStep.Master" />
     <None Include="CDN\Js\lib\jquery.min.map" />
     <Content Include="Upload\_temp\TempFolder" />
@@ -354,10 +354,17 @@
       <Project>{8fff0967-6cdc-404d-a0f8-1d2d75756e9b}</Project>
       <Name>InnoThink.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InnoThink.Domain\InnoThink.Domain.csproj">
+      <Project>{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}</Project>
+      <Name>InnoThink.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rest.Core\Rest.Core.csproj">
       <Project>{3a850565-71b6-4b0c-b255-2d2a57e37b8b}</Project>
       <Name>Rest.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

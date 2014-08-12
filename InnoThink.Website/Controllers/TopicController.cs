@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using InnoThink.BLL.User;
 
 namespace InnoThink.Website.Controllers
 {
@@ -22,7 +23,6 @@ namespace InnoThink.Website.Controllers
         private static readonly SysLog Log = SysLog.GetLogger(typeof(TopicController));
 
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
-        private static readonly DbUserTable dbUser = new DbUserTable() { };
         private static readonly DbTopicMemberTable dbTopicMember = new DbTopicMemberTable() { };
         private static readonly DbBestStep1Table dbBest1 = new DbBestStep1Table() { };
         private static readonly DbBestIdeaTable dbBestIdea = new DbBestIdeaTable() { };
@@ -44,7 +44,7 @@ namespace InnoThink.Website.Controllers
             var topic = dbTopic.getTopicBySN(TopicSN);
             viewdata["IsLeader"] = (string.Compare(trading.LoginId, topic.LeaderLoginId, true) == 0);
             viewdata["IsClose"] = topic.DateClosed > DateTime.MinValue;
-            viewdata["IsTeamMember"] = dbTopic.IsTeamMember(TopicSN, trading.sn);
+            viewdata["IsTeamMember"] = dbTopic.IsTeamMember(TopicSN, trading.UserSN);
             viewdata["Subject"] = topic.Subject;
             viewdata["TopicSN"] = topic.SN;
             if (isAdmin)
@@ -61,9 +61,9 @@ namespace InnoThink.Website.Controllers
 
             //online member need add self sn on the list
             var allonline = ConnectionManageBase.GetAllOnLineUserSN(TopicSN);
-            if (allonline.Where(x => x == trading.sn).Count() == 0)
+            if (allonline.Where(x => x == trading.UserSN).Count() == 0)
             {
-                allonline.Add(trading.sn);
+                allonline.Add(trading.UserSN);
             }
             var OnlineTeamMember = allmembers.Where(x => allonline.Contains(x.UserSN)).ToList();
             var OfflineTeamMember = allmembers.Where(x => !allonline.Contains(x.UserSN)).ToList();
@@ -80,11 +80,11 @@ namespace InnoThink.Website.Controllers
             bool IsTeamMember = (bool)ViewData["IsTeamMember"];
             if (IsTeamMember)
             {
-                var mySetting = Step0d.Where(x => x.UserSn == sessionData.trading.sn).FirstOrDefault();
+                var mySetting = Step0d.Where(x => x.UserSn == sessionData.trading.UserSN).FirstOrDefault();
                 if (mySetting != null && mySetting.UserSn > 0)
                 {
-                    model.LeaderVoteTo = Step0d.Where(x => x.UserSn == sessionData.trading.sn).FirstOrDefault().LeaderVotoToSN;
-                    model.MyDescription = Step0d.Where(x => x.UserSn == sessionData.trading.sn).FirstOrDefault().Description;
+                    model.LeaderVoteTo = Step0d.Where(x => x.UserSn == sessionData.trading.UserSN).FirstOrDefault().LeaderVotoToSN;
+                    model.MyDescription = Step0d.Where(x => x.UserSn == sessionData.trading.UserSN).FirstOrDefault().Description;
                 }
             }
             Step0d.ForEach(x =>
@@ -121,10 +121,14 @@ namespace InnoThink.Website.Controllers
                 TopicSN = TopicSN,
                 DateCreated = Topic.DateCreated.ToString("yyyy-MM-dd"),
             };
-
-            var LeaderUser = dbUser.getUserByLoginId(Topic.LeaderLoginId);
-            model.LeaderUserSN = LeaderUser.SN;
-            model.IsLeader = (model.LeaderUserSN == sessionData.trading.sn);
+            User_Manager um = new User_Manager();
+            
+            var LeaderUser = um.GetByParameter(new Domain.User.User_Filter()
+            {
+                LoginId = Topic.LeaderLoginId
+            }).FirstOrDefault();
+            model.LeaderUserSN = LeaderUser.UserSN;
+            model.IsLeader = (model.LeaderUserSN == sessionData.trading.UserSN);
 
             List<TeamMemberUIModel> Step1d = dbTopic.getStep0Description(TopicSN);
 
@@ -172,7 +176,7 @@ namespace InnoThink.Website.Controllers
             MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
             ResultViewModel Model = new ResultViewModel() { };
-            var list = dbResult.GetAllByTopicSN(TopicSN, Result, sessionData.trading.sn);
+            var list = dbResult.GetAllByTopicSN(TopicSN, Result, sessionData.trading.UserSN);
             //Change image path.
             list.ForEach(x =>
             {
@@ -222,7 +226,7 @@ namespace InnoThink.Website.Controllers
             MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
             Best3ViewModel Model = new Best3ViewModel() { };
-            var list = dbBestIdeaMemRank.GetAllByTopicSN(TopicSN, sessionData.trading.sn);
+            var list = dbBestIdeaMemRank.GetAllByTopicSN(TopicSN, sessionData.trading.UserSN);
             Model.Listing = list;
             Model.TopicSN = TopicSN;
             ViewData["Model"] = Model;
@@ -254,7 +258,7 @@ namespace InnoThink.Website.Controllers
             MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
             Best5ViewModel Model = new Best5ViewModel() { };
-            var list = dbBestGroupRank.GetAllByTopicSN(TopicSN, sessionData.trading.sn);
+            var list = dbBestGroupRank.GetAllByTopicSN(TopicSN, sessionData.trading.UserSN);
             Model.Listing = list;
             Model.TopicSN = TopicSN;
             ViewData["Model"] = Model;

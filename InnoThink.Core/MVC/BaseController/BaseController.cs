@@ -25,8 +25,11 @@ namespace InnoThink.Core.MVC.BaseController
             ControllerPermision = permission;
             if (ControllerPermision == Permission.Private && sessionData != null && sessionData.trading != null)
             {
-                isAdmin = sessionData.trading.Position == 11 || Admins.Contains(sessionData.trading.LoginId);
-                isSys = sessionData.trading.Position == 111 || Admins.Contains(sessionData.trading.LoginId);
+                //TODO:nned to get the permission for the Admin and System manager.
+                //isAdmin = sessionData.trading.Position == 11 || Admins.Contains(sessionData.trading.LoginId);
+                //isSys = sessionData.trading.Position == 111 || Admins.Contains(sessionData.trading.LoginId);
+                isAdmin = false;
+                isSys = false;
             }
         }
 
@@ -55,7 +58,7 @@ namespace InnoThink.Core.MVC.BaseController
             ViewData["_v"] = AppConfigManager.SystemSetting.StaticFileVersionNumber;
             if (sessionData != null && sessionData.trading != null && sessionData.trading.isLogined)
             {
-                ViewData["_UserSN"] = sessionData.trading.sn;
+                ViewData["_UserSN"] = sessionData.trading.UserSN;
                 ViewData["_isAdmin"] = isAdmin;
                 ViewData["_isSys"] = isSys;
             }

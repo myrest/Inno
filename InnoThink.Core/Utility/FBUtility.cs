@@ -2,6 +2,7 @@
 using InnoThink.Core.Model;
 using Rest.Core.Utility;
 using System;
+using InnoThink.Domain.Facebook;
 
 namespace InnoThink.Core.Utility
 {

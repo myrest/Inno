@@ -18,7 +18,14 @@ namespace InnoThink.Core.Utility
 
         public static string ConvertPicturePath(string fileName)
         {
-            return ConvertImagePath(IconPathType.PersonIcon, fileName);
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return default(string);
+            }
+            else
+            {
+                return ConvertImagePath(IconPathType.PersonIcon, fileName);
+            }
         }
 
         public static string ConvertTempPath(string fileName)

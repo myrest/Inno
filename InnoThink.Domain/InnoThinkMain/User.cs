@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace InnoThink.Domain.Users
+namespace InnoThink.Domain.User
 {
     /*
     #region interface
-    public interface IUsers_Info
+    public interface IUser_Info
     {
         string Encode { get; set; }
         DateTime LastUpdate { get; set; }
@@ -19,15 +19,15 @@ namespace InnoThink.Domain.Users
         int Status { get; set; }
         int TeamGroupSN { get; set; }
         string UserName { get; set; }
-        int UsersSN { get; set; }
+        int UserSN { get; set; }
     }
     #endregion
     */
 
     #region Implementation
-    [Rest.Core.PetaPoco.TableName("Users")]
-    [Rest.Core.PetaPoco.PrimaryKey("UsersSN")]
-    public class Users_Info //: IUsers_Info
+    [Rest.Core.PetaPoco.TableName("User")]
+    [Rest.Core.PetaPoco.PrimaryKey("UserSN")]
+    public class User_Info //: IUser_Info
     {
         #region private fields
         public string Encode { get; set; }
@@ -39,19 +39,24 @@ namespace InnoThink.Domain.Users
         public int Status { get; set; }
         public int TeamGroupSN { get; set; }
         public string UserName { get; set; }
-        public int UsersSN { get; set; }
+        public int UserSN { get; set; }
         #endregion
 
         #region Constructor
-        public Users_Info()
+        public User_Info()
         {
+            LastUpdate = DateTime.Now;
         }
         #endregion
     }
 
-    public class Users_Filter
+    public class User_Filter
     {
-        //You can copy above Users_Info field for search criteria
+        public string LoginId { get; set; }
+        public int? Status { get; set; }
+        public int? TeamGroupSN { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
     }
     #endregion
 }

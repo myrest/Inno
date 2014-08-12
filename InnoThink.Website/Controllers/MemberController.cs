@@ -6,6 +6,7 @@ using InnoThink.Website.Models;
 using Rest.Core.Utility;
 using System;
 using System.Web.Mvc;
+using InnoThink.BLL.User;
 
 namespace InnoThink.Website.Controllers
 {
@@ -16,7 +17,7 @@ namespace InnoThink.Website.Controllers
         private static readonly SysLog Log = SysLog.GetLogger(typeof(MemberController));
 
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
-        private static readonly DbUserTable dbUser = new DbUserTable() { };
+        
         private static readonly DbTopicMemberTable dbTopicMem = new DbTopicMemberTable() { };
 
         public MemberController()
@@ -36,7 +37,9 @@ namespace InnoThink.Website.Controllers
 
         public ActionResult UpdateMyInfo()
         {
-            DbUserModel user = dbUser.getUserBySN(sessionData.trading.sn);
+            User_Manager um = new User_Manager();
+            var user = um.GetByID(sessionData.trading.UserSN);
+            
             //check the personal icon is come from out site link.
             user.Picture = StringUtility.ConvertPicturePath(user.Picture);
 
@@ -55,7 +58,8 @@ namespace InnoThink.Website.Controllers
             TopicSimpleViewModel model = new TopicSimpleViewModel();
             try
             {
-                var user = dbUser.getUserBySN(sessionData.trading.sn);
+                User_Manager um = new User_Manager();
+                var user = um.GetByID(sessionData.trading.UserSN);
                 if (isAdmin)
                 {
                     model.DBResult = dbTopic.GetAllTopic_Admin();
@@ -64,7 +68,7 @@ namespace InnoThink.Website.Controllers
                 {
                     model.DBResult = dbTopic.GetAllTopicByStatus(TopicStatus.InProcess, user.TeamGroupSN, sessionData.trading.LoginId);
                 }
-                model.JoinedTopic = dbTopicMem.GetAllJoinedTopicByUserSN(sessionData.trading.sn);
+                model.JoinedTopic = dbTopicMem.GetAllJoinedTopicByUserSN(sessionData.trading.UserSN);
 
                 model.JsonReturnCode = 1;
             }
@@ -82,7 +86,7 @@ namespace InnoThink.Website.Controllers
             TopicSimpleViewModel model = new TopicSimpleViewModel();
             try
             {
-                model.DBResult = dbTopic.GetAllMyTopicByStatus(TopicStatus.InProcess, sessionData.trading.sn);
+                model.DBResult = dbTopic.GetAllMyTopicByStatus(TopicStatus.InProcess, sessionData.trading.UserSN);
                 model.JsonReturnCode = 1;
             }
             catch (Exception ex)

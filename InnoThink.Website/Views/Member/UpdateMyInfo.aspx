@@ -2,7 +2,7 @@
 
 <%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
 <%@ Import Namespace="InnoThink.Website.Models" %>
-<%@ Import Namespace="InnoThink.Core.DB" %>
+<%@ Import Namespace="InnoThink.Domain.User" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     歡迎來到 InnoThink
 </asp:Content>
@@ -12,7 +12,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%
-        DbUserModel Model = (DbUserModel)ViewData["Model"];
+        User_Info Model = (User_Info)ViewData["Model"];
         string Picture = string.Empty;
         if (!string.IsNullOrEmpty(Model.Picture))
         {
@@ -36,6 +36,13 @@
                 </td>
                 <td>
                     <input type="text" id="Professional" value="<% =Model.Professional %>" />
+                </td>
+            </tr>
+            <tr>
+                <td>所屬群組：
+                </td>
+                <td>
+                    <input type="text" id="TeamGroupSN" value="<% =Model.TeamGroupSN %>" />
                 </td>
             </tr>
             <tr>
@@ -76,7 +83,7 @@
         });
         var updateMyInfo = {
             _Save: function () {
-                var param = { Professional: $('#Professional').val(), UserName: $('#UserName').val() };
+                var param = { Professional: $('#Professional').val(), UserName: $('#UserName').val(), TeamGroupSN: $('#TeamGroupSN') };
                 utility.service("MemberService/UpdateMyInfo", param, "POST", function (data) {
                     if (data.code > 0) {
                         var redirto = '/Member/UserInfo' + '?' + (new Date()).getMilliseconds();

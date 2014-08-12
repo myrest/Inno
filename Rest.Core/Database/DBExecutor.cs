@@ -47,7 +47,7 @@ namespace Rest.Core
 
         private static string _GetDatabaseFullPath(DataBaseName dbname)
         {
-            string DataBaseFileName = dbname.ToString() + ".oo";
+            string DataBaseFileName = dbname.ToString() + ".oo2";
             string dbFolder = string.Empty;
             if (HttpContext.Current != null)
             {

@@ -1,4 +1,9 @@
-﻿namespace InnoThink.Core.Model
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace InnoThink.Domain.Facebook
 {
     public class FacebookPersonAuth
     {

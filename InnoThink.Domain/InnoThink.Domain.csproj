@@ -42,12 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Facebook\FacebookPersonAuth.cs" />
     <Compile Include="InnoThinkMain\BackofficeUser.cs" />
     <Compile Include="InnoThinkMain\TeamGroup.cs" />
-    <Compile Include="InnoThinkMain\Users.cs" />
     <Compile Include="Constancy\Enums.cs" />
     <Compile Include="Constancy\EnumScenario.cs" />
     <Compile Include="Constancy\Permission.cs" />
+    <Compile Include="InnoThinkMain\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

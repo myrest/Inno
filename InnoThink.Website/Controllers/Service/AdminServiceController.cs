@@ -4,6 +4,8 @@ using InnoThink.Core.MVC.BaseController;
 using InnoThink.Website.Models;
 using Rest.Core.Utility;
 using System.Web.Mvc;
+using InnoThink.BLL.User;
+using System.Linq;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -15,7 +17,7 @@ namespace InnoThink.Website.Controllers.Service
 
         private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
         private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
-        private static readonly DbUserTable dbUser = new DbUserTable() { };
+        
         private static readonly DbTeamGroupTable dbTgroup = new DbTeamGroupTable() { };
 
         public AdminServiceController()
@@ -26,18 +28,8 @@ namespace InnoThink.Website.Controllers.Service
         [HttpPost]
         public JsonResult AdjustUserPosition(string UserLoginId, int Position)
         {
+            //This should be remove, only Admin account can' has permission, user is only user.
             ResultBase result = new ResultBase() { };
-            var user = dbUser.getUserByLoginId(UserLoginId);
-            if (user != null && user.SN > 0)
-            {
-                user.Position = Position;
-                dbUser.UpdateUserInfo(user);
-                result.setMessage("權限己調整，請該使用者重新登入，以取得新的權限。");
-            }
-            else
-            {
-                result.setErrorMessage("該使用者不存在，請輸入正確的使用者登入帳號。");
-            }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
@@ -63,20 +55,24 @@ namespace InnoThink.Website.Controllers.Service
         public JsonResult AddTeamGroupMember(string LoginId, int TeamGroupSN)
         {
             ResultBase result = new ResultBase() { };
-            var user = dbUser.getUserByLoginId(LoginId);
-            if (user != null && user.SN > 0 && user.TeamGroupSN == 0)
+            User_Manager um = new User_Manager();
+            var user = um.GetByParameter(new Domain.User.User_Filter()
+            {
+                LoginId = LoginId
+            }).FirstOrDefault();
+            if (user != null && user.UserSN > 0 && user.TeamGroupSN == 0)
             {
                 user.TeamGroupSN = TeamGroupSN;
-                dbUser.UpdateUserInfo(user);
+                um.Update(user.UserSN, user, new string[] { "*" });
                 result.setMessage(string.Empty);
             }
             else
             {
-                if (user.TeamGroupSN == TeamGroupSN && user.SN > 0)
+                if (user.TeamGroupSN == TeamGroupSN && user.UserSN > 0)
                 {
                     result.setErrorMessage("該成員已是本團隊成員之一。");
                 }
-                else if (user.TeamGroupSN > 0 && user.SN > 0)
+                else if (user.TeamGroupSN > 0 && user.UserSN > 0)
                 {
                     var tg = dbTgroup.getTeamGroupBySN(user.TeamGroupSN);
                     result.setErrorMessage(string.Format("該成員已加入[{0}]團隊，請先退出該團隊後再加入。", tg.GroupName));
@@ -93,11 +89,12 @@ namespace InnoThink.Website.Controllers.Service
         public JsonResult DeleteTeamGroupMember(int SN)
         {
             ResultBase result = new ResultBase() { };
-            var user = dbUser.getUserBySN(SN);
-            if (user != null && user.SN > 0)
+            User_Manager um = new User_Manager();
+            var user = um.GetByID(sessionData.trading.UserSN);
+            if (user != null && user.UserSN > 0)
             {
                 user.TeamGroupSN = 0;
-                dbUser.UpdateUserInfo(user);
+                um.Update(user);
                 result.setMessage(string.Empty);
             }
             else

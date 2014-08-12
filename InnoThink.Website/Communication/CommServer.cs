@@ -10,6 +10,7 @@ using Microsoft.AspNet.SignalR.Hubs;
 using Rest.Core.Utility;
 using System;
 using System.Collections.Generic;
+using InnoThink.Domain.User;
 
 namespace InnoThink.Website.Communication
 {
@@ -262,7 +263,7 @@ namespace InnoThink.Website.Communication
             });
         }
 
-        internal void syncOnlineUser(int TopicSN, DbUserModel user)
+        internal void syncOnlineUser(int TopicSN, User_Info user)
         {
             //get connections
             var list = Unit1Cache.GetAllConnections(TopicSN);
