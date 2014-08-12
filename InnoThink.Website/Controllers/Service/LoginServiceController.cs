@@ -145,7 +145,7 @@ namespace InnoThink.Website.Controllers.Service
                     Password = password,
                     Status = 1,
                     UserName = username,
-                    Picture = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT1kUj3CKnEap-jazJzzVSOH6e8eWH5fGoiqVNF_lRlv0s8Kzt2Mg"
+                    Picture = "/pic/NoIcon.jpg"
                 });
 
                 MakeTrading(username);

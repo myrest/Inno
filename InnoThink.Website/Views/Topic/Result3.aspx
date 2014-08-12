@@ -3,7 +3,7 @@
 
 <%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
 <%@ Import Namespace="InnoThink.Website.Models" %>
-<%@ Import Namespace="InnoThink.Core.DB" %>
+<%@ Import Namespace="InnoThink.Domain" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     設計專案成果
 </asp:Content>

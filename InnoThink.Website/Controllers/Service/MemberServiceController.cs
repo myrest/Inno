@@ -155,7 +155,7 @@ namespace InnoThink.Website.Controllers.Service
                 BoardCache.ChangePersionPicture(sessionData.trading.UserSN, NewPicPath);
             }
 
-            um.Update(user.UserSN, user, new string[] { "*" });
+            um.Update(user);
             result.JsonReturnCode = 1;
             result.Message = "資料已更新。";
             return Json(result, JsonRequestBehavior.DenyGet);

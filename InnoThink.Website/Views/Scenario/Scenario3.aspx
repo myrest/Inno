@@ -3,7 +3,7 @@
 
 <%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
 <%@ Import Namespace="InnoThink.Website.Models" %>
-<%@ Import Namespace="InnoThink.Core.DB" %>
+<%@ Import Namespace="InnoThink.Domain" %>
 <%@ Import Namespace="InnoThink.Core.Constancy" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     情境分析法-3

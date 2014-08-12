@@ -2,7 +2,7 @@
 
 <%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
 <%@ Import Namespace="InnoThink.Website.Models" %>
-<%@ Import Namespace="InnoThink.Domain.User" %>
+<%@ Import Namespace="InnoThink.Domain" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     歡迎來到 InnoThink
 </asp:Content>
@@ -18,6 +18,7 @@
         {
             Picture = string.Format("<img src=\"{0}\" />", Model.Picture);
         }
+        string TeamGroupSN = (Model.TeamGroupSN == 0) ? "" : Model.TeamGroupSN.ToString();
     %>
     <div class="body0">
         <div id="body1">
@@ -42,7 +43,8 @@
                 <td>所屬群組：
                 </td>
                 <td>
-                    <input type="text" id="TeamGroupSN" value="<% =Model.TeamGroupSN %>" />
+                    <input type="text" id="TeamGroupSN" value="<% =TeamGroupSN %>" /><br />
+                    若您不曉得您的所屬群組，請留空即可。
                 </td>
             </tr>
             <tr>
@@ -83,7 +85,9 @@
         });
         var updateMyInfo = {
             _Save: function () {
-                var param = { Professional: $('#Professional').val(), UserName: $('#UserName').val(), TeamGroupSN: $('#TeamGroupSN') };
+                var TeamgroupSN = parseInt($('#TeamGroupSN').val(), 10);
+                if (isNaN(TeamgroupSN)) { TeamgroupSN = 0; }
+                var param = { Professional: $('#Professional').val(), UserName: $('#UserName').val(), TeamGroupSN: TeamgroupSN };
                 utility.service("MemberService/UpdateMyInfo", param, "POST", function (data) {
                     if (data.code > 0) {
                         var redirto = '/Member/UserInfo' + '?' + (new Date()).getMilliseconds();

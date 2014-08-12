@@ -67,7 +67,7 @@ namespace InnoThink.Core.Utility
                 //check the personal icon is come from out site link.
                 if (!string.IsNullOrEmpty(fileName))
                 {
-                    if (!fileName.StartsWith("http"))
+                    if (!fileName.StartsWith("http") && string.Compare("/pic/NoIcon.jpg", fileName, true) != 0)
                     {
                         rtn = string.Format("{0}/{1}", FolderName, fileName);
                     }
