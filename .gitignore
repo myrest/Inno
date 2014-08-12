@@ -37,3 +37,5 @@
 /InnoThink.Domain/obj/Debug
 /InnoThink.Core/*.user
 /InnoThink.Domain/*.user
+/InnoThink.Domain/bin
+/Rest.Core/*.user
