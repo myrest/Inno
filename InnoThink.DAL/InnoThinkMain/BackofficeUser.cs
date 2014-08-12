@@ -1,5 +1,4 @@
 using InnoThink.Domain;
-using InnoThink.Domain.BackofficeUser;
 using InnoThink.Domain.Constancy;
 using Rest.Core.Constancy;
 using Rest.Core;

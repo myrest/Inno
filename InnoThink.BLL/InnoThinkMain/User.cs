@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using InnoThink.DAL.User;
-using InnoThink.Domain.User;
+using InnoThink.Domain;
 using Rest.Core.Constancy;
 using Rest.Core.Utility;
 using InnoThink.Domain.Facebook;
@@ -37,7 +37,7 @@ namespace InnoThink.BLL.User
         #region Operation: Select
         public User_Info GetBySN(long UserSN)
         {
-            return new User_Repo().GetByID(UserSN);
+            return new User_Repo().GetBySN(UserSN);
         }
 
         public IEnumerable<User_Info> GetAll()
@@ -89,7 +89,7 @@ namespace InnoThink.BLL.User
         #region public functions
         public bool IsExist(long UserSN)
         {
-            return (GetByID(UserSN) != null);
+            return (GetBySN(UserSN) != null);
         }
 
         public bool FBLoginCheck(FacebookPersonAuth FbObject)

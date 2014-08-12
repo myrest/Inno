@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using InnoThink.BLL.User;
+using InnoThink.Domain;
 
 namespace InnoThink.Website.Controllers
 {
@@ -123,7 +124,7 @@ namespace InnoThink.Website.Controllers
             };
             User_Manager um = new User_Manager();
             
-            var LeaderUser = um.GetByParameter(new Domain.User.User_Filter()
+            var LeaderUser = um.GetByParameter(new User_Filter()
             {
                 LoginId = Topic.LeaderLoginId
             }).FirstOrDefault();

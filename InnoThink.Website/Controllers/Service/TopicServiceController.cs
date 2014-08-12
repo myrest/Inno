@@ -64,7 +64,7 @@ namespace InnoThink.Website.Controllers.Service
             dbTopMem.UpdateTopicMember(TopicMember);
             //Get user object.
             User_Manager um = new User_Manager();
-            var User = um.GetByID(sessionData.trading.UserSN);
+            var User = um.GetBySN(sessionData.trading.UserSN);
 
             //Get all team member vote for leader.
             List<DbTopicMemberModel> TeamMembers = dbTopMem.getALLTopicMember(data.TopicSN);
@@ -72,7 +72,7 @@ namespace InnoThink.Website.Controllers.Service
 
             //Update date topic inofrmation for leader login id.
             int LeaderSN = LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key;
-            var User_Leader = um.GetByID(LeaderSN);
+            var User_Leader = um.GetBySN(LeaderSN);
             var TopicInfo = dbTopic.getTopicBySN(data.TopicSN);
             TopicInfo.LeaderLoginId = User_Leader.LoginId;
             dbTopic.UpdateTopic(TopicInfo);
@@ -89,7 +89,7 @@ namespace InnoThink.Website.Controllers.Service
                     SN = User.UserSN,
                     Description = data.Descript.Replace("\n", "<BR>"),
                     Votes = LeaderVotes,
-                    LeaderName = um.GetByID(LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key).UserName
+                    LeaderName = um.GetBySN(LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key).UserName
                 }
             };
             CommServer.Instance.Unit1update(data.TopicSN, msg);
@@ -313,7 +313,7 @@ namespace InnoThink.Website.Controllers.Service
             var LeaderVotes = TeamMembers.ToDictionary(x => x.UserSN, x => TeamMembers.Where(y => y.LeaderSNVoteTo == x.UserSN).Count());
             int LeaderSN = LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key;
             User_Manager um = new User_Manager();
-            var User_Leader = um.GetByID(LeaderSN);
+            var User_Leader = um.GetBySN(LeaderSN);
             var TopicInfo = dbTopic.getTopicBySN(TopicSN);
             if (LeaderSN == trading.UserSN)
             {

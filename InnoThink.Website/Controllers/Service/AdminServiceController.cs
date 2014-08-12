@@ -6,6 +6,7 @@ using Rest.Core.Utility;
 using System.Web.Mvc;
 using InnoThink.BLL.User;
 using System.Linq;
+using InnoThink.Domain;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -56,7 +57,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase() { };
             User_Manager um = new User_Manager();
-            var user = um.GetByParameter(new Domain.User.User_Filter()
+            var user = um.GetByParameter(new User_Filter()
             {
                 LoginId = LoginId
             }).FirstOrDefault();
@@ -90,7 +91,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase() { };
             User_Manager um = new User_Manager();
-            var user = um.GetByID(sessionData.trading.UserSN);
+            var user = um.GetBySN(sessionData.trading.UserSN);
             if (user != null && user.UserSN > 0)
             {
                 user.TeamGroupSN = 0;

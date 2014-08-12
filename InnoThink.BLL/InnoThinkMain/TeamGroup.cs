@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using InnoThink.DAL.TeamGroup;
-using InnoThink.Domain.TeamGroup;
+using InnoThink.Domain;
 using Rest.Core.Constancy;
 using Rest.Core.Utility;
 
@@ -36,7 +36,7 @@ namespace InnoThink.BLL.TeamGroup
         #region Operation: Select
         public TeamGroup_Info GetBySN(long TeamGroupSN)
         {
-            return new TeamGroup_Repo().GetByID(TeamGroupSN);
+            return new TeamGroup_Repo().GetBySN(TeamGroupSN);
         }
 
         public IEnumerable<TeamGroup_Info> GetAll()
@@ -88,7 +88,7 @@ namespace InnoThink.BLL.TeamGroup
         #region public functions
         public bool IsExist(long TeamGroupSN)
         {
-            return (GetByID(TeamGroupSN) != null);
+            return (GetBySN(TeamGroupSN) != null);
         }
         #endregion
 

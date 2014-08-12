@@ -38,7 +38,7 @@ namespace InnoThink.Website.Controllers
         public ActionResult UpdateMyInfo()
         {
             User_Manager um = new User_Manager();
-            var user = um.GetByID(sessionData.trading.UserSN);
+            var user = um.GetBySN(sessionData.trading.UserSN);
             
             //check the personal icon is come from out site link.
             user.Picture = StringUtility.ConvertPicturePath(user.Picture);
@@ -59,7 +59,7 @@ namespace InnoThink.Website.Controllers
             try
             {
                 User_Manager um = new User_Manager();
-                var user = um.GetByID(sessionData.trading.UserSN);
+                var user = um.GetBySN(sessionData.trading.UserSN);
                 if (isAdmin)
                 {
                     model.DBResult = dbTopic.GetAllTopic_Admin();

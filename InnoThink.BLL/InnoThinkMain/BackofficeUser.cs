@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using InnoThink.DAL.BackofficeUser;
-using InnoThink.Domain.BackofficeUser;
+using InnoThink.Domain;
 using Rest.Core.Constancy;
 using Rest.Core.Utility;
 
@@ -36,7 +36,7 @@ namespace InnoThink.BLL.BackofficeUser
         #region Operation: Select
         public BackofficeUser_Info GetBySN(long BackofficeUserSN)
         {
-            return new BackofficeUser_Repo().GetByID(BackofficeUserSN);
+            return new BackofficeUser_Repo().GetBySN(BackofficeUserSN);
         }
 
         public IEnumerable<BackofficeUser_Info> GetAll()
@@ -88,7 +88,7 @@ namespace InnoThink.BLL.BackofficeUser
         #region public functions
         public bool IsExist(long BackofficeUserSN)
         {
-            return (GetByID(BackofficeUserSN) != null);
+            return (GetBySN(BackofficeUserSN) != null);
         }
         #endregion
 

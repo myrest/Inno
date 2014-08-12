@@ -10,7 +10,7 @@ using Microsoft.AspNet.SignalR.Hubs;
 using Rest.Core.Utility;
 using System;
 using System.Collections.Generic;
-using InnoThink.Domain.User;
+using InnoThink.Domain;
 
 namespace InnoThink.Website.Communication
 {

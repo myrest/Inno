@@ -14,7 +14,7 @@ using System.Linq;
 using System.Web.Mvc;
 using InnoThink.BLL.User;
 using InnoThink.Domain.Facebook;
-using InnoThink.Domain.User;
+using InnoThink.Domain;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -39,7 +39,7 @@ namespace InnoThink.Website.Controllers.Service
                 trading = sessionData.trading;
             }
             User_Manager um = new User_Manager();
-            var user = um.GetByParameter(new Domain.User.User_Filter()
+            var user = um.GetByParameter(new User_Filter()
             {
                 LoginId = LoginId
             }).FirstOrDefault();
@@ -81,7 +81,7 @@ namespace InnoThink.Website.Controllers.Service
             }
             //Sync all the team member at the same TopicSN
             User_Manager um = new User_Manager();
-            var user = um.GetByID(sessionData.trading.UserSN);
+            var user = um.GetBySN(sessionData.trading.UserSN);
             user.Picture = StringUtility.ConvertPicturePath(user.Picture);
             var cacheobj = ConnectionManageBase.GetByUserSN(sessionData.trading.UserSN);
             CommServer.Instance.syncOnlineUser(cacheobj.TopicSN, user);
@@ -129,7 +129,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase() { };
             User_Manager um = new User_Manager();
-            var user = um.GetByParameter(new Domain.User.User_Filter()
+            var user = um.GetByParameter(new User_Filter()
             {
                 LoginId = username
             }).FirstOrDefault();
@@ -139,7 +139,7 @@ namespace InnoThink.Website.Controllers.Service
             }
             else
             {
-                um.Insert(new Domain.User.User_Info()
+                um.Insert(new User_Info()
                 {
                     LoginId = username,
                     Password = password,

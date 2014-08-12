@@ -142,7 +142,6 @@ namespace {0}
             StringBuilder sb = new StringBuilder();
             #region Create Domain StringBuilder
             sb.AppendFormat(@"using {0}.Domain;
-using {0}.Domain.{2};
 using {0}.Domain.Constancy;
 using Rest.Core.Constancy;
 using Rest.Core;
@@ -329,7 +328,7 @@ namespace {1}
 using System.Collections.Generic;
 using System.Linq;
 using {0}.DAL.{2};
-using {0}.Domain.{2};
+using {0}.Domain;
 using Rest.Core.Constancy;
 using Rest.Core.Utility;
 
@@ -363,7 +362,7 @@ namespace {1}
         #region Operation: Select
         public {2}_Info GetBySN(long {3})
         {{
-            return new {2}_Repo().GetByID({3});
+            return new {2}_Repo().GetBySN({3});
         }}
 
         public IEnumerable<{2}_Info> GetAll()
@@ -415,7 +414,7 @@ namespace {1}
         #region public functions
         public bool IsExist(long {3})
         {{
-            return (GetByID({3}) != null);
+            return (GetBySN({3}) != null);
         }}
         #endregion
 

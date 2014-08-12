@@ -43,7 +43,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase() { };
             User_Manager um = new User_Manager();
-            var user = um.GetByID(sessionData.trading.UserSN);
+            var user = um.GetBySN(sessionData.trading.UserSN);
             DbBoardContent model = new DbBoardContent()
             {
                 Content = Message,

@@ -1,7 +1,7 @@
 ﻿using InnoThink.Core.DB;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using InnoThink.Domain.User;
+using InnoThink.Domain;
 
 namespace InnoThink.Website.Models
 {

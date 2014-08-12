@@ -53,7 +53,7 @@ namespace InnoThink.Website.Controllers.Service
                     else
                     {
                         User_Manager um = new User_Manager();
-                        var user = um.GetByID(sessionData.trading.UserSN);
+                        var user = um.GetBySN(sessionData.trading.UserSN);
                         TopicPublishType opentype = EnumHelper.GetEnumByName<TopicPublishType>(opento.ToString());
                         if (opentype == TopicPublishType.TeamGroup && user.TeamGroupSN < 1)
                         {
@@ -109,7 +109,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase();
             User_Manager um = new User_Manager();
-            var user = um.GetByID(sessionData.trading.UserSN);
+            var user = um.GetBySN(sessionData.trading.UserSN);
             if (user != null && user.UserSN > 0)
             {
                 if (string.Compare(user.Password, OldPassword) == 0)
@@ -135,7 +135,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase();
             User_Manager um = new User_Manager();
-            var user = um.GetByID(sessionData.trading.UserSN);
+            var user = um.GetBySN(sessionData.trading.UserSN);
 
             user.Professional = Professional;
             user.UserName = UserName;
