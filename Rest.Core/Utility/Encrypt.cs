@@ -7,7 +7,7 @@ namespace Rest.Core.Utility
 {
     public class Encrypt
     {
-        private static string RandomStr(int length)
+        public static string RandomStr(int length)
         {
             var Words = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&=+\|<>?,/[]{}:;'`~".ToCharArray();
             var lenght = Words.Count();

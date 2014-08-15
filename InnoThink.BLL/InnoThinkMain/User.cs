@@ -57,6 +57,9 @@ namespace InnoThink.BLL.User
             long newID = 0;
             try
             {
+                string encode = Encrypt.RandomStr(10);
+                data.Encode = encode;
+                data.Password = Encrypt.EncryptPassword(data.Password, encode);
                 newID = new User_Repo().Insert(data);
             }
             catch (Exception ex)
@@ -132,16 +135,14 @@ namespace InnoThink.BLL.User
             Dictionary<string, string> para = new Dictionary<string, string>() { };
             para.Add("LoginId", LoginId);
             para.Add("Password", password);
-
             var user = new User_Repo().GetByParam(new User_Filter()
             {
                 LoginId = LoginId,
-                Password = password
-            });
-
-            if (user.Count() > 0)
+            }).FirstOrDefault();
+            if (user != null)
             {
-                return true;
+                string encPwd = Encrypt.EncryptPassword(password, user.Encode);
+                return (string.Compare(encPwd, user.Password) == 0);
             }
             else
             {
