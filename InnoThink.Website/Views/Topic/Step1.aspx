@@ -317,7 +317,7 @@
                                                     </td>
                                                     <td>票數：<% =item.Value.VoteNums %>票
                                                         <%
-                                                        if (item.Value.UserSn == Model.LeaderUserSN)
+                                                        if (item.Value.UserSN == Model.LeaderUserSN)
                                                         {
                                                             Response.Write(string.Format("（恭喜{0}當選隊長!!）", item.Value.UserName));
                                                         }
@@ -457,14 +457,14 @@
                                             if (Model.IsLeader)
                                             {
                                     %>
-                                    <input type="text" name="HandleJob" usersn="<% =item.Value.UserSn %>" size="40" class="syncInput"
+                                    <input type="text" name="HandleJob" UserSN="<% =item.Value.UserSN %>" size="40" class="syncInput"
                                         value="<% =item.Value.HandleJob %>" />
                                     <%
                                             }
                                             else
                                             {
                                     %>
-                                    <span class="HandleJob" usersn="<% =item.Value.UserSn %>">
+                                    <span class="HandleJob" UserSN="<% =item.Value.UserSN %>">
                                         <% =item.Value.HandleJob %></span>
                                     <%
                                             }
@@ -558,7 +558,7 @@
                             foreach (var item in Model.TeamMembers)
                             {
                         %>
-                        <tr class="<% =item.Value.UserSn %>">
+                        <tr class="<% =item.Value.UserSN %>">
                             <td width="15%" rowspan="2">
                                 <%
                                 string Picture = string.Empty;
@@ -574,7 +574,7 @@
                             <td valign="top">專長領域：<span class="Profess"><% =item.Value.Professional %></span>
                             </td>
                         </tr>
-                        <tr class="<% =item.Value.UserSn %>">
+                        <tr class="<% =item.Value.UserSN %>">
                             <td height="78" colspan="2" valign="top" class="descript">
                                 <% =item.Value.Description.Replace("\n", "<br>") %>
                             </td>
@@ -639,7 +639,7 @@
             SaveData: function () {
                 //make job handle
                 var handlejob = $.map($('input[name="HandleJob"]'), function (data) {
-                    var rtn = $(data).attr('usersn') + ',' + $(data).val();
+                    var rtn = $(data).attr('UserSN') + ',' + $(data).val();
                     return rtn;
                 });
                 handlejob = JSON.stringify(handlejob)
@@ -657,11 +657,11 @@
                 var value = $(this).val().trim();
                 var objectattr = '';
                 var objectattvalue = '';
-                var attr = $(this).attr('usersn');
+                var attr = $(this).attr('UserSN');
                 if (value.length > 0) {
                     if (typeof (attr) !== 'undefined' && attr !== false) {
-                        objectattr = 'usersn';
-                        objectattvalue = $(this).attr('usersn');
+                        objectattr = 'UserSN';
+                        objectattvalue = $(this).attr('UserSN');
                     }
                     //Send to server for sync each client.
                     inno198.conn.server.syncUIInfo(TopicSN, objectname, value, objectattr, objectattvalue);

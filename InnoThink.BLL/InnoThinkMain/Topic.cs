@@ -7,6 +7,7 @@ using Rest.Core.Constancy;
 using Rest.Core.Utility;
 using InnoThink.Domain.InnoThinkMain.Binding;
 using InnoThink.DAL.TopicMember;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.BLL.Topic
 {
@@ -108,6 +109,90 @@ namespace InnoThink.BLL.Topic
             int count = ExecuteReaderCount("TopicMember", paras);
             return (count > 0);
 */
+        }
+
+        public Topic_Info getFirstTopicByUsersSN(int UserSN)
+        {
+            var toprep = new Topic_Repo();
+            var tmrep = new TopicMember_Repo();
+            var tmData = tmrep.GetByParam(new TopicMember_Filter()
+            {
+                UserSN = UserSN
+            }).FirstOrDefault();
+            if (tmData != null)
+            {
+                return toprep.GetBySN(tmData.TopicSN);
+            }
+            else
+            {
+                return new Topic_Info();
+            }
+        }
+
+        public List<Topic_Info> GetAllTopic_Admin()
+        {
+            return GetAll().ToList();
+        }
+
+
+        public List<Topic_Info> GetAllTopicByStatus(TopicStatus topicStatus, int TeamGroupSN)
+        {
+            var rep = new Topic_Repo();
+            var data = rep.GetByParam(new Topic_Filter()
+            {
+                Status = topicStatus,
+                TeamGroupSN = TeamGroupSN,
+                PublishType = (int)TopicPublishType.All
+            });
+            if (data != null)
+            {
+                return data.ToList();
+            }
+            else
+            {
+                return new List<Topic_Info>() { };
+            }
+        }
+
+        public List<Topic_Info> GetAllMyTopicByStatus(TopicStatus topicStatus, int p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CloseTopic(int TopicSN, string UserLoginId)
+        {
+            var rep = new Topic_Repo();
+            var data = rep.GetBySN(TopicSN);
+            bool _isLeader = (string.Compare(UserLoginId, data.LeaderLoginId, true) == 0);
+
+            if (_isLeader)
+            {
+                data.Step = 99;
+                data.DateClosed = DateTime.Now;
+                rep.Update(data);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool CheckSubjectIsExist(string Subject)
+        {
+            var rep = new Topic_Repo();
+            var data = rep.GetByParam(new Topic_Filter()
+            {
+                Subject = Subject
+            }).FirstOrDefault();
+            if (data != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
     #endregion

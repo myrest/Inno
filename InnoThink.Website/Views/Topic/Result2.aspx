@@ -403,7 +403,7 @@
                                 <div class="score">
                                     評分：
                                     <%
-                                //string chkflag = (item.Value.UserSn == Model.LeaderVoteTo) ? " Checked=\"checked\"" : "";
+                                //string chkflag = (item.Value.UserSN == Model.LeaderVoteTo) ? " Checked=\"checked\"" : "";
                                 string[] flag = { "", "", "", "", "" };
                                 flag[0] = (item.MyRank == 1) ? " Checked=\"checked\"" : "";
                                 flag[1] = (item.MyRank == 2) ? " Checked=\"checked\"" : "";

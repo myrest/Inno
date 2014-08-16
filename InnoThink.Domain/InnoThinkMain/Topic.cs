@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Domain
 {
@@ -57,13 +58,15 @@ namespace InnoThink.Domain
         public DateTime? DateCreated { get; set; }
         public string LeaderLoginId { get; set; }
         public string LogoImg { get; set; }
-        public int? PublishType { get; set; }
         public int? Step { get; set; }
         public string Subject { get; set; }
         public string Target { get; set; }
-        public int? TeamGroupSN { get; set; }
         public string TeamName { get; set; }
         public int? TopicSN { get; set; }
+
+        public TopicStatus? Status { get; set; }
+        public int? PublishType { get; set; }
+        public int? TeamGroupSN { get; set; }
         //You can copy/modify above Topic_Info field for search criteria
     }
     #endregion

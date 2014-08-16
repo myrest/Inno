@@ -94,6 +94,16 @@ namespace InnoThink.BLL.TeamGroup
 
         #region private functions
         #endregion
+
+        public bool CheckNameIsExist(string TeamGroupName)
+        {
+            var rep = new TeamGroup_Repo();
+            var data = rep.GetByParam(new TeamGroup_Filter()
+            {
+                GroupName = TeamGroupName
+            }).FirstOrDefault();
+            return (data != null);
+        }
     }
     #endregion
 }

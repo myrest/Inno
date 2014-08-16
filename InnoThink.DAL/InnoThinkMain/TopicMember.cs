@@ -150,8 +150,10 @@ namespace InnoThink.DAL.TopicMember
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
-                //if (filter.ID != 0)
-                    //SQLStr.Append(" AND TopicMemberSN=@0", filter.ID);
+                if (filter.UserSN.HasValue)
+                {
+                    SQLStr.Append(" AND UserSN=@0", filter.UserSN.Value);
+                }
                     //Should updat the filter for wide search
 
                 if (_orderby != "")

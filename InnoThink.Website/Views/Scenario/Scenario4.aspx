@@ -370,9 +370,9 @@
                 var $this = $(this);
                 $('.Scenario3MemTab').removeClass('Scenario3Checked');
                 $this.addClass('Scenario3Checked');
-                var usersn = $this.attr('sn');
-                Step.GetAllData4(usersn);
-                Step.$ScenarioCharSN.val(usersn);
+                var UserSN = $this.attr('sn');
+                Step.GetAllData4(UserSN);
+                Step.$ScenarioCharSN.val(UserSN);
                 Step.CancleUpdate();
             }
             , CancleUpdate: function () {

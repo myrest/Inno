@@ -64,7 +64,13 @@ namespace InnoThink.Website.Controllers.Service
                         }
                         else
                         {
-                            bool flag = dbTopic.AddNewTopic(Subject, sessionData.trading.LoginId, EnumHelper.GetEnumByName<TopicPublishType>(opento.ToString()), user.TeamGroupSN);
+                            var data = new Topic_Info()
+                            {
+                                Subject = Subject,
+                                PublishType = (int)opentype,
+                                TeamGroupSN = user.TeamGroupSN
+                            };
+                            bool flag = dbTopic.Insert(data) > 0;
                             if (!flag)
                             {
                                 result.setException(new Exception("開新議題失敗。"), "NewTopic");

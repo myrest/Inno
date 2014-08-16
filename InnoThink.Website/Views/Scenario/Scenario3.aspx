@@ -450,8 +450,8 @@
                 var $this = $(this);
                 $('.Scenario3MemTab').removeClass('Scenario3Checked');
                 $this.addClass('Scenario3Checked');
-                var usersn = $this.attr('sn');
-                Step.GetAllData3(usersn);
+                var UserSN = $this.attr('sn');
+                Step.GetAllData3(UserSN);
                 Step.CancleUpdate();
             }
             , CancleUpdate: function () {

@@ -8,6 +8,7 @@ using InnoThink.BLL.User;
 using System.Linq;
 using InnoThink.Domain;
 using InnoThink.BLL.TeamGroup;
+using System;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -43,7 +44,13 @@ namespace InnoThink.Website.Controllers.Service
             var isExist = dbTgroup.CheckNameIsExist(TeamGroupName);
             if (!isExist)
             {
-                dbTgroup.AddNewGroupName(TeamGroupName);
+                var data = new TeamGroup_Info()
+                {
+                    GroupName = TeamGroupName,
+                    LastUpdate = DateTime.Now,
+                     MaxUsers = 99
+                };
+                dbTgroup.Insert(data);
                 result.setMessage(string.Format("團隊名稱[{0}]，建立完成。", TeamGroupName));
             }
             else
@@ -76,7 +83,7 @@ namespace InnoThink.Website.Controllers.Service
                 }
                 else if (user.TeamGroupSN > 0 && user.UserSN > 0)
                 {
-                    var tg = dbTgroup.getTeamGroupBySN(user.TeamGroupSN);
+                    var tg = dbTgroup.GetBySN(user.TeamGroupSN);
                     result.setErrorMessage(string.Format("該成員已加入[{0}]團隊，請先退出該團隊後再加入。", tg.GroupName));
                 }
                 else

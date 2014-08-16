@@ -132,6 +132,30 @@ namespace InnoThink.DAL.Topic
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
+                if (filter.Status.HasValue)
+                {
+                    switch (filter.Status.Value)
+                    {
+                        case TopicStatus.Closed:
+                            SQLStr.Append(" DateClosed is not null");
+                            break;
+                        case TopicStatus.InProcess:
+                            SQLStr.Append(" DateClosed is null");
+                            break;
+                    }
+                }
+                if (string.IsNullOrEmpty(filter.Subject))
+                {
+                    SQLStr.Append(" Subject = @0", filter.Subject);
+                }
+                if (filter.TeamGroupSN.HasValue)
+                {
+                    SQLStr.Append(" TeamGroupSN = @0", filter.TeamGroupSN.Value);
+                }
+                if (filter.PublishType.HasValue)
+                {
+                    SQLStr.Append(" PublishType = @0", filter.PublishType.Value);
+                }
                 //if (filter.ID != 0)
                     //SQLStr.Append(" AND TopicSN=@0", filter.ID);
                     //Should updat the filter for wide search

@@ -375,11 +375,11 @@
                                 <%
                                     foreach (var item in Model.TeamMembers)
                                     {
-                                        string chkflag = (item.Value.UserSn == Model.LeaderVoteTo) ? " Checked=\"checked\"" : "";
+                                        string chkflag = (item.Value.UserSN == Model.LeaderVoteTo) ? " Checked=\"checked\"" : "";
                                 %>
                                 <input type="radio" name="LeaderVote" value="<%=item.Key %>" <% =chkflag %>>
                                 <% =item.Value.UserName%>
-                                (<span id="voteNums_<% =item.Value.UserSn %>"><% =item.Value.VoteNums %></span>)
+                                (<span id="voteNums_<% =item.Value.UserSN %>"><% =item.Value.VoteNums %></span>)
                                 <%
                                     }
                                 %>
@@ -408,7 +408,7 @@
                             foreach (var item in Model.TeamMembers)
                             {
                         %>
-                        <tr class="<% =item.Value.UserSn %>">
+                        <tr class="<% =item.Value.UserSN %>">
                             <td width="15%" rowspan="2">
                                 <%
                                 string Picture = string.Empty;
@@ -424,7 +424,7 @@
                             <td valign="top">專長領域：<span class="Profess"><% =item.Value.Professional %></span>
                             </td>
                         </tr>
-                        <tr class="<% =item.Value.UserSn %>">
+                        <tr class="<% =item.Value.UserSN %>">
                             <td height="78" colspan="2" valign="top" class="descript">
                                 <% =item.Value.Description.Replace("\n", "<br>") %>
                             </td>

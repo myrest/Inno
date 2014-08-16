@@ -51,7 +51,7 @@ namespace InnoThink.Website.Controllers.Service
             ResultBase result = new ResultBase() { };
             if (SN > 0)
             {
-                dbTopic.DeleteTopic(SN);
+                dbTopic.Delete(SN);
             }
             result.setMessage("資料已刪除。");
             return Json(result, JsonRequestBehavior.DenyGet);

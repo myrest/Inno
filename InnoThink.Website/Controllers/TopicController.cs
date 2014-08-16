@@ -87,11 +87,11 @@ namespace InnoThink.Website.Controllers
             bool IsTeamMember = (bool)ViewData["IsTeamMember"];
             if (IsTeamMember)
             {
-                var mySetting = Step0d.Where(x => x.UserSn == sessionData.trading.UserSN).FirstOrDefault();
-                if (mySetting != null && mySetting.UserSn > 0)
+                var mySetting = Step0d.Where(x => x.UserSN == sessionData.trading.UserSN).FirstOrDefault();
+                if (mySetting != null && mySetting.UserSN > 0)
                 {
-                    model.LeaderVoteTo = Step0d.Where(x => x.UserSn == sessionData.trading.UserSN).FirstOrDefault().LeaderVotoToSN;
-                    model.MyDescription = Step0d.Where(x => x.UserSn == sessionData.trading.UserSN).FirstOrDefault().Description;
+                    model.LeaderVoteTo = Step0d.Where(x => x.UserSN == sessionData.trading.UserSN).FirstOrDefault().LeaderSNVoteTo;
+                    model.MyDescription = Step0d.Where(x => x.UserSN == sessionData.trading.UserSN).FirstOrDefault().Description;
                 }
             }
             Step0d.ForEach(x =>
@@ -99,11 +99,11 @@ namespace InnoThink.Website.Controllers
                 //Change Picture path.
                 x.Picture = StringUtility.ConvertPicturePath(x.Picture);
                 //Caculate vote number for each team memeber.
-                x.VoteNums = Step0d.Where(y => y.LeaderVotoToSN == x.UserSn).Count();
+                x.VoteNums = Step0d.Where(y => y.LeaderSNVoteTo == x.UserSN).Count();
             });
-            model.TeamMembers = Step0d.ToDictionary(x => x.UserSn);
+            model.TeamMembers = Step0d.ToDictionary(x => x.UserSN);
             model.TopicSN = TopicSN;
-            model.Leader = Step0d.OrderByDescending(x => x.VoteNums).ThenBy(x => x.UserSn).First().UserName;
+            model.Leader = Step0d.OrderByDescending(x => x.VoteNums).ThenBy(x => x.UserSN).First().UserName;
             ViewData["Model"] = model;
             return View();
         }
@@ -137,7 +137,7 @@ namespace InnoThink.Website.Controllers
             model.LeaderUserSN = LeaderUser.UserSN;
             model.IsLeader = (model.LeaderUserSN == sessionData.trading.UserSN);
 
-            List<TopicMemberUI> Step1d = dbTopic.getStep0Description(TopicSN);
+            List<TopicMemberUI> Step1d = dbTMem.getStep0Description(TopicSN);
 
             //Modify each team member information
             Step1d.ForEach(x =>
@@ -145,10 +145,10 @@ namespace InnoThink.Website.Controllers
                 //Change Picture path.
                 x.Picture = StringUtility.ConvertPicturePath(x.Picture);
                 //Caculate vote number for each team memeber.
-                x.VoteNums = Step1d.Where(y => y.LeaderVotoToSN == x.UserSn).Count();
+                x.VoteNums = Step1d.Where(y => y.LeaderSNVoteTo == x.UserSN).Count();
             });
-            model.LeaderName = Step1d.OrderByDescending(x => x.VoteNums).ThenBy(x => x.UserSn).First().UserName;
-            model.TeamMembers = Step1d.ToDictionary(x => x.UserSn);
+            model.LeaderName = Step1d.OrderByDescending(x => x.VoteNums).ThenBy(x => x.UserSN).First().UserName;
+            model.TeamMembers = Step1d.ToDictionary(x => x.UserSN);
 
             ViewData["Model"] = model;
             return View();

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using InnoThink.BLL.User;
 using InnoThink.Domain;
 using InnoThink.BLL.Topic;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Website.Controllers
 {
@@ -68,7 +69,7 @@ namespace InnoThink.Website.Controllers
                 }
                 else
                 {
-                    model.DBResult = dbTopic.GetAllTopicByStatus(TopicStatus.InProcess, user.TeamGroupSN, sessionData.trading.LoginId);
+                    model.DBResult = dbTopic.GetAllTopicByStatus(TopicStatus.InProcess, user.TeamGroupSN);
                 }
                 model.JoinedTopic = dbTopicMem.GetAllJoinedTopicByUserSN(sessionData.trading.UserSN);
 

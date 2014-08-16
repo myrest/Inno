@@ -15,7 +15,7 @@ namespace InnoThink.Domain
         int LeaderSNVoteTo { get; set; }
         int TopicMemberSN { get; set; }
         int TopicSN { get; set; }
-        int UsersSN { get; set; }
+        int UserSN { get; set; }
     }
     #endregion
     */
@@ -31,7 +31,7 @@ namespace InnoThink.Domain
         public int LeaderSNVoteTo { get; set; }
         public int TopicMemberSN { get; set; }
         public int TopicSN { get; set; }
-        public int UsersSN { get; set; }
+        public int UserSN { get; set; }
         #endregion
 
         #region Constructor
@@ -48,7 +48,7 @@ namespace InnoThink.Domain
         public int? LeaderSNVoteTo { get; set; }
         public int? TopicMemberSN { get; set; }
         public int? TopicSN { get; set; }
-        public int? UsersSN { get; set; }
+        public int? UserSN { get; set; }
         //You can copy/modify above TopicMember_Info field for search criteria
     }
     #endregion

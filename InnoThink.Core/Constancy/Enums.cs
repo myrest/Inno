@@ -12,12 +12,6 @@
         VerifyCode
     }
 
-    public enum TopicStatus
-    {
-        InProcess = 0,
-        Closed
-    }
-
     public enum SignalRMessageType
     {
         Unit1,

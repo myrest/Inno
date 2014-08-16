@@ -42,7 +42,7 @@ namespace InnoThink.Website.Controllers
             TeamGroupListViewModel model = new TeamGroupListViewModel();
             try
             {
-                var TeamGroupList = dbTG.getAllTeamGroup();
+                var TeamGroupList = dbTG.GetAll().ToList();
                 model.DataResult = TeamGroupList;
                 model.JsonReturnCode = 1;
             }
@@ -59,7 +59,7 @@ namespace InnoThink.Website.Controllers
             UsersViewModel model = new UsersViewModel() { };
             try
             {
-                var tg = dbTG.getTeamGroupBySN(SN);
+                var tg = dbTG.GetBySN(SN);
 
                 User_Manager um = new User_Manager();
                 var users = um.GetByParameter(new User_Filter()
