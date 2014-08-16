@@ -159,13 +159,11 @@ namespace DbSchemaGenerator
             return rtn;
         }
 
-        private void FileGenerator()
+        private void FileGenerator(List<string> Tables)
         {
-            //Get all tablename
-            var AllTable = GetTableListing();
-            if (AllTable != null && AllTable.Count > 0)
+            if (Tables != null && Tables.Count > 0)
             {
-                AllTable.ForEach(x =>
+                Tables.ForEach(x =>
                 {
                     string pk = string.Empty;
                     var columns = GetColumnInformationByTable(x, out pk);
@@ -175,6 +173,13 @@ namespace DbSchemaGenerator
                     FileCreator.CreateBLLFile(columns, pk, BLLPath, NameSpace.Text.Trim(), x);
                 });
             }
+        }
+
+        private void FileGenerator()
+        {
+            //Get all tablename
+            var AllTable = GetTableListing();
+            FileGenerator(AllTable);
         }
 
         private Dictionary<string, string> GetColumnInformationByTable(string TableName, out string pk)
@@ -339,6 +344,17 @@ namespace DbSchemaGenerator
             ResetButtons();
             GenDomain.FlatStyle = FlatStyle.Flat;
             GetContent(GenType.Domain);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SaveSetting();
+            if (CheckAndSetEnv())
+            {
+                List<string> Tables = new List<string>() { DDLTableListing.SelectedItem.ToString() };
+                FileGenerator(Tables);
+                MessageBox.Show(string.Format("{0} build done.", DDLTableListing.SelectedItem.ToString()));
+            }
         }
     }
 }

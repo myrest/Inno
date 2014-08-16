@@ -9,6 +9,8 @@ using Rest.Core.Utility;
 using System;
 using System.Web.Mvc;
 using InnoThink.BLL.User;
+using InnoThink.Domain.InnoThinkMain.Binding;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -44,16 +46,17 @@ namespace InnoThink.Website.Controllers.Service
             ResultBase result = new ResultBase() { };
             User_Manager um = new User_Manager();
             var user = um.GetBySN(sessionData.trading.UserSN);
-            DbBoardContent model = new DbBoardContent()
+            BoardUI model = new BoardUI()
             {
                 Content = Message,
                 DateCreated = DateTime.Now,
                 PublishType = PublishType,
                 TopicSN = TopicSN,
-                UserIcon = StringUtility.ConvertPicturePath(user.Picture),
-                UserLoginId = user.LoginId,
+                Picture = StringUtility.ConvertPicturePath(user.Picture),
+                LoginId = user.LoginId,
                 UserName = user.UserName,
-                UserSN = user.UserSN
+                UserSN = user.UserSN,
+                ContentType = (int)BoardContentType.Message
             };
             BoardCache.AddBoardMessage(model);
             CommServer.Instance.syncUIBoardMessage(model);

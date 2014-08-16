@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="Constancy\InnoEnums.cs" />
     <Compile Include="Database\DBExecutor.cs" />
+    <Compile Include="Database\Paging.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Database\PetaPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\AttributeHelper.cs" />

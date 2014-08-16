@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web.Mvc;
 using InnoThink.BLL.User;
 using InnoThink.Domain;
+using InnoThink.BLL.TeamGroup;
 
 namespace InnoThink.Website.Controllers
 {
@@ -17,9 +18,9 @@ namespace InnoThink.Website.Controllers
         // GET: /Product/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(AdminController));
 
-        private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
-        
-        private static readonly DbTeamGroupTable dbTG = new DbTeamGroupTable() { };
+
+
+        private static readonly TeamGroup_Manager dbTG = new TeamGroup_Manager() { };
 
         public AdminController()
             : base(Permission.Private)

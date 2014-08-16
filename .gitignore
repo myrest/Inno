@@ -40,3 +40,4 @@
 /InnoThink.Domain/bin
 /Rest.Core/*.user
 /InnoThink.Website/pic/Thumbs.db
+/InnoThink.Website/*.user

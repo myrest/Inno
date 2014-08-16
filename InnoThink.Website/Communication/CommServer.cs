@@ -11,6 +11,7 @@ using Rest.Core.Utility;
 using System;
 using System.Collections.Generic;
 using InnoThink.Domain;
+using InnoThink.Domain.InnoThinkMain.Binding;
 
 namespace InnoThink.Website.Communication
 {
@@ -98,7 +99,7 @@ namespace InnoThink.Website.Communication
             });
         }
 
-        internal void syncUIBoardMessage(DbBoardContent model)
+        internal void syncUIBoardMessage(BoardUI model)
         {
             //get connections
             var list = Unit1Cache.GetAllConnections(model.TopicSN);
@@ -115,13 +116,13 @@ namespace InnoThink.Website.Communication
             });
         }
 
-        internal void syncStep1(DbTopicModel topic, IEnumerable<KeyValuePair<string, string>> users)
+        internal void syncStep1(Topic_Info Topic, IEnumerable<KeyValuePair<string, string>> users)
         {
             //get connections
-            var list = Unit1Cache.GetAllConnections(topic.SN);
+            var list = Unit1Cache.GetAllConnections(Topic.TopicSN);
             list.ForEach(x =>
             {
-                Clients.Client(x).syncUIStep1(topic, users);
+                Clients.Client(x).syncUIStep1(Topic, users);
             });
         }
 

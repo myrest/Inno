@@ -17,6 +17,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using InnoThink.BLL.User;
+using InnoThink.Domain;
+using InnoThink.BLL.Topic;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -26,7 +28,8 @@ namespace InnoThink.Website.Controllers.Service
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(TopicServiceController));
 
-        private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
+        private static readonly Topic_Manager dbTopic = new Topic_Manager();
+
         private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
         
         private static readonly DbBestStep1Table dbBest1 = new DbBestStep1Table() { };
@@ -73,9 +76,9 @@ namespace InnoThink.Website.Controllers.Service
             //Update date topic inofrmation for leader login id.
             int LeaderSN = LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key;
             var User_Leader = um.GetBySN(LeaderSN);
-            var TopicInfo = dbTopic.getTopicBySN(data.TopicSN);
+            var TopicInfo = dbTopic.GetBySN(data.TopicSN);
             TopicInfo.LeaderLoginId = User_Leader.LoginId;
-            dbTopic.UpdateTopic(TopicInfo);
+            dbTopic.Update(TopicInfo);
 
             //SignalR Update UI
             SignalRMessageUnitModel msg = new SignalRMessageUnitModel()
@@ -103,8 +106,8 @@ namespace InnoThink.Website.Controllers.Service
             ResultBase result = new ResultBase() { };
 
             #region Process Topic related
-
-            DbTopicModel Topic = dbTopic.getTopicBySN(Paras.TopicSN);
+            var dbTopic = new Topic_Manager();
+            Topic_Info Topic = dbTopic.GetBySN(Paras.TopicSN);
             //Deal with topic information.
             Topic.Subject = Paras.Subject;
             Topic.Target = Paras.Target;
@@ -121,7 +124,7 @@ namespace InnoThink.Website.Controllers.Service
                 FileInfo f = new FileInfo(FileSource);
                 f.MoveTo(FileDisc);
             }
-            dbTopic.UpdateTopic(Topic);
+            dbTopic.Update(Topic);
 
             #endregion Process Topic related
 
@@ -142,7 +145,7 @@ namespace InnoThink.Website.Controllers.Service
 
             //need update client's information for step 1.
 
-            var topic = dbTopic.getTopicBySN(Paras.TopicSN);
+            var topic = dbTopic.GetBySN(Paras.TopicSN);
             var alluser = dbTopMem.getALLTopicMember(Paras.TopicSN);
             var users = alluser.Select(x => new KeyValuePair<string, string>(x.UserName, x.HandleJob));
             topic.LogoImg = StringUtility.ConvertTeamLogoPath(topic.LogoImg);
@@ -290,10 +293,11 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase() { };
             //Get the first joined topic.
-            var topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.UserSN);
-            if (topic != null && topic.SN > 0)
+            var dbTopic = new Topic_Manager();
+            var Topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.UserSN);
+            if (Topic != null && Topic.TopicSN > 0)
             {
-                result = GetTopicNextStep(topic.SN);
+                result = GetTopicNextStep(Topic.TopicSN);
             }
             else
             {
@@ -314,12 +318,12 @@ namespace InnoThink.Website.Controllers.Service
             int LeaderSN = LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key;
             User_Manager um = new User_Manager();
             var User_Leader = um.GetBySN(LeaderSN);
-            var TopicInfo = dbTopic.getTopicBySN(TopicSN);
+            var TopicInfo = dbTopic.GetBySN(TopicSN);
             if (LeaderSN == trading.UserSN)
             {
                 //set the step for the topic.
                 TopicInfo.Step = GotoStep;
-                dbTopic.UpdateTopic(TopicInfo);
+                dbTopic.Update(TopicInfo);
 
                 //let all the teammember into next step.
                 ResultBase nextstep = GetTopicNextStep(TopicSN);
@@ -346,9 +350,10 @@ namespace InnoThink.Website.Controllers.Service
         private static ResultBase GetTopicNextStep(int SN)
         {
             ResultBase result = new ResultBase();
-            var Topic = dbTopic.getTopicBySN(SN);
+            var dbTopic = new Topic_Manager();
+            var Topic = dbTopic.GetBySN(SN);
             //check topic is exist
-            if (Topic.SN > 0)
+            if (Topic.TopicSN > 0)
             {
                 //check topic is on going.
                 if (Topic.DateClosed == DateTime.MinValue)
@@ -362,75 +367,75 @@ namespace InnoThink.Website.Controllers.Service
                         switch (Topic.Step)
                         {
                             case 0:
-                                result.Message = "/Topic/Step0?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Step0?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 1:
-                                result.Message = "/Topic/Step1?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Step1?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 11:
-                                result.Message = "/Topic/Best1?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Best1?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 12:
-                                result.Message = "/Topic/Best2?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Best2?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 13:
-                                result.Message = "/Topic/Best3?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Best3?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 14:
-                                result.Message = "/Topic/Best4?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Best4?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 15:
-                                result.Message = "/Topic/Best5?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Best5?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 16:
-                                result.Message = "/Topic/Best6?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Best6?TopicSN=" + Topic.TopicSN;
                                 break;
                             //情境分析法開始
                             case 31:
-                                result.Message = "/Scenario/Scenario1?TopicSN=" + Topic.SN;
+                                result.Message = "/Scenario/Scenario1?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 32:
-                                result.Message = "/Scenario/Scenario2?TopicSN=" + Topic.SN;
+                                result.Message = "/Scenario/Scenario2?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 33:
-                                result.Message = "/Scenario/Scenario3?TopicSN=" + Topic.SN;
+                                result.Message = "/Scenario/Scenario3?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 34:
-                                result.Message = "/Scenario/Scenario4?TopicSN=" + Topic.SN;
+                                result.Message = "/Scenario/Scenario4?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 35:
-                                result.Message = "/Scenario/Scenario5?TopicSN=" + Topic.SN;
+                                result.Message = "/Scenario/Scenario5?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 36:
-                                result.Message = "/Scenario/Scenario6?TopicSN=" + Topic.SN;
+                                result.Message = "/Scenario/Scenario6?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 37:
-                                result.Message = "/Scenario/Scenario7?TopicSN=" + Topic.SN;
+                                result.Message = "/Scenario/Scenario7?TopicSN=" + Topic.TopicSN;
                                 break;
                             //情境分析法結束
                             case 9901:
-                                result.Message = "/Topic/Result1?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Result1?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 9902:
-                                result.Message = "/Topic/Result2?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Result2?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             case 9903:
-                                result.Message = "/Topic/Result3?TopicSN=" + Topic.SN;
+                                result.Message = "/Topic/Result3?TopicSN=" + Topic.TopicSN;
                                 break;
 
                             default:
@@ -447,7 +452,7 @@ namespace InnoThink.Website.Controllers.Service
                 {
                     //result.setErrorMessage("該議題已結束。");
                     //Redirect the the first step.
-                    result.setMessage("/Topic/Step0?TopicSN=" + Topic.SN);
+                    result.setMessage("/Topic/Step0?TopicSN=" + Topic.TopicSN);
                 }
             }
             else
@@ -840,7 +845,7 @@ namespace InnoThink.Website.Controllers.Service
         public JsonResult LeaveTopic(int TopicSN)
         {
             ResultBase result = new ResultBase() { };
-            var model = dbTopic.getTopicBySN(TopicSN);
+            var model = dbTopic.GetBySN(TopicSN);
             if (model.DateClosed == DateTime.MinValue)
             {
                 dbTopMem.LeaveTopic(TopicSN, sessionData.trading.UserSN);

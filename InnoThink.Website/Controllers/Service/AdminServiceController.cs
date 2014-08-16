@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using InnoThink.BLL.User;
 using System.Linq;
 using InnoThink.Domain;
+using InnoThink.BLL.TeamGroup;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -16,10 +17,10 @@ namespace InnoThink.Website.Controllers.Service
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(AdminServiceController));
 
-        private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
-        private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
         
-        private static readonly DbTeamGroupTable dbTgroup = new DbTeamGroupTable() { };
+        private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
+
+        private static readonly TeamGroup_Manager dbTgroup = new TeamGroup_Manager();
 
         public AdminServiceController()
             : base(Permission.Private)

@@ -1,5 +1,17 @@
 ﻿namespace InnoThink.Domain.Constancy
 {
+    public enum BoardType
+    {
+        Public,
+        Private,
+    }
+
+    public enum BoardContentType
+    {
+        Document,
+        Message
+    }
+
     public enum SessionKeys
     {
         Captcha = 0,

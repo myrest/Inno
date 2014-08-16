@@ -13,13 +13,14 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using InnoThink.Domain;
 
 namespace InnoThink.Website.Controllers.Service
 {
     public class ScenarioServiceController : BaseController
     {
         private static readonly SysLog Log = SysLog.GetLogger(typeof(ScenarioServiceController));
-        private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
+        
         private static readonly DbResultsTable dbResult = new DbResultsTable() { };
         private static readonly DbScenarioTable dbScenario = new DbScenarioTable() { };
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using InnoThink.Domain;
 
 namespace InnoThink.Website.Models
 {
@@ -23,7 +24,7 @@ namespace InnoThink.Website.Models
                 {
                     _DataResult.ForEach(x =>
                     {
-                        x.isJoined = JoinedTopic.Contains(x.SN);
+                        x.isJoined = JoinedTopic.Contains(x.TopicSN);
                     });
                 }
                 return _DataResult;
@@ -33,9 +34,9 @@ namespace InnoThink.Website.Models
         public List<int> JoinedTopic { get; set; }
 
         //Store data get from database.
-        private List<DbTopicModel> _DBResult { get; set; }
+        private List<Topic_Info> _DBResult { get; set; }
 
-        public List<DbTopicModel> DBResult
+        public List<Topic_Info> DBResult
         {
             get
             {
@@ -48,13 +49,12 @@ namespace InnoThink.Website.Models
                 _DataResult = value.Select(x => new DbTopicViewModel()
                 {
                     isJoined = false,
-                    CreatedLoginId = x.CreatedLoginId,
                     DateClosed = x.DateClosed,
                     DateCreated = x.DateCreated,
                     LeaderLoginId = x.LeaderLoginId,
                     LogoImg = x.LogoImg,
                     PublishType = x.PublishType,
-                    SN = x.SN,
+                    TopicSN = x.TopicSN,
                     Step = x.Step,
                     Subject = x.Subject,
                     Target = x.Target,
@@ -66,7 +66,7 @@ namespace InnoThink.Website.Models
     }
 
     [DataContract]
-    public class DbTopicViewModel : DbTopicModel
+    public class DbTopicViewModel : Topic_Info
     {
         public bool isJoined { get; set; }
     }

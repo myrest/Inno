@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,10 +45,15 @@
   <ItemGroup>
     <Compile Include="Facebook\FacebookPersonAuth.cs" />
     <Compile Include="InnoThinkMain\BackofficeUser.cs" />
+    <Compile Include="InnoThinkMain\Binding\BoardUI.cs" />
+    <Compile Include="InnoThinkMain\Binding\TopicMemberUI.cs" />
+    <Compile Include="InnoThinkMain\Board.cs" />
     <Compile Include="InnoThinkMain\TeamGroup.cs" />
     <Compile Include="Constancy\Enums.cs" />
     <Compile Include="Constancy\EnumScenario.cs" />
     <Compile Include="Constancy\Permission.cs" />
+    <Compile Include="InnoThinkMain\Topic.cs" />
+    <Compile Include="InnoThinkMain\TopicMember.cs" />
     <Compile Include="InnoThinkMain\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

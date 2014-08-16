@@ -53,6 +53,7 @@
             this.GenDomain = new System.Windows.Forms.Button();
             this.DDLTableListing = new System.Windows.Forms.ComboBox();
             this.tabMainFunction = new System.Windows.Forms.TabControl();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabSqlite.SuspendLayout();
             this.Sqlite.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -196,7 +197,7 @@
             this.tabBuildIdv.Location = new System.Drawing.Point(4, 22);
             this.tabBuildIdv.Name = "tabBuildIdv";
             this.tabBuildIdv.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBuildIdv.Size = new System.Drawing.Size(793, 337);
+            this.tabBuildIdv.Size = new System.Drawing.Size(793, 336);
             this.tabBuildIdv.TabIndex = 0;
             this.tabBuildIdv.Text = "Build individual";
             this.tabBuildIdv.UseVisualStyleBackColor = true;
@@ -209,15 +210,16 @@
             this.ContentBody.Name = "ContentBody";
             this.ContentBody.ReadOnly = true;
             this.ContentBody.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.ContentBody.Size = new System.Drawing.Size(652, 273);
+            this.ContentBody.Size = new System.Drawing.Size(652, 272);
             this.ContentBody.TabIndex = 1;
             this.ContentBody.WordWrap = false;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(138, 305);
+            this.panel2.Location = new System.Drawing.Point(138, 304);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(652, 29);
             this.panel2.TabIndex = 3;
@@ -294,7 +296,7 @@
             this.DDLTableListing.FormattingEnabled = true;
             this.DDLTableListing.Location = new System.Drawing.Point(3, 3);
             this.DDLTableListing.Name = "DDLTableListing";
-            this.DDLTableListing.Size = new System.Drawing.Size(135, 331);
+            this.DDLTableListing.Size = new System.Drawing.Size(135, 330);
             this.DDLTableListing.TabIndex = 0;
             this.DDLTableListing.SelectedIndexChanged += new System.EventHandler(this.DDLTableListing_SelectedIndexChanged);
             // 
@@ -309,6 +311,16 @@
             this.tabMainFunction.Size = new System.Drawing.Size(801, 362);
             this.tabMainFunction.TabIndex = 8;
             this.tabMainFunction.SelectedIndexChanged += new System.EventHandler(this.tabMainFunction_SelectedIndexChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(424, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(103, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Build File";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
@@ -360,6 +372,7 @@
         private System.Windows.Forms.Button ReloadSchema;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
 
 
 

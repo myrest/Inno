@@ -7,6 +7,7 @@ using Rest.Core.Utility;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using InnoThink.Domain;
 
 namespace InnoThink.Website.Controllers
 {
@@ -16,7 +17,7 @@ namespace InnoThink.Website.Controllers
         // GET: /Scenario/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(TopicController));
 
-        private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
+        
         
         private static readonly DbResultsTable dbResult = new DbResultsTable() { };
         private static readonly DbScenarioTable dbScenario = new DbScenarioTable() { };

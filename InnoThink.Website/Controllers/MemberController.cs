@@ -7,6 +7,8 @@ using Rest.Core.Utility;
 using System;
 using System.Web.Mvc;
 using InnoThink.BLL.User;
+using InnoThink.Domain;
+using InnoThink.BLL.Topic;
 
 namespace InnoThink.Website.Controllers
 {
@@ -16,7 +18,7 @@ namespace InnoThink.Website.Controllers
         // GET: /Product/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(MemberController));
 
-        private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
+        private static readonly Topic_Manager dbTopic = new Topic_Manager();        
         
         private static readonly DbTopicMemberTable dbTopicMem = new DbTopicMemberTable() { };
 

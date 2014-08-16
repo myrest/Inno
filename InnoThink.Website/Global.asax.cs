@@ -78,9 +78,6 @@ namespace InnoThink.Website
                 }
             });
 
-            //Initial Cache
-            BoardCache.InitialCache();
-
             Log.Debug("Application_Start end");
         }
 

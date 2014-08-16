@@ -10,6 +10,8 @@ using System;
 using System.IO;
 using System.Web.Mvc;
 using InnoThink.BLL.User;
+using InnoThink.Domain;
+using InnoThink.BLL.Topic;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -19,7 +21,8 @@ namespace InnoThink.Website.Controllers.Service
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(MemberServiceController));
 
-        private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
+        private static readonly Topic_Manager dbTopic = new Topic_Manager();
+
         private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
         
 
@@ -82,8 +85,9 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase();
             //Check is therea re joined topic.
-            var topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.UserSN);
-            if (topic == null || topic.SN == 0)
+            var dbTopic = new Topic_Manager();
+            var Topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.UserSN);
+            if (Topic == null || Topic.TopicSN == 0)
             {
                 bool isJoinSuccess = dbTopMem.AddNewTopicMember(SN, sessionData.trading.UserSN);
                 if (isJoinSuccess)

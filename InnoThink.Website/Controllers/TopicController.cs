@@ -14,6 +14,9 @@ using System.Linq;
 using System.Web.Mvc;
 using InnoThink.BLL.User;
 using InnoThink.Domain;
+using InnoThink.Domain.InnoThinkMain.Binding;
+using InnoThink.BLL.Topic;
+using InnoThink.BLL.TopicMember;
 
 namespace InnoThink.Website.Controllers
 {
@@ -23,7 +26,9 @@ namespace InnoThink.Website.Controllers
         // GET: /Product/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(TopicController));
 
-        private static readonly DbTopicTable dbTopic = new DbTopicTable() { };
+        private static readonly Topic_Manager dbTopic = new Topic_Manager();
+        private static readonly TopicMember_Manager dbTMem = new TopicMember_Manager();
+        
         private static readonly DbTopicMemberTable dbTopicMember = new DbTopicMemberTable() { };
         private static readonly DbBestStep1Table dbBest1 = new DbBestStep1Table() { };
         private static readonly DbBestIdeaTable dbBestIdea = new DbBestIdeaTable() { };
@@ -40,14 +45,15 @@ namespace InnoThink.Website.Controllers
 
         public static void MakeBoardViewModel(int TopicSN, ViewDataDictionary viewdata, Trading trading, bool isAdmin)
         {
-            List<BoardModel> PrivateBoard = BoardCache.GetAllPrivateBoard(TopicSN);
-            List<BoardModel> PublicBoard = BoardCache.GetAllPublicBoard(TopicSN);
-            var topic = dbTopic.getTopicBySN(TopicSN);
-            viewdata["IsLeader"] = (string.Compare(trading.LoginId, topic.LeaderLoginId, true) == 0);
-            viewdata["IsClose"] = topic.DateClosed > DateTime.MinValue;
+            List<BoardUI> PrivateBoard = BoardCache.GetAllBoard(TopicSN, Domain.Constancy.BoardType.Private);
+            List<BoardUI> PublicBoard = BoardCache.GetAllBoard(TopicSN, Domain.Constancy.BoardType.Public);
+            var dbTopic = new Topic_Manager();
+            var Topic = dbTopic.GetBySN(TopicSN);
+            viewdata["IsLeader"] = (string.Compare(trading.LoginId, Topic.LeaderLoginId, true) == 0);
+            viewdata["IsClose"] = Topic.DateClosed > DateTime.MinValue;
             viewdata["IsTeamMember"] = dbTopic.IsTeamMember(TopicSN, trading.UserSN);
-            viewdata["Subject"] = topic.Subject;
-            viewdata["TopicSN"] = topic.SN;
+            viewdata["Subject"] = Topic.Subject;
+            viewdata["TopicSN"] = Topic.TopicSN;
             if (isAdmin)
             {
                 //Admin can see all the information.
@@ -77,7 +83,7 @@ namespace InnoThink.Website.Controllers
         {
             MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             Step0ViewModel model = new Step0ViewModel() { };
-            List<TeamMemberUIModel> Step0d = dbTopic.getStep0Description(TopicSN);
+            List<TopicMemberUI> Step0d = dbTMem.getStep0Description(TopicSN);
             bool IsTeamMember = (bool)ViewData["IsTeamMember"];
             if (IsTeamMember)
             {
@@ -109,7 +115,7 @@ namespace InnoThink.Website.Controllers
             //Assign sn into session for upload file purpose.
             sessionData.trading._tempInt = TopicSN;
 
-            var Topic = dbTopic.getTopicBySN(TopicSN);
+            var Topic = dbTopic.GetBySN(TopicSN);
             Step1ViewModel model = new Step1ViewModel()
             {
                 //LeaderName = --Should put Leader's name, here is Leader's login id.
@@ -131,7 +137,7 @@ namespace InnoThink.Website.Controllers
             model.LeaderUserSN = LeaderUser.UserSN;
             model.IsLeader = (model.LeaderUserSN == sessionData.trading.UserSN);
 
-            List<TeamMemberUIModel> Step1d = dbTopic.getStep0Description(TopicSN);
+            List<TopicMemberUI> Step1d = dbTopic.getStep0Description(TopicSN);
 
             //Modify each team member information
             Step1d.ForEach(x =>
