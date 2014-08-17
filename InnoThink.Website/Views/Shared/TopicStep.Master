@@ -2,7 +2,8 @@
 
 <%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
 <%@ Import Namespace="InnoThink.Core.Cache.Board" %>
-<%@ Import Namespace="InnoThink.Core.DB" %>
+<%@ Import Namespace="InnoThink.Domain" %>
+<%@ Import Namespace="InnoThink.Domain.InnoThinkMain.Binding" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>
@@ -355,10 +356,10 @@
         </div>
         <span id="PublicBlock">
             <%
-                List<BoardModel> PublicBoard = new List<BoardModel>() { };
+                List<BoardUI> PublicBoard = new List<BoardUI>() { };
                 if (ViewData["PublicBoard"] != null)
                 {
-                    PublicBoard = (List<BoardModel>)ViewData["PublicBoard"];
+                    PublicBoard = (List<BoardUI>)ViewData["PublicBoard"];
                 }
                 foreach (var item in PublicBoard)
                 {
@@ -367,7 +368,7 @@
                 <table width="95%" border="0">
                     <tr>
                         <td width="15%">
-                            <img src="<%=item.ImagePath %>" width="30" height="30" alt="" />
+                            <img src="<%=item.Picture %>" width="30" height="30" alt="" />
                         </td>
                         <td width="85%">
                             <span title="<%=item.LoginId %>">
@@ -415,10 +416,10 @@
         </div>
         <span id="PrivateBlock">
             <%
-                List<BoardModel> PrivateBoard = new List<BoardModel>() { };
+                List<BoardUI> PrivateBoard = new List<BoardUI>() { };
                 if (ViewData["PrivateBoard"] != null)
                 {
-                    PrivateBoard = (List<BoardModel>)ViewData["PrivateBoard"];
+                    PrivateBoard = (List<BoardUI>)ViewData["PrivateBoard"];
                 }
                 foreach (var item in PrivateBoard)
                 {
@@ -427,7 +428,7 @@
                 <table width="95%" border="0">
                     <tr>
                         <td width="15%">
-                            <img src="<%=item.ImagePath %>" width="30" height="30" alt="" />
+                            <img src="<%=item.Picture %>" width="30" height="30" alt="" />
                         </td>
                         <td width="85%">
                             <span title="<%=item.LoginId %>">
@@ -481,16 +482,16 @@
             </div>
         </div>
         <%
-            List<DbTopicMemberModel> online = (List<DbTopicMemberModel>)ViewData["OnlineTeamMember"];
-            List<DbTopicMemberModel> offline = (List<DbTopicMemberModel>)ViewData["OfflineTeamMember"];
+            List<TopicMember_Info> online = (List<TopicMember_Info>)ViewData["OnlineTeamMember"];
+            List<TopicMember_Info> offline = (List<TopicMember_Info>)ViewData["OfflineTeamMember"];
             string HiddenClass = "hide";
             if (online == null)
             {
-                online = new List<DbTopicMemberModel>() { };
+                online = new List<TopicMember_Info>() { };
             }
             if (offline == null)
             {
-                offline = new List<DbTopicMemberModel>() { };
+                offline = new List<TopicMember_Info>() { };
             }
             if (online.Count() > 0 || offline.Count() > 0)
             {
@@ -512,7 +513,7 @@
                             <%
                                 foreach (var item in online)
                                 {
-                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", item.Picture, item.UserName, item.UserSN));
+                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", "TODO:要找出大頭像", item.UserSN + "要找出名字", item.UserSN));
                                 }
                             %>
                         </td>
@@ -526,7 +527,7 @@
                             <%
                                 foreach (var item in offline)
                                 {
-                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", item.Picture, item.UserName, item.UserSN));
+                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", "TODO:要找出大頭像", item.UserSN + "要找出名字", item.UserSN));
                                 }
                             %>
                         </td>

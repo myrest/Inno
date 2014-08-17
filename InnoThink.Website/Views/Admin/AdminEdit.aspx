@@ -9,18 +9,34 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="body0">
+        <%
+            InnoThink.Domain.BackofficeUser_Info model = ViewData["Model"] as InnoThink.Domain.BackofficeUser_Info;
+        %>
         <div id="body1">
             管理使用者權限
         </div>
-        登入帳號:<input type="text" id="UserLoginId" /><br />
-        調整權限為:<label for="sys"><input type="radio" name="Position" id="sys" value="111" />
+        登入帳號:
+        <%
+            if (model.BackofficeUserSN == 0)
+            {
+                //Insert
+        %>
+        <input type="text" id="UserLoginId" value="" autofocus  />
+        <%
+            }
+            else
+            {
+                //Update
+                Response.Write(model.LoginId);
+            }
+        %><br />
+        登入密碼: <input type="password" id="Password" value="" /><br />
+        <input type="hidden" id="SN" value="<% =model.BackofficeUserSN%>" />
+        設定權限為:<label for="sys"><input type="radio" name="Position" id="sys" value="111" />
             系統管理者</label>&nbsp;
         <label for="admin">
-            <input type="radio" name="Position" id="admin" value="11" />
-            一般管理者</label>&nbsp;
-        <label for="user">
-            <input type="radio" name="Position" id="user" value="1" checked="checked" />
-            使用者</label>
+            <input type="radio" name="Position" id="admin" value="11" checked />
+            老師</label>&nbsp;
         <br />
         <input type="button" id="savebtn" value="送出" />
     </div>
@@ -34,19 +50,26 @@
         var Adj = {
             init: function () {
                 $('#savebtn').on('click', Adj.AdjustUserPosition);
-                Utils.textBoxsOnEnter(Adj.AdjustUserPosition, $('#savebtn'));
+                Utils.textBoxsOnEnter(Adj.AdjustUserPosition);
             },
             AdjustUserPosition: function () {
                 var cb = function (data) {
                     utility.showPopUp(data.msg, 1, function () {
-                        location.href = utility.getRedirUrl('Member', 'UserInfo');
+                        location.href = utility.getRedirUrl('Admin', 'AdminListing');
                     });
                 };
                 var ecb = function (data) {
-                    utility.showPopUp(data.msg, 1);
-                }
+                    utility.showPopUp(data.msg, 1, function () {
+                        $('#UserLoginId').focus();
+                    });
+                };
                 var $position = $('input[name=Position]:checked');
-                var param = { UserLoginId: $('#UserLoginId').val(), Position: $position.val() };
+                var param = {
+                    LoginId: $('#UserLoginId').val(),
+                    Level: $position.val(),
+                    SN: $('#SN').val(),
+                    Password: $('#Password').val()
+                };
                 utility.ajaxQuiet('AdminService/AdjustUserPosition', param, cb, ecb);
             }
         };

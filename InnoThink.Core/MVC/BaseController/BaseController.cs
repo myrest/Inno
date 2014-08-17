@@ -16,20 +16,16 @@ namespace InnoThink.Core.MVC.BaseController
 
         protected bool isAdmin = false;
         protected bool isSys = false;
-        private readonly string Admins = "royadmin";
 
         protected SessionData sessionData = new SessionData();
 
         protected BaseController(Permission permission)
         {
             ControllerPermision = permission;
-            if (ControllerPermision == Permission.Private && sessionData != null && sessionData.trading != null)
+            if (ControllerPermision == Permission.Admin && sessionData != null && sessionData.trading != null)
             {
-                //TODO:nned to get the permission for the Admin and System manager.
-                //isAdmin = sessionData.trading.Position == 11 || Admins.Contains(sessionData.trading.LoginId);
-                //isSys = sessionData.trading.Position == 111 || Admins.Contains(sessionData.trading.LoginId);
-                isAdmin = false;
-                isSys = false;
+                isAdmin = sessionData.trading.Level > 0;
+                isSys = sessionData.trading.Level > 0;
             }
         }
 
@@ -75,6 +71,11 @@ namespace InnoThink.Core.MVC.BaseController
                     {
                         Log.Debug("Session Lost");
                         RejectRequestResult.RejectRequest(filterContext, RejectReason.SessionLost, sessionData);
+                    }
+                    if (ControllerPermision == Permission.Admin && sessionData.trading.Level < 1)
+                    {
+                        Log.Debug("Permission Deny");
+                        RejectRequestResult.RejectRequest(filterContext, RejectReason.PermissionDeny, sessionData);
                     }
                 }
                 else

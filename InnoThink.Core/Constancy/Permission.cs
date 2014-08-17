@@ -3,7 +3,8 @@
     public enum Permission
     {
         Private,
-        Public
+        Public,
+        Admin
     }
 
     public enum TopicPublishType

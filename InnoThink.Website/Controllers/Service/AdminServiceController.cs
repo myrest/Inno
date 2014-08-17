@@ -9,6 +9,8 @@ using System.Linq;
 using InnoThink.Domain;
 using InnoThink.BLL.TeamGroup;
 using System;
+using InnoThink.BLL.BackofficeUser;
+using System.Collections.Generic;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -24,15 +26,71 @@ namespace InnoThink.Website.Controllers.Service
         private static readonly TeamGroup_Manager dbTgroup = new TeamGroup_Manager();
 
         public AdminServiceController()
-            : base(Permission.Private)
+            : base(Permission.Admin)
         {
         }
 
         [HttpPost]
-        public JsonResult AdjustUserPosition(string UserLoginId, int Position)
+        public JsonResult AdjustUserPosition(string LoginId, int Level, int SN, string Password)
         {
-            //This should be remove, only Admin account can' has permission, user is only user.
             ResultBase result = new ResultBase() { };
+            var bm = new BackofficeUser_Manager();
+            if (SN > 0)
+            {
+                //edit
+                var data = bm.GetBySN(SN);
+                data.Level = Level;
+                List<string> columns = new List<string>()
+                {
+                    "Level"
+                };
+                if (!string.IsNullOrEmpty(Password))
+                {
+                    data.Password = Password;
+                    columns.Add("Password");
+                }
+                bm.Update(data.BackofficeUserSN, data, columns);
+                result.setMessage("Done");
+            }
+            else
+            {
+                //check is loginid has been used.
+                var data = bm.GetByParameter(new BackofficeUser_Filter()
+                {
+                    LoginId = LoginId
+                }).FirstOrDefault();
+                if (data != null)
+                {
+                    result.setErrorMessage(string.Format("帳號{0}已經有人使用。", LoginId));
+                }
+                else
+                {
+                    //insert
+                    data = new BackofficeUser_Info()
+                    {
+                        LastUpdator = sessionData.trading.LoginId,
+                        Level = Level,
+                        LoginId = LoginId,
+                        Password = Password,
+                        UserName = LoginId
+                    };
+                    bm.Insert(data);
+                    result.setMessage("Done");
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteAdmin(int SN)
+        {
+            ResultBase result = new ResultBase() { };
+            if (SN > 0)
+            {
+                var bm = new BackofficeUser_Manager();
+                bm.Delete(SN);
+            }
+            result.setMessage("Done");
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 

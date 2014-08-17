@@ -11,7 +11,7 @@ namespace InnoThink.Domain
     public interface ITeamGroup_Info
     {
         string GroupName { get; set; }
-        string LastUpdate { get; set; }
+        DateTime LastUpdate { get; set; }
         int MaxUsers { get; set; }
         int TeamGroupSN { get; set; }
     }
@@ -25,7 +25,7 @@ namespace InnoThink.Domain
     {
         #region private fields
         public string GroupName { get; set; }
-        public string LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         public int MaxUsers { get; set; }
         public int TeamGroupSN { get; set; }
         #endregion
@@ -40,7 +40,7 @@ namespace InnoThink.Domain
     public class TeamGroup_Filter
     {
         public string GroupName { get; set; }
-        public string LastUpdate { get; set; }
+        public DateTime? LastUpdate { get; set; }
         public int? MaxUsers { get; set; }
         public int? TeamGroupSN { get; set; }
         //You can copy/modify above TeamGroup_Info field for search criteria

@@ -132,9 +132,6 @@ namespace InnoThink.BLL.User
 
         public bool isPasswordCorrect(string LoginId, string password)
         {
-            Dictionary<string, string> para = new Dictionary<string, string>() { };
-            para.Add("LoginId", LoginId);
-            para.Add("Password", password);
             var user = new User_Repo().GetByParam(new User_Filter()
             {
                 LoginId = LoginId,

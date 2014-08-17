@@ -188,6 +188,7 @@
     <Content Include="CDN\Images\Common\loading.gif" />
     <Content Include="CDN\Images\Common\pbar-ani.gif" />
     <Content Include="CDN\Js\Common.js" />
+    <Content Include="CDN\Js\Default\LoginAdmin.js" />
     <Content Include="CDN\Js\Main.js" />
     <Content Include="CDN\Js\Default\Login.js" />
     <Content Include="CDN\Js\lib\aes.js" />
@@ -283,10 +284,14 @@
     <Content Include="ToolsPage\EnvValues.aspx" />
     <Content Include="ToolsPage\knock.aspx" />
     <Content Include="Views\Admin\AdjustUserPosition.aspx" />
+    <Content Include="Views\Admin\AdminListing.aspx" />
+    <Content Include="Views\Admin\AdminEdit.aspx" />
     <Content Include="Views\Admin\TeamGroupMemberListing.aspx" />
     <Content Include="Views\Admin\CreateTeamGroup.aspx" />
     <Content Include="Views\Admin\TeamGroupListing.aspx" />
+    <Content Include="Views\Default\Admin.aspx" />
     <Content Include="Views\Default\Index.aspx" />
+    <Content Include="Views\Admin\Admin.aspx" />
     <Content Include="Views\Member\ChangePassowrd.aspx" />
     <Content Include="Views\Member\UpdateMyInfo.aspx" />
     <Content Include="Views\Member\JoinedTopic.aspx" />
@@ -329,7 +334,6 @@
     <Content Include="Views\Shared\Error.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\InnoThinkMain..bak.oo" />
     <Content Include="Views\Shared\TopicStep.Master" />
     <None Include="CDN\Js\lib\jquery.min.map" />
     <Content Include="Upload\_temp\TempFolder" />
@@ -365,6 +369,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -15,6 +15,7 @@ using System.Web.Mvc;
 using InnoThink.BLL.User;
 using InnoThink.Domain.Facebook;
 using InnoThink.Domain;
+using InnoThink.BLL.BackofficeUser;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -122,6 +123,92 @@ namespace InnoThink.Website.Controllers.Service
             {
                 return Json(ex.Message, JsonRequestBehavior.DenyGet);
             }
+        }
+
+        [HttpPost]
+        public JsonResult LoginAdmin(string username, string password, string verify)
+        {
+            ResultBase result = new ResultBase();
+            sessionData.trading = new Trading();
+            try
+            {
+                if (AppConfigManager.SystemSetting.CaptchaCode && verify != (string)Session[SessionKeys.VerifyCode.ToString()])
+                {
+                    result.setException(new Exception("驗證碼錯誤。"), "LoginService");
+                }
+                else
+                {
+                    BackofficeUser_Manager bm = new BackofficeUser_Manager();
+                    if (bm.isPasswordCorrect(username, password))
+                    {
+                        result.setMessage("登入成功。");
+                        MakeAdminTrading(username);
+                        sessionData.trading.isLogined = true;
+                        Log.Debug(string.Format("User [{0}] Logined.", username));
+                    }
+                    else
+                    {
+                        result.setException(new Exception("帳號或密碼錯誤。"), "LoginService");
+                        Log.Debug(string.Format("User [{0}] Login failed.", username));
+                    }
+                }
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.DenyGet);
+            }
+        }
+
+        private void MakeAdminTrading(string username)
+        {
+            Trading trading = new Trading() { };
+            if (sessionData == null && sessionData.trading != null)
+            {
+                trading = sessionData.trading;
+            }
+            BackofficeUser_Manager bm = new BackofficeUser_Manager();
+            var bouser = bm.GetByParameter(new BackofficeUser_Filter()
+            {
+                LoginId = username
+            }).FirstOrDefault();
+
+            trading.LoginId = username;
+            trading.UserSN = bouser.BackofficeUserSN;
+            trading.Level = bouser.Level;
+            sessionData.trading = trading;
+        }
+
+        [HttpPost]
+        public JsonResult RegistryAdmin(string username, string password)
+        {
+            ResultBase result = new ResultBase() { };
+            BackofficeUser_Manager bm = new BackofficeUser_Manager();
+            var user = bm.GetByParameter(new BackofficeUser_Filter()
+            {
+                UserName = username
+            }).FirstOrDefault();
+            if (user != null)
+            {
+                result.setErrorMessage("這個帳號已經註冊過了。");
+            }
+            else
+            {
+                bm.Insert(new BackofficeUser_Info()
+                {
+                    LastUpdator = sessionData.trading.UserName,
+                    Level = 1,
+                    LoginId = username,
+                    Password = password,
+                    UserName = username
+                });
+
+                MakeTrading(username);
+                sessionData.trading.isLogined = true;
+
+                result.setMessage("帳號建立完成。");
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]

@@ -56,6 +56,10 @@ namespace InnoThink.BLL.BackofficeUser
             long newID = 0;
             try
             {
+                string encode = Encrypt.RandomStr(10);
+                data.Encode = encode;
+                data.Password = Encrypt.EncryptPassword(data.Password, encode);
+                data.LastUpdate = DateTime.Now;
                 newID = new BackofficeUser_Repo().Insert(data);
             }
             catch (Exception ex)
@@ -69,11 +73,13 @@ namespace InnoThink.BLL.BackofficeUser
         #region Operation: Raw Update
         public bool Update(long BackofficeUserSN, BackofficeUser_Info data, IEnumerable<string> columns)
         {
+            data.Password = Encrypt.EncryptPassword(data.Password, data.Encode);
             return new BackofficeUser_Repo().Update(BackofficeUserSN, data, columns) > 0;
         }
 
         public bool Update(BackofficeUser_Info data)
         {
+            data.Password = Encrypt.EncryptPassword(data.Password, data.Encode);
             return new BackofficeUser_Repo().Update(data) > 0;
         }
         #endregion
@@ -94,6 +100,23 @@ namespace InnoThink.BLL.BackofficeUser
 
         #region private functions
         #endregion
+
+        public bool isPasswordCorrect(string username, string password)
+        {
+            var user = new BackofficeUser_Repo().GetByParam(new BackofficeUser_Filter()
+            {
+                 LoginId = username
+            }).FirstOrDefault();
+            if (user != null)
+            {
+                string encPwd = Encrypt.EncryptPassword(password, user.Encode);
+                return (string.Compare(encPwd, user.Password) == 0);
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
     #endregion
 }

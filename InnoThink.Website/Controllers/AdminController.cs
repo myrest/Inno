@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using InnoThink.BLL.User;
 using InnoThink.Domain;
 using InnoThink.BLL.TeamGroup;
+using InnoThink.BLL.BackofficeUser;
 
 namespace InnoThink.Website.Controllers
 {
@@ -18,17 +19,35 @@ namespace InnoThink.Website.Controllers
         // GET: /Product/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(AdminController));
 
-
-
         private static readonly TeamGroup_Manager dbTG = new TeamGroup_Manager() { };
 
         public AdminController()
-            : base(Permission.Private)
+            : base(Permission.Admin)
         {
         }
 
-        public ActionResult AdjustUserPosition()
+        public ActionResult Admin()
         {
+            return View();
+        }
+
+        public ActionResult AdminListing()
+        {
+            BackofficeUser_Manager bm = new BackofficeUser_Manager();
+            var result  = bm.GetAll().ToList();
+            ViewData["Model"] = result;
+            return View();
+        }
+
+        public ActionResult AdminEdit(int SN)
+        {
+            BackofficeUser_Info result = new BackofficeUser_Info() { };
+            if (SN > 0)
+            {
+                //edit
+                result = new BackofficeUser_Manager().GetBySN(SN);
+            }
+            ViewData["Model"] = result;
             return View();
         }
 

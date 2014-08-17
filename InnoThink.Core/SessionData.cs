@@ -49,11 +49,14 @@ namespace InnoThink.Core
             LoginId = default(string);
             isLogined = false;
             UserSN = 0;
+            Level = 0;
         }
 
         public string LoginId { get; set; }
 
         public bool isLogined { get; set; }
+
+        public int Level { get; set; }
 
         public int UserSN { get; set; }
 
