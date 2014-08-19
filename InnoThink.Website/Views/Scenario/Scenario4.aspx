@@ -245,7 +245,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%
         var Model = (ScenarioCharViewModel)ViewData["Model"];
-        var AllMember = (List<DbTopicMemberModel>)ViewData["AllMember"];
+        var AllMember = (List<TopicMember_Info>)ViewData["AllMember"];
         int UserSN = (int)ViewData["_UserSN"];
     %>
     <table class="body0 StepBody">

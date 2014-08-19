@@ -132,6 +132,10 @@ namespace InnoThink.DAL.TeamGroup
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
+                if (!string.IsNullOrEmpty(filter.GroupName))
+                {
+                    SQLStr.Append(" AND UPPER(GroupName)=@0", filter.GroupName.ToUpper());
+                }
                 //if (filter.ID != 0)
                     //SQLStr.Append(" AND TeamGroupSN=@0", filter.ID);
                     //Should updat the filter for wide search

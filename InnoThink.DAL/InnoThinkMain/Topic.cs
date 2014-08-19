@@ -144,17 +144,17 @@ namespace InnoThink.DAL.Topic
                             break;
                     }
                 }
-                if (string.IsNullOrEmpty(filter.Subject))
+                if (!string.IsNullOrEmpty(filter.Subject))
                 {
-                    SQLStr.Append(" Subject = @0", filter.Subject);
+                    SQLStr.Append("And UPPER(Subject) = @0", filter.Subject.ToUpper());
                 }
                 if (filter.TeamGroupSN.HasValue)
                 {
-                    SQLStr.Append(" TeamGroupSN = @0", filter.TeamGroupSN.Value);
+                    SQLStr.Append("And TeamGroupSN = @0", filter.TeamGroupSN.Value);
                 }
                 if (filter.PublishType.HasValue)
                 {
-                    SQLStr.Append(" PublishType = @0", filter.PublishType.Value);
+                    SQLStr.Append("And PublishType = @0", filter.PublishType.Value);
                 }
                 //if (filter.ID != 0)
                     //SQLStr.Append(" AND TopicSN=@0", filter.ID);

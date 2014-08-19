@@ -114,7 +114,6 @@
     <Compile Include="DB\DbBestIdeaMemRankTable.cs" />
     <Compile Include="DB\DbBestIdeaTable.cs" />
     <Compile Include="DB\DbBestStep1Table.cs" />
-    <Compile Include="DB\DbTopicMemberTable.cs" />
     <Compile Include="DB\Paging.cs" />
     <Compile Include="Model\Topic\SignalRMessageModel.cs" />
     <Compile Include="MVC\ActionResult\ImageResult.cs" />

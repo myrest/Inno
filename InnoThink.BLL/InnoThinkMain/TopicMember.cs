@@ -101,6 +101,48 @@ namespace InnoThink.BLL.TopicMember
             var rep = new TopicMember_Repo();
             return rep.getStep0Description(TopicSN);
         }
+
+        public List<int> GetAllJoinedTopicByUserSN(int UserSN)
+        {
+            var rep = new TopicMember_Repo();
+            List<TopicMemberUI> data = rep.GetAllJoinedTopicByUserSN(UserSN);
+            if (data != null)
+            {
+                return data.Select(x => x.TopicSN).ToList();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public TopicMember_Info getTopicMember(int TopicSN, int UserSN)
+        {
+            var rep = new TopicMember_Repo();
+            List<TopicMemberUI> data = rep.getTopicMember(TopicSN, UserSN);
+            if (data != null)
+            {
+                return data.First();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<TopicMemberUI> getALLTopicMember(int TopicSN)
+        {
+            var rep = new TopicMember_Repo();
+            List<TopicMemberUI> data = rep.getALLTopicMember(TopicSN);
+            if (data != null)
+            {
+                return data;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
     #endregion
 }

@@ -283,9 +283,10 @@
     <Content Include="ToolsPage\Downloadappdata.aspx" />
     <Content Include="ToolsPage\EnvValues.aspx" />
     <Content Include="ToolsPage\knock.aspx" />
-    <Content Include="Views\Admin\AdjustUserPosition.aspx" />
     <Content Include="Views\Admin\AdminListing.aspx" />
     <Content Include="Views\Admin\AdminEdit.aspx" />
+    <Content Include="Views\Admin\CreateNewTopic.aspx" />
+    <Content Include="Views\Admin\TopicManage.aspx" />
     <Content Include="Views\Admin\TeamGroupMemberListing.aspx" />
     <Content Include="Views\Admin\CreateTeamGroup.aspx" />
     <Content Include="Views\Admin\TeamGroupListing.aspx" />

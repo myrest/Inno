@@ -1,57 +1,28 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace Rest.Core.Utility
 {
-    public static class ReflectionUtility
+    public class ReflectionUtility
     {
-        public static Type[] GetTypesInNamespace(string nameSpace)
+        public static List<T2> ListConvertor<T1, T2>(List<T1> from)
+            where T2 : class
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            return assembly.GetTypes().Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToArray();
-        }
-
-        public static Type[] GetTypesInNamespace(string nameSpace, bool IncludeSubNamespace)
-        {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            return assembly.GetTypes().Where(t => StartWith(t.Namespace, nameSpace)).ToArray();
-        }
-
-        private static bool StartWith(string NameSpace, string CompareTo)
-        {
-            if (!string.IsNullOrEmpty(NameSpace))
+            List<T2> result = new List<T2>() { };
+            if (from != null)
             {
-                return NameSpace.StartsWith(CompareTo, StringComparison.Ordinal);
+                from.ForEach(x =>
+                {
+                    T2 tmp = Activator.CreateInstance(typeof(T2)) as T2;
+                    result.Add(tmp);
+                });
+                return result;
             }
             else
             {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 把物件Source裏頭的屬性相同的值，複製到Destence
-        /// </summary>
-        /// <param name="Source">Source class</param>
-        /// <param name="Distance">Distance class</param>
-        /// <returns></returns>
-        public static void MapByProperties<T1, T2>(this T1 Source, T2 Distance)
-            where T1 : class
-            where T2 : class
-        {
-            if (Source != null)
-            {
-                Type fromType = Source.GetType();
-                Type toType = Distance.GetType();
-                foreach (PropertyInfo prop in fromType.GetProperties())
-                {
-                    var toProp = toType.GetProperty(prop.Name);
-                    if (toProp != null)
-                    {
-                        toType.GetProperty(prop.Name).SetValue(Distance, prop.GetValue(Source, null), null);
-                    }
-                }
+                return null;
             }
         }
     }

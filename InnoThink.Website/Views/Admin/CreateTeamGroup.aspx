@@ -29,7 +29,7 @@
             Action: function () {
                 var cb = function (data) {
                     utility.showPopUp(data.msg, 1, function () {
-                        location.href = utility.getRedirUrl('Member', 'UserInfo');
+                        location.href = utility.getRedirUrl('Admin', 'Admin');
                     });
                 };
                 var ecb = function (data) {

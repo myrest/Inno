@@ -168,6 +168,52 @@ namespace InnoThink.DAL.TopicMember
             return string.Join(", ", fieldNames);
         }
         #endregion
+
+        public List<TopicMemberUI> GetAllJoinedTopicByUserSN(int UserSN)
+        {
+            var SQLStr = Rest.Core.PetaPoco.Sql.Builder
+                .Append(@"
+                        select tm.*, u.UserName 
+                        from TopicMember tm inner join User u on tm.UserSN = u.UserSN 
+                        where tm.UserSN = @0", UserSN);
+
+            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            {
+                var result = db.Query<TopicMemberUI>(SQLStr);
+
+                return result.ToList();
+            }
+        }
+
+        public List<TopicMemberUI> getTopicMember(int TopicSN, int UserSN)
+        {
+            var SQLStr = Rest.Core.PetaPoco.Sql.Builder
+                .Append(@"
+                    select tm.*, u.UserName 
+                    from TopicMember tm inner join User u on tm.UserSN = u.UserSN 
+                    where tm.UserSN = @0 and tm.TopicSN = @1", UserSN, TopicSN);
+            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            {
+                var result = db.Query<TopicMemberUI>(SQLStr);
+
+                return result.ToList();
+            }
+        }
+
+        public List<TopicMemberUI> getALLTopicMember(int TopicSN)
+        {
+            var SQLStr = Rest.Core.PetaPoco.Sql.Builder
+                .Append(@"
+                    select tm.*, u.UserName 
+                    from TopicMember tm inner join User u on tm.UserSN = u.UserSN 
+                    where tm.TopicSN = @0", TopicSN);
+            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            {
+                var result = db.Query<TopicMemberUI>(SQLStr);
+
+                return result.ToList();
+            }
+        }
     }
     #endregion
 

@@ -73,9 +73,9 @@ namespace InnoThink.Website.Controllers
             Model.TopicSN = TopicSN;
 
             //Get Team member List
-            var OnLineMem = (List<DbTopicMemberModel>)ViewData["OnlineTeamMember"];
-            var OffLineMem = (List<DbTopicMemberModel>)ViewData["OfflineTeamMember"];
-            List<DbTopicMemberModel> AllMember = new List<DbTopicMemberModel>() { };
+            var OnLineMem = (List<TopicMember_Info>)ViewData["OnlineTeamMember"];
+            var OffLineMem = (List<TopicMember_Info>)ViewData["OfflineTeamMember"];
+            List<TopicMember_Info> AllMember = new List<TopicMember_Info>() { };
             if (OnLineMem != null)
             {
                 OnLineMem.ForEach(x => AllMember.Add(x));
@@ -122,9 +122,9 @@ namespace InnoThink.Website.Controllers
             sessionData.ClearTempValue();
 
             //Get Team member List
-            var OnLineMem = (List<DbTopicMemberModel>)ViewData["OnlineTeamMember"];
-            var OffLineMem = (List<DbTopicMemberModel>)ViewData["OfflineTeamMember"];
-            List<DbTopicMemberModel> AllMember = new List<DbTopicMemberModel>() { };
+            var OnLineMem = (List<TopicMember_Info>)ViewData["OnlineTeamMember"];
+            var OffLineMem = (List<TopicMember_Info>)ViewData["OfflineTeamMember"];
+            List<TopicMember_Info> AllMember = new List<TopicMember_Info>() { };
             if (OnLineMem != null)
             {
                 OnLineMem.ForEach(x => AllMember.Add(x));
@@ -222,9 +222,9 @@ namespace InnoThink.Website.Controllers
             Model.TopicSN = TopicSN;
 
             //Get Team member List
-            var OnLineMem = (List<DbTopicMemberModel>)ViewData["OnlineTeamMember"];
-            var OffLineMem = (List<DbTopicMemberModel>)ViewData["OfflineTeamMember"];
-            List<DbTopicMemberModel> AllMember = new List<DbTopicMemberModel>() { };
+            var OnLineMem = (List<TopicMember_Info>)ViewData["OnlineTeamMember"];
+            var OffLineMem = (List<TopicMember_Info>)ViewData["OfflineTeamMember"];
+            List<TopicMember_Info> AllMember = new List<TopicMember_Info>() { };
             if (OnLineMem != null)
             {
                 OnLineMem.ForEach(x => AllMember.Add(x));

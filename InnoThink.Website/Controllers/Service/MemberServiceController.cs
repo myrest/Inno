@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using InnoThink.BLL.User;
 using InnoThink.Domain;
 using InnoThink.BLL.Topic;
+using InnoThink.BLL.TopicMember;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -23,7 +24,7 @@ namespace InnoThink.Website.Controllers.Service
 
         private static readonly Topic_Manager dbTopic = new Topic_Manager();
 
-        private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
+        private static readonly TopicMember_Manager dbTopMem = new TopicMember_Manager() { };
         
 
         public MemberServiceController()
@@ -95,7 +96,11 @@ namespace InnoThink.Website.Controllers.Service
             var Topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.UserSN);
             if (Topic == null || Topic.TopicSN == 0)
             {
-                bool isJoinSuccess = dbTopMem.AddNewTopicMember(SN, sessionData.trading.UserSN);
+                bool isJoinSuccess = dbTopMem.Insert(new TopicMember_Info()
+                {
+                    TopicSN = SN,
+                    UserSN = sessionData.trading.UserSN
+                }) > 0;
                 if (isJoinSuccess)
                 {
                     result.JsonReturnCode = 1;

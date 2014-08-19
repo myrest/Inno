@@ -1,12 +1,22 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Configuration;
+using Rest.Core.Utility;
 
 namespace UnitTest.RestCore
 {
     [TestClass]
     public class Database
     {
+        [TestMethod]
+        public void TestEncryTSN()
+        {
+            int TeamGroupSN = 5;
+            string Enc = Encrypt.EncryptTeamGroupSN(TeamGroupSN);
+            int sn = Encrypt.GetEncryptTeamGropuSN(Enc);
+            Assert.IsTrue(sn == TeamGroupSN);
+        }
+
         [TestMethod]
         public void TestMethod2()
         {

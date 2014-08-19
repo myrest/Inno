@@ -9,6 +9,13 @@ namespace InnoThink.Website.Models
     public class TeamGroupListViewModel : ResultBase
     {
         [DataMember(Name = "d")]
-        public List<TeamGroup_Info> DataResult { get; set; }
+        public List<TeamGroupUI> DataResult { get; set; }
+    }
+
+    [DataContract]
+    public class TeamGroupUI : TeamGroup_Info
+    {
+        [DataMember(Name = "tid")]
+        public string TeamGroupID { get; set; }
     }
 }

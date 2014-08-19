@@ -16,6 +16,7 @@
         <div id="body1">
             最新發起議題
         </div>
+        <button id="Add" class="align-right">Add New</button>
         <table>
             <tr>
                 <td>&nbsp;
@@ -78,6 +79,7 @@
             $('.jointopic').on('click', cnTop._jointopic);
             $('.delTopic').on('click', cnTop._delTopic);
             $('.visit').on('click', cnTop._visit);
+            $('#Add').on('click', cnTop.Create);
         });
         var cnTop = {
             _delTopic: function () {
@@ -114,6 +116,10 @@
                         utility.showPopUp(data.msg, 1);
                     }
                 });
+            },
+            Create: function () {
+                var redirto = utility.getRedirUrl('Admin', 'CreateNewTopic') + '?' + (new Date()).getMilliseconds();
+                location.href = redirto;
             }
         };
     </script>

@@ -10,6 +10,9 @@ using InnoThink.BLL.User;
 using InnoThink.Domain;
 using InnoThink.BLL.TeamGroup;
 using InnoThink.BLL.BackofficeUser;
+using InnoThink.BLL.Topic;
+using InnoThink.BLL.TopicMember;
+using System.Collections.Generic;
 
 namespace InnoThink.Website.Controllers
 {
@@ -19,13 +22,16 @@ namespace InnoThink.Website.Controllers
         // GET: /Product/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(AdminController));
 
+        private static readonly Topic_Manager dbTopic = new Topic_Manager();
         private static readonly TeamGroup_Manager dbTG = new TeamGroup_Manager() { };
+
+        private static readonly TopicMember_Manager dbTopMem = new TopicMember_Manager() { };
 
         public AdminController()
             : base(Permission.Admin)
         {
         }
-
+        #region Admin related function
         public ActionResult Admin()
         {
             return View();
@@ -50,6 +56,33 @@ namespace InnoThink.Website.Controllers
             ViewData["Model"] = result;
             return View();
         }
+        #endregion
+
+        public ActionResult TopicManage()
+        {
+            TopicSimpleViewModel model = new TopicSimpleViewModel();
+            try
+            {
+                User_Manager um = new User_Manager();
+                var user = um.GetBySN(sessionData.trading.UserSN);
+                model.DBResult = dbTopic.GetAllTopic_Admin();
+
+                model.JoinedTopic = dbTopMem.GetAllJoinedTopicByUserSN(sessionData.trading.UserSN);
+
+                model.JsonReturnCode = 1;
+            }
+            catch (Exception ex)
+            {
+                model.setException(ex, "NewTopicListing");
+            }
+            ViewData["Model"] = model;
+            return View();
+        }
+
+        public ActionResult CreateNewTopic()
+        {
+            return View();
+        }
 
         public ActionResult CreateTeamGroup()
         {
@@ -61,8 +94,13 @@ namespace InnoThink.Website.Controllers
             TeamGroupListViewModel model = new TeamGroupListViewModel();
             try
             {
-                var TeamGroupList = dbTG.GetAll().ToList();
-                model.DataResult = TeamGroupList;
+                List<TeamGroup_Info> TeamGroupList = dbTG.GetAll().ToList();
+                List<TeamGroupUI> result = TeamGroupList.ListConvertor<TeamGroup_Info, TeamGroupUI>();
+                result.ForEach(x =>
+                {
+                    x.TeamGroupID = Encrypt.EncryptTeamGroupSN(x.TeamGroupSN);
+                });
+                model.DataResult = result;
                 model.JsonReturnCode = 1;
             }
             catch (Exception ex)

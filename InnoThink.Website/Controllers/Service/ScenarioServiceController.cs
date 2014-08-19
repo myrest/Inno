@@ -14,6 +14,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using InnoThink.Domain;
+using InnoThink.Domain.InnoThinkMain.Binding;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -653,7 +654,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 31;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = TopicServiceController.ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -664,7 +665,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 32;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = TopicServiceController.ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -675,7 +676,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 33;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = TopicServiceController.ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -686,7 +687,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 34;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = TopicServiceController.ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -697,7 +698,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 35;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = TopicServiceController.ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -708,7 +709,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 36;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = TopicServiceController.ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -719,7 +720,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 37;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = TopicServiceController.ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }

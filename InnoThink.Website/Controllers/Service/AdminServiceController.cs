@@ -11,6 +11,8 @@ using InnoThink.BLL.TeamGroup;
 using System;
 using InnoThink.BLL.BackofficeUser;
 using System.Collections.Generic;
+using InnoThink.BLL.TopicMember;
+using InnoThink.BLL.Topic;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -20,10 +22,13 @@ namespace InnoThink.Website.Controllers.Service
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(AdminServiceController));
 
-        
-        private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
+
+        private static readonly TopicMember_Manager dbTopMem = new TopicMember_Manager() { };
 
         private static readonly TeamGroup_Manager dbTgroup = new TeamGroup_Manager();
+
+        private static readonly Topic_Manager dbTopic = new Topic_Manager();
+
 
         public AdminServiceController()
             : base(Permission.Admin)
@@ -106,7 +111,7 @@ namespace InnoThink.Website.Controllers.Service
                 {
                     GroupName = TeamGroupName,
                     LastUpdate = DateTime.Now,
-                     MaxUsers = 99
+                    MaxUsers = 99
                 };
                 dbTgroup.Insert(data);
                 result.setMessage(string.Format("團隊名稱[{0}]，建立完成。", TeamGroupName));
@@ -153,6 +158,28 @@ namespace InnoThink.Website.Controllers.Service
         }
 
         [HttpPost]
+        public JsonResult DeleteTeamGroup(int SN)
+        {
+            ResultBase result = new ResultBase() { };
+            var tg = new TeamGroup_Manager();
+            var u = new User_Manager();
+            int userCount = u.GetByParameter(new User_Filter()
+            {
+                TeamGroupSN = SN
+            }).Count();
+            if (userCount > 0)
+            {
+                result.setErrorMessage("該群組下有成員，無法移除。");
+            }
+            else
+            {
+                tg.Delete(SN);
+                result.setMessage("Done");
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
         public JsonResult DeleteTeamGroupMember(int SN)
         {
             ResultBase result = new ResultBase() { };
@@ -169,6 +196,61 @@ namespace InnoThink.Website.Controllers.Service
                 result.setErrorMessage("該帳號不存在");
             }
             return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult NewTopic(string Subject, string TeamGroupId, bool isSandBox)
+        {
+            ResultBase result = new ResultBase() { };
+            if (string.IsNullOrEmpty(Subject))
+            {
+                result.setErrorMessage("主旨不得為空。");
+            }
+            else if (string.IsNullOrEmpty(TeamGroupId))
+            {
+                result.setErrorMessage("群組編號不得為空。");
+            }
+            else if (!isSandBox && TopicIsExist(Subject))
+            {
+                result.setErrorMessage("相同主旨已存在。");
+            }
+            else
+            {
+                int TeamGroupSN = Encrypt.GetEncryptTeamGropuSN(TeamGroupId);
+                if (TeamGroupSN < 1)
+                {
+                    result.setErrorMessage("該群組代碼不存在。");
+                }
+                else
+                {
+                    dbTopic.Insert(new Topic_Info()
+                    {
+                        DateCreated = DateTime.Now,
+                        PublishType = (int)TopicPublishType.Private,
+                        Subject = Subject,
+                        TeamGroupSN = TeamGroupSN,
+                        Step = 0
+                    });
+                    result.setMessage(string.Format("議題[{0}]，建立完成。", Subject));
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        private bool TopicIsExist(string Subject)
+        {
+            var data = dbTopic.GetByParameter(new Topic_Filter()
+            {
+                Subject = Subject
+            }).FirstOrDefault();
+            if (data != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

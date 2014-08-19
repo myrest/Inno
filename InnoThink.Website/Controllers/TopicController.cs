@@ -29,7 +29,7 @@ namespace InnoThink.Website.Controllers
         private static readonly Topic_Manager dbTopic = new Topic_Manager();
         private static readonly TopicMember_Manager dbTMem = new TopicMember_Manager();
         
-        private static readonly DbTopicMemberTable dbTopicMember = new DbTopicMemberTable() { };
+        private static readonly TopicMember_Manager dbTopMem = new TopicMember_Manager() { };
         private static readonly DbBestStep1Table dbBest1 = new DbBestStep1Table() { };
         private static readonly DbBestIdeaTable dbBestIdea = new DbBestIdeaTable() { };
         private static readonly DbBestIdeaMemRankTable dbBestIdeaMemRank = new DbBestIdeaMemRankTable() { };
@@ -63,7 +63,7 @@ namespace InnoThink.Website.Controllers
             viewdata["PublicBoard"] = PublicBoard;
 
             //Handle online team member.
-            var allmembers = dbTopicMember.getALLTopicMember(TopicSN);
+            var allmembers = dbTopMem.getALLTopicMember(TopicSN);
             allmembers.ForEach(x => x.Picture = StringUtility.ConvertPicturePath(x.Picture));
 
             //online member need add self sn on the list

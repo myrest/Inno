@@ -16,11 +16,14 @@
         <div id="body1">
             團隊名稱管理
         </div>
+        <button class="align-right" onclick="location='/Admin/CreateTeamGroup';">建立新的團隊名稱</button>
         <table>
             <tr>
                 <td>&nbsp;
                 </td>
                 <td>團隊名稱
+                </td>
+                <td>團隊代碼
                 </td>
                 <td>功能
                 </td>
@@ -41,8 +44,11 @@
                     <%=item.GroupName %>
                 </td>
                 <td>
-                    <a href="/Admin/TeamGroupMemberListing?SN=<%=item.SN %>">管理成員</a>
-                    &nbsp;&nbsp;<a href="#" class="deltg" data-id="<%=item.SN %>">刪除</a>
+                    <%=item.TeamGroupID %>
+                </td>
+                <td>
+                    <a href="/Admin/TeamGroupMemberListing?SN=<%=item.TeamGroupSN %>">管理成員</a>
+                    &nbsp;&nbsp;<a href="#" class="deltg" data-id="<%=item.TeamGroupSN %>">刪除</a>
                 </td>
             </tr>
             <%

@@ -19,6 +19,8 @@ using System.Web.Mvc;
 using InnoThink.BLL.User;
 using InnoThink.Domain;
 using InnoThink.BLL.Topic;
+using InnoThink.BLL.TopicMember;
+using InnoThink.Domain.InnoThinkMain.Binding;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -30,7 +32,7 @@ namespace InnoThink.Website.Controllers.Service
 
         private static readonly Topic_Manager dbTopic = new Topic_Manager();
 
-        private static readonly DbTopicMemberTable dbTopMem = new DbTopicMemberTable() { };
+        private static readonly TopicMember_Manager dbTopMem = new TopicMember_Manager() { };
         
         private static readonly DbBestStep1Table dbBest1 = new DbBestStep1Table() { };
         private static readonly DbBestIdeaTable dbBestIdea = new DbBestIdeaTable() { };
@@ -61,16 +63,16 @@ namespace InnoThink.Website.Controllers.Service
         public JsonResult UpdateUnit1Description(UpdateUnit1DescriptionUI data)
         {
             ResultBase result = new ResultBase() { };
-            DbTopicMemberModel TopicMember = dbTopMem.getTopicMember(data.TopicSN, sessionData.trading.UserSN);
+            TopicMember_Info TopicMember = dbTopMem.getTopicMember(data.TopicSN, sessionData.trading.UserSN);
             TopicMember.LeaderSNVoteTo = data.LeaderVote;
             TopicMember.Description = data.Descript;
-            dbTopMem.UpdateTopicMember(TopicMember);
+            dbTopMem.Update(TopicMember);
             //Get user object.
             User_Manager um = new User_Manager();
             var User = um.GetBySN(sessionData.trading.UserSN);
 
             //Get all team member vote for leader.
-            List<DbTopicMemberModel> TeamMembers = dbTopMem.getALLTopicMember(data.TopicSN);
+            var TeamMembers = dbTopMem.getALLTopicMember(data.TopicSN);
             var LeaderVotes = TeamMembers.ToDictionary(x => x.UserSN, x => TeamMembers.Where(y => y.LeaderSNVoteTo == x.UserSN).Count());
 
             //Update date topic inofrmation for leader login id.
@@ -137,9 +139,9 @@ namespace InnoThink.Website.Controllers.Service
                 var handjobarr = x.Split(new char[] { ',' }, 2);
                 var TopicMem = dbTopMem.getTopicMember(Paras.TopicSN, Convert.ToInt32(handjobarr[0]));
                 TopicMem.HandleJob = handjobarr[1];
-                dbTopMem.UpdateTopicMember(TopicMem);
+                dbTopMem.Update(TopicMem);
             });
-            //dbTopMem.UpdateTopicMember
+            //dbTopMem.Update
 
             #endregion Process Topic Member related.
 
@@ -162,7 +164,7 @@ namespace InnoThink.Website.Controllers.Service
             ResultBase result = new ResultBase() { };
             //Check the Leader
             //Get all team member vote for leader.
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -173,7 +175,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 0;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -184,7 +186,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 11;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -195,7 +197,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 12;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -206,7 +208,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 13;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -217,7 +219,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 14;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             result.JsonReturnCode = 1;
             return Json(result, JsonRequestBehavior.DenyGet);
@@ -229,7 +231,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 15;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             result.JsonReturnCode = 1;
             return Json(result, JsonRequestBehavior.DenyGet);
@@ -241,7 +243,7 @@ namespace InnoThink.Website.Controllers.Service
             int GotoStep = 16;
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             result.JsonReturnCode = 1;
             return Json(result, JsonRequestBehavior.DenyGet);
@@ -275,7 +277,7 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase() { };
             //Check the Leader
-            List<DbTopicMemberModel> TeamMembers;
+            List<TopicMemberUI> TeamMembers;
             result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
             result.JsonReturnCode = 1;
             return result;
@@ -307,13 +309,13 @@ namespace InnoThink.Website.Controllers.Service
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
-        //Should remove "out List<DbTopicMemberModel> OutTeamMembers" parameter for performance issue.
-        public static ResultBase ProcessGotoStep(int TopicSN, int GotoStep, Trading trading, out List<DbTopicMemberModel> OutTeamMembers)
+        //Should remove "out List<TopicMember_Info> OutTeamMembers" parameter for performance issue.
+        public static ResultBase ProcessGotoStep(int TopicSN, int GotoStep, Trading trading, out List<TopicMemberUI> OutTeamMembers)
         {
             ResultBase result = new ResultBase() { };
             //Check the Leader
             //Get all team member vote for leader.
-            List<DbTopicMemberModel> TeamMembers = dbTopMem.getALLTopicMember(TopicSN);
+            List<TopicMemberUI> TeamMembers = dbTopMem.getALLTopicMember(TopicSN);
             var LeaderVotes = TeamMembers.ToDictionary(x => x.UserSN, x => TeamMembers.Where(y => y.LeaderSNVoteTo == x.UserSN).Count());
             int LeaderSN = LeaderVotes.OrderByDescending(x => x.Value).ThenBy(x => x.Key).First().Key;
             User_Manager um = new User_Manager();
@@ -848,7 +850,15 @@ namespace InnoThink.Website.Controllers.Service
             var model = dbTopic.GetBySN(TopicSN);
             if (model.DateClosed == DateTime.MinValue)
             {
-                dbTopMem.LeaveTopic(TopicSN, sessionData.trading.UserSN);
+                var data = dbTopMem.GetByParameter(new TopicMember_Filter()
+                {
+                    UserSN = sessionData.trading.UserSN,
+                    TopicSN = TopicSN
+                }).FirstOrDefault();
+                if (data != null)
+                {
+                    dbTopMem.Delete(data.TopicMemberSN);
+                }
                 result.setMessage("您已退出該議題討論。");
             }
             else

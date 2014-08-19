@@ -46,5 +46,44 @@ namespace Rest.Core.Utility
             byte[] encrypted = algorithm.ComputeHash(data);
             return Convert.ToBase64String(encrypted);
         }
+
+        public static string EncryptTeamGroupSN(int TeamGroupSN)
+        {
+            string org = string.Format("SN={0}", TeamGroupSN);
+            SHA256 sha256 = new SHA256CryptoServiceProvider();//建立一個SHA256
+            byte[] source = Encoding.Default.GetBytes(org);//將字串轉為Byte[]
+            byte[] crypto = sha256.ComputeHash(source);//進行SHA256加密
+            string result = Convert.ToBase64String(crypto);//把加密後的字串從Byte[]轉為字串
+            result = result.Replace("+", "");
+            result = result.Replace("=", "");
+            result = result.Replace("/", "");
+            string left = result.Substring(0, 3);
+            string right = result.Substring(3, 4);
+            return string.Format("{0}{1}-{2}", left, TeamGroupSN, right).ToUpper();
+        }
+
+        public static int GetEncryptTeamGropuSN(string EncryCode)
+        {
+            if (EncryCode.Length == 9 && EncryCode.IndexOf('-') > 0)
+            {
+                string left = EncryCode.Substring(0, 3);
+                string right = EncryCode.Split(new char[] { '-' }, 2)[1];
+                string num = EncryCode.Substring(3, EncryCode.IndexOf('-') - 3);
+
+                string conf = EncryptTeamGroupSN(Convert.ToInt32(num));
+                if (EncryCode == conf)
+                {
+                    return Convert.ToInt32(num);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

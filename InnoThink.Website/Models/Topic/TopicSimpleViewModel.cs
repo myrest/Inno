@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using InnoThink.Domain;
+using Rest.Core.Utility;
 
 namespace InnoThink.Website.Models
 {
@@ -16,6 +17,11 @@ namespace InnoThink.Website.Models
         {
             private set
             {
+                value.ForEach(x =>
+                {
+                    x.GroupID = Encrypt.EncryptTeamGroupSN(x.TeamGroupSN);
+                });
+
                 _DataResult = value;
             }
             get
@@ -69,5 +75,6 @@ namespace InnoThink.Website.Models
     public class DbTopicViewModel : Topic_Info
     {
         public bool isJoined { get; set; }
+        public string GroupID { get; set; }
     }
 }

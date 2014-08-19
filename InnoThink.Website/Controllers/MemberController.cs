@@ -10,6 +10,7 @@ using InnoThink.BLL.User;
 using InnoThink.Domain;
 using InnoThink.BLL.Topic;
 using InnoThink.Domain.Constancy;
+using InnoThink.BLL.TopicMember;
 
 namespace InnoThink.Website.Controllers
 {
@@ -19,9 +20,9 @@ namespace InnoThink.Website.Controllers
         // GET: /Product/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(MemberController));
 
-        private static readonly Topic_Manager dbTopic = new Topic_Manager();        
-        
-        private static readonly DbTopicMemberTable dbTopicMem = new DbTopicMemberTable() { };
+        private static readonly Topic_Manager dbTopic = new Topic_Manager();
+
+        private static readonly TopicMember_Manager dbTopMem = new TopicMember_Manager() { };
 
         public MemberController()
             : base(Permission.Private)
@@ -71,7 +72,7 @@ namespace InnoThink.Website.Controllers
                 {
                     model.DBResult = dbTopic.GetAllTopicByStatus(TopicStatus.InProcess, user.TeamGroupSN);
                 }
-                model.JoinedTopic = dbTopicMem.GetAllJoinedTopicByUserSN(sessionData.trading.UserSN);
+                model.JoinedTopic = dbTopMem.GetAllJoinedTopicByUserSN(sessionData.trading.UserSN);
 
                 model.JsonReturnCode = 1;
             }

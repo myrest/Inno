@@ -8,6 +8,8 @@ var Main = {
         $('#headerlogo').on('click', function () { location.href = '/Home/Index'; });
         $('#otherteam-up1, #tableft').on('click', function () { $('#otherteam, #tableft').toggle('slide'); event.preventDefault(); });
         $('#talk1, #tabright').on('click', function () { $('#talk0, #tabright').toggle('slideRight'); event.preventDefault(); });
+        $('#otherteam-up1').trigger('click');
+        $('#talk1').trigger('click');
     },
     DDLMenu: [{
         '第1單元介紹': [
