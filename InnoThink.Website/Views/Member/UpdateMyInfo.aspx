@@ -18,7 +18,7 @@
         {
             Picture = string.Format("<img src=\"{0}\" />", Model.Picture);
         }
-        string TeamGroupSN = (Model.TeamGroupSN == 0) ? "" : Model.TeamGroupSN.ToString();
+        string TeamGroupID = ViewData["TeamGroupID"].ToString();
     %>
     <div class="body0">
         <div id="body1">
@@ -43,7 +43,7 @@
                 <td>所屬群組：
                 </td>
                 <td>
-                    <input type="text" id="TeamGroupSN" value="<% =TeamGroupSN %>" /><br />
+                    <input type="text" id="TeamGroupID" value="<% =TeamGroupID %>" /><br />
                     若您不曉得您的所屬群組，請留空即可。
                 </td>
             </tr>
@@ -85,9 +85,8 @@
         });
         var updateMyInfo = {
             _Save: function () {
-                var TeamgroupSN = parseInt($('#TeamGroupSN').val(), 10);
-                if (isNaN(TeamgroupSN)) { TeamgroupSN = 0; }
-                var param = { Professional: $('#Professional').val(), UserName: $('#UserName').val(), TeamGroupSN: TeamgroupSN };
+                var TeamGroupID = $('#TeamGroupID').val();
+                var param = { Professional: $('#Professional').val(), UserName: $('#UserName').val(), TeamGroupID: TeamGroupID };
                 utility.service("MemberService/UpdateMyInfo", param, "POST", function (data) {
                     if (data.code > 0) {
                         var redirto = '/Member/UserInfo' + '?' + (new Date()).getMilliseconds();

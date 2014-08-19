@@ -17,8 +17,8 @@
             最新發起議題
         </div>
         <button id="Add" class="align-right">Add New</button>
-        <table>
-            <tr>
+        <table class="fancytable">
+            <tr class="headerrow">
                 <td>&nbsp;
                 </td>
                 <td>議題
@@ -48,21 +48,8 @@
                 </td>
                 <td>
                     <%
-                        if (!item.isJoined)
-                        {
-                            Response.Write(string.Format("&nbsp;&nbsp;<a href=\"#\" class=\"jointopic\" data-id=\"{0}\">我要參加</a>", item.TopicSN));
-                            Response.Write(string.Format("&nbsp;&nbsp;<a href=\"#\" class=\"visit\" data-id=\"{0}\">參觀參觀</a>", item.TopicSN));
-                        }
-                        else
-                        {
-                            Response.Write(string.Format("&nbsp;&nbsp;<a href=\"#\" class=\"visit\" data-id=\"{0}\">開始討論</a>", item.TopicSN));
-                        }
-
-                        bool isAdmin = (bool)ViewData["_isAdmin"];
-                        if (isAdmin)
-                        {
-                            Response.Write(string.Format("&nbsp;&nbsp;<a href=\"#\" class=\"delTopic\" data-id=\"{0}\">刪除</a>", item.TopicSN));
-                        }
+                        Response.Write(string.Format("&nbsp;&nbsp;<a href=\"#\" class=\"visit\" data-id=\"{0}\">參觀參觀</a>", item.TopicSN));
+                        Response.Write(string.Format("&nbsp;&nbsp;<a href=\"#\" class=\"delTopic\" data-id=\"{0}\">刪除</a>", item.TopicSN));
                     %>
                 </td>
             </tr>

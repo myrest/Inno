@@ -17,9 +17,9 @@
             團隊名稱管理
         </div>
         <button class="align-right" onclick="location='/Admin/CreateTeamGroup';">建立新的團隊名稱</button>
-        <table>
-            <tr>
-                <td>&nbsp;
+        <table class="fancytable">
+            <tr class="headerrow">
+                <td>&nbsp;SN
                 </td>
                 <td>團隊名稱
                 </td>

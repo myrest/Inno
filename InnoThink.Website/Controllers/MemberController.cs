@@ -43,10 +43,9 @@ namespace InnoThink.Website.Controllers
         {
             User_Manager um = new User_Manager();
             var user = um.GetBySN(sessionData.trading.UserSN);
-            
             //check the personal icon is come from out site link.
             user.Picture = StringUtility.ConvertPicturePath(user.Picture);
-
+            ViewData["TeamGroupID"] = Encrypt.EncryptTeamGroupSN(user.TeamGroupSN);
             ViewData["Model"] = user;
             return View();
         }

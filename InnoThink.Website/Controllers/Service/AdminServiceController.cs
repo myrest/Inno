@@ -135,7 +135,7 @@ namespace InnoThink.Website.Controllers.Service
             if (user != null && user.UserSN > 0 && user.TeamGroupSN == 0)
             {
                 user.TeamGroupSN = TeamGroupSN;
-                um.Update(user.UserSN, user, new string[] { "*" });
+                um.Update(user.UserSN, user, new string[] { "TeamGroupSN" });
                 result.setMessage(string.Empty);
             }
             else
@@ -184,11 +184,11 @@ namespace InnoThink.Website.Controllers.Service
         {
             ResultBase result = new ResultBase() { };
             User_Manager um = new User_Manager();
-            var user = um.GetBySN(sessionData.trading.UserSN);
+            var user = um.GetBySN(SN);
             if (user != null && user.UserSN > 0)
             {
                 user.TeamGroupSN = 0;
-                um.Update(user);
+                um.Update(user.UserSN, user, new string[] { "TeamGroupSN" });
                 result.setMessage(string.Empty);
             }
             else

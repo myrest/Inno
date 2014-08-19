@@ -29,7 +29,7 @@
             Action: function () {
                 var cb = function (data) {
                     utility.showPopUp(data.msg, 1, function () {
-                        location.href = utility.getRedirUrl('Admin', 'Admin');
+                        location.href = utility.getRedirUrl('Admin', 'TeamGroupListing');
                     });
                 };
                 var ecb = function (data) {

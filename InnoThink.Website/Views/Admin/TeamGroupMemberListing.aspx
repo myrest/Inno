@@ -18,7 +18,8 @@
         </div>
         <input type="text" id="LoginId" autofocus /><input type="button" id="savebtn" value="新增" /><br />
         請輸入要新增的登入帳號
-        <table>
+        <table class="fancytable">
+            <tr class="headerrow">
             <tr>
                 <td>&nbsp;
                 </td>
@@ -42,7 +43,7 @@
                 <td>
                     <%=item.UserName %>(<%=item.LoginId %>)
                 </td>
-                <td>&nbsp;&nbsp;<a href="#" class="del" data-sn="<%=item.SN %>">刪除</a>
+                <td>&nbsp;&nbsp;<a href="#" class="del" data-sn="<%=item.UserSN %>">刪除</a>
                 </td>
             </tr>
             <%

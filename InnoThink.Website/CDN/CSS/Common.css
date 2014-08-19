@@ -250,7 +250,8 @@ input.textbox-highlight, .txt-input:hover, .amt-input:hover, .m-input-box:hover,
 {
     border: 1px solid #cccccc;
     color: #555555;
-    line-height: 28px;
+    line-height: 24px;
+    padding:1px 3px 1px 3px;
 }
 .headerrow
 {

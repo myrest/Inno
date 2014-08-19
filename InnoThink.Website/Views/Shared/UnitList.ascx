@@ -3,32 +3,13 @@
     <tr>
         <td>
             <img src="/pic/slogo-2.jpg" width="22" height="20" alt="" />
-    <%
-        bool isAdmin = (bool)ViewData["_isAdmin"];
-        if (!isAdmin)
-        {
-            Response.Write("<a href=\"/Member/UserInfo\">會員專區</a>");
-        }
-        else
-        {
-            Response.Write("<a href=\"/Admin/Admin\">管理專區</a>");
-        }
-    %>
+            <a href="/Member/UserInfo">會員專區</a>
         </td>
     </tr>
     <tr>
         <td>
             <img src="/pic/slogo-2.jpg" width="22" height="20" alt="" />
-    <%
-        if (!isAdmin)
-        {
-            Response.Write("<a href=\"/Member/NewTopicListing\">查看最新的議題</a>");
-        }
-        else
-        {
-            Response.Write("<a href=\"/Admin/TopicManage\">議題管理</a>");
-        }
-    %>
+            <a href="/Member/NewTopicListing">查看最新的議題</a>
         </td>
     </tr>
     <tr>

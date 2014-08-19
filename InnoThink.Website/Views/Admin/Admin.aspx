@@ -17,6 +17,7 @@
         <h1>系統管理專區</h1>
         <a href="/Admin/AdminListing">管理使用者</a><br />
         <a href="/Admin/TeamGroupListing">管理團隊名稱</a><br />
+        <a href="/Admin/TopicManage">議題管理</a><br />
         <%
             }
         %>

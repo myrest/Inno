@@ -307,6 +307,7 @@
     <Content Include="Views\Scenario\Scenario3.aspx" />
     <Content Include="Views\Scenario\Scenario2.aspx" />
     <Content Include="Views\Scenario\Scenario1.aspx" />
+    <Content Include="Views\Shared\UnitListAdmin.ascx" />
     <Content Include="Views\Shared\QuickControlBar.ascx" />
     <Content Include="Views\Shared\UnitList.ascx" />
     <Content Include="Views\Shared\UserControls\CssReferences.ascx" />

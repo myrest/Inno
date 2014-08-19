@@ -146,33 +146,44 @@ namespace InnoThink.Website.Controllers.Service
         }
 
         [HttpPost]
-        public JsonResult UpdateMyInfo(string Professional, string UserName, int TeamGroupSN)
+        public JsonResult UpdateMyInfo(string Professional, string UserName, string TeamGroupID)
         {
             ResultBase result = new ResultBase();
-            User_Manager um = new User_Manager();
-            var user = um.GetBySN(sessionData.trading.UserSN);
-
-            user.Professional = Professional;
-            user.UserName = UserName;
-            user.TeamGroupSN = TeamGroupSN;
-            if (!string.IsNullOrEmpty(sessionData.trading._tempFileName))
+            result.setMessage("");//Default set to success.
+            int TeamGroupSN = 0;
+            if (!string.IsNullOrEmpty(TeamGroupID))
             {
-                //user has upload person icon, need update the value.
-                user.Picture = sessionData.trading._tempFileName;
-                //Clear template file.
-                sessionData.trading._tempFileName = string.Empty;
-                string FileSource = string.Format("{0}{1}/{2}", Server.MapPath("~/"), AppConfigManager.SystemSetting.FileUpLoadTempFolder, user.Picture);
-                string FileDisc = string.Format("{0}{1}/{2}", Server.MapPath("~/"), AppConfigManager.SystemSetting.FileUpLoadIcon, user.Picture);
-                FileInfo f = new FileInfo(FileSource);
-                f.MoveTo(FileDisc);
-                //Update Cache picture
-                string NewPicPath = StringUtility.ConvertPicturePath(user.Picture);
-                BoardCache.ChangePersionPicture(sessionData.trading.UserSN, NewPicPath);
+                TeamGroupSN = Encrypt.GetEncryptTeamGropuSN(TeamGroupID);
+                if (TeamGroupSN == 0)
+                {
+                    result.setErrorMessage("您所輸入的群組代碼不存在。");
+                }
             }
+            if (result.JsonReturnCode > 0)
+            {
+                User_Manager um = new User_Manager();
+                var user = um.GetBySN(sessionData.trading.UserSN);
 
-            um.Update(user);
-            result.JsonReturnCode = 1;
-            result.Message = "資料已更新。";
+                user.Professional = Professional;
+                user.UserName = UserName;
+                user.TeamGroupSN = TeamGroupSN;
+                if (!string.IsNullOrEmpty(sessionData.trading._tempFileName))
+                {
+                    //user has upload person icon, need update the value.
+                    user.Picture = sessionData.trading._tempFileName;
+                    //Clear template file.
+                    sessionData.trading._tempFileName = string.Empty;
+                    string FileSource = string.Format("{0}{1}/{2}", Server.MapPath("~/"), AppConfigManager.SystemSetting.FileUpLoadTempFolder, user.Picture);
+                    string FileDisc = string.Format("{0}{1}/{2}", Server.MapPath("~/"), AppConfigManager.SystemSetting.FileUpLoadIcon, user.Picture);
+                    FileInfo f = new FileInfo(FileSource);
+                    f.MoveTo(FileDisc);
+                    //Update Cache picture
+                    string NewPicPath = StringUtility.ConvertPicturePath(user.Picture);
+                    BoardCache.ChangePersionPicture(sessionData.trading.UserSN, NewPicPath);
+                }
+                um.Update(user);
+                result.setMessage("資料已更新。");
+            }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
     }

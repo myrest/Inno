@@ -16,8 +16,8 @@
             List<InnoThink.Domain.BackofficeUser_Info> model = ViewData["Model"] as List<InnoThink.Domain.BackofficeUser_Info>;
         %>
         <button id="Add" class="align-right">Add New</button>
-        <table>
-            <tr>
+        <table class="fancytable">
+            <tr class="headerrow">
                 <td>
                     SN.
                 </td>

@@ -63,8 +63,6 @@ namespace InnoThink.Website.Controllers
             TopicSimpleViewModel model = new TopicSimpleViewModel();
             try
             {
-                User_Manager um = new User_Manager();
-                var user = um.GetBySN(sessionData.trading.UserSN);
                 model.DBResult = dbTopic.GetAllTopic_Admin();
 
                 model.JoinedTopic = dbTopMem.GetAllJoinedTopicByUserSN(sessionData.trading.UserSN);
