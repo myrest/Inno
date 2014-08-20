@@ -6,11 +6,4 @@
         Public,
         Admin
     }
-
-    public enum TopicPublishType
-    {
-        Private,
-        TeamGroup,
-        All
-    }
 }

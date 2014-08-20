@@ -15,25 +15,28 @@
         </div>
         <table>
             <tr>
-                <td>議題：
+                <td>
+                    議題：
                 </td>
                 <td>
                     <input type="text" id="Subject" size="80" />
                 </td>
             </tr>
             <tr>
-                <td>團隊序號：
+                <td>
+                    團隊序號：
                 </td>
                 <td>
                     <input type="text" id="TeamGroupId" size="80" />
                 </td>
             </tr>
             <tr>
-                <td>是否為沙箱：
+                <td>
+                    是否為沙箱：
                 </td>
                 <td>
                     <label for="isSandBox">
-                    <input type="checkbox" id="isSandBox" />是
+                        <input type="checkbox" id="isSandBox" />是
                     </label>
                 </td>
             </tr>
@@ -49,29 +52,35 @@
     <script>
         $(function () {
             Utils.textBoxsOnEnter(cnTop._save, $('#Subject'));
-            $('#save').on('click', cnTop._save);
+            $('#save').on('click', function () { cnTop._save(); });
             $('#Subject').focus();
         });
         var cnTop = {
-            _save: function () {
+            _save: function (PublicToAll) {
                 if ($('#Subject').val().length === 0) {
                     utility.showPopUp('請輸您要建立的新議題。', 1, function () { $("#Subject").focus(); });
                 }
                 if ($('#TeamGroupId').val().length === 0) {
-                    utility.showPopUp('請輸您要建立群組代碼。', 1, function () { $("#TeamGroupId").focus(); });
+                    if (PublicToAll == undefined) {
+                        utility.showPopUp('群組代碼為空，將會建立成公用議題，是否繼續建立？', 3, function () { cnTop._save(true); });
+                    } else {
+                        cnTop._DoSave();
+                    }
+                } else {
+                    cnTop._DoSave();
                 }
-                else {
-                    var isSandBox = $('#isSandBox:checked').length > 0 ? true : false;
-                    var param = { Subject: $('#Subject').val(), TeamGroupId: $('#TeamGroupId').val(), isSandBox: isSandBox };
-                    utility.service("AdminService/NewTopic", param, "POST", function (data) {
-                        if (data.code > 0) {
-                            var redirto = utility.getRedirUrl('Admin', 'TopicManage') + '?' + (new Date()).getMilliseconds();
-                            utility.showPopUp(data.msg, 1, function () { window.location.href = redirto; });
-                        } else {
-                            utility.showPopUp(data.msg, 1);
-                        }
-                    });
-                }
+            },
+            _DoSave: function () {
+                var isSandBox = $('#isSandBox:checked').length > 0 ? true : false;
+                var param = { Subject: $('#Subject').val(), TeamGroupId: $('#TeamGroupId').val(), isSandBox: isSandBox };
+                utility.service("AdminService/NewTopic", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        var redirto = utility.getRedirUrl('Admin', 'TopicManage') + '?' + (new Date()).getMilliseconds();
+                        utility.showPopUp(data.msg, 1, function () { window.location.href = redirto; });
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             }
         };
     </script>

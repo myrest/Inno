@@ -206,18 +206,19 @@ namespace InnoThink.Website.Controllers.Service
             {
                 result.setErrorMessage("主旨不得為空。");
             }
-            else if (string.IsNullOrEmpty(TeamGroupId))
-            {
-                result.setErrorMessage("群組編號不得為空。");
-            }
             else if (!isSandBox && TopicIsExist(Subject))
             {
                 result.setErrorMessage("相同主旨已存在。");
             }
             else
             {
-                int TeamGroupSN = Encrypt.GetEncryptTeamGropuSN(TeamGroupId);
-                if (TeamGroupSN < 1)
+                int? TeamGroupSN = null;
+                if (!string.IsNullOrEmpty(TeamGroupId))
+                {
+                    TeamGroupSN = Encrypt.GetEncryptTeamGropuSN(TeamGroupId);
+                }
+
+                if (TeamGroupSN.HasValue && TeamGroupSN == 0)
                 {
                     result.setErrorMessage("該群組代碼不存在。");
                 }
@@ -226,9 +227,9 @@ namespace InnoThink.Website.Controllers.Service
                     dbTopic.Insert(new Topic_Info()
                     {
                         DateCreated = DateTime.Now,
-                        PublishType = (int)TopicPublishType.Private,
+                        PublishType = isSandBox ? (int)TopicPublishType.SandBox : (int)TopicPublishType.Normal,
                         Subject = Subject,
-                        TeamGroupSN = TeamGroupSN,
+                        TeamGroupSN = TeamGroupSN ?? 0,
                         Step = 0
                     });
                     result.setMessage(string.Format("議題[{0}]，建立完成。", Subject));

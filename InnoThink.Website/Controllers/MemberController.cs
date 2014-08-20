@@ -63,14 +63,7 @@ namespace InnoThink.Website.Controllers
             {
                 User_Manager um = new User_Manager();
                 var user = um.GetBySN(sessionData.trading.UserSN);
-                if (isAdmin)
-                {
-                    model.DBResult = dbTopic.GetAllTopic_Admin();
-                }
-                else
-                {
-                    model.DBResult = dbTopic.GetAllTopicByStatus(TopicStatus.InProcess, user.TeamGroupSN);
-                }
+                model.DBResult = dbTopic.GetAllTopicByStatus(TopicStatus.InProcess, user.TeamGroupSN);
                 model.JoinedTopic = dbTopMem.GetAllJoinedTopicByUserSN(sessionData.trading.UserSN);
 
                 model.JsonReturnCode = 1;
