@@ -134,14 +134,14 @@ namespace InnoThink.DAL.BackofficeUser
             {
                 if (!string.IsNullOrEmpty(filter.UserName))
                 {
-                    SQLStr.Append(" AND UserName=@0", filter.UserName);
+                    SQLStr.Append("And UserName=@0", filter.UserName);
                 }
                 if (!string.IsNullOrEmpty(filter.LoginId))
                 {
-                    SQLStr.Append(" AND UPPER(LoginId)=@0", filter.LoginId.ToUpper());
+                    SQLStr.Append("And UPPER(LoginId)=@0", filter.LoginId.ToUpper());
                 }
                 //if (filter.ID != 0)
-                    //SQLStr.Append(" AND BackofficeUserSN=@0", filter.ID);
+                    //SQLStr.Append("And BackofficeUserSN=@0", filter.ID);
                 //Should updat the filter for wide search
 
                 if (_orderby != "")

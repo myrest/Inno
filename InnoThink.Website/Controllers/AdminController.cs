@@ -117,13 +117,13 @@ namespace InnoThink.Website.Controllers
                 var tg = dbTG.GetBySN(SN);
 
                 User_Manager um = new User_Manager();
-                var users = um.GetByParameter(new User_Filter()
+                var User = um.GetByParameter(new User_Filter()
                 {
                     TeamGroupSN = SN
                 }).ToList();
                 model.TeamGroupName = tg.GroupName;
                 model.TeamGroupSN = SN;
-                model.DataResult = users;
+                model.DataResult = User;
                 model.JsonReturnCode = 1;
             }
             catch (Exception ex)

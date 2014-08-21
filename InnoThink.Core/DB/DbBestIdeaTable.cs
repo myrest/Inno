@@ -142,7 +142,7 @@ namespace InnoThink.Core.DB
             const string strCMD = @"
                 Select b.Type, m.BestIdeaSN, Idea, avg(m.Rank) as Ranking
                 From bestidea b inner join bestideamemberrank m
-                    on b.SN = m.BestIdeaSN
+                    on b.bestideaSN = m.BestIdeaSN
                 Where b.TopicSN = @TopicSN
                 Group by m.BestIdeaSN, b.Idea, b.Type ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };

@@ -296,7 +296,7 @@ namespace InnoThink.Website.Controllers.Service
             ResultBase result = new ResultBase() { };
             //Get the first joined topic.
             var dbTopic = new Topic_Manager();
-            var Topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.UserSN);
+            var Topic = dbTopic.getFirstTopicByUserSN(sessionData.trading.UserSN);
             if (Topic != null && Topic.TopicSN > 0)
             {
                 result = GetTopicNextStep(Topic.TopicSN);

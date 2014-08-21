@@ -148,7 +148,7 @@ namespace InnoThink.DAL.Board
             if (filter != null)
             {
                 if (filter.PublishType.HasValue)
-                    SQLStr.Append(" AND PublishType=@0", filter.PublishType.Value);
+                    SQLStr.Append("And PublishType=@0", filter.PublishType.Value);
                 //Should updat the filter for wide search
             }
             return SQLStr;
@@ -163,7 +163,7 @@ namespace InnoThink.DAL.Board
             if (filter != null)
             {
                 if (filter.PublishType.HasValue)
-                    SQLStr.Append(" AND PublishType=@0", filter.PublishType.Value);
+                    SQLStr.Append("And PublishType=@0", filter.PublishType.Value);
                 //Should updat the filter for wide search
 
                 if (_orderby != "")

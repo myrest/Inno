@@ -84,7 +84,7 @@ namespace InnoThink.Core.DB
         public List<DbBestIdeaGroupRankModel> GetAllByTopicSN(int TopicSN, int UserSN)
         {
             const string strCMD = @"select b.BestIdeaGroupSN as BestIdeaGroupSN, B.Type as Type, B.GroupName as GroupName, ifnull(A.Rank,0) as Rank from
-                                    (select bi.sn as BestIdeaGroupSN, bi.Type, GroupName from BestIdeaGroup bi
+                                    (select bi.BestIdeaGroupsn as BestIdeaGroupSN, bi.Type, GroupName from BestIdeaGroup bi
                                     where bi.TopicSN = @TopicSN) b
                                     left outer join
                                     (select * from BestIdeaGroupRank br

@@ -13,6 +13,8 @@ using InnoThink.BLL.BackofficeUser;
 using System.Collections.Generic;
 using InnoThink.BLL.TopicMember;
 using InnoThink.BLL.Topic;
+using InnoThink.Domain.Constancy;
+using Rest.Core.Constancy;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -227,7 +229,7 @@ namespace InnoThink.Website.Controllers.Service
                     dbTopic.Insert(new Topic_Info()
                     {
                         DateCreated = DateTime.Now,
-                        PublishType = isSandBox ? (int)TopicPublishType.SandBox : (int)TopicPublishType.Normal,
+                        IsSandBox = isSandBox ? TrueOrFalse.True.ToInt() : TrueOrFalse.False.ToInt(),
                         Subject = Subject,
                         TeamGroupSN = TeamGroupSN ?? 0,
                         Step = 0

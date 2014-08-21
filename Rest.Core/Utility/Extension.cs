@@ -6,6 +6,7 @@ using System.Reflection;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections;
+using Rest.Core.Constancy;
 
 namespace Rest.Core.Utility
 {
@@ -123,6 +124,11 @@ namespace Rest.Core.Utility
             {
                 return null;
             }
+        }
+
+        public static int ToInt(this TrueOrFalse obj)
+        {
+            return (int)obj;
         }
     }
 }

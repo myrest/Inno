@@ -137,10 +137,10 @@ namespace InnoThink.DAL.Topic
                     switch (filter.Status.Value)
                     {
                         case TopicStatus.Closed:
-                            SQLStr.Append(" DateClosed is not null");
+                            SQLStr.Append("And DateClosed is not null");
                             break;
                         case TopicStatus.InProcess:
-                            SQLStr.Append(" DateClosed is null");
+                            SQLStr.Append("And DateClosed is null");
                             break;
                     }
                 }
@@ -152,12 +152,12 @@ namespace InnoThink.DAL.Topic
                 {
                     SQLStr.Append("And TeamGroupSN = @0", filter.TeamGroupSN.Value);
                 }
-                if (filter.PublishType.HasValue)
+                if (filter.IsSandBox.HasValue)
                 {
-                    SQLStr.Append("And PublishType = @0", filter.PublishType.Value);
+                    SQLStr.Append("And IsSandBox = @0", filter.IsSandBox.Value);
                 }
                 //if (filter.ID != 0)
-                    //SQLStr.Append(" AND TopicSN=@0", filter.ID);
+                    //SQLStr.Append("And TopicSN=@0", filter.ID);
                     //Should updat the filter for wide search
 
                 if (_orderby != "")

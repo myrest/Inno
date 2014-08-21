@@ -13,6 +13,8 @@ using InnoThink.BLL.User;
 using InnoThink.Domain;
 using InnoThink.BLL.Topic;
 using InnoThink.BLL.TopicMember;
+using InnoThink.Domain.Constancy;
+using Rest.Core.Constancy;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -25,7 +27,7 @@ namespace InnoThink.Website.Controllers.Service
         private static readonly Topic_Manager dbTopic = new Topic_Manager();
 
         private static readonly TopicMember_Manager dbTopMem = new TopicMember_Manager() { };
-        
+
 
         public MemberServiceController()
             : base(Permission.Private)
@@ -58,28 +60,20 @@ namespace InnoThink.Website.Controllers.Service
                     {
                         User_Manager um = new User_Manager();
                         var user = um.GetBySN(sessionData.trading.UserSN);
-                        TopicPublishType opentype = EnumHelper.GetEnumByName<TopicPublishType>(opento.ToString());
-                        if (opentype == TopicPublishType.TeamGroup && user.TeamGroupSN < 1)
+                        var data = new Topic_Info()
                         {
-                            result.setErrorMessage("您尚未被加入任一個團體。");
+                            Subject = Subject,
+                            TeamGroupSN = user.TeamGroupSN,
+                            IsSandBox = TrueOrFalse.False.ToInt()
+                        };
+                        bool flag = dbTopic.Insert(data) > 0;
+                        if (!flag)
+                        {
+                            result.setException(new Exception("開新議題失敗。"), "NewTopic");
                         }
                         else
                         {
-                            var data = new Topic_Info()
-                            {
-                                Subject = Subject,
-                                PublishType = (int)opentype,
-                                TeamGroupSN = user.TeamGroupSN
-                            };
-                            bool flag = dbTopic.Insert(data) > 0;
-                            if (!flag)
-                            {
-                                result.setException(new Exception("開新議題失敗。"), "NewTopic");
-                            }
-                            else
-                            {
-                                result.JsonReturnCode = 1;
-                            }
+                            result.JsonReturnCode = 1;
                         }
                     }
                 }
@@ -93,7 +87,7 @@ namespace InnoThink.Website.Controllers.Service
             ResultBase result = new ResultBase();
             //Check is therea re joined topic.
             var dbTopic = new Topic_Manager();
-            var Topic = dbTopic.getFirstTopicByUsersSN(sessionData.trading.UserSN);
+            var Topic = dbTopic.getFirstTopicByUserSN(sessionData.trading.UserSN);
             if (Topic == null || Topic.TopicSN == 0)
             {
                 bool isJoinSuccess = dbTopMem.Insert(new TopicMember_Info()

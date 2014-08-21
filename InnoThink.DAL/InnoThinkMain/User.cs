@@ -135,19 +135,19 @@ namespace InnoThink.DAL.User
             {
                 if (!string.IsNullOrEmpty(filter.LoginId))
                 {
-                    SQLStr.Append(" AND UPPER(LoginId)=@0", filter.LoginId.ToUpper());
+                    SQLStr.Append("And UPPER(LoginId)=@0", filter.LoginId.ToUpper());
                 }
                 if (filter.Status.HasValue)
                 {
-                    SQLStr.Append(" AND Status=@0", filter.Status.Value);
+                    SQLStr.Append("And Status=@0", filter.Status.Value);
                 }
                 if (filter.TeamGroupSN.HasValue)
                 {
-                    SQLStr.Append(" AND TeamGroupSN=@0", filter.TeamGroupSN.Value);
+                    SQLStr.Append("And TeamGroupSN=@0", filter.TeamGroupSN.Value);
                 }
                 if (!string.IsNullOrEmpty(filter.UserName))
                 {
-                    SQLStr.Append(" AND UserName like %@0%", filter.UserName);
+                    SQLStr.Append("And UserName like %@0%", filter.UserName);
                 }
                 //Should updat the filter for wide search
 

@@ -187,7 +187,7 @@ namespace InnoThink.Core.DB
             const string strCMD = @"
                 Select a.Type, b.BestIdeaGroupSN, a.GroupName, avg(b.Rank) as Ranking
                 From BestIdeaGroup a inner join BestIdeaGroupRank b
-                    on a.SN = b.BestIdeaGroupSN
+                    on a.BestIdeaGroupSN = b.BestIdeaGroupSN
                 Where a.TopicSN = @TopicSN
                 Group by b.BestIdeaGroupSN, a.GroupName, a.Type ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };

@@ -152,8 +152,8 @@ namespace InnoThink.Core.DB
         public List<ResultRankCommentUI> GetAllCommentByResultSN(int ResultSN)
         {
             const string strCMD = @"select u.UserName, u.Picture, r.LastUpdate, r.Ranking, r.Comment
-                                    from ResultsRank r inner join Users u on u.SN = r.User_SN
-                                    where r.Results_sn = @ResultSN
+                                    from ResultsRank r inner join User u on u.UserSN = r.UserSN
+                                    where r.Resultssn = @ResultSN
                                     order by r.LastUpdate desc";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@ResultSN", ResultSN));
@@ -189,7 +189,7 @@ namespace InnoThink.Core.DB
         private readonly string strAllResultCMD = @"select
                                     count(case when length(comment) > 0 then 1 end ) as ComNum,
                                     ifnull((select Ranking from ResultsRank where ResultsRank.User_SN = @User_SN and ResultsRank.Results_SN = rr.Results_SN),0) as MyRank,
-                                    r.sn ,r.TopicSN ,r.Result
+                                    r.Resultssn ,r.TopicSN ,r.Result
                                     ,r.Column1 ,r.Column2 ,r.Column3 ,r.Column4
                                     ,r.ServerFileName ,r.UserFileName
                                     ,r.IsImage ,r.UserSN ,r.LastUpdate
@@ -197,9 +197,9 @@ namespace InnoThink.Core.DB
                                     ,count(rr.Ranking) as rcnt
                                     from Results r
                                     left join ResultsRank rr on
-                                    r.sn = rr.Results_SN
+                                    r.ResultsSN = rr.ResultsSN
                                     Where TopicSN = @TopicSN and Result = @Result
-                                    group by r.sn ,r.TopicSN ,r.Result
+                                    group by r.ResultsSN ,r.TopicSN ,r.Result
                                     ,r.Column1 ,r.Column2 ,r.Column3 ,r.Column4
                                     ,r.ServerFileName ,r.UserFileName
                                     ,r.IsImage ,r.UserSN ,r.LastUpdate

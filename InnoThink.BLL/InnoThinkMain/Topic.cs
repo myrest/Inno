@@ -98,20 +98,7 @@ namespace InnoThink.BLL.Topic
         #region private functions
         #endregion
 
-        public object IsTeamMember(int TopicSN, int p)
-        {
-            throw new NotImplementedException();
-            /*
-             * 
-             *             Dictionary<string, string> paras = new Dictionary<string, string>() { };
-            paras.Add("TopicSN", TopicSN.ToString());
-            paras.Add("UsersSN", UserSN.ToString());
-            int count = ExecuteReaderCount("TopicMember", paras);
-            return (count > 0);
-*/
-        }
-
-        public Topic_Info getFirstTopicByUsersSN(int UserSN)
+        public Topic_Info getFirstTopicByUserSN(int UserSN)
         {
             var toprep = new Topic_Repo();
             var tmrep = new TopicMember_Repo();
@@ -141,8 +128,7 @@ namespace InnoThink.BLL.Topic
             var data = rep.GetByParam(new Topic_Filter()
             {
                 Status = topicStatus,
-                TeamGroupSN = TeamGroupSN,
-                PublishType = (int)TopicPublishType.All
+                TeamGroupSN = TeamGroupSN
             });
             if (data != null)
             {

@@ -439,7 +439,7 @@ namespace Rest.Core.PetaPoco
                 sql = rxParamsPrefix.Replace(sql, m => _paramPrefix + m.Value.Substring(1));
             sql = sql.Replace("@@", "@");		   // <- double @@ escapes a single @
 
-            // Create the command and add parameters
+            // Create the commAnd add parameters
             IDbCommand cmd = connection.CreateCommand();
             cmd.Connection = connection;
             cmd.CommandText = sql;

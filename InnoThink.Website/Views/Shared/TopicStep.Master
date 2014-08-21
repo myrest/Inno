@@ -529,16 +529,16 @@
             </div>
         </div>
         <%
-            List<TopicMember_Info> online = (List<TopicMember_Info>)ViewData["OnlineTeamMember"];
-            List<TopicMember_Info> offline = (List<TopicMember_Info>)ViewData["OfflineTeamMember"];
+            List<TopicMemberUI> online = (List<TopicMemberUI>)ViewData["OnlineTeamMember"];
+            List<TopicMemberUI> offline = (List<TopicMemberUI>)ViewData["OfflineTeamMember"];
             string HiddenClass = "hide";
             if (online == null)
             {
-                online = new List<TopicMember_Info>() { };
+                online = new List<TopicMemberUI>() { };
             }
             if (offline == null)
             {
-                offline = new List<TopicMember_Info>() { };
+                offline = new List<TopicMemberUI>() { };
             }
             if (online.Count() > 0 || offline.Count() > 0)
             {

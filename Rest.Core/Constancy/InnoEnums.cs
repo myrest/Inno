@@ -4,4 +4,10 @@
     {
         InnoThinkMain = 0
     }
+
+    public enum TrueOrFalse
+    {
+        False,
+        True
+    }
 }

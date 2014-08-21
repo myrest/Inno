@@ -35,9 +35,9 @@ namespace InnoThink.DAL.TopicMember
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append(@"select u.Picture,m.Description,u.Professional, u.UserName, u.SN, m.LeaderSNVoteTo, m.HandleJob
-                        from Users u inner join TopicMember m on
-                        u.sn = m.UsersSN
+                .Append(@"select u.Picture,m.Description,u.Professional, u.UserName, u.UserSN, m.LeaderSNVoteTo, m.HandleJob
+                        from User u inner join TopicMember m on
+                        u.UserSN = m.UserSN
                         where m.TopicSN = @0
                         order by u.UserName desc", TopicSN);
                 var result = db.Query<TopicMemberUI>(SQLStr);
@@ -152,7 +152,7 @@ namespace InnoThink.DAL.TopicMember
             {
                 if (filter.UserSN.HasValue)
                 {
-                    SQLStr.Append(" AND UserSN=@0", filter.UserSN.Value);
+                    SQLStr.Append("And UserSN=@0", filter.UserSN.Value);
                 }
                     //Should updat the filter for wide search
 

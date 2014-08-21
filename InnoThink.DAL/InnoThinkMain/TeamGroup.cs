@@ -134,10 +134,10 @@ namespace InnoThink.DAL.TeamGroup
             {
                 if (!string.IsNullOrEmpty(filter.GroupName))
                 {
-                    SQLStr.Append(" AND UPPER(GroupName)=@0", filter.GroupName.ToUpper());
+                    SQLStr.Append("And UPPER(GroupName)=@0", filter.GroupName.ToUpper());
                 }
                 //if (filter.ID != 0)
-                    //SQLStr.Append(" AND TeamGroupSN=@0", filter.ID);
+                    //SQLStr.Append("And TeamGroupSN=@0", filter.ID);
                     //Should updat the filter for wide search
 
                 if (_orderby != "")

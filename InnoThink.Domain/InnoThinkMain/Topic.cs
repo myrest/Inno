@@ -13,9 +13,9 @@ namespace InnoThink.Domain
     {
         DateTime DateClosed { get; set; }
         DateTime DateCreated { get; set; }
+        int IsSandBox { get; set; }
         string LeaderLoginId { get; set; }
         string LogoImg { get; set; }
-        int PublishType { get; set; }
         int Step { get; set; }
         string Subject { get; set; }
         string Target { get; set; }
@@ -32,11 +32,11 @@ namespace InnoThink.Domain
     public class Topic_Info //: ITopic_Info
     {
         #region private fields
-        public DateTime DateClosed { get; set; }
+        public DateTime? DateClosed { get; set; }
         public DateTime DateCreated { get; set; }
+        public int IsSandBox { get; set; }
         public string LeaderLoginId { get; set; }
         public string LogoImg { get; set; }
-        public int PublishType { get; set; }
         public int Step { get; set; }
         public string Subject { get; set; }
         public string Target { get; set; }
@@ -56,18 +56,17 @@ namespace InnoThink.Domain
     {
         public DateTime? DateClosed { get; set; }
         public DateTime? DateCreated { get; set; }
+        public int? IsSandBox { get; set; }
         public string LeaderLoginId { get; set; }
         public string LogoImg { get; set; }
         public int? Step { get; set; }
         public string Subject { get; set; }
         public string Target { get; set; }
+        public int? TeamGroupSN { get; set; }
         public string TeamName { get; set; }
         public int? TopicSN { get; set; }
-
-        public TopicStatus? Status { get; set; }
-        public int? PublishType { get; set; }
-        public int? TeamGroupSN { get; set; }
         //You can copy/modify above Topic_Info field for search criteria
+        public TopicStatus? Status { get; set; }
     }
     #endregion
 }

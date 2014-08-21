@@ -25,6 +25,8 @@
                 </td>
                 <td>隊名
                 </td>
+                <td>沙箱
+                </td>
                 <td>&nbsp;
                 </td>
             </tr>
@@ -45,6 +47,9 @@
                 </td>
                 <td>
                     <%=item.TeamName %>
+                </td>
+                <td>
+                    <%=(item.IsSandBox == (int)Rest.Core.Constancy.TrueOrFalse.True ?"是":"否") %>
                 </td>
                 <td>
                     <%

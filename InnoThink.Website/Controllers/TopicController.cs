@@ -51,7 +51,7 @@ namespace InnoThink.Website.Controllers
             var Topic = dbTopic.GetBySN(TopicSN);
             viewdata["IsLeader"] = (string.Compare(trading.LoginId, Topic.LeaderLoginId, true) == 0);
             viewdata["IsClose"] = Topic.DateClosed > DateTime.MinValue;
-            viewdata["IsTeamMember"] = dbTopic.IsTeamMember(TopicSN, trading.UserSN);
+            viewdata["IsTeamMember"] = dbTMem.IsTeamMember(TopicSN, trading.UserSN);
             viewdata["Subject"] = Topic.Subject;
             viewdata["TopicSN"] = Topic.TopicSN;
             if (isAdmin)
@@ -103,7 +103,7 @@ namespace InnoThink.Website.Controllers
             });
             model.TeamMembers = Step0d.ToDictionary(x => x.UserSN);
             model.TopicSN = TopicSN;
-            model.Leader = Step0d.OrderByDescending(x => x.VoteNums).ThenBy(x => x.UserSN).First().UserName;
+            model.Leader = Step0d.Count() > 0 ? Step0d.OrderByDescending(x => x.VoteNums).ThenBy(x => x.UserSN).First().UserName : "";
             ViewData["Model"] = model;
             return View();
         }

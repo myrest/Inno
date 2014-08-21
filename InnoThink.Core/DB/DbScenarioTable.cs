@@ -180,7 +180,7 @@ namespace InnoThink.Core.DB
 
         public DbScenarioCharModel GetBySN(int SN)
         {
-            const string strCMD = "select a.*, b.UserName from ScenarioChar a inner join Users b on a.UserSN = b.SN where a.SN = @SN";
+            const string strCMD = "select a.*, b.UserName from ScenarioChar a inner join User b on a.UserSN = b.UserSN where a.ScenarioCharSN = @SN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@SN", SN));
             List<DbScenarioCharModel> itemList = ExecuteReader<DbScenarioCharModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
@@ -196,7 +196,7 @@ namespace InnoThink.Core.DB
 
         public List<DbScenarioCharModel> GetAllByTopicSN(int TopicSN, ScenarioType Type)
         {
-            const string strCMD = "select a.*, b.UserName from ScenarioChar a inner join Users b on a.UserSN = b.SN where a.TopicSN = @TopicSN and a.ScenarioType = @ScenarioType";
+            const string strCMD = "select a.*, b.UserName from ScenarioChar a inner join User b on a.UserSN = b.UserSN where a.TopicSN = @TopicSN and a.ScenarioType = @ScenarioType";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));
             listPara.Add(new SQLiteParameter("@ScenarioType", Type));
@@ -368,15 +368,15 @@ namespace InnoThink.Core.DB
         public List<ScenarioCharValueRankUI> GetRankByUserSN(int TopicSN, ScenarioType type, int UserSN)
         {
             const string strCMD = @"
-                Select ifnull(y.SN, 0) as ScenarioCharValueSN,
+                Select ifnull(y.ScenarioCharValuesSN, 0) as ScenarioCharValueSN,
                     u.UserName, x.UserSN,
-                    ifnull((select rank from ScenarioCharValuesRank where ScenarioCharValueSN = y.SN and UserSN = @UserSN),0) as rank,
+                    ifnull((select rank from ScenarioCharValuesRank where ScenarioCharValueSN = y.ScenarioCharValuesSN and UserSN = @UserSN),0) as rank,
                     x.subject, y.Description
                 from ScenarioChar x left join ScenarioCharValues y
-                    on x.SN = y.ScenarioCharSN
-                    inner join Users u on u.SN = x.UserSN
+                    on x.ScenarioCharSN = y.ScenarioCharSN
+                    inner join User u on u.UserSN = x.UserSN
                 where x.TopicSN = @TopicSN and ScenarioType = @ScenarioType
-                order by x.sn, y.sn
+                order by x.ScenarioCharSN, y.ScenarioCharValuesSN
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));
@@ -438,12 +438,12 @@ namespace InnoThink.Core.DB
             const string strCMD = @"
                     Select u.UserName as Title, b.Description as ItemName, Avg(c.Rank) as ItemValue
                     From  ScenarioChar a
-                        Inner join ScenarioCharValues b on a.SN = b.ScenarioCharSN
-                        Inner join ScenarioCharValuesRank c on c.ScenarioCharValueSN = b.SN
-                        Inner join Users u on u.SN = a.UserSN
+                        Inner join ScenarioCharValues b on a.ScenarioCharSN = b.ScenarioCharSN
+                        Inner join ScenarioCharValuesRank c on c.ScenarioCharValueSN = b.ScenarioCharValuesSN
+                        Inner join User u on u.UserSN = a.UserSN
                     Where a.TopicSN = @TopicSN and a.ScenarioType = @ScenarioType
                     Group by u.UserName, c.ScenarioCharValueSN
-                    Order by u.sn, Avg(c.Rank) desc
+                    Order by u.UserSN, Avg(c.Rank) desc
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));
@@ -467,14 +467,14 @@ namespace InnoThink.Core.DB
         {
             //Here ScenarioCharValueSN actually is ScenarioCharSN
             const string strCMD = @"
-                Select x.SN as ScenarioCharValueSN,
+                Select x.ScenarioCharSN as ScenarioCharValueSN,
                     u.UserName, x.UserSN,
-                    ifnull(	(select rank from ScenarioCharRank where ScenarioCharSN = x.SN and UserSN = @UserSN),0) as Rank,
+                    ifnull(	(select rank from ScenarioCharRank where ScenarioCharSN = x.ScenarioCharSN and UserSN = @UserSN),0) as Rank,
                     '' as subject, u.UserName as Description
-                from Users u left join ScenarioChar x
-                    on u.SN = x.UserSN
+                from User u left join ScenarioChar x
+                    on u.UserSN = x.UserSN
                 where x.TopicSN = @TopicSN and x.ScenarioType = @ScenarioType
-                order by x.sn
+                order by x.ScenarioCharsn
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));
@@ -536,8 +536,8 @@ namespace InnoThink.Core.DB
         {
             const string strCMD = @"
                     Select '' as Title, u.UserName as ItemName, Avg(a.Rank) as ItemValue from ScenarioCharRank a
-                        Inner Join ScenarioChar b on a.ScenarioCharSN = b.SN
-                        Inner Join Users u on b.UserSN = u.sn
+                        Inner Join ScenarioChar b on a.ScenarioCharSN = b.ScenarioCharSN
+                        Inner Join User u on b.UserSN = u.UserSN
                     Where b.TopicSN = @TopicSN and b.ScenarioType = @ScenarioType
                     Group by b.UserSN
                     Order by Avg(a.Rank) Desc

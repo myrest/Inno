@@ -59,7 +59,7 @@ namespace InnoThink.Website.Models
                     DateCreated = x.DateCreated,
                     LeaderLoginId = x.LeaderLoginId,
                     LogoImg = x.LogoImg,
-                    PublishType = x.PublishType,
+                    IsSandBox = x.IsSandBox,
                     TopicSN = x.TopicSN,
                     Step = x.Step,
                     Subject = x.Subject,

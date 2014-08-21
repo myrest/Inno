@@ -122,7 +122,8 @@ namespace InnoThink.BLL.TopicMember
             List<TopicMemberUI> data = rep.getTopicMember(TopicSN, UserSN);
             if (data != null)
             {
-                return data.First();
+                var rtn = new TopicMember_Info().CloneObject(data.First()) as TopicMember_Info;
+                return rtn;
             }
             else
             {
@@ -142,6 +143,17 @@ namespace InnoThink.BLL.TopicMember
             {
                 return null;
             }
+        }
+
+        public bool IsTeamMember(int TopicSN, int UserSN)
+        {
+            var rep = new TopicMember_Repo();
+            var data = rep.GetByParam(new TopicMember_Filter()
+            {
+                TopicSN = TopicSN,
+                UserSN = UserSN
+            });
+            return data.Count() > 0;
         }
     }
     #endregion

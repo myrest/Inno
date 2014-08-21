@@ -4,20 +4,21 @@
 <%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
 <%@ Import Namespace="InnoThink.Website.Models" %>
 <%@ Import Namespace="InnoThink.Core" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     歡迎來到 InnoThink
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
-        .right {
+        .right
+        {
             float: right;
             top: -10px;
             position: relative;
             padding-right: 14px;
         }
-
-        #header {
+        
+        #header
+        {
             height: 50px;
             margin-left: 0px;
             margin-right: 0px;
@@ -25,14 +26,16 @@
             background-color: #F2F2F2;
             z-index: 0;
         }
-
-        body {
+        
+        body
+        {
             margin-left: 0px;
             margin-top: 0px;
             margin-right: 0px;
         }
-
-        #headerlogo {
+        
+        #headerlogo
+        {
             width: 150px;
             position: static;
             left: 629px;
@@ -41,8 +44,9 @@
             float: left;
             margin-left: 0px;
         }
-
-        #headerword {
+        
+        #headerword
+        {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -54,13 +58,15 @@
             left: 50%;
             margin-top: 0px;
         }
-
-        #header #headerword #header-word2 {
+        
+        #header #headerword #header-word2
+        {
             padding-top: 25px;
             float: right;
         }
-
-        .body0 {
+        
+        .body0
+        {
             width: 740px;
             margin-left: -370px;
             position: relative;
@@ -74,8 +80,9 @@
             top: 8px;
             padding-bottom: 17px;
         }
-
-        #bottom0 {
+        
+        #bottom0
+        {
             width: 740px;
             margin-left: -370px;
             left: 50%;
@@ -87,8 +94,9 @@
             padding-bottom: 10px;
             display: inline-block;
         }
-
-        #talk0 #talk1 {
+        
+        #talk0 #talk1
+        {
             margin-top: 10px;
             margin-right: 10px;
             position: static;
@@ -98,8 +106,9 @@
             border-collapse: collapse;
             margin-bottom: 0px;
         }
-
-        #talk0 #talk2 {
+        
+        #talk0 #talk2
+        {
             margin-left: 10px;
             margin-right: 10px;
             position: static;
@@ -108,8 +117,9 @@
             width: 260px;
             border-collapse: collapse;
         }
-
-        .body0 #body1 {
+        
+        .body0 #body1
+        {
             height: 25px;
             background-color: #4FA3C7;
             border-top-left-radius: 20px;
@@ -118,8 +128,9 @@
             padding-top: 8px;
             text-align: center;
         }
-
-        .body0 #body2 {
+        
+        .body0 #body2
+        {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -131,16 +142,18 @@
             box-shadow: 5px 5px 5px #CCCCCC;
             padding-top: 10px;
         }
-
-        #talk0 #talk1 #talk-up1 {
+        
+        #talk0 #talk1 #talk-up1
+        {
             background-color: #F2F2F2;
             height: 20px;
             color: #000000;
             border-top-left-radius: 10px;
             padding-top: 8px;
         }
-
-        #otherteam {
+        
+        #otherteam
+        {
             width: 250px;
             position: fixed;
             left: 0px;
@@ -157,46 +170,55 @@
             box-shadow: 1px 0px 1px #CCCCCC;
             background-color: #FFFFFF;
         }
-
-            #otherteam #otherteam1 {
-                background-color: #FFFFFF;
-            }
-
-                #otherteam #otherteam1 #otherteam-up {
-                    height: 20px;
-                    border-top-right-radius: 10px;
-                    background-color: #F2F2F2;
-                }
-
-                #otherteam #otherteam1 #otherteam-1-center {
-                }
-
-            #otherteam #otherteam2 #otherteam-2-center {
-                padding-left: 10px;
-            }
-
-            #otherteam #otherteam2 {
-            }
-
-                #otherteam #otherteam2 #otherteam-up2 {
-                    height: 20px;
-                    border-top-right-radius: 10px;
-                    background-color: #F2F2F2;
-                    padding-top: 8px;
-                }
-
-            #otherteam #otherteam1 #otherteam-up1 {
-                height: 20px;
-                border-top-right-radius: 10px;
-                background-color: #F2F2F2;
-                padding-top: 8px;
-            }
-
-        table.body0 .Div1 {
+        
+        #otherteam #otherteam1
+        {
+            background-color: #FFFFFF;
+        }
+        
+        #otherteam #otherteam1 #otherteam-up
+        {
+            height: 20px;
+            border-top-right-radius: 10px;
+            background-color: #F2F2F2;
+        }
+        
+        #otherteam #otherteam1 #otherteam-1-center
+        {
+        }
+        
+        #otherteam #otherteam2 #otherteam-2-center
+        {
+            padding-left: 10px;
+        }
+        
+        #otherteam #otherteam2
+        {
+        }
+        
+        #otherteam #otherteam2 #otherteam-up2
+        {
+            height: 20px;
+            border-top-right-radius: 10px;
+            background-color: #F2F2F2;
+            padding-top: 8px;
+        }
+        
+        #otherteam #otherteam1 #otherteam-up1
+        {
+            height: 20px;
+            border-top-right-radius: 10px;
+            background-color: #F2F2F2;
+            padding-top: 8px;
+        }
+        
+        table.body0 .Div1
+        {
             padding-top: 9px;
         }
-
-        .body0 #body-3 {
+        
+        .body0 #body-3
+        {
             height: auto;
             padding-left: 15px;
             margin-left: 15px;
@@ -210,13 +232,15 @@
             padding-top: 10px;
             width: 94%;
         }
-
-        .body0 #body-5 {
+        
+        .body0 #body-5
+        {
             height: 15pt;
             padding-top: 10px;
         }
-
-        .body0 #body-3 #body-4a {
+        
+        .body0 #body-3 #body-4a
+        {
             width: 95%;
             border-radius: 10px;
             background-color: #F2F2F2;
@@ -225,8 +249,9 @@
             margin-bottom: 10px;
             text-align: center;
         }
-
-        #talk0 #talk-out1 {
+        
+        #talk0 #talk-out1
+        {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -234,8 +259,9 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-
-        #talk0 #talk-out2 {
+        
+        #talk0 #talk-out2
+        {
             margin-left: 10px;
             margin-right: 10px;
             margin-top: 5px;
@@ -243,8 +269,9 @@
             box-shadow: 0px 1px #CCCCCC;
             padding-left: 10px;
         }
-
-        #talk0 #talk-up2 {
+        
+        #talk0 #talk-up2
+        {
             height: 20px;
             padding-top: 8px;
             color: #000000;
@@ -303,13 +330,16 @@
                 <div id="body2" style="<%=HideStyle%>">
                     <table width="95%" border="0" align="center">
                         <tr>
-                            <td colspan="2" valign="top" bgcolor="#FFFF99">1.自我介紹：
+                            <td colspan="2" valign="top" bgcolor="#FFFF99">
+                                1.自我介紹：
                             </td>
-                            <td width="83%" bgcolor="#FFFF99">&nbsp;
+                            <td width="83%" bgcolor="#FFFF99">
+                                &nbsp;
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" valign="top">&nbsp;
+                            <td colspan="2" valign="top">
+                                &nbsp;
                             </td>
                             <td width="83%">
                                 <textarea name="Description" cols="63" rows="3" id="Description"><%=Model.MyDescription %></textarea>
@@ -363,13 +393,16 @@
                         </tr>
                         -->
                         <tr>
-                            <td colspan="3" bgcolor="#FFFF99">2. 選擇隊長：
+                            <td colspan="3" bgcolor="#FFFF99">
+                                2. 選擇隊長：
                             </td>
                         </tr>
                         <tr>
-                            <td>&nbsp;
+                            <td>
+                                &nbsp;
                             </td>
-                            <td>隊長人選：
+                            <td>
+                                隊長人選：
                             </td>
                             <td width="83%">
                                 <%
@@ -386,9 +419,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">&nbsp;
+                            <td valign="top">
+                                &nbsp;
                             </td>
-                            <td valign="top">&nbsp;
+                            <td valign="top">
+                                &nbsp;
                             </td>
                             <td align="right">
                                 <input type="button" name="saveData" id="saveData" value="填寫完畢">
@@ -397,11 +432,11 @@
                     </table>
                 </div>
                 <div class="Div1">
-                    2. 團隊資料展示：
+                    2. 團隊成員介紹&nbsp;&nbsp;( 暫定隊長為：<span id="Span1"><% =Model.Leader %></span> )
                 </div>
                 <div id="body-3">
                     <div id="body-4a">
-                        團隊成員介紹&nbsp;&nbsp;( 暫定隊長為：<span id="LeaderName"><% =Model.Leader %></span> )
+                        議題：<%=ViewData["Subject"].ToString()%>
                     </div>
                     <table width="95%" border="0" align="center" id="allmember">
                         <%
@@ -419,14 +454,21 @@
                                 }
                                 %>
                             </td>
-                            <td width="27%" valign="top">姓名：<span class="username"><% =item.Value.UserName %></span>
+                            <td width="27%" valign="top">
+                                姓名：<span class="username"><% =item.Value.UserName %></span>
                             </td>
-                            <td valign="top">專長領域：<span class="Profess"><% =item.Value.Professional %></span>
+                            <td valign="top">
+                                專長領域：<span class="Profess"><% =item.Value.Professional %></span>
                             </td>
                         </tr>
                         <tr class="<% =item.Value.UserSN %>">
                             <td height="78" colspan="2" valign="top" class="descript">
-                                <% =item.Value.Description.Replace("\n", "<br>") %>
+                                <%
+                                if (item.Value.Description != null)
+                                {
+                                    Response.Write(item.Value.Description.Replace("\n", "<br>"));
+                                }
+                                %>
                             </td>
                         </tr>
                         <%
