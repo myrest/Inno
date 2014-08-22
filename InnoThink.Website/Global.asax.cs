@@ -43,9 +43,9 @@ namespace InnoThink.Website
             );
 
             routes.MapRoute(
-                "Admin", // Route name
-                "Admin", // URL with parameters
-                new { controller = "Default", action = "Admin", id = UrlParameter.Optional } // Parameter defaults
+                "Customer", // Route name
+                "F/{ID}", // URL with parameters
+                new { controller = "Guard", action = "Check", id = UrlParameter.Optional } // Parameter defaults
             );
 
             routes.MapRoute(

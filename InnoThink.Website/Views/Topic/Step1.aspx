@@ -495,11 +495,11 @@
                     </table>
                 </div>
                 <div class="Div1">
-                    2. 團隊資料展示：
+                    2. 團隊成員介紹及展示：
                 </div>
                 <div id="body-3">
                     <div id="body-4a">
-                        團隊成員介紹
+                        議題：<%=ViewData["Subject"].ToString()%>
                     </div>
                     <table width="95%" border="0" align="center" id="TeamInfo">
                         <tr>

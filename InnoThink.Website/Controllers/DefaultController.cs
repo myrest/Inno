@@ -16,7 +16,7 @@ namespace InnoThink.Website.Controllers
         {
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
             if (sessionData.trading != null && sessionData.trading.isLogined)
             {
@@ -24,6 +24,14 @@ namespace InnoThink.Website.Controllers
             }
             else
             {
+                if (string.IsNullOrEmpty(id))
+                {
+                    ViewData["TopicGroupId"] = "";
+                }
+                else
+                {
+                    ViewData["TopicGroupId"] = id;
+                }
                 return View();
             }
         }

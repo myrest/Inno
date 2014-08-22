@@ -100,7 +100,7 @@ var login =
             utility.showPopUp('兩次輸入的密碼不同', 1, function () { $("#NewPwd").focus(); });
         }
         else {
-            var param = { username: id, password: pwd };
+            var param = { username: id, password: pwd, TeamGroupID: $("#TopicGroupId").val() };
             utility.service("LoginService/Registry", param, "POST", function (data) {
                 if (data.code > 0) {
                     var redirto = utility.getRedirUrl(HomeControl, HomeAction) + '?' + (new Date()).getMilliseconds();

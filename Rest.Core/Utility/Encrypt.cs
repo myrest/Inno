@@ -71,7 +71,7 @@ namespace Rest.Core.Utility
 
         public static int GetEncryptTeamGropuSN(string EncryCode)
         {
-            if (EncryCode.Length == 9 && EncryCode.IndexOf('-') > 0)
+            if (!string.IsNullOrEmpty(EncryCode) && EncryCode.Length == 9 && EncryCode.IndexOf('-') > 0)
             {
                 string left = EncryCode.Substring(0, 3);
                 string right = EncryCode.Split(new char[] { '-' }, 2)[1];

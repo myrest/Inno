@@ -177,7 +177,7 @@
     <div id="header0">
         <div id="headerword">
             <div id="headerlogo">
-                <img src="pic/logo50x150-3.png" width="150" height="50" alt="" />
+                <img src="/pic/logo50x150-3.png" width="150" height="50" alt="" />
             </div>
             <div id="headeridpass">
                 帳號
@@ -213,7 +213,7 @@
                 </div>
                 <div id="body8">
                     <p>
-                        <img src="pic/pc-1.png" width="370" height="193" alt="" />
+                        <img src="/pic/pc-1.png" width="370" height="193" alt="" />
                     </p>
                     <p>
                         跨平台 PC、Pad、筆電、手持式 智慧手機均可參與討論。
@@ -249,6 +249,7 @@
                         確認密碼：
                         <input type="password" id="NewConfPwd" size="15">
                     </p>
+                    <input type="hidden" id="TopicGroupId" value="<%=ViewData["TopicGroupId"].ToString() %>">
                     <input type="button" id="btnRegNewOne" value="註冊 InnoThink">
                     </p>
                 </div>

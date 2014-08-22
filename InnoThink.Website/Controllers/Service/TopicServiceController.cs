@@ -33,7 +33,7 @@ namespace InnoThink.Website.Controllers.Service
         private static readonly Topic_Manager dbTopic = new Topic_Manager();
 
         private static readonly TopicMember_Manager dbTopMem = new TopicMember_Manager() { };
-        
+
         private static readonly DbBestStep1Table dbBest1 = new DbBestStep1Table() { };
         private static readonly DbBestIdeaTable dbBestIdea = new DbBestIdeaTable() { };
         private static readonly DbBestIdeaMemRankTable dbBestIdeaMemRank = new DbBestIdeaMemRankTable() { };
@@ -357,104 +357,94 @@ namespace InnoThink.Website.Controllers.Service
             //check topic is exist
             if (Topic.TopicSN > 0)
             {
-                //check topic is on going.
-                if (Topic.DateClosed == DateTime.MinValue)
+                var TopicMem = dbTopMem.getALLTopicMember(SN);
+                //check topic has team member.
+                if (TopicMem.Count() > 0)
                 {
-                    var TopicMem = dbTopMem.getALLTopicMember(SN);
-                    //check topic has team member.
-                    if (TopicMem.Count() > 0)
+                    result.JsonReturnCode = 1;
+                    //Get current step.
+                    switch (Topic.Step)
                     {
-                        result.JsonReturnCode = 1;
-                        //Get current step.
-                        switch (Topic.Step)
-                        {
-                            case 0:
-                                result.Message = "/Topic/Step0?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 0:
+                            result.Message = "/Topic/Step0?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 1:
-                                result.Message = "/Topic/Step1?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 1:
+                            result.Message = "/Topic/Step1?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 11:
-                                result.Message = "/Topic/Best1?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 11:
+                            result.Message = "/Topic/Best1?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 12:
-                                result.Message = "/Topic/Best2?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 12:
+                            result.Message = "/Topic/Best2?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 13:
-                                result.Message = "/Topic/Best3?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 13:
+                            result.Message = "/Topic/Best3?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 14:
-                                result.Message = "/Topic/Best4?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 14:
+                            result.Message = "/Topic/Best4?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 15:
-                                result.Message = "/Topic/Best5?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 15:
+                            result.Message = "/Topic/Best5?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 16:
-                                result.Message = "/Topic/Best6?TopicSN=" + Topic.TopicSN;
-                                break;
-                            //情境分析法開始
-                            case 31:
-                                result.Message = "/Scenario/Scenario1?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 16:
+                            result.Message = "/Topic/Best6?TopicSN=" + Topic.TopicSN;
+                            break;
+                        //情境分析法開始
+                        case 31:
+                            result.Message = "/Scenario/Scenario1?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 32:
-                                result.Message = "/Scenario/Scenario2?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 32:
+                            result.Message = "/Scenario/Scenario2?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 33:
-                                result.Message = "/Scenario/Scenario3?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 33:
+                            result.Message = "/Scenario/Scenario3?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 34:
-                                result.Message = "/Scenario/Scenario4?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 34:
+                            result.Message = "/Scenario/Scenario4?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 35:
-                                result.Message = "/Scenario/Scenario5?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 35:
+                            result.Message = "/Scenario/Scenario5?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 36:
-                                result.Message = "/Scenario/Scenario6?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 36:
+                            result.Message = "/Scenario/Scenario6?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 37:
-                                result.Message = "/Scenario/Scenario7?TopicSN=" + Topic.TopicSN;
-                                break;
-                            //情境分析法結束
-                            case 9901:
-                                result.Message = "/Topic/Result1?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 37:
+                            result.Message = "/Scenario/Scenario7?TopicSN=" + Topic.TopicSN;
+                            break;
+                        //情境分析法結束
+                        case 9901:
+                            result.Message = "/Topic/Result1?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 9902:
-                                result.Message = "/Topic/Result2?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 9902:
+                            result.Message = "/Topic/Result2?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            case 9903:
-                                result.Message = "/Topic/Result3?TopicSN=" + Topic.TopicSN;
-                                break;
+                        case 9903:
+                            result.Message = "/Topic/Result3?TopicSN=" + Topic.TopicSN;
+                            break;
 
-                            default:
-                                result.setException("該功能處於施工中。", "CheckTopic");
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        result.setErrorMessage("該議題還沒有人加入。");
+                        default:
+                            result.setException("該功能處於施工中。", "CheckTopic");
+                            break;
                     }
                 }
                 else
                 {
-                    //result.setErrorMessage("該議題已結束。");
-                    //Redirect the the first step.
-                    result.setMessage("/Topic/Step0?TopicSN=" + Topic.TopicSN);
+                    result.setErrorMessage("該議題還沒有人加入。");
                 }
             }
             else

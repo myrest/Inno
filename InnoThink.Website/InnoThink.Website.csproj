@@ -120,6 +120,7 @@
     <Compile Include="Controllers\Service\BoardServiceController.cs" />
     <Compile Include="Controllers\Service\AdminServiceController.cs" />
     <Compile Include="Controllers\Service\FileUploadServiceController.cs" />
+    <Compile Include="Controllers\Service\GuardController.cs" />
     <Compile Include="Controllers\Service\ScenarioServiceController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Controllers\MemberController.cs" />

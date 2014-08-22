@@ -212,7 +212,7 @@ namespace InnoThink.Website.Controllers.Service
         }
 
         [HttpPost]
-        public JsonResult Registry(string username, string password)
+        public JsonResult Registry(string username, string password, string TeamGroupID)
         {
             ResultBase result = new ResultBase() { };
             User_Manager um = new User_Manager();
@@ -226,19 +226,33 @@ namespace InnoThink.Website.Controllers.Service
             }
             else
             {
-                um.Insert(new User_Info()
+                int? TeamGroupSN = null;
+                if (!string.IsNullOrEmpty(TeamGroupID))
                 {
-                    LoginId = username,
-                    Password = password,
-                    Status = 1,
-                    UserName = username,
-                    Picture = "/pic/NoIcon.jpg"
-                });
+                    TeamGroupSN = Encrypt.GetEncryptTeamGropuSN(TeamGroupID);
+                }
 
-                MakeTrading(username);
-                sessionData.trading.isLogined = true;
+                if (TeamGroupSN.HasValue && TeamGroupSN == 0)
+                {
+                    result.setErrorMessage("您目前所預設加入的群組不存在。");
+                }
+                else
+                {
+                    um.Insert(new User_Info()
+                    {
+                        LoginId = username,
+                        Password = password,
+                        Status = 1,
+                        UserName = username,
+                        Picture = "/pic/NoIcon.jpg",
+                        TeamGroupSN = TeamGroupSN.HasValue ? TeamGroupSN.Value : 0
+                    });
 
-                result.setMessage("帳號建立完成。");
+                    MakeTrading(username);
+                    sessionData.trading.isLogined = true;
+
+                    result.setMessage("帳號建立完成。");
+                }
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
