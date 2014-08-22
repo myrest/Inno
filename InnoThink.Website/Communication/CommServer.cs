@@ -274,6 +274,16 @@ namespace InnoThink.Website.Communication
             });
         }
 
+        internal void syncOnlineUser(int TopicSN, BackofficeUser_Info user)
+        {
+            //get connections
+            var list = Unit1Cache.GetAllConnections(TopicSN);
+            list.ForEach(x =>
+            {
+                Clients.Client(x).syncOnlineUser(user);
+            });
+        }
+
         internal void syncOfflineUser(int TopicSN, int UserSN)
         {
             //get connections

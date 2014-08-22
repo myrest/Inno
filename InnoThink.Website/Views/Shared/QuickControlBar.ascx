@@ -7,6 +7,11 @@
         bool IsAdmin = (bool)ViewData["_isAdmin"];
         bool IsLeader = (bool)ViewData["IsLeader"];
         bool IsClose = (bool)ViewData["IsClose"];
+
+        if (IsAdmin)
+        {
+            IsLeader = IsAdmin;
+        }
         string HideForNotLeader = (!IsLeader || IsClose) ? "hidden" : string.Empty;
         if (QCBAR.isFirstStep && !IsClose)
         {

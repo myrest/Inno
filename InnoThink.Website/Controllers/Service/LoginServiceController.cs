@@ -80,14 +80,27 @@ namespace InnoThink.Website.Controllers.Service
             {
                 ConnectionManageBase.Update(ConnectionId, sessionData.trading.UserSN);
             }
-            //Sync all the team member at the same TopicSN
-            User_Manager um = new User_Manager();
-            var user = um.GetBySN(sessionData.trading.UserSN);
-            user.Picture = StringUtility.ConvertPicturePath(user.Picture);
-            var cacheobj = ConnectionManageBase.GetByUserSN(sessionData.trading.UserSN);
-            CommServer.Instance.syncOnlineUser(cacheobj.TopicSN, user);
-            result.setMessage("Done");
-            return Json(result, JsonRequestBehavior.DenyGet);
+
+            if (isAdmin)
+            {
+                BackofficeUser_Manager bm = new BackofficeUser_Manager();
+                var bouser = bm.GetBySN(sessionData.trading.UserSN);
+                var cacheobj = ConnectionManageBase.GetByUserSN(sessionData.trading.UserSN);
+                CommServer.Instance.syncOnlineUser(cacheobj.TopicSN, bouser);
+                result.setMessage("Done");
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                //Sync all the team member at the same TopicSN
+                User_Manager um = new User_Manager();
+                var user = um.GetBySN(sessionData.trading.UserSN);
+                user.Picture = StringUtility.ConvertPicturePath(user.Picture);
+                var cacheobj = ConnectionManageBase.GetByUserSN(sessionData.trading.UserSN);
+                CommServer.Instance.syncOnlineUser(cacheobj.TopicSN, user);
+                result.setMessage("Done");
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
         }
 
         [HttpPost]
