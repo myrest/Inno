@@ -29,7 +29,7 @@ namespace InnoThink.Core.DB
                 {
                     listResult.Add(new DbBestStep1Model()
                     {
-                        SN = Convert.ToInt32(sdr["SN"].ToString()),
+                        SN = Convert.ToInt32(sdr["BestStep1SN"].ToString()),
                         LastUpdate = DateTime.Parse(sdr["LastUpdate"].ToString()),
                         Category = sdr["Category"].ToString(),
                         Description = sdr["Description"].ToString(),
@@ -78,7 +78,7 @@ namespace InnoThink.Core.DB
                 //Set the image to new filename.
                 Model.Image = NewName;
                 //Update image to new filename.
-                strCMD = "Update BestStep1 set Image = @Image where SN = @SN";
+                strCMD = "Update BestStep1 set Image = @Image where BestStep1SN = @SN";
                 listPara = new List<SQLiteParameter>() { };
                 listPara.Add(new SQLiteParameter("@Image", NewName));
                 listPara.Add(new SQLiteParameter("@SN", newSN));
@@ -89,7 +89,7 @@ namespace InnoThink.Core.DB
 
         public DbBestStep1Model GetBySN(int SN)
         {
-            const string strCMD = "select * from BestStep1 where SN = @SN";
+            const string strCMD = "select * from BestStep1 where BestStep1SN = @SN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@SN", SN));
             List<DbBestStep1Model> itemList = ExecuteReader<DbBestStep1Model>(CommandType.Text, strCMD, listPara, getModuleCallBack);
@@ -128,7 +128,7 @@ namespace InnoThink.Core.DB
                     ,Image = @Image
                     ,Related = @Related
                     ,LastUpdate = @LastUpdate
-                Where SN = @SN
+                Where BestStep1SN = @SN
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@Category", Model.Category));

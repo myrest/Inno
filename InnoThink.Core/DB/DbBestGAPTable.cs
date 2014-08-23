@@ -69,7 +69,7 @@ namespace InnoThink.Core.DB
                     {
                         MyGAP = sdr["MyGAP"].ToString(),
                         IdeaDetails = GroupMember,
-                        SN = Convert.ToInt32(sdr["SN"].ToString()),
+                        SN = Convert.ToInt32(sdr["BestGAPSN"].ToString()),
                         TopicSN = Convert.ToInt32(sdr["TopicSN"].ToString()),
                         Description = sdr["Description"].ToString(),
                         Document = sdr["Document"].ToString(),
@@ -120,7 +120,7 @@ namespace InnoThink.Core.DB
                 //Set the image to new filename.
                 Model.Document = NewName;
                 //Update image to new filename.
-                strCMD = "Update BestGAP set Document = @Document where SN = @SN";
+                strCMD = "Update BestGAP set Document = @Document where BestGAPSN = @SN";
                 listPara = new List<SQLiteParameter>() { };
                 listPara.Add(new SQLiteParameter("@Document", NewName));
                 listPara.Add(new SQLiteParameter("@SN", newSN));
@@ -148,7 +148,7 @@ namespace InnoThink.Core.DB
 
         public DbBestGAPModel GetByBestGAPSN(int BestGAPSN)
         {
-            const string strCMD = "select * from BestGAP where SN = @SN";
+            const string strCMD = "select * from BestGAP where BestGAPSN = @SN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@SN", BestGAPSN));
             List<DbBestGAPModel> itemList = ExecuteReader<DbBestGAPModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
@@ -186,7 +186,7 @@ namespace InnoThink.Core.DB
                     ,BestIdeaGroupSNs = @BestIdeaGroupSNs
                     ,Description = @Description
                     ,Document = @Document
-                Where SN = @SN
+                Where BestGAPSN = @SN
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@MyGAP", Model.MyGAP));

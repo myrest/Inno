@@ -5,6 +5,8 @@
 <%@ Import Namespace="InnoThink.Website.Models" %>
 <%@ Import Namespace="InnoThink.Domain" %>
 <%@ Import Namespace="InnoThink.Core.Constancy" %>
+<%@ Import Namespace="InnoThink.Domain.InnoThinkMain.Binding" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     情境分析法-3
 </asp:Content>
@@ -246,7 +248,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%
         var Model = (ScenarioCharViewModel)ViewData["Model"];
-        var AllMember = (List<TopicMember_Info>)ViewData["AllMember"];
+        var AllMember = (List<TopicMemberUI>)ViewData["AllMember"];
         var CharModel = Model.Data;
         int UserSN = (int)ViewData["_UserSN"];
     %>

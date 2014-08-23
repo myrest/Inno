@@ -22,7 +22,7 @@ namespace InnoThink.Core.MVC.BaseController
         protected BaseController(Permission permission)
         {
             ControllerPermision = permission;
-            if (ControllerPermision == Permission.Admin && sessionData != null && sessionData.trading != null)
+            if (sessionData != null && sessionData.trading != null)
             {
                 isAdmin = sessionData.trading.Level > 0;
                 isSys = sessionData.trading.Level > 0;

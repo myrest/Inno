@@ -63,7 +63,7 @@ namespace InnoThink.Core.DB
                     {
                         GroupName = sdr["GroupName"].ToString(),
                         IdeaDetails = GroupMember,
-                        SN = Convert.ToInt32(sdr["SN"].ToString()),
+                        SN = Convert.ToInt32(sdr["BestIdeaGroupSN"].ToString()),
                         TopicSN = Convert.ToInt32(sdr["TopicSN"].ToString()),
                         Type = (BestType)Convert.ToInt32(sdr["Type"].ToString())
                     });
@@ -136,7 +136,7 @@ namespace InnoThink.Core.DB
 
         public DbBestIdeaGroup GetALLByBestIdeaGroupSN(int BestIdeaGroupSN)
         {
-            const string strCMD = "select * from BestIdeaGroup where SN = @SN";
+            const string strCMD = "select * from BestIdeaGroup where BestIdeaGroupSN = @SN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@SN", BestIdeaGroupSN));
             List<DbBestIdeaGroup> itemList = ExecuteReader<DbBestIdeaGroup>(CommandType.Text, strCMD, listPara, getModuleCallBack);
@@ -172,7 +172,7 @@ namespace InnoThink.Core.DB
                 Update BestIdeaGroup set
                     GroupName = @GroupName
                     ,BestIdeaSNs = @BestIdeaSNs
-                Where SN = @SN
+                Where BestIdeaGroupSN = @SN
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@BestIdeaSNs", BestIdeaSNs));

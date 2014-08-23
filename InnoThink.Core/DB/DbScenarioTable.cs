@@ -32,7 +32,7 @@ namespace InnoThink.Core.DB
                 {
                     listResult.Add(new DbScenarioCharModel()
                     {
-                        SN = Convert.ToInt32(sdr["SN"].ToString()),
+                        SN = Convert.ToInt32(sdr["ScenarioCharSN"].ToString()),
                         LastUpdate = DateTime.Parse(sdr["LastUpdate"].ToString()),
                         AgeRang = (AgeRangType)Convert.ToInt32(sdr["AgeRang"].ToString()),
                         Career = sdr.IsDBNull(7) ? "" : sdr.GetString(7),// sdr["Career"].ToString(),
@@ -69,7 +69,7 @@ namespace InnoThink.Core.DB
                         Description = sdr["Description"].ToString(),
                         ScenarioCharSN = Convert.ToInt32(sdr["ScenarioCharSN"].ToString()),
                         UserSN = Convert.ToInt32(sdr["UserSN"].ToString()),
-                        SN = Convert.ToInt32(sdr["SN"].ToString()),
+                        SN = Convert.ToInt32(sdr["ScenarioCharSN"].ToString()),
                     });
                     //listResult.Last().LastUpdate = DateTime.Parse(sdr["LastUpdate"].ToString());
                 }
@@ -167,7 +167,7 @@ namespace InnoThink.Core.DB
                             ServerFileName = @ServerFileName
                             , UserFileName = @UserFileName
                             , IsImage = @IsImage
-                            Where SN = @SN";
+                            Where ScenarioCharSN = @SN";
                 listPara = new List<SQLiteParameter>() { };
                 listPara.Add(new SQLiteParameter("@ServerFileName", Model.ServerFileName));
                 listPara.Add(new SQLiteParameter("@UserFileName", Model.UserFileName));
@@ -227,7 +227,7 @@ namespace InnoThink.Core.DB
                     , Personality = @Personality
                     , Subject = @Subject
                     , Career = @Career
-                Where SN = @SN
+                Where ScenarioCharSN = @SN
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@ServerFileName", Model.ServerFileName));
@@ -282,7 +282,7 @@ namespace InnoThink.Core.DB
                     , LastUpdate = @LastUpdate
                     , UserSN = @UserSN
                     , ScenarioCharSN = @ScenarioCharSN
-                Where SN = @SN
+                Where ScenarioCharValuesSN = @SN
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@Description", Model.Description));

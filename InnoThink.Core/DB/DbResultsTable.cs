@@ -56,7 +56,7 @@ namespace InnoThink.Core.DB
 
                     listResult.Add(new DbResultsModel()
                     {
-                        SN = Convert.ToInt32(sdr["SN"].ToString()),
+                        SN = Convert.ToInt32(sdr["ResultsSN"].ToString()),
                         LastUpdate = DateTime.Parse(sdr["LastUpdate"].ToString()),
                         Column1 = sdr["Column1"].ToString(),
                         Column2 = sdr["Column2"].ToString(),
@@ -122,7 +122,7 @@ namespace InnoThink.Core.DB
                             ServerFileName = @ServerFileName
                             , UserFileName = @UserFileName
                             , IsImage = @IsImage
-                            Where SN = @SN";
+                            Where ResultsSN = @SN";
                 listPara = new List<SQLiteParameter>() { };
                 listPara.Add(new SQLiteParameter("@ServerFileName", Model.ServerFileName));
                 listPara.Add(new SQLiteParameter("@UserFileName", Model.UserFileName));
@@ -135,7 +135,7 @@ namespace InnoThink.Core.DB
 
         public DbResultsModel GetBySN(int SN)
         {
-            const string strCMD = "select *, 0 as MyRank, 0 as Ranking, 0 as rcnt, 0 as ComNum from Results where SN = @SN";
+            const string strCMD = "select *, 0 as MyRank, 0 as Ranking, 0 as rcnt, 0 as ComNum from Results where ResultsSN = @SN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@SN", SN));
             List<DbResultsModel> itemList = ExecuteReader<DbResultsModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
@@ -170,7 +170,8 @@ namespace InnoThink.Core.DB
 
         public List<DbResultsModel> GetDataByTopicSN_UserSN(int TopicSN, ResultType Result, int UserSN)
         {
-            string strCMD = strAllResultCMD.Replace("Where TopicSN = @TopicSN and Result = @Result", "Where TopicSN = @TopicSN and Result = @Result and UserSN = @User_SN");
+            //I guest the userSN is come from rr.
+            string strCMD = strAllResultCMD.Replace("Where TopicSN = @TopicSN and Result = @Result", "Where TopicSN = @TopicSN and Result = @Result and rr.UserSN = @User_SN");
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@User_SN", UserSN));
             listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));
@@ -188,7 +189,7 @@ namespace InnoThink.Core.DB
 
         private readonly string strAllResultCMD = @"select
                                     count(case when length(comment) > 0 then 1 end ) as ComNum,
-                                    ifnull((select Ranking from ResultsRank where ResultsRank.User_SN = @User_SN and ResultsRank.Results_SN = rr.Results_SN),0) as MyRank,
+                                    ifnull((select Ranking from ResultsRank where ResultsRank.UserSN = @User_SN and ResultsRank.ResultsSN = rr.ResultsSN),0) as MyRank,
                                     r.Resultssn ,r.TopicSN ,r.Result
                                     ,r.Column1 ,r.Column2 ,r.Column3 ,r.Column4
                                     ,r.ServerFileName ,r.UserFileName
@@ -236,7 +237,7 @@ namespace InnoThink.Core.DB
                     , UserFileName = @UserFileName
                     , IsImage = @IsImage
                     ,LastUpdate = @LastUpdate
-                Where SN = @SN
+                Where ResultsSN = @SN
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@Column1", Model.Column1));
@@ -257,7 +258,7 @@ namespace InnoThink.Core.DB
             DbResultsScoreModel rtn = new DbResultsScoreModel() { };
             //check is has data.
             Dictionary<string, string> para = new Dictionary<string, string>() { };
-            para.Add("Results_SN", SN.ToString());
+            para.Add("ResultsSN", SN.ToString());
             para.Add("User_SN", UserSN.ToString());
             int rcnt = ExecuteReaderCount("ResultsRank", para);
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
@@ -269,13 +270,13 @@ namespace InnoThink.Core.DB
             if (rcnt == 0)
             {
                 //Insert
-                const string strCMD = "Insert into ResultsRank (Results_SN, User_SN, Ranking, Comment, LastUpdate) Values (@ResultsSN, @User_SN, @Ranking, @Comment, @LastUpdate)";
+                const string strCMD = "Insert into ResultsRank (ResultsSN, User_SN, Ranking, Comment, LastUpdate) Values (@ResultsSN, @User_SN, @Ranking, @Comment, @LastUpdate)";
                 ExecuteNonQuery(strCMD, listPara);
             }
             else
             {
                 //Update
-                const string strCMD = "Update ResultsRank set Ranking = @Ranking, Comment = @Comment, LastUpdate = @LastUpdate Where Results_SN = @ResultsSN and User_SN = @User_SN";
+                const string strCMD = "Update ResultsRank set Ranking = @Ranking, Comment = @Comment, LastUpdate = @LastUpdate Where ResultsSN = @ResultsSN and User_SN = @User_SN";
                 ExecuteNonQuery(strCMD, listPara);
             }
             //Get the newst score

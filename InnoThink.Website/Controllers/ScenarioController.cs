@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using InnoThink.Domain;
+using InnoThink.Domain.InnoThinkMain.Binding;
 
 namespace InnoThink.Website.Controllers
 {
@@ -73,9 +74,9 @@ namespace InnoThink.Website.Controllers
             Model.TopicSN = TopicSN;
 
             //Get Team member List
-            var OnLineMem = (List<TopicMember_Info>)ViewData["OnlineTeamMember"];
-            var OffLineMem = (List<TopicMember_Info>)ViewData["OfflineTeamMember"];
-            List<TopicMember_Info> AllMember = new List<TopicMember_Info>() { };
+            var OnLineMem = (List<TopicMemberUI>)ViewData["OnlineTeamMember"];
+            var OffLineMem = (List<TopicMemberUI>)ViewData["OfflineTeamMember"];
+            List<TopicMemberUI> AllMember = new List<TopicMemberUI>() { };
             if (OnLineMem != null)
             {
                 OnLineMem.ForEach(x => AllMember.Add(x));

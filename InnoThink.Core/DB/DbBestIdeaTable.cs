@@ -26,7 +26,7 @@ namespace InnoThink.Core.DB
                 {
                     listResult.Add(new DbBestIdeaModel()
                     {
-                        SN = Convert.ToInt32(sdr["SN"].ToString()),
+                        SN = Convert.ToInt32(sdr["BestIdeaSN"].ToString()),
                         LastUpdate = DateTime.Parse(sdr["LastUpdate"].ToString()),
                         TopicSN = Convert.ToInt32(sdr["TopicSN"].ToString()),
                         UserSN = Convert.ToInt32(sdr["UserSN"].ToString()),
@@ -87,7 +87,7 @@ namespace InnoThink.Core.DB
 
         public DbBestIdeaModel GetBySN(int SN)
         {
-            const string strCMD = "select * from BestIdea where SN = @SN";
+            const string strCMD = "select * from BestIdea where BestIdeaSN = @SN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@SN", SN));
             List<DbBestIdeaModel> itemList = ExecuteReader<DbBestIdeaModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
@@ -125,7 +125,7 @@ namespace InnoThink.Core.DB
                     ,Description = @Description
                     ,Ranking = @Ranking
                     ,LastUpdate = @LastUpdate
-                Where SN = @SN
+                Where BestIdeaSN = @SN
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@Idea", Model.Idea));

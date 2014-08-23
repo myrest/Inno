@@ -187,7 +187,11 @@ var inno198 = {
                     $existing.remove();
                     $('#topicOnline').append($clone);
                 } else {
-                    var picobj = '<img src="' + data.Picture + '" width="30" height="30" alt="' + data.UserName + '" title="' + data.UserName + '" class="onlinemember" id="UOid' + data.SN + '" />&nbsp;';
+                    var pic = '/pic/NoIcon.jpg';
+                    if (data.Picture != undefined) {
+                        pic = data.Picture;
+                    }
+                    var picobj = '<img src="' + pic + '" width="30" height="30" alt="' + data.UserName + '" title="' + data.UserName + '" class="onlinemember" id="UOid' + data.SN + '" />&nbsp;';
                     $('#topicOnline').append(picobj);
                 }
             },

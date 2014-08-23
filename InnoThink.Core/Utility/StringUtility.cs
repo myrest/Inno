@@ -70,9 +70,9 @@ namespace InnoThink.Core.Utility
                     if (!fileName.StartsWith("http") && string.Compare("/pic/NoIcon.jpg", fileName, true) != 0)
                     {
                         rtn = string.Format("{0}/{1}", FolderName, fileName);
+                        rtn += "?" + DateTime.Now.Millisecond;
                     }
                 }
-                rtn += "?" + DateTime.Now.Millisecond;
                 return rtn;
             }
             else
