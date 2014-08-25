@@ -324,7 +324,7 @@
                             </td>
                             <td valign="top">
                                 <textarea name="column2" cols="50" rows="3" id="column2" extmaxlength="4000"></textarea>
-                                <input type="hidden" id="resultsn" value="0" />
+                                <input type="hidden" id="ResultSN" value="0" />
                             </td>
                         </tr>
                         <tr>
@@ -460,7 +460,7 @@
                 Step.ClearForm();
                 $('#btnofupdate').hide();
                 $('#savebtn').show();
-                $('#resultsn').val('');
+                $('#ResultSN').val('');
                 $('#deluploadfile').html('');
             }
             , UpdateData: function () {
@@ -469,7 +469,7 @@
                     , 'Column2': Step.$Column2.val()
                     , 'Column3': Step.$Column3.val()
                     , 'Column4': Step.$Column4.val()
-                    , 'SN': $('#resultsn').val()
+                    , 'SN': $('#ResultSN').val()
                 };
                 utility.ajaxQuiet('TopicService/UpdateResult', para);
                 Step.CancleUpdate();
@@ -495,7 +495,7 @@
             }
             , GetDataForEdit: function () {
                 var ResultSN = $(this).parent().parent().attr('sn')
-                $('#resultsn').val(ResultSN);
+                $('#ResultSN').val(ResultSN);
                 var para = {
                     'SN': ResultSN
                 };

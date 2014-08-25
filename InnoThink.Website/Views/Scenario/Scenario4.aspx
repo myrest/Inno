@@ -379,7 +379,7 @@
                 Step.ClearForm();
                 $('#btnofupdate').hide();
                 $('#savebtn').show();
-                $('#resultsn').val('');
+                $('#ResultSN').val('');
                 $('#deluploadfile').html('');
             }
             , UpdateData: function () {

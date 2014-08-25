@@ -7,6 +7,6 @@ namespace InnoThink.Website.Models
     {
         public int TopicSN { get; set; }
 
-        public List<DbResultsModel> Listing { get; set; }
+        public List<DbResultModel> Listing { get; set; }
     }
 }

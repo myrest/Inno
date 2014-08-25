@@ -1,6 +1,7 @@
 ﻿using InnoThink.Core.Constancy;
 using System;
 using System.Web;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Core
 {

@@ -887,7 +887,7 @@
                             }
                         %>
                     </div>
-                    <div id="resultS" class="best-5">
+                    <div id="Result" class="best-5">
                         <div class="best-9">
                             S 分類結果
                         </div>

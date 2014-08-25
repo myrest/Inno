@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using InnoThink.Domain.Constancy;
+using Rest.Core.Constancy;
 
 namespace InnoThink.Core.DB
 {

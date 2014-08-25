@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using InnoThink.Domain;
 using InnoThink.Domain.InnoThinkMain.Binding;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Website.Communication
 {
@@ -126,7 +127,7 @@ namespace InnoThink.Website.Communication
             });
         }
 
-        internal void syncUIResult(DbResultsModel model, ResultType Result)
+        internal void syncUIResult(DbResultModel model, EnumResultType Result)
         {
             model.Column1 = StringUtility.ConvertNewLineToBR(model.Column1);
             model.Column2 = StringUtility.ConvertNewLineToBR(model.Column2);
@@ -137,38 +138,38 @@ namespace InnoThink.Website.Communication
             var list = Unit1Cache.GetAllConnections(model.TopicSN);
             switch (Result)
             {
-                case ResultType.DRAFT:
+                case EnumResultType.DRAFT:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncResultDraft(model);
                     });
                     break;
 
-                case ResultType.DASHBOARD:
+                case EnumResultType.DASHBOARD:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncResultDashboard(model);
                     });
                     break;
 
-                case ResultType.PRESENTATION:
+                case EnumResultType.PRESENTATION:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncResultPresentation(model);
                     });
                     break;
 
-                case ResultType.SCENARIO_1:
+                case EnumResultType.SCENARIO_1:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncScenario1(model);
                     });
                     break;
 
-                case ResultType.SCENARIO_3:
+                case EnumResultType.SCENARIO_3:
                     //just using the same parse rule for UI display information.
                     ScenarioCharResultViewModel result3 = new ScenarioCharResultViewModel(0) { };
-                    result3.Descriptions = new List<DbResultsModel>() { };
+                    result3.Descriptions = new List<DbResultModel>() { };
                     result3.Descriptions.Add(model);
                     list.ForEach(x =>
                     {
@@ -176,10 +177,10 @@ namespace InnoThink.Website.Communication
                     });
                     break;
 
-                case ResultType.SCENARIO_7:
+                case EnumResultType.SCENARIO_7:
                     //just using the same parse rule for UI display information.
                     ScenarioCharResultViewModel result7 = new ScenarioCharResultViewModel(0) { };
-                    result7.Descriptions = new List<DbResultsModel>() { };
+                    result7.Descriptions = new List<DbResultModel>() { };
                     result7.Descriptions.Add(model);
                     list.ForEach(x =>
                     {
@@ -192,27 +193,27 @@ namespace InnoThink.Website.Communication
             }
         }
 
-        internal void syncUIResultScore(DbResultsScoreModel model)
+        internal void syncUIResultcore(DbResultScoreModel model)
         {
             //get connections
             var list = Unit1Cache.GetAllConnections(model.TopicSN);
-            switch (model.Result)
+            switch (model.ResultType)
             {
-                case ResultType.DRAFT:
+                case EnumResultType.DRAFT:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncRSDraft(model);
                     });
                     break;
 
-                case ResultType.DASHBOARD:
+                case EnumResultType.DASHBOARD:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncRSDashboard(model);
                     });
                     break;
 
-                case ResultType.PRESENTATION:
+                case EnumResultType.PRESENTATION:
                     list.ForEach(x =>
                     {
                         Clients.Client(x).syncRSPresentation(model);

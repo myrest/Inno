@@ -21,6 +21,7 @@ using InnoThink.Domain;
 using InnoThink.BLL.Topic;
 using InnoThink.BLL.TopicMember;
 using InnoThink.Domain.InnoThinkMain.Binding;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -40,7 +41,7 @@ namespace InnoThink.Website.Controllers.Service
         private static readonly DbBestIdeaGroupTable dbBestIdeaGrp = new DbBestIdeaGroupTable() { };
         private static readonly DbBestIdeaGroupRankTable dbBestIdeaGrpRank = new DbBestIdeaGroupRankTable() { };
         private static readonly DbBestGAPTable dbBestGAP = new DbBestGAPTable() { };
-        private static readonly DbResultsTable dbResult = new DbResultsTable() { };
+        private static readonly DbResultTable dbResult = new DbResultTable() { };
 
         public TopicServiceController()
             : base(Permission.Private)
@@ -457,25 +458,25 @@ namespace InnoThink.Website.Controllers.Service
         [HttpPost]
         public JsonResult Result1(string Column1, string Column2, string Column3, string Column4, int TopicSN)
         {
-            ResultBase result = doResultSave(Column1, Column2, Column3, Column4, TopicSN, ResultType.DRAFT);
+            ResultBase result = doResultave(Column1, Column2, Column3, Column4, TopicSN, EnumResultType.DRAFT);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
         public JsonResult Result2(string Column1, string Column2, string Column3, string Column4, int TopicSN)
         {
-            ResultBase result = doResultSave(Column1, Column2, Column3, Column4, TopicSN, ResultType.DASHBOARD);
+            ResultBase result = doResultave(Column1, Column2, Column3, Column4, TopicSN, EnumResultType.DASHBOARD);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
         public JsonResult Result3(string Column1, string Column2, string Column3, string Column4, int TopicSN)
         {
-            ResultBase result = doResultSave(Column1, Column2, Column3, Column4, TopicSN, ResultType.PRESENTATION);
+            ResultBase result = doResultave(Column1, Column2, Column3, Column4, TopicSN, EnumResultType.PRESENTATION);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
-        private ResultBase doResultSave(string Column1, string Column2, string Column3, string Column4, int TopicSN, ResultType Result)
+        private ResultBase doResultave(string Column1, string Column2, string Column3, string Column4, int TopicSN, EnumResultType Result)
         {
             ResultBase rtn = new ResultBase() { };
             if (string.IsNullOrEmpty(Column1) || string.IsNullOrEmpty(Column2))
@@ -493,13 +494,13 @@ namespace InnoThink.Website.Controllers.Service
             }
             else
             {
-                DbResultsModel model = new DbResultsModel()
+                DbResultModel model = new DbResultModel()
                 {
                     Column1 = Column1,
                     Column2 = Column2,
                     Column3 = Column3,
                     Column4 = Column4,
-                    Result = Result,
+                    ResultType = Result,
                     ServerFileName = sessionData.trading._tempFileName,
                     UserFileName = sessionData.trading._OrignFileName,
                     TopicSN = TopicSN,
@@ -510,7 +511,7 @@ namespace InnoThink.Website.Controllers.Service
                 sessionData.ClearTempValue();
                 model.SN = NewSN;
                 //publish to each client for Sync UI display.
-                model.ServerFileName = StringUtility.ConvertResultsPath(model.ServerFileName);
+                model.ServerFileName = StringUtility.ConvertResultPath(model.ServerFileName);
                 CommServer.Instance.syncUIResult(model, Result);
                 rtn.setMessage("Done");
             }
@@ -675,11 +676,11 @@ namespace InnoThink.Website.Controllers.Service
             bool updateFlag = dbResult.Update(model);
             sessionData.ClearTempValue();
             //publish to each client for Sync UI display.
-            model.ServerFileName = StringUtility.ConvertResultsPath(model.ServerFileName);
+            model.ServerFileName = StringUtility.ConvertResultPath(model.ServerFileName);
 
             if (updateFlag)
             {
-                CommServer.Instance.syncUIResult(model, model.Result);
+                CommServer.Instance.syncUIResult(model, model.ResultType);
                 result.setMessage("Done");
             }
             else
@@ -745,8 +746,8 @@ namespace InnoThink.Website.Controllers.Service
             sessionData.ClearTempValue();
             var model = dbResult.GetBySN(SN);
             //publish to each client for Sync UI display.
-            model.ServerFileName = StringUtility.ConvertResultsPath(model.ServerFileName);
-            result.Listing = new List<DbResultsModel>() { };
+            model.ServerFileName = StringUtility.ConvertResultPath(model.ServerFileName);
+            result.Listing = new List<DbResultModel>() { };
             result.Listing.Add(model);
             result.JsonReturnCode = 1;
             return Json(result, JsonRequestBehavior.DenyGet);
@@ -760,7 +761,7 @@ namespace InnoThink.Website.Controllers.Service
             {
                 var syncObj = dbResult.InsertOrReplaceRank(sessionData.trading.UserSN, SN, Rank, Comment);
                 result.setMessage("Done");
-                CommServer.Instance.syncUIResultScore(syncObj);
+                CommServer.Instance.syncUIResultcore(syncObj);
             }
             catch (Exception ex)
             {

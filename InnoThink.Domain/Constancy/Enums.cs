@@ -40,7 +40,7 @@
         T
     }
 
-    public enum ResultType
+    public enum EnumResultType
     {
         DRAFT,
         DASHBOARD,

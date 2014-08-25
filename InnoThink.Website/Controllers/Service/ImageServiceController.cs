@@ -3,6 +3,7 @@ using InnoThink.Core.MVC;
 using InnoThink.Website.Models.Image;
 using System.Drawing;
 using System.Web.Mvc;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Website.Controllers.Service
 {

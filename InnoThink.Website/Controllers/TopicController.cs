@@ -17,6 +17,7 @@ using InnoThink.Domain;
 using InnoThink.Domain.InnoThinkMain.Binding;
 using InnoThink.BLL.Topic;
 using InnoThink.BLL.TopicMember;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Website.Controllers
 {
@@ -36,7 +37,7 @@ namespace InnoThink.Website.Controllers
         private static readonly DbBestIdeaGroupTable dbBestIdeaGrp = new DbBestIdeaGroupTable() { };
         private static readonly DbBestIdeaGroupRankTable dbBestGroupRank = new DbBestIdeaGroupRankTable() { };
         private static readonly DbBestGAPTable dbBestGap = new DbBestGAPTable() { };
-        private static readonly DbResultsTable dbResult = new DbResultsTable() { };
+        private static readonly DbResultTable dbResult = new DbResultTable() { };
 
         public TopicController()
             : base(Permission.Private)
@@ -158,7 +159,7 @@ namespace InnoThink.Website.Controllers
         public ActionResult Result1(int TopicSN)
         {
             //DRAFT, 草稿
-            doResultView(TopicSN, ResultType.DRAFT);
+            doResultView(TopicSN, EnumResultType.DRAFT);
             return View();
         }
 
@@ -166,7 +167,7 @@ namespace InnoThink.Website.Controllers
         public ActionResult Result2(int TopicSN)
         {
             //DASHBOARD, 表板
-            doResultView(TopicSN, ResultType.DASHBOARD);
+            doResultView(TopicSN, EnumResultType.DASHBOARD);
             return View();
         }
 
@@ -174,11 +175,11 @@ namespace InnoThink.Website.Controllers
         public ActionResult Result3(int TopicSN)
         {
             //PRESENTATION, 發表
-            doResultView(TopicSN, ResultType.PRESENTATION);
+            doResultView(TopicSN, EnumResultType.PRESENTATION);
             return View();
         }
 
-        public void doResultView(int TopicSN, ResultType Result)
+        public void doResultView(int TopicSN, EnumResultType Result)
         {
             MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
@@ -187,7 +188,7 @@ namespace InnoThink.Website.Controllers
             //Change image path.
             list.ForEach(x =>
             {
-                x.ServerFileName = StringUtility.ConvertResultsPath(x.ServerFileName);
+                x.ServerFileName = StringUtility.ConvertResultPath(x.ServerFileName);
             });
 
             Model.Listing = list;

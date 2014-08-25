@@ -1,6 +1,7 @@
 ﻿using InnoThink.Core.Constancy;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Core.Model.Topic
 {

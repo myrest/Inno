@@ -16,6 +16,7 @@ using InnoThink.BLL.User;
 using InnoThink.Domain.Facebook;
 using InnoThink.Domain;
 using InnoThink.BLL.BackofficeUser;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Website.Controllers.Service
 {

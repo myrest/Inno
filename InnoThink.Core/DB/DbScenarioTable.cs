@@ -11,6 +11,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
+using InnoThink.Domain.Constancy;
+using Rest.Core.Constancy;
 
 namespace InnoThink.Core.DB
 {

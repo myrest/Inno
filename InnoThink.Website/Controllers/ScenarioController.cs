@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web.Mvc;
 using InnoThink.Domain;
 using InnoThink.Domain.InnoThinkMain.Binding;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Website.Controllers
 {
@@ -20,7 +21,7 @@ namespace InnoThink.Website.Controllers
 
         
         
-        private static readonly DbResultsTable dbResult = new DbResultsTable() { };
+        private static readonly DbResultTable dbResult = new DbResultTable() { };
         private static readonly DbScenarioTable dbScenario = new DbScenarioTable() { };
 
         public ScenarioController()
@@ -28,7 +29,7 @@ namespace InnoThink.Website.Controllers
         {
         }
 
-        public void doResultView(int TopicSN, ResultType Result)
+        public void doResultView(int TopicSN, EnumResultType Result)
         {
             TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
@@ -37,7 +38,7 @@ namespace InnoThink.Website.Controllers
             //Change image path.
             list.ForEach(x =>
             {
-                x.ServerFileName = StringUtility.ConvertResultsPath(x.ServerFileName);
+                x.ServerFileName = StringUtility.ConvertResultPath(x.ServerFileName);
             });
 
             Model.Listing = list;
@@ -49,7 +50,7 @@ namespace InnoThink.Website.Controllers
         public ActionResult Scenario1(int TopicSN)
         {
             //情境分析法1
-            doResultView(TopicSN, ResultType.SCENARIO_1);
+            doResultView(TopicSN, EnumResultType.SCENARIO_1);
             return View();
         }
 

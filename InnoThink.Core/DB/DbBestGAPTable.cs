@@ -9,6 +9,7 @@ using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Web;
+using Rest.Core.Constancy;
 
 namespace InnoThink.Core.DB
 {

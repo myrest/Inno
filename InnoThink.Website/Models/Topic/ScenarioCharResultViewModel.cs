@@ -22,7 +22,7 @@ namespace InnoThink.Website.Models
         public List<DbScenarioCharModel> Listing { get; set; }
 
         //Story listing.
-        public List<DbResultsModel> Descriptions { get; set; }
+        public List<DbResultModel> Descriptions { get; set; }
 
         [DataMember(Name = "vp")]
         public List<DbScenarioCharValueModel> ValuePotion { get; set; }

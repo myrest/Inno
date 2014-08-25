@@ -48,7 +48,7 @@ namespace InnoThink.Core.Utility
             return ConvertImagePath(IconPathType.Best, fileName);
         }
 
-        public static string ConvertResultsPath(string fileName)
+        public static string ConvertResultPath(string fileName)
         {
             return ConvertImagePath(IconPathType.Result, fileName);
         }

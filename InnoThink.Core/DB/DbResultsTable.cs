@@ -10,16 +10,18 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
+using InnoThink.Domain.Constancy;
+using Rest.Core.Constancy;
 
 namespace InnoThink.Core.DB
 {
-    public class DbResultsTable : BaseDAO
+    public class DbResultTable : BaseDAO
     {
-        private readonly static SysLog log = SysLog.GetLogger(typeof(DbResultsTable));
+        private readonly static SysLog log = SysLog.GetLogger(typeof(DbResultTable));
 
-        public DbResultsTable()
+        public DbResultTable()
         {
-            base.init(typeof(DbResultsTable).ToString(), DataBaseName.InnoThinkMain);
+            base.init(typeof(DbResultTable).ToString(), DataBaseName.InnoThinkMain);
         }
 
         private List<ResultRankCommentUI> getResultRankCommentUICallBack(SQLiteDataReader sdr)
@@ -42,9 +44,9 @@ namespace InnoThink.Core.DB
             return listResult;
         }
 
-        private List<DbResultsModel> getModuleCallBack(SQLiteDataReader sdr)
+        private List<DbResultModel> getModuleCallBack(SQLiteDataReader sdr)
         {
-            List<DbResultsModel> listResult = new List<DbResultsModel>() { };
+            List<DbResultModel> listResult = new List<DbResultModel>() { };
             if (sdr.HasRows)
             {
                 while (sdr.Read())
@@ -54,16 +56,16 @@ namespace InnoThink.Core.DB
                     decimal RankingAvg = (dbTotalVote == 0) ? 0 : dbRanking / dbTotalVote;
                     RankingAvg = Math.Round(RankingAvg, 1, MidpointRounding.AwayFromZero);
 
-                    listResult.Add(new DbResultsModel()
+                    listResult.Add(new DbResultModel()
                     {
-                        SN = Convert.ToInt32(sdr["ResultsSN"].ToString()),
+                        SN = Convert.ToInt32(sdr["ResultSN"].ToString()),
                         LastUpdate = DateTime.Parse(sdr["LastUpdate"].ToString()),
                         Column1 = sdr["Column1"].ToString(),
                         Column2 = sdr["Column2"].ToString(),
                         Column3 = sdr["Column3"].ToString(),
                         Column4 = sdr["Column4"].ToString(),
                         IsImage = Convert.ToInt32(sdr["IsImage"].ToString()),
-                        Result = EnumHelper.GetEnumByName<ResultType>(sdr["Result"].ToString()),
+                        ResultType = EnumHelper.GetEnumByName<EnumResultType>(sdr["ResultType"].ToString()),
                         ServerFileName = sdr["ServerFileName"].ToString(),
                         UserFileName = sdr["UserFileName"].ToString(),
                         TopicSN = Convert.ToInt32(sdr["TopicSN"].ToString()),
@@ -83,11 +85,11 @@ namespace InnoThink.Core.DB
         /// </summary>
         /// <param name="Model">object which will be inserted.</param>
         /// <returns>The new record's SN.</returns>
-        public int Add(DbResultsModel Model)
+        public int Add(DbResultModel Model)
         {
-            string strCMD = @"insert into Results
+            string strCMD = @"insert into Result
             (
-                TopicSN, Result, Column1, Column2, Column3, Column4, ServerFileName, UserFileName, IsImage, UserSN, LastUpdate
+                TopicSN, ResultType, Column1, Column2, Column3, Column4, ServerFileName, UserFileName, IsImage, UserSN, LastUpdate
             )
             values
             (
@@ -95,7 +97,7 @@ namespace InnoThink.Core.DB
             )";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@TopicSN", Model.TopicSN));
-            listPara.Add(new SQLiteParameter("@Result", (int)Model.Result));
+            listPara.Add(new SQLiteParameter("@Result", (int)Model.ResultType));
             listPara.Add(new SQLiteParameter("@Column1", Model.Column1));
             listPara.Add(new SQLiteParameter("@Column2", Model.Column2));
             listPara.Add(new SQLiteParameter("@Column3", Model.Column3));
@@ -118,11 +120,11 @@ namespace InnoThink.Core.DB
                 //Set the image to new filename.
                 Model.ServerFileName = NewName;
                 //Update image to new filename.
-                strCMD = @"Update Results set
+                strCMD = @"Update Result set
                             ServerFileName = @ServerFileName
                             , UserFileName = @UserFileName
                             , IsImage = @IsImage
-                            Where ResultsSN = @SN";
+                            Where ResultSN = @SN";
                 listPara = new List<SQLiteParameter>() { };
                 listPara.Add(new SQLiteParameter("@ServerFileName", Model.ServerFileName));
                 listPara.Add(new SQLiteParameter("@UserFileName", Model.UserFileName));
@@ -133,12 +135,12 @@ namespace InnoThink.Core.DB
             return (newSN);
         }
 
-        public DbResultsModel GetBySN(int SN)
+        public DbResultModel GetBySN(int SN)
         {
-            const string strCMD = "select *, 0 as MyRank, 0 as Ranking, 0 as rcnt, 0 as ComNum from Results where ResultsSN = @SN";
+            const string strCMD = "select *, 0 as MyRank, 0 as Ranking, 0 as rcnt, 0 as ComNum from Result where ResultSN = @SN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@SN", SN));
-            List<DbResultsModel> itemList = ExecuteReader<DbResultsModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
+            List<DbResultModel> itemList = ExecuteReader<DbResultModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
             if (itemList.Count > 0)
             {
                 return itemList[0];
@@ -152,8 +154,8 @@ namespace InnoThink.Core.DB
         public List<ResultRankCommentUI> GetAllCommentByResultSN(int ResultSN)
         {
             const string strCMD = @"select u.UserName, u.Picture, r.LastUpdate, r.Ranking, r.Comment
-                                    from ResultsRank r inner join User u on u.UserSN = r.UserSN
-                                    where r.Resultssn = @ResultSN
+                                    from ResultRank r inner join User u on u.UserSN = r.UserSN
+                                    where r.Resultsn = @ResultSN
                                     order by r.LastUpdate desc";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@ResultSN", ResultSN));
@@ -168,67 +170,67 @@ namespace InnoThink.Core.DB
             }
         }
 
-        public List<DbResultsModel> GetDataByTopicSN_UserSN(int TopicSN, ResultType Result, int UserSN)
+        public List<DbResultModel> GetDataByTopicSN_UserSN(int TopicSN, EnumResultType Result, int UserSN)
         {
             //I guest the userSN is come from rr.
-            string strCMD = strAllResultCMD.Replace("Where TopicSN = @TopicSN and Result = @Result", "Where TopicSN = @TopicSN and Result = @Result and rr.UserSN = @User_SN");
+            string strCMD = strAllResultCMD.Replace("Where TopicSN = @TopicSN and ResultType = @Result", "Where TopicSN = @TopicSN and ResultType = @Result and rr.UserSN = @UserSN");
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
-            listPara.Add(new SQLiteParameter("@User_SN", UserSN));
+            listPara.Add(new SQLiteParameter("@UserSN", UserSN));
             listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));
             listPara.Add(new SQLiteParameter("@Result", Result));
-            List<DbResultsModel> itemList = ExecuteReader<DbResultsModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
+            List<DbResultModel> itemList = ExecuteReader<DbResultModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
             if (itemList.Count > 0)
             {
                 return itemList;
             }
             else
             {
-                return new List<DbResultsModel>() { };
+                return new List<DbResultModel>() { };
             }
         }
 
         private readonly string strAllResultCMD = @"select
                                     count(case when length(comment) > 0 then 1 end ) as ComNum,
-                                    ifnull((select Ranking from ResultsRank where ResultsRank.UserSN = @User_SN and ResultsRank.ResultsSN = rr.ResultsSN),0) as MyRank,
-                                    r.Resultssn ,r.TopicSN ,r.Result
+                                    ifnull((select Ranking from ResultRank where ResultRank.UserSN = @UserSN and ResultRank.ResultSN = rr.ResultSN),0) as MyRank,
+                                    r.Resultsn ,r.TopicSN ,r.ResultType
                                     ,r.Column1 ,r.Column2 ,r.Column3 ,r.Column4
                                     ,r.ServerFileName ,r.UserFileName
                                     ,r.IsImage ,r.UserSN ,r.LastUpdate
                                     ,sum(ifnull(rr.Ranking, 0)) as Ranking
                                     ,count(rr.Ranking) as rcnt
-                                    from Results r
-                                    left join ResultsRank rr on
-                                    r.ResultsSN = rr.ResultsSN
-                                    Where TopicSN = @TopicSN and Result = @Result
-                                    group by r.ResultsSN ,r.TopicSN ,r.Result
+                                    from Result r
+                                    left join ResultRank rr on
+                                    r.ResultSN = rr.ResultSN
+                                    Where TopicSN = @TopicSN and ResultType = @Result
+                                    group by r.ResultSN ,r.TopicSN ,r.ResultType
                                     ,r.Column1 ,r.Column2 ,r.Column3 ,r.Column4
                                     ,r.ServerFileName ,r.UserFileName
                                     ,r.IsImage ,r.UserSN ,r.LastUpdate
                                     Order by r.LastUpdate desc
                                     ";
 
-        public List<DbResultsModel> GetAllByTopicSN(int TopicSN, ResultType Result, int UserSN)
+        public List<DbResultModel> GetAllByTopicSN(int TopicSN, EnumResultType Result, int UserSN)
         {
             string strCMD = strAllResultCMD;
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
-            listPara.Add(new SQLiteParameter("@User_SN", UserSN));
+            listPara.Add(new SQLiteParameter("@UserSN", UserSN));
             listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));
             listPara.Add(new SQLiteParameter("@Result", Result));
-            List<DbResultsModel> itemList = ExecuteReader<DbResultsModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
+            List<DbResultModel> itemList = ExecuteReader<DbResultModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
             if (itemList.Count > 0)
             {
                 return itemList;
             }
             else
             {
-                return new List<DbResultsModel>() { };
+                return new List<DbResultModel>() { };
             }
         }
 
-        public bool Update(DbResultsModel Model)
+        public bool Update(DbResultModel Model)
         {
             string strCMD = @"
-                Update Results set
+                Update Result set
                     Column1 = @Column1
                     , Column2 = @Column2
                     , Column3 = @Column3
@@ -237,7 +239,7 @@ namespace InnoThink.Core.DB
                     , UserFileName = @UserFileName
                     , IsImage = @IsImage
                     ,LastUpdate = @LastUpdate
-                Where ResultsSN = @SN
+                Where ResultSN = @SN
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@Column1", Model.Column1));
@@ -253,42 +255,42 @@ namespace InnoThink.Core.DB
             return (icnt > 0);
         }
 
-        public DbResultsScoreModel InsertOrReplaceRank(int UserSN, int SN, int Rank, string Comment)
+        public DbResultScoreModel InsertOrReplaceRank(int UserSN, int SN, int Rank, string Comment)
         {
-            DbResultsScoreModel rtn = new DbResultsScoreModel() { };
+            DbResultScoreModel rtn = new DbResultScoreModel() { };
             //check is has data.
             Dictionary<string, string> para = new Dictionary<string, string>() { };
-            para.Add("ResultsSN", SN.ToString());
-            para.Add("User_SN", UserSN.ToString());
-            int rcnt = ExecuteReaderCount("ResultsRank", para);
+            para.Add("ResultSN", SN.ToString());
+            para.Add("UserSN", UserSN.ToString());
+            int rcnt = ExecuteReaderCount("ResultRank", para);
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
-            listPara.Add(new SQLiteParameter("@ResultsSN", SN));
-            listPara.Add(new SQLiteParameter("@User_SN", UserSN));
+            listPara.Add(new SQLiteParameter("@ResultSN", SN));
+            listPara.Add(new SQLiteParameter("@UserSN", UserSN));
             listPara.Add(new SQLiteParameter("@Ranking", Rank));
             listPara.Add(new SQLiteParameter("@Comment", Comment));
             listPara.Add(new SQLiteParameter("@LastUpdate", DateTime.Now));
             if (rcnt == 0)
             {
                 //Insert
-                const string strCMD = "Insert into ResultsRank (ResultsSN, User_SN, Ranking, Comment, LastUpdate) Values (@ResultsSN, @User_SN, @Ranking, @Comment, @LastUpdate)";
+                const string strCMD = "Insert into ResultRank (ResultSN, UserSN, Ranking, Comment, LastUpdate) Values (@ResultSN, @UserSN, @Ranking, @Comment, @LastUpdate)";
                 ExecuteNonQuery(strCMD, listPara);
             }
             else
             {
                 //Update
-                const string strCMD = "Update ResultsRank set Ranking = @Ranking, Comment = @Comment, LastUpdate = @LastUpdate Where ResultsSN = @ResultsSN and User_SN = @User_SN";
+                const string strCMD = "Update ResultRank set Ranking = @Ranking, Comment = @Comment, LastUpdate = @LastUpdate Where ResultSN = @ResultSN and UserSN = @UserSN";
                 ExecuteNonQuery(strCMD, listPara);
             }
             //Get the newst score
             var obj = GetBySN(SN);
-            rtn.Result = obj.Result;
+            rtn.ResultType = obj.ResultType;
 
-            obj = GetAllByTopicSN(obj.TopicSN, obj.Result, obj.UserSN).Where(x => x.SN == SN).FirstOrDefault();
+            obj = GetAllByTopicSN(obj.TopicSN, obj.ResultType, obj.UserSN).Where(x => x.SN == SN).FirstOrDefault();
             if (obj != null)
             {
-                rtn = new DbResultsScoreModel()
+                rtn = new DbResultScoreModel()
                 {
-                    Result = obj.Result,
+                    ResultType = obj.ResultType,
                     Count = obj.TotalVote,
                     ResultSN = obj.SN,
                     TopicSN = obj.TopicSN,
@@ -300,17 +302,17 @@ namespace InnoThink.Core.DB
         }
     }
 
-    public class DbResultsScoreModel
+    public class DbResultScoreModel
     {
         public int TopicSN;
         public int ResultSN;
         public decimal Avg;
         public int Count;
         public int ComNum;
-        public ResultType Result;
+        public EnumResultType ResultType;
     }
 
-    public class DbResultsModel
+    public class DbResultModel
     {
         /// <summary>
         /// 流水號
@@ -325,7 +327,7 @@ namespace InnoThink.Core.DB
         /// <summary>
         /// 結果類別, 0:草槁, 1:表板, 2:發表
         /// </summary>
-        public ResultType Result;
+        public EnumResultType ResultType;
 
         /// <summary>
         /// 欄位1, 主旨

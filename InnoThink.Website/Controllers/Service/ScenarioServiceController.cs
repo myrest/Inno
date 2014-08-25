@@ -15,6 +15,7 @@ using System.Web;
 using System.Web.Mvc;
 using InnoThink.Domain;
 using InnoThink.Domain.InnoThinkMain.Binding;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -22,7 +23,7 @@ namespace InnoThink.Website.Controllers.Service
     {
         private static readonly SysLog Log = SysLog.GetLogger(typeof(ScenarioServiceController));
         
-        private static readonly DbResultsTable dbResult = new DbResultsTable() { };
+        private static readonly DbResultTable dbResult = new DbResultTable() { };
         private static readonly DbScenarioTable dbScenario = new DbScenarioTable() { };
 
         //
@@ -33,15 +34,15 @@ namespace InnoThink.Website.Controllers.Service
         {
         }
 
-        private ResultBase doValidation(string Column1, string Column2, string Column3, string Column4, int TopicSN, ResultType Result)
+        private ResultBase doValidation(string Column1, string Column2, string Column3, string Column4, int TopicSN, EnumResultType Result)
         {
             ResultBase rtn = new ResultBase() { };
             //Set to default is pass the validation.
             rtn.JsonReturnCode = 1;
             switch (Result)
             {
-                case ResultType.SCENARIO_3:
-                case ResultType.SCENARIO_7:
+                case EnumResultType.SCENARIO_3:
+                case EnumResultType.SCENARIO_7:
 
                     #region SCENARIO_3 only using Column2 for 事件描述
 
@@ -84,7 +85,7 @@ namespace InnoThink.Website.Controllers.Service
             return rtn;
         }
 
-        private ResultBase doResultSave(string Column1, string Column2, string Column3, string Column4, int TopicSN, ResultType Result, int UserSN)
+        private ResultBase doResultave(string Column1, string Column2, string Column3, string Column4, int TopicSN, EnumResultType Result, int UserSN)
         {
             if (UserSN == 0)
             {
@@ -93,13 +94,13 @@ namespace InnoThink.Website.Controllers.Service
             ResultBase rtn = doValidation(Column1, Column2, Column3, Column4, TopicSN, Result);
             if (rtn.JsonReturnCode > 0)
             {
-                DbResultsModel model = new DbResultsModel()
+                DbResultModel model = new DbResultModel()
                 {
                     Column1 = Column1,
                     Column2 = Column2,
                     Column3 = Column3,
                     Column4 = Column4,
-                    Result = Result,
+                    ResultType = Result,
                     ServerFileName = sessionData.trading._tempFileName,
                     UserFileName = sessionData.trading._OrignFileName,
                     TopicSN = TopicSN,
@@ -110,7 +111,7 @@ namespace InnoThink.Website.Controllers.Service
                 sessionData.ClearTempValue();
                 model.SN = NewSN;
                 //publish to each client for Sync UI display.
-                model.ServerFileName = StringUtility.ConvertResultsPath(model.ServerFileName);
+                model.ServerFileName = StringUtility.ConvertResultPath(model.ServerFileName);
                 CommServer.Instance.syncUIResult(model, Result);
                 rtn.setMessage("Done");
             }
@@ -120,21 +121,21 @@ namespace InnoThink.Website.Controllers.Service
         [HttpPost]
         public JsonResult Scenario1(string Column1, string Column2, string Column3, string Column4, int TopicSN)
         {
-            ResultBase result = doResultSave(Column1, Column2, Column3, Column4, TopicSN, ResultType.SCENARIO_1, sessionData.trading.UserSN);
+            ResultBase result = doResultave(Column1, Column2, Column3, Column4, TopicSN, EnumResultType.SCENARIO_1, sessionData.trading.UserSN);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
         public JsonResult Scenario3(string Column1, string Column2, string Column3, string Column4, int TopicSN)
         {
-            ResultBase result = doResultSave(Column1, Column2, Column3, Column4, TopicSN, ResultType.SCENARIO_3, sessionData.trading.UserSN);
+            ResultBase result = doResultave(Column1, Column2, Column3, Column4, TopicSN, EnumResultType.SCENARIO_3, sessionData.trading.UserSN);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
         public JsonResult Scenario7(string Column1, string Column2, string Column3, string Column4, int TopicSN, int UserSN)
         {
-            ResultBase result = doResultSave(Column1, Column2, Column3, Column4, TopicSN, ResultType.SCENARIO_7, UserSN);
+            ResultBase result = doResultave(Column1, Column2, Column3, Column4, TopicSN, EnumResultType.SCENARIO_7, UserSN);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
@@ -401,13 +402,13 @@ namespace InnoThink.Website.Controllers.Service
             result.Listing = list;
 
             //Get all result
-            var Scenario3Result = dbResult.GetDataByTopicSN_UserSN(TopicSN, ResultType.SCENARIO_3, UserSN);
+            var Scenario3Result = dbResult.GetDataByTopicSN_UserSN(TopicSN, EnumResultType.SCENARIO_3, UserSN);
             if (Scenario3Result != null)
             {
                 //Change image path. due to this is using RESUST module, so need change file path to result path.
                 Scenario3Result.ForEach(x =>
                 {
-                    x.ServerFileName = StringUtility.ConvertResultsPath(x.ServerFileName);
+                    x.ServerFileName = StringUtility.ConvertResultPath(x.ServerFileName);
                     //for ui display need change crlf to <Br>
                     x.Column2 = x.Column2.Replace(Environment.NewLine, "<br>").Replace("\n", "<br>").Replace("\r", "<br>");
                 });
@@ -440,13 +441,13 @@ namespace InnoThink.Website.Controllers.Service
             result.Listing = list;
 
             //Get all result
-            var Scenario3Result = dbResult.GetDataByTopicSN_UserSN(TopicSN, ResultType.SCENARIO_3, UserSN);
+            var Scenario3Result = dbResult.GetDataByTopicSN_UserSN(TopicSN, EnumResultType.SCENARIO_3, UserSN);
             if (Scenario3Result != null)
             {
                 //Change image path. due to this is using RESUST module, so need change file path to result path.
                 Scenario3Result.ForEach(x =>
                 {
-                    x.ServerFileName = StringUtility.ConvertResultsPath(x.ServerFileName);
+                    x.ServerFileName = StringUtility.ConvertResultPath(x.ServerFileName);
                     //for ui display need change crlf to <Br>
                     x.Column2 = x.Column2.Replace(Environment.NewLine, "<br>").Replace("\n", "<br>").Replace("\r", "<br>");
                 });
@@ -481,13 +482,13 @@ namespace InnoThink.Website.Controllers.Service
             result.Listing = list;
 
             //Get all result
-            var Scenario7Result = dbResult.GetDataByTopicSN_UserSN(TopicSN, ResultType.SCENARIO_7, UserSN);
+            var Scenario7Result = dbResult.GetDataByTopicSN_UserSN(TopicSN, EnumResultType.SCENARIO_7, UserSN);
             if (Scenario7Result != null)
             {
                 //Change image path. due to this is using RESUST module, so need change file path to result path.
                 Scenario7Result.ForEach(x =>
                 {
-                    x.ServerFileName = StringUtility.ConvertResultsPath(x.ServerFileName);
+                    x.ServerFileName = StringUtility.ConvertResultPath(x.ServerFileName);
                     //for ui display need change crlf to <Br>
                     x.Column2 = x.Column2.Replace(Environment.NewLine, "<br>").Replace("\n", "<br>").Replace("\r", "<br>");
                 });
