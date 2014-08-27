@@ -116,7 +116,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AnalysisController.cs" />
     <Compile Include="Controllers\ScenarioController.cs" />
+    <Compile Include="Controllers\Service\AnalysisServiceController.cs" />
     <Compile Include="Controllers\Service\BoardServiceController.cs" />
     <Compile Include="Controllers\Service\AdminServiceController.cs" />
     <Compile Include="Controllers\Service\FileUploadServiceController.cs" />
@@ -188,6 +190,7 @@
     <Content Include="CDN\CSS\Login.css" />
     <Content Include="CDN\Images\Common\loading.gif" />
     <Content Include="CDN\Images\Common\pbar-ani.gif" />
+    <Content Include="CDN\Js\Analytisc\Analytisc.js" />
     <Content Include="CDN\Js\Common.js" />
     <Content Include="CDN\Js\Default\LoginAdmin.js" />
     <Content Include="CDN\Js\Main.js" />
@@ -291,6 +294,7 @@
     <Content Include="Views\Admin\TeamGroupMemberListing.aspx" />
     <Content Include="Views\Admin\CreateTeamGroup.aspx" />
     <Content Include="Views\Admin\TeamGroupListing.aspx" />
+    <Content Include="Views\Analysis\Analysis1.aspx" />
     <Content Include="Views\Default\Admin.aspx" />
     <Content Include="Views\Default\Index.aspx" />
     <Content Include="Views\Admin\Admin.aspx" />
@@ -375,6 +379,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Upload\Analytics\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

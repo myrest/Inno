@@ -11,7 +11,15 @@ var Main = {
         $('#otherteam-up1').trigger('click');
         $('#talk1').trigger('click');
     },
-    DDLMenu: [{
+    DDLMenu: [
+    {
+        '分組與初探': [
+                { '自我介紹及選隊長': 'Topic,Step0' },
+                { '團隊設定': 'Topic,Step1' },
+                { '現有狀況分析': 'Analysis,Analysis1' }
+            ]
+    },
+    {
         '第1單元介紹': [
                 { '認識朋友-1': 'Topic,Step0' },
                 { '認識朋友-2': 'Topic,Step1' }

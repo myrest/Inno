@@ -13,7 +13,8 @@ namespace InnoThink.Core.Utility
             Best,
             GAP,
             Result,
-            Scenario
+            Scenario,
+            Analytics
         }
 
         public static string ConvertPicturePath(string fileName)
@@ -105,6 +106,9 @@ namespace InnoThink.Core.Utility
 
                 case IconPathType.Scenario:
                     return AppConfigManager.SystemSetting.FileUpLoadScenario;
+
+                case IconPathType.Analytics:
+                    return AppConfigManager.SystemSetting.FileUploadAnalytics;
 
                 default:
                     throw new Exception("IconType not deside using which setting.");

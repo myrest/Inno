@@ -21,7 +21,6 @@
     %>
     <tr>
         <td align="center" colspan="3">
-            <% =QCBAR.ControlMainTitle.Substring(0, 4) %>：<% =QCBAR.ControlSubTitle %>
             <script type="text/javascript">
                 var CurrentPage = [ '<% =QCBAR.ControlMainTitle %>', '<% =QCBAR.ControlSubTitle %>' ];
             </script>

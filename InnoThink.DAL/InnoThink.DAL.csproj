@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InnoThinkMain\Analysis.cs" />
     <Compile Include="InnoThinkMain\BackofficeUser.cs" />
     <Compile Include="InnoThinkMain\Board.cs" />
     <Compile Include="InnoThinkMain\TeamGroup.cs" />

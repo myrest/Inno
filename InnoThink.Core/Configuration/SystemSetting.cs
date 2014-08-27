@@ -21,5 +21,7 @@
         public string FileUpLoadResult { get; set; }
 
         public string FileUpLoadScenario { get; set; }
+
+        public string FileUploadAnalytics { get; set; }
     }
 }

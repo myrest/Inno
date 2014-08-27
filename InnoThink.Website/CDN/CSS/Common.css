@@ -251,7 +251,7 @@ input.textbox-highlight, .txt-input:hover, .amt-input:hover, .m-input-box:hover,
     border: 1px solid #cccccc;
     color: #555555;
     line-height: 24px;
-    padding:1px 3px 1px 3px;
+    padding: 1px 3px 1px 3px;
 }
 .headerrow
 {
@@ -531,11 +531,27 @@ input.textbox-highlight, .txt-input:hover, .amt-input:hover, .m-input-box:hover,
 }
 .valuerankdiv
 {
-    vertical-align:top;
-    width:210px;
-    display:inline-block;
+    vertical-align: top;
+    width: 210px;
+    display: inline-block;
 }
 .valuerankdiv td
 {
-    text-align:center;
+    text-align: center;
+}
+
+/*Basic block*/
+.InputArea
+{
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 30px;
+    -webkit-box-shadow: rgb(204, 204, 204) 5px 5px 5px 0px;
+    float:left;
+    margin: 0 3px 3px 3px;
+    padding:0 6px 0 6px;
+}
+
+.InputArea.LightYellow
+{
+    background-color: rgb(255, 255, 204);
 }

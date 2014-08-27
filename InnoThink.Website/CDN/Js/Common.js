@@ -1,11 +1,7 @@
 /// <reference path="lib/jquery-1.4.4-vsdoc.js" />
 var ClockTimeout = 60;
 var utility = {
-    isCrypto: true,
-    CryptoKey: 'RestHome',
-    CryptoPrefix: 'U2FsdGVkX1',
     stopRequest: false,
-    boolFalseFlag: false,
     templateCache: new Object()
     , template: function (templateUrl, callBack, key) {
         var templateObj;
@@ -46,47 +42,6 @@ var utility = {
             url = '/' + controller + '/' + action + para;
         }
         return url;
-    }
-    , setObjToHash: function (obj) {
-        var hash = "";
-        for (var pName in obj) {
-            if (obj[pName] != null) {
-                hash += pName + "=" + obj[pName] + "&";
-            }
-        }
-        hash = hash.substr(0, hash.lastIndexOf("&"));
-        if (this.isCrypto) {
-            hash = escape(CryptoJS.Rabbit.encrypt(hash, this.CryptoKey));
-            hash = this.RabbitPrefix(hash, true);
-        }
-        location.hash = hash;
-    }
-    , getObjFromHash: function (hash) {
-        if (hash == null) { hash = location.hash.replace('#', ''); }
-        if (hash == '') { return null; }
-        var obj = {};
-        if (this.isCrypto) {
-            hash = this.RabbitPrefix(hash, false);
-            var decrypted = CryptoJS.Rabbit.decrypt(unescape(hash), this.CryptoKey);
-            hash = decrypted.toString(CryptoJS.enc.Utf8);
-        }
-        var hashArr = hash.split('&');
-        var hasValue = hashArr.length > 0 ? true : false;
-        if (!hasValue) { return null; }
-        $.each(hashArr, function (index, item) {
-            var val = item.split('=');
-            obj[val[0]] = val[1];
-        });
-        return obj;
-    }
-    , RabbitPrefix: function (hash, isRemovePreFix) {
-        if (isRemovePreFix) {
-            if (hash.indexOf(this.CryptoPrefix) == -1) this.CryptoPrefix = '';
-            hash = hash.substring(this.CryptoPrefix.length, hash.length);
-        } else {
-            hash = this.CryptoPrefix + hash;
-        }
-        return hash;
     }
     , ecb: function (data) {
         utility.showPopUp(data.msg, 1);
@@ -312,26 +267,6 @@ var utility = {
             utility.closePopUpUrl();
         }
     }
-    , hasFormData: function () {
-        utility.boolFalseFlag = false;
-        $('input').each(
-            function () {
-                if ($(this).val().length > 0) {
-                    utility.boolFalseFlag = true;
-                }
-            }
-        );
-        $('textarea').each(
-            function () {
-                if (this.value.length > 0) {
-                    utility.boolFalseFlag = true;
-                }
-            }
-        );
-        var rtn = utility.boolFalseFlag;
-        utility.boolFalseFlag = false;
-        return rtn;
-    }
     , parseToSizeInfo: function (css) {
         var classvalues = css.split(' ');
         var id, w = -1, h = -1, s, r;
@@ -350,41 +285,8 @@ var utility = {
         if (isNaN(w) || isNaN(h)) { Control.Dialog.showAlert(global.tLogin, "Error:" + css, function () { }); }
         return { 'id': id, 'width': w, 'height': h, 'scroll': s, resizable: r };
     }
-    , formatPaging: function (elem, maxpage, currentpage) {
-        if (maxpage < 2) {
-            elem.hide();
-        } else {
-            elem.show();
-            elem.find('option').remove().end().append('<option value="1">1/' + maxpage + '</option>');
-            for (var i = 2; i <= maxpage; i++) {
-                var selected = (i == currentpage) ? 'selected' : '';
-                elem.append('<option value="' + i + '" ' + selected + '>' + i + '/' + maxpage + '</option>');
-            }
-        }
-    }
-    , isHashVerfied: function (arrChk, obj) {
-        for (var i = 0; i < arrChk.length; i++) {
-            if (!(arrChk[i] in obj)) {
-                return false;
-            }
-        }
-        return true;
-    }
     , pars2Numic: function (x) {
         return isNaN(x) ? 0 : x;
-    }
-    , addPageToPara: function (objPara) {
-        if (objPara == null) {
-            objPara = new Object();
-        }
-        if ('page' in objPara) {
-            var pg = this.pars2Numic(objPara['page']);
-            pg = (pg < 1) ? 1 : pg;
-            objPara['page'] = pg;
-        } else {
-            objPara['page'] = 1;
-        }
-        return objPara;
     }
     , getSelection: function () {
         if (window.getSelection) {
@@ -399,9 +301,54 @@ var utility = {
         var cb = function () { window.parent.location = '/'; }
         utility.ajaxQuiet("LoginService/Logout", null, cb);
     }
+    , CheckOnFocus: function () {//設定欄位初始值
+        var $this = $(this);
+        if ($this.attr('defaultValue').trim() == $this.val().trim()) {
+            $this.val('');
+        }
+    }, SetAsDefault: function ($obj) {
+        if ($obj.length > 0) {
+            //$this.val($this.attr('defaultValue'));
+            $obj.find('input[defaultValue], textarea[defaultValue]').each(
+                function () {
+                    var $this = $(this);
+                    var defval = $this.attr('defaultValue');
+                    if (defval == undefined) {
+                        $this.val('');
+                    } else {
+                        $this.val(defval);
+                    }
+                }
+            );
+        } else {
+            var $this = $(this);
+            if ($this.val() == '') {
+                $this.val($this.attr('defaultValue'));
+            }
+        }
+    }, CancleUpdate: function () {
+        var $this = $(this);
+        var objName = $this.attr('belong');
+        $(objName).find('input, textarea').each(
+            function () {
+                var $this = $(this);
+                var defval = $this.attr('defaultValue');
+                if (defval == undefined) {
+                    $thi.val('');
+                } else {
+                    $thi.val(defval);
+                }
+            }
+        );
+    }, ShowNotice: function ($obj) {
+        $obj.show(500);
+        setTimeout(function () {
+            $obj.hide(500);
+        }, 3000);
+    }
 };
 
-Date.prototype.format = function(format) {
+Date.prototype.format = function (format) {
     var o = {
         "M+": this.getMonth() + 1,
         "d+": this.getDate(),
@@ -421,12 +368,12 @@ Date.prototype.format = function(format) {
 };
 
 var KeyPressHelper = {
-    getCode: function(e) {
+    getCode: function (e) {
         return e.keyCode ? e.keyCode : e.which;
     },
 
     // allow backspace, tab, delete, enter, numbers and keypad numbers, arrows
-    isNumeric: function(e) {
+    isNumeric: function (e) {
         if (e.shiftKey) return false; // to prevent shift key combination
 
         var code = this.getCode(e);
@@ -439,7 +386,7 @@ var KeyPressHelper = {
         code >= 37 && code <= 40);
     },
 
-    isEnter: function(e) {
+    isEnter: function (e) {
         if (this.getCode(e) == 13) return true;
         else return false;
     }
@@ -493,43 +440,33 @@ var Utils = {
 };
 
 var PageInitial = {
-    InitialPopupDiv: function() {
-        $("a.popup-div").unbind('click').click(function(event) {
+    InitialPopupDiv: function () {
+        $("a.popup-div").unbind('click').click(function (event) {
             var info = utility.parseToSizeInfo(this.className);
             utility.popupUrl(this.href, this.title, info.id, info.width, info.height);
             return false;
         });
     },
-    InitialActionBtn: function() {
-        $("a.lis-tab-butt").unbind('click').click(function() {
+    InitialActionBtn: function () {
+        $("a.lis-tab-butt").unbind('click').click(function () {
             $(".listing-table  > li > ul").hide();
             var offset = $(this).offset();
             var subtop = offset.top + 16;
             $(this).parent().find("ul.actions-list")
             .fadeIn().css({ "top": subtop, "left": offset.left })
-            .unbind().click(function() { $(this).hide(); })
-            .mouseleave(function() { $(this).hide(); });
+            .unbind().click(function () { $(this).hide(); })
+            .mouseleave(function () { $(this).hide(); });
         });
     },
-    InitialCancelCloseBtn: function() {
-        $("a.button-close,a.button-cancel").unbind('click').click(function() {
+    InitialCancelCloseBtn: function () {
+        $("a.button-close,a.button-cancel").unbind('click').click(function () {
             utility.closePopUpUrl();
         });
     },
-    InitialPopupAnchor: function() {
+    InitialPopupAnchor: function () {
         this.InitialPopupDiv();
         this.InitialActionBtn();
         this.InitialCancelCloseBtn();
-        this.InitialLanguageSelector();
-    },
-    InitialLanguageSelector: function() {
-        $('#SelectLanguage').change(PageInitial.ChangeLanguage);
-    },
-    ChangeLanguage: function() {
-        var w = window.location;
-        var _url = w.href.toString();
-        var path = _url.substring(w.host.toString().length + 13, _url.length);
-        window.location.href = '/' + this.value + path;
     }
 }
 
@@ -623,6 +560,14 @@ $(function () {
     $(document).on("blur", "textarea", function () {
         $(this).val($.trim($(this).val().replace(/[ | ]*\n/g, '\n')));
     });
+    //#endregion
+
+    //#region binding default event.
+    $('input[defaultValue], textarea[defaultValue]').on('focus', utility.CheckOnFocus).on('blur', utility.SetAsDefault).each(
+    function () {
+        $(this).val($(this).attr('defaultValue'))
+    }
+    );
     //#endregion
 
     //#region Highlight textbox / drop down if value changed
@@ -882,3 +827,6 @@ $.fn.serializeObject = function () {
     });
     return o;
 };
+$.fn.isDefaultValue = function () {
+    return (this.val() == this.attr('defaultValue'));
+}

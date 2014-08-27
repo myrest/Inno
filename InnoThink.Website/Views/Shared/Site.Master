@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8">
     <title>
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
@@ -10,7 +11,8 @@
 </head>
 <body>
     <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-    <div id="dialog"></div>
+    <div id="dialog">
+    </div>
     <% Html.RenderPartial("~/Views/Shared/UserControls/ScriptReferences.ascx"); %>
     <asp:ContentPlaceHolder ID="JSContent" runat="server" />
 </body>

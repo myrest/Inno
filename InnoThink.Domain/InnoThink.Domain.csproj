@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constancy\EnumAnalytics.cs" />
     <Compile Include="Facebook\FacebookPersonAuth.cs" />
+    <Compile Include="InnoThinkMain\Analysis.cs" />
     <Compile Include="InnoThinkMain\BackofficeUser.cs" />
     <Compile Include="InnoThinkMain\Binding\BoardUI.cs" />
     <Compile Include="InnoThinkMain\Binding\TopicMemberUI.cs" />
