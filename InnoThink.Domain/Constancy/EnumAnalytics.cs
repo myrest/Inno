@@ -1,6 +1,6 @@
 ﻿namespace InnoThink.Domain.Constancy
 {
-    public enum EnumAnalyticsType
+    public enum EnumAnalysisType
     {
         CurrentMarket,
         Visit,

@@ -1,0 +1,19 @@
+﻿{var i = 1;}
+{for p in List}
+<table border="0" class="WhitePaperTable LightYellow">
+    <tr>
+        <td bgcolor="#FFFF99">
+            <span class="itemsn">${i}</span>. 
+            <img src="/pic/pen-1.png" width="11" height="11" alt="編輯" sn="${p.AnalysisSN}" anntype="${p.AnalysisType}" class="edit clickable" />
+            <img src="/pic/Delete.png" width="10" height="10" alt="刪除" sn="${p.AnalysisSN}" anntype="${p.AnalysisType}" class="delete clickable" />
+            <span class="idea">${p.Column1}</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span class="description">${p.Column2}</span>
+        </td>
+    </tr>
+</table>
+{var i = i + 1;}
+{/for}

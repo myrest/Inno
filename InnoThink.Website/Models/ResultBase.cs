@@ -1,6 +1,7 @@
 ﻿using Rest.Core.Utility;
 using System;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace InnoThink.Website.Models
 {
@@ -50,4 +51,13 @@ namespace InnoThink.Website.Models
             Message = msg;
         }
     }
+
+    [DataContract]
+    public class ResultModel<T> : ResultBase
+        where T : class
+    {
+        [DataMember(Name = "d")]
+        public List<T> Items { get; set; }
+    }
+
 }

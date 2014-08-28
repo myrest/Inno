@@ -50,7 +50,7 @@ namespace InnoThink.BLL.Analysis
             return new Analysis_Repo().GetByParam(Filter, _orderby);
         }
 
-        public List<Analysis_Info> GetByTopicSN(int TopicSN, EnumAnalyticsType type)
+        public List<Analysis_Info> GetByTopicSN(int TopicSN, EnumAnalysisType type)
         {
             return new Analysis_Repo().GetByParam(new Analysis_Filter()
             {

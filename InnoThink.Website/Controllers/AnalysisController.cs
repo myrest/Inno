@@ -31,7 +31,7 @@ namespace InnoThink.Website.Controllers
             TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
             Analysis_Manager am = new Analysis_Manager();
-            var list = am.GetByTopicSN(TopicSN, EnumAnalyticsType.CurrentMarket);
+            var list = am.GetByTopicSN(TopicSN, EnumAnalysisType.CurrentMarket);
             //Change image path.
             list.ForEach(x =>
             {

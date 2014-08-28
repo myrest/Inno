@@ -328,18 +328,21 @@ var utility = {
         }
     }, CancleUpdate: function () {
         var $this = $(this);
-        var objName = $this.attr('belong');
-        $(objName).find('input, textarea').each(
+        var $table = $this.closest('table');
+        $table.find('input:text, textarea').each(
             function () {
                 var $this = $(this);
                 var defval = $this.attr('defaultValue');
                 if (defval == undefined) {
-                    $thi.val('');
+                    $this.val('');
                 } else {
-                    $thi.val(defval);
+                    $this.val(defval);
                 }
             }
         );
+        $table.find('[name="savebtn"]').show();
+        $table.find('[name="updatebtn"]').hide();
+        $table.find('[name="cancle"]').hide();
     }, ShowNotice: function ($obj) {
         $obj.show(500);
         setTimeout(function () {

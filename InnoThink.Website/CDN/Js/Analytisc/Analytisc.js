@@ -1,37 +1,62 @@
 ///<reference path="./../lib/jquery-1.9.1-vsdoc.js" />
 ///<reference path="./../common.js" />
 
-var Analytisc = {
+var Analysis = {
     TopicSN: $('#TopicSN').val(),
-    GetBestData: function () {
-        utility.CancleUpdate();
-        //Get information from UI.
-        var $this = $(this).parent().parent().parent();
-        var sn = $(this).attr('sn');
-        var idea = $this.find('.idea').val();
-        var description = $this.find('.description').val();
-
-        //Set to the Form
-        var $type = $this.parent().parent().parent();
-        var typename = $type.attr('id').substr(5, 5);
-        var $form = $('#' + typename);
-        $form.find('[name="idea"]').val(idea);
-        $form.find('[name="description"]').val(description);
-
-        $('[name="savebtn"]').show();
-        $('[name="updatebtn"]').hide();
-        $('[name="cancle"]').hide();
-
-        $form.find('[name="savebtn"]').hide();
-        $form.find('[name="updatebtn"]').show();
-        $form.find('[name="cancle"]').show();
+    InitData: function () {
+        Analysis._InitData(0);
+        utility.stopRequest = false;
+        Analysis._InitData(1);
     },
-    SaveData: function () {
-        var $block = $($(this).attr('belong'));
+    _InitData: function (type) {
+        var param = {
+            TopicSN: Analysis.TopicSN,
+            AnalysisType: type
+        };
+        utility.service('AnalysisService/GetItemList', param, 'POST', function (data) {
+            if (data.code > 0) {
+                if (data.d != null && (data.d.length > 0)) {
+                    var templatepara = { 'List': data.d };
+                    utility.template("Analysis/ItemListing.html", function (template) {
+                        $('#Analysis' + type).html(template.process(templatepara));
+                        //make each cell can be click for edit number.
+                        $('.edit.clickable').on('click', Analysis.GetByFormData);
+                        $('.delete.clickable').on('click', Analysis.Delete);
+                    }, "AnalysisItemListing");
+                }
+            } else {
+                utility.showPopUp(data.msg, 1);
+            }
+        });
+    },
+    GetByFormData: function () {
+        var $this = $(this);
+        var $table = $this.closest('table');
+
+        //Get from form
+        var idea = $table.find('.idea').html();
+        var description = $table.find('.description').html();
+        var anssn = $this.attr('sn');
+        var anntype = $this.attr('anntype');
+
+        //Set to form
+        $block = $('#Block' + anntype);
+        $block.find('[name="idea"]').val(idea);
+        $block.find('[name="description"]').val(description);
+        $block.find('[name="anssn"]').val(anssn);
+
+        //Show and hidden button
+        $block.find('[name="savebtn"]').hide();
+        $block.find('[name="updatebtn"]').show();
+        $block.find('[name="cancle"]').show();
+    },
+    _PushData: function ($this, isNew) {
+        var $block = $this.closest('table');
         var TopicSN = $('#TopicSN').val();
         var $type = $block.find('[name="anstype"]');
         var $idea = $block.find('[name="idea"]');
         var $description = $block.find('[name="description"]');
+        var sn = (isNew) ? 0 : $block.find('[name="anssn"]').val();
         if ($idea.isDefaultValue() || $description.isDefaultValue()) {
             utility.showPopUp('請輸入您想要的內容。', 1);
             return;
@@ -41,26 +66,30 @@ var Analytisc = {
             , 'Type': parseInt($type.val(), 10)
             , 'Idea': $idea.val()
             , 'Description': $description.val()
+            , 'AnalysisSN': parseInt(sn, 10)
         };
 
-        utility.ajaxQuiet('AnalysisService/NewAnalysis', para);
+        utility.ajaxQuiet('AnalysisService/SaveAnalysis', para);
         utility.SetAsDefault($block);
     },
+    SaveData: function () {
+        var $this = $(this);
+        Analysis._PushData($this, true);
+    },
     UpdateData: function () {
-        var $table = $(this).first().parent().parent().parent().parent();
-        var idea = $table.find('[name="idea"]').val();
-        var description = $table.find('[name="description"]').val();
-        if (idea == '想法' || description == '說明') {
-            utility.showPopUp('請輸入您想要的內容。', 1);
-            return;
-        }
+        var $this = $(this);
+        Analysis._PushData($this, false);
+    },
+    Delete: function () {
+        var $this = $(this);
+        var sn = $this.attr('sn');
+        var anntype = $this.attr('anntype');
         var para = {
-            'SN': Step.SN
-                    , 'Idea': idea
-                    , 'Description': description
+            'AnalysisSN': parseInt(sn, 10)
         };
-        utility.ajaxQuiet('TopicService/UpdateBestIdea', para);
-        utility.CancleUpdate;
+        utility.ajaxQuiet('AnalysisService/DeleteAnalysis', para, function () {
+            Analysis._InitData(anntype);
+        });
     },
     syncUI: function (data) {
         //check sn is existing.
@@ -88,8 +117,9 @@ var Analytisc = {
 
 $(function () {
     $('[name="cancle"]').on('click', utility.CancleUpdate);
-    $('[name="savebtn"]').on('click', Analytisc.SaveData);
-    $('[name="updatebtn"]').on('click', Analytisc.UpdateData);
-    $('.edit').on('click', Analytisc.GetBestData);
+    $('[name="savebtn"]').on('click', Analysis.SaveData);
+    $('[name="updatebtn"]').on('click', Analysis.UpdateData);
+    $('.edit').on('click', Analysis.GetBestData);
+    Analysis.InitData();
     //JSON.stringify(possessList)
 });

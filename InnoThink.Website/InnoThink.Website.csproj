@@ -225,6 +225,7 @@
     <Content Include="CDN\Plugins\images\ui-icons_ffd27a_256x240.png" />
     <Content Include="CDN\Plugins\images\ui-icons_ffffff_256x240.png" />
     <Content Include="CDN\Plugins\jquery-ui-1.9.2.custom.min.css" />
+    <Content Include="CDN\Templates\Analysis\ItemListing.html" />
     <Content Include="CDN\Templates\Products\ItemListing.html" />
     <Content Include="CDN\Templates\Products\NoItem.html" />
     <Content Include="CDN\Templates\Products\NoProduct.html" />

@@ -8,6 +8,15 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
+        #body-4a {
+            width: 95%;
+            border-radius: 10px;
+            background-color: #F2F2F2;
+            height: 20px;
+            padding-top: 8px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
         #header
         {
             height: 50px;
@@ -264,7 +273,6 @@
         
         .body0 .body3 .best-5
         {
-            width: 24%;
             z-index: 1;
             float: left;
             margin-left: 0px;
@@ -639,97 +647,84 @@
                     <div id="best0">
                         1. 現有市場描述及親身體驗服務：
                     </div>
-                    <div id="Block1" class="InputArea LightYellow">
+                    <div id="Block0" class="InputArea LightYellow">
                         <table>
                             <tr>
                                 <td align="center">
                                     現有市場描述
-                                    <input type="hidden" value="1" name="anstype" />
+                                    <input type="hidden" value="0" name="anstype" />
+                                    <input type="hidden" value="0" name="anssn" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input name="idea" type="text" value="" size="19" defaultvalue="想法">
+                                    <input name="idea" type="text" value="" size="50" defaultvalue="想法">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="description" cols="16" rows="3" defaultvalue="說明"></textarea>
+                                    <textarea name="description" cols="39" rows="3" defaultvalue="說明"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="right">
-                                    <input type="button" name="savebtn" value="儲存" belong="#Block1">
-                                    <input type="button" name="updatebtn" value="修改" class="hidden" belong="#Block1">
-                                    <input type="button" name="cancle" value="取消" class="hidden" belong="#Block1">
+                                    <input type="button" name="savebtn" value="儲存">
+                                    <input type="button" name="updatebtn" value="修改" class="hidden">
+                                    <input type="button" name="cancle" value="取消" class="hidden">
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <div class="InputArea LightYellow">
+                    <div id="Block1" class="InputArea LightYellow">
                         <table>
                             <tr>
                                 <td align="center">
                                     親身體驗服務
+                                    <input type="hidden" value="1" name="anstype" />
+                                    <input type="hidden" value="0" name="anssn" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input name="idea" type="text" value="" size="19" defaultvalue="想法">
+                                    <input name="idea" type="text" value="" size="50" defaultvalue="想法">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="description" cols="16" rows="3" defaultvalue="說明"></textarea>
+                                    <textarea name="description" cols="39" rows="3" defaultvalue="說明"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="right">
-                                    <input type="button" name="savebtn" value="送出Idea" belong="#best1">
-                                    <input type="button" name="updatebtn" value="修改" class="hidden" belong="#best1">
-                                    <input type="button" name="cancle" value="取消" class="hidden" belong="#best1">
+                                    <input type="button" name="savebtn" value="儲存">
+                                    <input type="button" name="updatebtn" value="修改" class="hidden">
+                                    <input type="button" name="cancle" value="取消" class="hidden">
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <p>
-                        &nbsp;
-                    </p>
                 </div>
                 <div id="body2-a">
-                    2. BEST 白報紙 <span id="notice" style="background-color: rgb(255, 195, 195);" class="hidden">
+                    2. 白報紙 <span id="notice" style="background-color: rgb(255, 195, 195);" class="hidden">
                         資料已更新</span>
                 </div>
                 <div class="body3">
                     <div id="body-4a">
                         議題 ：<% =ViewData["Subject"] %>
                     </div>
-                    <div class="best-5" id="BlockTypeB">
+                    <div class="best-5">
                         <div class="best-9">
                             現有市場描述白報紙
                         </div>
-                        <div class="best-17 hidden" id="ItemTemplate">
-                            <table width="98%" border="0">
-                                <tr>
-                                    <td align="center" bgcolor="#FFFF99">
-                                        <span class="itemsn"></span>. <span class="idea"></span>
-                                        <img src="/pic/pen-1.png" width="11" height="11" alt="" sn="0" class="edit clickable" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center">
-                                        <span class="description"></span>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div id="Analysis0" style="float:right">
                         </div>
-                        put data here.
                     </div>
-                    <div class="best-5" id="BlockTypeE">
+                    <div class="best-5">
                         <div class="best-9">
                             親身體驗服務白報紙
                         </div>
-                        put data2 here.
+                        <div id="Analysis1" style="float:right">
+                        </div>
                     </div>
                 </div>
             </td>

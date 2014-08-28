@@ -540,18 +540,41 @@ input.textbox-highlight, .txt-input:hover, .amt-input:hover, .m-input-box:hover,
     text-align: center;
 }
 
+img.delete
+{
+    float:right;
+    margin-top: 2px;
+}
+
 /*Basic block*/
 .InputArea
 {
     border-bottom-right-radius: 30px;
     border-top-left-radius: 30px;
     -webkit-box-shadow: rgb(204, 204, 204) 5px 5px 5px 0px;
-    float:left;
+    float: left;
     margin: 0 3px 3px 3px;
-    padding:0 6px 0 6px;
+    padding: 0 6px 0 6px;
 }
 
 .InputArea.LightYellow
+{
+    background-color: rgb(255, 255, 204);
+}
+
+.WhitePaperTable
+{
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    box-shadow: rgb(204, 204, 204) 5px 0px 5px 0px;
+    -webkit-border-horizontal-spacing: 2px;
+    -webkit-border-vertical-spacing: 2px;
+    -webkit-box-shadow: rgb(204, 204, 204) 5px 0px 5px 0px;
+    margin: 0 5px 3px 5px;
+    padding: 0 10px 0 10px;
+    width:330;
+}
+.WhitePaperTable.LightYellow
 {
     background-color: rgb(255, 255, 204);
 }

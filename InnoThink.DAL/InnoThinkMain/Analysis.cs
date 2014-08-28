@@ -132,6 +132,15 @@ namespace InnoThink.DAL.Analysis
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
+                if (filter.TopicSN.HasValue)
+                {
+                    SQLStr.Append(" AND TopicSN=@0", filter.TopicSN.Value);
+                }
+                if (filter.AnalysisType.HasValue)
+                {
+                    SQLStr.Append(" AND AnalysisType=@0", filter.AnalysisType.Value);
+                }
+                //
                 //if (filter.ID != 0)
                     //SQLStr.Append(" AND AnalysisSN=@0", filter.ID);
                     //Should updat the filter for wide search
