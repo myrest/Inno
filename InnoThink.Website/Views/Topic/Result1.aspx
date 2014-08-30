@@ -5,7 +5,7 @@
 <%@ Import Namespace="InnoThink.Website.Models" %>
 <%@ Import Namespace="InnoThink.Domain" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    草稿
+    草稿設計
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
@@ -243,7 +243,7 @@
             <td>
                 <div id="body1">
                     <%
-                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "第4單元作品", ControlSubTitle = "草稿" };
+                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "作品設計", ControlSubTitle = "草稿設計" };
                         ViewData["QCBAR"] = QCBAR;
                         Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");
                         bool IsTeamMember = (bool)ViewData["IsTeamMember"];
@@ -258,7 +258,7 @@
                     %>
                 </div>
                 <div id="body-5" style="<%=HideStyle%>">
-                    1. 草稿：
+                    1. 草稿設計：
                 </div>
                 <div id="body2" style="<%=HideStyle%>">
                     <table width="95%" border="0" align="center">

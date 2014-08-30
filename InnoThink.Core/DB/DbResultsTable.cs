@@ -325,7 +325,7 @@ namespace InnoThink.Core.DB
         public int TopicSN;
 
         /// <summary>
-        /// 結果類別, 0:草槁, 1:表板, 2:發表
+        /// 結果類別, 0:草槁, 1:裱版設計, 2:發表
         /// </summary>
         public EnumResultType ResultType;
 

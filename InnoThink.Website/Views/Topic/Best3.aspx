@@ -4,7 +4,7 @@
 <%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
 <%@ Import Namespace="InnoThink.Website.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    第2單元BEST：BEST分析-3
+    宏觀情境分析：BEST重要性分析
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
@@ -574,17 +574,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%
         Best3ViewModel Model = (Best3ViewModel)ViewData["Model"];
-        var BestB = Model.Listing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.B).ToList();
-        var BestE = Model.Listing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.E).ToList();
-        var BestS = Model.Listing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.S).ToList();
-        var BestT = Model.Listing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.T).ToList();
+        var BestB = Model.Listing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.B).ToList();
+        var BestE = Model.Listing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.E).ToList();
+        var BestS = Model.Listing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.S).ToList();
+        var BestT = Model.Listing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.T).ToList();
     %>
     <table class="body0 StepBody">
         <tr>
             <td>
                 <div id="body1">
                     <%
-                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "第2單元BEST", ControlSubTitle = "BEST分析-3" };
+                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "宏觀情境分析", ControlSubTitle = "BEST重要性分析" };
 
                         ViewData["QCBAR"] = QCBAR;
                         Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");

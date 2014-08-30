@@ -15,42 +15,43 @@ var Main = {
     {
         '分組與初探': [
                 { '自我介紹及選隊長': 'Topic,Step0' },
-                { '團隊設定': 'Topic,Step1' },
-                { '現有狀況分析': 'Analysis,Analysis1' }
+                { '設定隊名、議題、目的及工作分配': 'Topic,Step1' },
+                { '現有市場描述及親身體驗服務': 'Analysis,Analysis1' }
             ]
     },
     {
-        '第1單元介紹': [
-                { '認識朋友-1': 'Topic,Step0' },
-                { '認識朋友-2': 'Topic,Step1' }
+        '宏觀情境分析': [
+        //{ 'BEST分析-1': 'Topic,Best1' },由Analysis1取代
+                {'BEST便條紙': 'Topic,Best2' },
+                { 'BEST重要性分析': 'Topic,Best3' },
+                { '第一次KJ法': 'Topic,Best4' },
+                { 'BEST第2次重要性分析': 'Topic,Best5' },
+                { '尋找產品機會缺口': 'Topic,Best6' }
             ]
     },
     {
-        '第2單元BEST': [
-                { 'BEST分析-1': 'Topic,Best1' },
-                { 'BEST分析-2': 'Topic,Best2' },
-                { 'BEST分析-3': 'Topic,Best3' },
-                { 'BEST分析-4': 'Topic,Best4' },
-                { 'BEST分析-5': 'Topic,Best5' },
-                { 'BEST分析-6': 'Topic,Best6' }
+        '微觀情境分析': [
+        //{ '情境分析法-1': 'Scenario,Scenario1' },由Analysis2取代
+                {'第一次角色扮演': 'Scenario,Scenario2' },
+                { '我的情境故事': 'Scenario,Scenario3' },
+                { '有價值點分析': 'Scenario,Scenario4' },
+                { '情境故事重要性分析': 'Scenario,Scenario5' },
+                { '第二次角色扮演': 'Scenario,Scenario6' },
+                { '第二次我的情境故事': 'Scenario,Scenario7' }
             ]
     },
     {
-        '第3單元情境': [
-                { '情境分析法-1': 'Scenario,Scenario1' },
-                { '情境分析法-2': 'Scenario,Scenario2' },
-                { '情境分析法-3': 'Scenario,Scenario3' },
-                { '情境分析法-4': 'Scenario,Scenario4' },
-                { '情境分析法-5': 'Scenario,Scenario5' },
-                { '情境分析法-6': 'Scenario,Scenario6' },
-                { '情境分析法-7': 'Scenario,Scenario7' }
+        '功能需求分析': [
+                { '?新功能需求分析': 'xxx,xxxx' },
+                { '?功能需求重要性分析': 'xxx,xxxx' },
+                { '?功能需求結果': 'xxx,xxxx' }
             ]
     },
     {
-        '第4單元作品': [
+        '作品設計': [
                 { '設計專案成果': 'Topic,Result3' },
-                { '草稿': 'Topic,Result1' },
-                { '表板': 'Topic,Result2' }
+                { '草稿設計': 'Topic,Result1' },
+                { '裱版設計': 'Topic,Result2' }
             ]
     }
     ]

@@ -4,7 +4,7 @@
 <%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
 <%@ Import Namespace="InnoThink.Website.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    第2單元BEST：BEST分析-4
+    宏觀情境分析：第一次KJ法
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
@@ -547,22 +547,22 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%
         Best4ViewModel Model = (Best4ViewModel)ViewData["Model"];
-        var BestB = Model.Listing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.B).ToList();
-        var BestE = Model.Listing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.E).ToList();
-        var BestS = Model.Listing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.S).ToList();
-        var BestT = Model.Listing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.T).ToList();
+        var BestB = Model.Listing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.B).ToList();
+        var BestE = Model.Listing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.E).ToList();
+        var BestS = Model.Listing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.S).ToList();
+        var BestT = Model.Listing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.T).ToList();
 
-        var GroupB = Model.GroupListing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.B).ToList();
-        var GroupE = Model.GroupListing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.E).ToList();
-        var GroupS = Model.GroupListing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.S).ToList();
-        var GroupT = Model.GroupListing.Where(x => x.Type == InnoThink.Core.Constancy.BestType.T).ToList();
+        var GroupB = Model.GroupListing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.B).ToList();
+        var GroupE = Model.GroupListing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.E).ToList();
+        var GroupS = Model.GroupListing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.S).ToList();
+        var GroupT = Model.GroupListing.Where(x => x.Type == InnoThink.Domain.Constancy.BestType.T).ToList();
     %>
     <table class="body0 StepBody">
         <tr>
             <td>
                 <div id="body1">
                     <%
-                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "第2單元BEST", ControlSubTitle = "BEST分析-4" };
+                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "宏觀情境分析", ControlSubTitle = "第一次KJ法" };
                         ViewData["QCBAR"] = QCBAR;
                         Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");
                         bool IsTeamMember = (bool)ViewData["IsTeamMember"];
@@ -887,7 +887,7 @@
                             }
                         %>
                     </div>
-                    <div id="Result" class="best-5">
+                    <div id="resultS" class="best-5">
                         <div class="best-9">
                             S 分類結果
                         </div>

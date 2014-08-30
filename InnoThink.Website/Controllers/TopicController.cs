@@ -79,7 +79,7 @@ namespace InnoThink.Website.Controllers
             viewdata["OfflineTeamMember"] = OfflineTeamMember;
         }
 
-        //第1單元介紹：認識朋友-1
+        //分組與初探：自我介紹及選隊長
         public ActionResult Step0(int TopicSN)
         {
             MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
@@ -109,7 +109,7 @@ namespace InnoThink.Website.Controllers
             return View();
         }
 
-        //第1單元介紹：認識朋友-2
+        //分組與初探：設定隊名、議題、目的及工作分配
         public ActionResult Step1(int TopicSN)
         {
             MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
@@ -155,18 +155,18 @@ namespace InnoThink.Website.Controllers
             return View();
         }
 
-        //結果-草稿
+        //結果-草稿設計
         public ActionResult Result1(int TopicSN)
         {
-            //DRAFT, 草稿
+            //DRAFT, 草稿設計
             doResultView(TopicSN, EnumResultType.DRAFT);
             return View();
         }
 
-        //結果-表板
+        //結果-裱版設計
         public ActionResult Result2(int TopicSN)
         {
-            //DASHBOARD, 表板
+            //DASHBOARD, 裱版設計
             doResultView(TopicSN, EnumResultType.DASHBOARD);
             return View();
         }

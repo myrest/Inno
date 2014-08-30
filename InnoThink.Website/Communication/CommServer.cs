@@ -60,7 +60,7 @@ namespace InnoThink.Website.Communication
             });
         }
 
-        //第1單元介紹：認識朋友-1 update
+        //分組與初探：自我介紹及選隊長 update
         /// <summary>
         ///  同步更新資料
         /// </summary>
@@ -81,7 +81,7 @@ namespace InnoThink.Website.Communication
             //put initial action in here
         }
 
-        //第1單元介紹：認識朋友-1 initial
+        //分組與初探：自我介紹及選隊長 initial
         internal void initUnit1(HubCallerContext Context, int sn)
         {
             //Add connection control.

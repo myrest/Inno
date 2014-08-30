@@ -159,6 +159,30 @@ namespace InnoThink.Website.Controllers.Service
         }
 
         [HttpPost]
+        public JsonResult GotoAnalysis1(int TopicSN)
+        {
+            int GotoStep = 50;
+            ResultBase result = new ResultBase() { };
+            //Check the Leader
+            //Get all team member vote for leader.
+            List<TopicMemberUI> TeamMembers;
+            result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult GotoAnalysis2(int TopicSN)
+        {
+            int GotoStep = 51;
+            ResultBase result = new ResultBase() { };
+            //Check the Leader
+            //Get all team member vote for leader.
+            List<TopicMemberUI> TeamMembers;
+            result = ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out TeamMembers);
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
         public JsonResult GotoStep1(int TopicSN)
         {
             int GotoStep = 1;
@@ -426,6 +450,14 @@ namespace InnoThink.Website.Controllers.Service
                             result.Message = "/Scenario/Scenario7?TopicSN=" + Topic.TopicSN;
                             break;
                         //情境分析法結束
+                        //分析開始
+                        case 50:
+                            result.Message = "/Analysis/Analysis1?TopicSN=" + Topic.TopicSN;
+                            break;
+                        case 51:
+                            result.Message = "/Analysis/Analysis2?TopicSN=" + Topic.TopicSN;
+                            break;
+                        //分析結束
                         case 9901:
                             result.Message = "/Topic/Result1?TopicSN=" + Topic.TopicSN;
                             break;

@@ -10,6 +10,12 @@ using InnoThink.BLL.Analysis;
 using InnoThink.Website.Models;
 using InnoThink.Domain;
 using InnoThink.Domain.Constancy;
+using InnoThink.Core;
+using InnoThink.Domain.InnoThinkMain.Binding;
+using InnoThink.BLL.TopicMember;
+using InnoThink.BLL.User;
+using InnoThink.BLL.Topic;
+using InnoThink.Website.Controllers.Service;
 
 namespace EShopManager.Website.Controllers.Service
 {
@@ -19,6 +25,8 @@ namespace EShopManager.Website.Controllers.Service
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(AnalysisServiceController));
         private static readonly Analysis_Manager dbAnalysis = new Analysis_Manager();
+        private static readonly TopicMember_Manager dbTopMem = new TopicMember_Manager() { };
+        private static readonly Topic_Manager dbTopic = new Topic_Manager();
 
         public AnalysisServiceController()
             : base(Permission.Private)
@@ -108,5 +116,29 @@ namespace EShopManager.Website.Controllers.Service
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
+        #region Switch Step
+        [HttpPost]
+        public JsonResult GotoAnalysis1(int TopicSN)
+        {
+            return _GotoStep(TopicSN, 50);
+        }
+
+        [HttpPost]
+        public JsonResult GotoAnalysis2(int TopicSN)
+        {
+            return _GotoStep(TopicSN, 51);
+        }
+
+        private JsonResult _GotoStep(int TopicSN, int step)
+        {
+            int GotoStep = step;
+            ResultBase result = new ResultBase() { };
+            //Check the Leader
+            //Get all team member vote for leader.
+            List<TopicMemberUI> OutTeamMembers = new List<TopicMemberUI>() { };
+            result = TopicServiceController.ProcessGotoStep(TopicSN, GotoStep, sessionData.trading, out OutTeamMembers);
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+        #endregion
     }
 }

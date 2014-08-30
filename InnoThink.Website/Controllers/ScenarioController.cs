@@ -80,12 +80,15 @@ namespace InnoThink.Website.Controllers
             List<TopicMemberUI> AllMember = new List<TopicMemberUI>() { };
             if (OnLineMem != null)
             {
-                OnLineMem.ForEach(x => AllMember.Add(x));
+                AllMember.AddRange(OnLineMem);
             }
             if (OffLineMem != null)
             {
-                OffLineMem.ForEach(x => AllMember.Add(x));
+                AllMember.AddRange(OffLineMem);
             }
+
+            //Make ViewData
+            ViewData["AllMember"] = AllMember;
 
             //Make ViewData
             ViewData["Model"] = Model;
@@ -124,16 +127,16 @@ namespace InnoThink.Website.Controllers
             sessionData.ClearTempValue();
 
             //Get Team member List
-            var OnLineMem = (List<TopicMember_Info>)ViewData["OnlineTeamMember"];
-            var OffLineMem = (List<TopicMember_Info>)ViewData["OfflineTeamMember"];
-            List<TopicMember_Info> AllMember = new List<TopicMember_Info>() { };
+            var OnLineMem = (List<TopicMemberUI>)ViewData["OnlineTeamMember"];
+            var OffLineMem = (List<TopicMemberUI>)ViewData["OfflineTeamMember"];
+            List<TopicMemberUI> AllMember = new List<TopicMemberUI>() { };
             if (OnLineMem != null)
             {
-                OnLineMem.ForEach(x => AllMember.Add(x));
+                AllMember.AddRange(OnLineMem);
             }
             if (OffLineMem != null)
             {
-                OffLineMem.ForEach(x => AllMember.Add(x));
+                AllMember.AddRange(OffLineMem);
             }
 
             //Make ViewData
@@ -224,17 +227,20 @@ namespace InnoThink.Website.Controllers
             Model.TopicSN = TopicSN;
 
             //Get Team member List
-            var OnLineMem = (List<TopicMember_Info>)ViewData["OnlineTeamMember"];
-            var OffLineMem = (List<TopicMember_Info>)ViewData["OfflineTeamMember"];
-            List<TopicMember_Info> AllMember = new List<TopicMember_Info>() { };
+            var OnLineMem = (List<TopicMemberUI>)ViewData["OnlineTeamMember"];
+            var OffLineMem = (List<TopicMemberUI>)ViewData["OfflineTeamMember"];
+            List<TopicMemberUI> AllMember = new List<TopicMemberUI>() { };
             if (OnLineMem != null)
             {
-                OnLineMem.ForEach(x => AllMember.Add(x));
+                AllMember.AddRange(OnLineMem);
             }
             if (OffLineMem != null)
             {
-                OffLineMem.ForEach(x => AllMember.Add(x));
+                AllMember.AddRange(OffLineMem);
             }
+
+            //Make ViewData
+            ViewData["AllMember"] = AllMember;
 
             //Make ViewData
             ViewData["Model"] = Model;

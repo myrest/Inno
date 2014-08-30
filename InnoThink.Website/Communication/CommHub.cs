@@ -64,7 +64,7 @@ namespace InnoThink.Website.Communication
             commServer.init(Context);
         }
 
-        //第1單元介紹：認識朋友-1
+        //分組與初探：自我介紹及選隊長
         public void initUnit1(int sn)
         {
             commServer.initUnit1(Context, sn);
