@@ -4,9 +4,9 @@
 var Analysis = {
     TopicSN: $('#TopicSN').val(),
     InitData: function () {
-        Analysis._InitData(0);
+        Analysis._InitData(TypeLeft);
         utility.stopRequest = false;
-        Analysis._InitData(1);
+        Analysis._InitData(TypeRight);
     },
     _InitData: function (type) {
         var param = {
@@ -85,7 +85,9 @@ var Analysis = {
     Delete: function () {
         var $this = $(this);
         var sn = $this.attr('sn');
-        var anntype = $this.attr('anntype');
+        utility.showPopUp('真的要刪除它嗎？', 3, function () { Analysis._Delete(sn); });
+    },
+    _Delete: function (sn) {
         var para = {
             'AnalysisSN': parseInt(sn, 10)
         };
@@ -94,7 +96,18 @@ var Analysis = {
     SyncUI: function (data) {
         var templatepara = { 'List': [data] };
         utility.template("Analysis/ItemListing.html", function (template) {
-            $('#Analysis' + data.AnalysisType).append(template.process(templatepara));
+            var $newHTML = $(template.process(templatepara));
+
+            var $oldobj = $('#Analysis' + data.AnalysisType).find('.edit.clickable[sn=' + data.AnalysisSN + ']');
+            if ($oldobj.length > 0) {
+                var $oldTable = $oldobj.closest('table');
+                var olditemsn = $oldTable.find('.itemsn').html();
+                $newHTML.find('.itemsn').html(olditemsn);
+                $oldTable.html($newHTML.html());
+            } else {
+                //Append to the buttom
+                $('#Analysis' + data.AnalysisType).append($newHTML[0]);
+            }
             Analysis.AfterTrimPath(data.AnalysisType);
         }, "AnalysisItemListing");
     },
@@ -120,7 +133,6 @@ $(function () {
     $('[name="cancle"]').on('click', utility.CancleUpdate);
     $('[name="savebtn"]').on('click', Analysis.SaveData);
     $('[name="updatebtn"]').on('click', Analysis.UpdateData);
-    $('.edit').on('click', Analysis.GetBestData);
     Analysis.InitData();
     //JSON.stringify(possessList)
 });

@@ -4,11 +4,15 @@
 <%@ Import Namespace="InnoThink.Core.MVC.Extensions" %>
 <%@ Import Namespace="InnoThink.Website.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    現有市場描述及親身體驗服務
+    <%
+        var FormUI = ViewData["FormUI"] as InnoThink.Website.Controllers.AnalysisController.AnalysisUIFormObject;
+        Response.Write(string.Format("{0}及{1}", FormUI.TitleLeft, FormUI.TitleRight));
+    %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
-        #body-4a {
+        #body-4a
+        {
             width: 95%;
             border-radius: 10px;
             background-color: #F2F2F2;
@@ -620,8 +624,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%
-        List<InnoThink.Domain.Analysis_Info> Model = ViewData["Model"] as List<InnoThink.Domain.Analysis_Info>;
+        var FormUI = ViewData["FormUI"] as InnoThink.Website.Controllers.AnalysisController.AnalysisUIFormObject;
         int TopicSN = (int)ViewData["TopicSN"];
+        string PageTitle = string.Format("{0}及{1}", FormUI.TitleLeft, FormUI.TitleRight);
         Response.Write(string.Format(@"<input type=""hidden"" id=""TopicSN"" value=""{0}"">", TopicSN));
     %>
     <table class="body0 StepBody">
@@ -629,7 +634,7 @@
             <td>
                 <div id="body1">
                     <%
-                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "分組與初探", ControlSubTitle = "現有市場描述及親身體驗服務" };
+                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "分組與初探", ControlSubTitle = PageTitle };
                         ViewData["QCBAR"] = QCBAR;
                         Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");
                         bool IsTeamMember = (bool)ViewData["IsTeamMember"];
@@ -645,14 +650,14 @@
                 </div>
                 <div id="body2" style="<%=HideStyle%>">
                     <div id="best0">
-                        1. 現有市場描述及親身體驗服務：
+                        1. <%=PageTitle %>：
                     </div>
-                    <div id="Block0" class="InputArea LightYellow">
+                    <div id="Block<%=FormUI.TypeLeft %>" class="InputArea LightYellow">
                         <table>
                             <tr>
                                 <td align="center">
-                                    現有市場描述
-                                    <input type="hidden" value="0" name="anstype" />
+                                    <%=FormUI.TitleLeft %>
+                                    <input type="hidden" value="<%=FormUI.TypeLeft %>" name="anstype" />
                                     <input type="hidden" value="0" name="anssn" />
                                 </td>
                             </tr>
@@ -675,12 +680,12 @@
                             </tr>
                         </table>
                     </div>
-                    <div id="Block1" class="InputArea LightYellow">
+                    <div id="Block<%=FormUI.TypeRight %>" class="InputArea LightYellow">
                         <table>
                             <tr>
                                 <td align="center">
-                                    親身體驗服務
-                                    <input type="hidden" value="1" name="anstype" />
+                                    <%=FormUI.TitleRight %>
+                                    <input type="hidden" value="<%=FormUI.TypeRight %>" name="anstype" />
                                     <input type="hidden" value="0" name="anssn" />
                                 </td>
                             </tr>
@@ -714,16 +719,16 @@
                     </div>
                     <div class="best-5">
                         <div class="best-9">
-                            現有市場描述白報紙
+                            <%=PageTitle %>
                         </div>
-                        <div id="Analysis0" style="float:right">
+                        <div id="Analysis<%=FormUI.TypeLeft %>" style="float: right">
                         </div>
                     </div>
                     <div class="best-5">
                         <div class="best-9">
                             親身體驗服務白報紙
                         </div>
-                        <div id="Analysis1" style="float:right">
+                        <div id="Analysis<%=FormUI.TypeRight %>" style="float: right">
                         </div>
                     </div>
                 </div>
@@ -732,6 +737,8 @@
     </table>
     <script>
         var TopicSN = '<%=ViewData["TopicSN"].ToString() %>';
+        var TypeLeft = <%=FormUI.TypeLeft %>
+        var TypeRight = <%=FormUI.TypeRight %>
     </script>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">

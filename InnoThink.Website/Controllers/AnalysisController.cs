@@ -25,21 +25,51 @@ namespace InnoThink.Website.Controllers
         {
         }
 
-        //現有市場描述
+        public class AnalysisUIFormObject
+        {
+            public string TitleLeft { get; set; }
+            public string TitleRight { get; set; }
+            public int TypeLeft { get; set; }
+            public int TypeRight { get; set; }
+        }
+
+        //現有市場描述及親身體驗服務
         public ActionResult Analysis1(int TopicSN)
         {
             TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
-            Analysis_Manager am = new Analysis_Manager();
-            var list = am.GetByTopicSN(TopicSN, EnumAnalysisType.CurrentMarket);
-            //Change image path.
-            list.ForEach(x =>
+
+            var UIObj = new AnalysisUIFormObject()
             {
-                x.ServerFileName = StringUtility.ConvertResultPath(x.ServerFileName);
-            });
-            ViewData["Model"] = list;
+                TitleLeft = "現有市場描述",
+                TitleRight = "親身體驗服務",
+                TypeLeft = (int)EnumAnalysisType.CurrentMarket,
+                TypeRight = (int)EnumAnalysisType.Visit
+            };
+
             ViewData["TopicSN"] = TopicSN;
+            ViewData["FormUI"] = UIObj;
             return View();
+            //return View(@"~\Views\Default\Index.aspx");
+        }
+
+        //現有功能分析與現有需求分析
+        public ActionResult Analysis2(int TopicSN)
+        {
+            TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
+            sessionData.ClearTempValue();
+
+            var UIObj = new AnalysisUIFormObject()
+            {
+                TitleLeft = "現有功能分析",
+                TitleRight = "現有需求分析",
+                TypeLeft = (int)EnumAnalysisType.CurrentFuntional,
+                TypeRight = (int)EnumAnalysisType.RequestAnalytics
+            };
+
+            ViewData["TopicSN"] = TopicSN;
+            ViewData["FormUI"] = UIObj;
+            return View(@"~\Views\Analysis\Analysis1.aspx");
         }
     }
 }

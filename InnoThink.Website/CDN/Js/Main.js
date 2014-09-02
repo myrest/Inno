@@ -16,7 +16,8 @@ var Main = {
         '分組與初探': [
                 { '自我介紹及選隊長': 'Topic,Step0' },
                 { '設定隊名、議題、目的及工作分配': 'Topic,Step1' },
-                { '現有市場描述及親身體驗服務': 'Analysis,Analysis1' }
+                { '現有市場描述及親身體驗服務': 'Analysis,Analysis1' },
+                { '現有功能分析及現有需求分析': 'Analysis,Analysis2' }
             ]
     },
     {

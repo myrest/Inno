@@ -220,7 +220,7 @@ var utility = {
                 btn['確定'] = callback;
                 break;
             case 3: //ok or close
-                btn['關閉'] = closeCallBack;
+                btn['取消'] = closeCallBack;
                 btn['確定'] = callback;
                 break;
             default:
