@@ -17,6 +17,14 @@
         /// <summary>
         /// 現有需求分析
         /// </summary>
-        RequestAnalytics
+        RequestAnalytics,
+        /// <summary>
+        /// 新功能分析
+        /// </summary>
+        NewFuntional,
+        /// <summary>
+        /// 新需求分析
+        /// </summary>
+        NewRequest,
     }
 }

@@ -27,6 +27,7 @@ namespace InnoThink.Website.Controllers
 
         public class AnalysisUIFormObject
         {
+            public string MainFunction { get; set; }
             public string TitleLeft { get; set; }
             public string TitleRight { get; set; }
             public int TypeLeft { get; set; }
@@ -41,6 +42,7 @@ namespace InnoThink.Website.Controllers
 
             var UIObj = new AnalysisUIFormObject()
             {
+                MainFunction ="分組與初探",
                 TitleLeft = "現有市場描述",
                 TitleRight = "親身體驗服務",
                 TypeLeft = (int)EnumAnalysisType.CurrentMarket,
@@ -50,7 +52,6 @@ namespace InnoThink.Website.Controllers
             ViewData["TopicSN"] = TopicSN;
             ViewData["FormUI"] = UIObj;
             return View();
-            //return View(@"~\Views\Default\Index.aspx");
         }
 
         //現有功能分析與現有需求分析
@@ -61,10 +62,31 @@ namespace InnoThink.Website.Controllers
 
             var UIObj = new AnalysisUIFormObject()
             {
+                MainFunction = "分組與初探",
                 TitleLeft = "現有功能分析",
                 TitleRight = "現有需求分析",
                 TypeLeft = (int)EnumAnalysisType.CurrentFuntional,
                 TypeRight = (int)EnumAnalysisType.RequestAnalytics
+            };
+
+            ViewData["TopicSN"] = TopicSN;
+            ViewData["FormUI"] = UIObj;
+            return View(@"~\Views\Analysis\Analysis1.aspx");
+        }
+
+        //新功能分析及新需求分析
+        public ActionResult Analysis3(int TopicSN)
+        {
+            TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
+            sessionData.ClearTempValue();
+
+            var UIObj = new AnalysisUIFormObject()
+            {
+                MainFunction = "功能需求分析",
+                TitleLeft = "新功能分析",
+                TitleRight = "新需求分析",
+                TypeLeft = (int)EnumAnalysisType.NewFuntional,
+                TypeRight = (int)EnumAnalysisType.NewRequest
             };
 
             ViewData["TopicSN"] = TopicSN;
