@@ -173,7 +173,7 @@ namespace InnoThink.Core.DB
         public List<DbResultModel> GetDataByTopicSN_UserSN(int TopicSN, EnumResultType Result, int UserSN)
         {
             //I guest the userSN is come from rr.
-            string strCMD = strAllResultCMD.Replace("Where TopicSN = @TopicSN and ResultType = @Result", "Where TopicSN = @TopicSN and ResultType = @Result and rr.UserSN = @UserSN");
+            string strCMD = strAllResultCMD.Replace("Where TopicSN = @TopicSN and ResultType = @Result", "Where TopicSN = @TopicSN and ResultType = @Result and r.UserSN = @UserSN");
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@UserSN", UserSN));
             listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));

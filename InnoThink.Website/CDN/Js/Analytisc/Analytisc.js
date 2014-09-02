@@ -19,9 +19,7 @@ var Analysis = {
                     var templatepara = { 'List': data.d };
                     utility.template("Analysis/ItemListing.html", function (template) {
                         $('#Analysis' + type).html(template.process(templatepara));
-                        //make each cell can be click for edit number.
-                        $('.edit.clickable').on('click', Analysis.GetByFormData);
-                        $('.delete.clickable').on('click', Analysis.Delete);
+                        Analysis.AfterTrimPath(type);
                     }, "AnalysisItemListing");
                 }
             } else {
@@ -71,6 +69,10 @@ var Analysis = {
 
         utility.ajaxQuiet('AnalysisService/SaveAnalysis', para);
         utility.SetAsDefault($block);
+        //Show and hidden button
+        $block.find('[name="savebtn"]').show();
+        $block.find('[name="updatebtn"]').hide();
+        $block.find('[name="cancle"]').hide();
     },
     SaveData: function () {
         var $this = $(this);
@@ -87,32 +89,31 @@ var Analysis = {
         var para = {
             'AnalysisSN': parseInt(sn, 10)
         };
-        utility.ajaxQuiet('AnalysisService/DeleteAnalysis', para, function () {
-            Analysis._InitData(anntype);
+        utility.ajaxQuiet('AnalysisService/DeleteAnalysis', para);
+    },
+    SyncUI: function (data) {
+        var templatepara = { 'List': [data] };
+        utility.template("Analysis/ItemListing.html", function (template) {
+            $('#Analysis' + data.AnalysisType).append(template.process(templatepara));
+            Analysis.AfterTrimPath(data.AnalysisType);
+        }, "AnalysisItemListing");
+    },
+    SyncRemoveUI: function (data) {
+        var type = data.Key;
+        var sn = data.Value;
+        $('#Analysis' + type).find('.edit.clickable[sn=' + sn + ']').closest('table').remove();
+        $.each($('#Analysis' + type).find('.itemsn'), function (index, obj) {
+            $(obj).html(index + 1);
         });
     },
-    syncUI: function (data) {
-        //check sn is existing.
-        //var ItemNums =
-        var $objtype = $('#BlockType' + data.TypeUI);
-        var objLength = $objtype.find('table').length + 1;
-        var $html = Step.$Template.clone();
-        $html = $html.find('.itemsn').html(objLength).end()
-                        .find('.edit').attr('sn', data.SN).end()
-                        .find('.idea').html(data.Idea).end()
-                        .find('.description').html(data.Description).end();
-        var $obj = $objtype.find('.edit[sn=' + data.SN + ']');
-        if ($obj.length > 0) {
-            var _sn = $obj.parent().parent().parent().parent().find('.itemsn').first().html();
-            $html.find('.itemsn').html(_sn);
-            $obj.parent().parent().parent().parent().html($html.html());
-        } else {
-            $objtype.append($html);
-        }
-        $objtype.find('.edit').unbind().on('click', Step.GetBestData);
-        utility.ShowNotice($('#notice'));
+    AfterTrimPath: function (type) {
+        //make each cell can be click for edit number.
+        $('.edit.clickable').unbind().on('click', Analysis.GetByFormData);
+        $('.delete.clickable').unbind().on('click', Analysis.Delete);
+        $.each($('#Analysis' + type).find('.itemsn'), function (index, obj) {
+            $(obj).html(index + 1);
+        });
     }
-
 };
 
 $(function () {

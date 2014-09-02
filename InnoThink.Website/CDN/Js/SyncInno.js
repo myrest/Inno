@@ -203,6 +203,16 @@ var inno198 = {
                     $existing.remove();
                     $('#topicOffline').append($clone);
                 }
+            },
+            SyncUpdate: function (ScriptName, data) {
+                if (typeof (eval(ScriptName)) == "function") {
+                    eval(ScriptName + '(data);');
+                }
+            },
+            syncObject: function (ScriptName, data) {
+                if (typeof (eval(ScriptName)) == "function") {
+                    eval(ScriptName + '(data);');
+                }
             }
         });
     },

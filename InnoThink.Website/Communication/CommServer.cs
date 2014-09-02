@@ -314,5 +314,38 @@ namespace InnoThink.Website.Communication
                 Clients.Client(x).syncScenario4(model);
             });
         }
+
+        /// <summary>
+        /// Execute client site javascript for sync UI element.
+        /// </summary>
+        /// <typeparam name="T">Data type</typeparam>
+        /// <param name="data">Data</param>
+        /// <param name="ScriptName">Script on the Client side.</param>
+        /// <param name="TopicSN">Left is as blank or zero will get TopicSN property from Data</param>
+        internal void SyncUpdate<T>(T data, string ScriptName, int TopicSN = 0)
+        {
+            if (TopicSN == 0)
+            {
+                Type t = data.GetType();
+                var prop = t.GetProperty("TopicSN");
+                if (prop != null)
+                {
+                    TopicSN = Convert.ToInt32(prop.GetValue(data, null).ToString());
+                }
+            }
+            if (TopicSN > 0)
+            {
+                //get connections
+                var list = Unit1Cache.GetAllConnections(TopicSN);
+                list.ForEach(x =>
+                {
+                    Clients.Client(x).SyncUpdate(ScriptName, data);
+                });
+            }
+            else
+            {
+                throw new Exception("There are no TopicSN");
+            }
+        }
     }
 }

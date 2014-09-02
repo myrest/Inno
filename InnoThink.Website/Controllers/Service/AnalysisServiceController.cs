@@ -16,6 +16,7 @@ using InnoThink.BLL.TopicMember;
 using InnoThink.BLL.User;
 using InnoThink.BLL.Topic;
 using InnoThink.Website.Controllers.Service;
+using InnoThink.Website.Communication;
 
 namespace EShopManager.Website.Controllers.Service
 {
@@ -79,6 +80,7 @@ namespace EShopManager.Website.Controllers.Service
             {
                 result.setErrorMessage("InsertOrReplaceAnalysis got error.");
             }
+            CommServer.Instance.SyncUpdate(data, "Analysis.SyncUI");
             return result;
         }
 
@@ -106,8 +108,18 @@ namespace EShopManager.Website.Controllers.Service
             ResultBase result = new ResultBase();
             try
             {
-                var data = dbAnalysis.Delete(AnalysisSN);
-                result.setMessage("");
+                var data = dbAnalysis.GetBySN(AnalysisSN);
+                if (data != null)
+                {
+                    dbAnalysis.Delete(AnalysisSN);
+                    KeyValuePair<int, int> UiObj = new KeyValuePair<int, int>(data.AnalysisType, data.AnalysisSN);
+                    CommServer.Instance.SyncUpdate(UiObj, "Analysis.SyncRemoveUI", data.TopicSN);
+                    result.setMessage("");
+                }
+                else
+                {
+                    result.setException("Data was been delete.", "DeleteAnalysis");
+                }
             }
             catch (Exception ex)
             {
