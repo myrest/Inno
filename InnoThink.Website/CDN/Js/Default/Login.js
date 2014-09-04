@@ -14,7 +14,7 @@ $(function () {
     $.ajaxSetup({ cache: true });
     $.getScript('//connect.facebook.net/zh_TW/all.js', function () {
         FB.init({
-            appId: '758259224185187',
+            appId: '1465486540390678',
             status: false, // check login status
             cookie: true, // enable cookies to allow the server to access the session
             xfbml: true,  // parse XFBML
