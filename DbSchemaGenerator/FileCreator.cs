@@ -283,15 +283,17 @@ namespace {1}
                 {
                     sb.AppendFormat(@"
                 if (filter.{0}.HasValue)
+                {{
                     SQLStr.Append("" AND {0}=@0"", filter.{0}.Value);
-        {0}", item.Key);
+                }}", item.Key);
                 }
                 else
                 {
                     sb.AppendFormat(@"
                 if (!string.IsNullOrEmpty(filter.{0}))
+                {{
                     SQLStr.Append("" AND {0}=@0"", filter.{0});
-        {0}", item.Key);
+                }}", item.Key);
                 }
             }
                     //Should updat the filter for wide search
