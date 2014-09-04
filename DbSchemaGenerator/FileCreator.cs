@@ -274,11 +274,28 @@ namespace {1}
                 .Append(""SELECT "" + FieldNameArrayToFieldNameString(fieldNames) + "" FROM {2}"")
                 .Append(""WHERE 1=1 "");
             if (filter != null)
-            {{
-                //if (filter.ID != 0)
-                    //SQLStr.Append("" AND {3}=@0"", filter.ID);
+            {{", NameSpace, curNamespace, TableName, pk);
+            foreach (var item in columns)
+            {
+                string columnType = MapTypeSqlite(item, true);
+                bool isNullAble = columnType.IndexOf("?") > 0;
+                if (isNullAble)
+                {
+                    sb.AppendFormat(@"
+                if (filter.{0}.HasValue)
+                    SQLStr.Append("" AND {0}=@0"", filter.{0}.Value);
+        {0}", item.Key);
+                }
+                else
+                {
+                    sb.AppendFormat(@"
+                if (!string.IsNullOrEmpty(filter.{0}))
+                    SQLStr.Append("" AND {0}=@0"", filter.{0});
+        {0}", item.Key);
+                }
+            }
                     //Should updat the filter for wide search
-
+            sb.AppendFormat(@"
                 if (_orderby != """")
                     SQLStr.Append(""ORDER BY @0"", _orderby);
 
@@ -294,7 +311,7 @@ namespace {1}
     }}
     #endregion
 
-}}", NameSpace, curNamespace, TableName, pk);
+}}");
             #endregion
             return sb.ToString();
         }
