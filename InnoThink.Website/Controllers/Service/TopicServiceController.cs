@@ -450,14 +450,19 @@ namespace InnoThink.Website.Controllers.Service
                             result.Message = "/Scenario/Scenario7?TopicSN=" + Topic.TopicSN;
                             break;
                         //情境分析法結束
-                        //分析開始
+                        #region 分析 Analysis 開始
                         case 50:
                             result.Message = "/Analysis/Analysis1?TopicSN=" + Topic.TopicSN;
                             break;
                         case 51:
                             result.Message = "/Analysis/Analysis2?TopicSN=" + Topic.TopicSN;
                             break;
-                        //分析結束
+                        #endregion 分析 Analysis 結束
+                        #region LikerScale李特克五點量表開始
+                        case 60:
+                            result.Message = "/LikerScale/LikerScale1?TopicSN=" + Topic.TopicSN;
+                            break;
+                        #endregion LikerScale李特克五點量表結束
                         case 9901:
                             result.Message = "/Topic/Result1?TopicSN=" + Topic.TopicSN;
                             break;

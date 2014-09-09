@@ -578,3 +578,17 @@ img.delete
 {
     background-color: rgb(255, 255, 204);
 }
+
+.LSSetting
+{
+    width:340px;
+    padding: 5px;
+    margin : 5px;
+}
+
+.LSSetting table
+{
+    padding: 5px;
+    margin : 0px;
+    width : 99%;
+}

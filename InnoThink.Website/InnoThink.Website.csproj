@@ -117,10 +117,13 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AnalysisController.cs" />
+    <Compile Include="Controllers\LikerScaleController.cs" />
+    <Compile Include="Controllers\LikertScaleController.cs" />
     <Compile Include="Controllers\ScenarioController.cs" />
-    <Compile Include="Controllers\Service\AnalysisServiceController.cs" />
+    <Compile Include="Controllers\Service\LikerScaleServiceController.cs" />
     <Compile Include="Controllers\Service\BoardServiceController.cs" />
     <Compile Include="Controllers\Service\AdminServiceController.cs" />
+    <Compile Include="Controllers\Service\Copy of AnalysisServiceController.cs" />
     <Compile Include="Controllers\Service\FileUploadServiceController.cs" />
     <Compile Include="Controllers\Service\GuardController.cs" />
     <Compile Include="Controllers\Service\ScenarioServiceController.cs" />
@@ -193,6 +196,7 @@
     <Content Include="CDN\Js\Analytisc\Analytisc.js" />
     <Content Include="CDN\Js\Common.js" />
     <Content Include="CDN\Js\Default\LoginAdmin.js" />
+    <Content Include="CDN\Js\LikerScale\LikerScale.js" />
     <Content Include="CDN\Js\Main.js" />
     <Content Include="CDN\Js\Default\Login.js" />
     <Content Include="CDN\Js\lib\aes.js" />
@@ -300,6 +304,7 @@
     <Content Include="Views\Default\Admin.aspx" />
     <Content Include="Views\Default\Index.aspx" />
     <Content Include="Views\Admin\Admin.aspx" />
+    <Content Include="Views\LikerScale\LikerScale1.aspx" />
     <Content Include="Views\Member\ChangePassowrd.aspx" />
     <Content Include="Views\Member\UpdateMyInfo.aspx" />
     <Content Include="Views\Member\JoinedTopic.aspx" />

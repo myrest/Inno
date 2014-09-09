@@ -66,7 +66,7 @@ namespace InnoThink.Website.Controllers
                 TitleLeft = "現有功能分析",
                 TitleRight = "現有需求分析",
                 TypeLeft = (int)EnumAnalysisType.CurrentFuntional,
-                TypeRight = (int)EnumAnalysisType.RequestAnalytics
+                TypeRight = (int)EnumAnalysisType.CurrentRequest
             };
 
             ViewData["TopicSN"] = TopicSN;

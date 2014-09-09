@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="InnoThinkMain\Analysis.cs" />
     <Compile Include="InnoThinkMain\BackofficeUser.cs" />
+    <Compile Include="InnoThinkMain\Binding\LikerScaleBindingDAL.cs" />
     <Compile Include="InnoThinkMain\Board.cs" />
+    <Compile Include="InnoThinkMain\LikertScale.cs" />
     <Compile Include="InnoThinkMain\TeamGroup.cs" />
     <Compile Include="InnoThinkMain\Topic.cs" />
     <Compile Include="InnoThinkMain\TopicMember.cs" />

@@ -44,7 +44,7 @@ var Main = {
     {
         '功能需求分析': [
                 { '新功能分析及新需求分析': 'Analysis,Analysis3' },
-                { '?功能需求重要性分析': 'xxx,xxxx' },
+                { '功能需求重要性分析': 'LikerScale,LikerScale1' },
                 { '?功能需求結果': 'xxx,xxxx' }
             ]
     },
