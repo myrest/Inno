@@ -684,11 +684,14 @@
                                 </td>
                                 <td <% =strBGColor %>>
                                     <%
+                                string radioName = subitem.ItemSN.ToString();
                                 for (int x = 1; x < 6; x++)
                                 {
                                     string selected = (x == subitem.Rank) ? "checked=\"checked\"" : "";
-                                    string radiosample = "<label for=\"id{0}\"><input type=\"radio\" name=\"id{0}\" id=\"id{0}\" value=\"{1}\" {2}>{1}</label>";
-                                    string radio = string.Format(radiosample, x.ToString() + subitem.ItemSN, x, selected);
+                                    string radioID = x.ToString() + subitem.ItemSN.ToString();
+                                    string radioValue = string.Format("{0}-{1}-{2}", CategoryId, subitem.ItemSN, x);
+                                    string radiosample = "<label for=\"id{0}\"><input type=\"radio\" name=\"n{1}\" id=\"id{0}\" value=\"{2}\" {4}>{3}</label>";
+                                    string radio = string.Format(radiosample, radioID, radioName, radioValue, x, selected);
                                     Response.Write(radio);
                                 }
                                     %>
@@ -698,11 +701,6 @@
                             }
                             BtnBGColor = (i % 2 == 1) ? "" : bgColor;
                             %>
-                            <!-- tr>
-                                <td colspan="2" align="right" valign="top" <%=BtnBGColor %>>
-                                    <input type="button" name="updatebtn" value="送　出" style="<%=HideStyle%>">
-                                </td>
-                            </tr -->
                         </table>
                     </div>
                     <%

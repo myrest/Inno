@@ -21,6 +21,35 @@ namespace EShopManager.Website.Controllers.Service
         {
         }
 
+        [HttpPost]
+        public JsonResult UpdateLikerScaleRank(string Ranks)
+        {
+            ResultBase result = new ResultBase() { };
+            var AllRank = JsonConvert.DeserializeObject<List<string>>(Ranks);
+            AllRank.ForEach(x =>
+            {
+                //Get user sn and value in string, spread by ',', first is UserSN, second is Handle job detail.
+                var RankArr = x.Split(new char[] { '-' }, 3);
+                //RankArr[0] : CategoryId
+                //RankArr[1] : SN
+                //RankArr[0] : Rank
+                //Here shoud update and replay by batch
+                /*
+                DbBestIdeaMemRankModel model = new DbBestIdeaMemRankModel()
+                {
+                    BestIdeaSN = Convert.ToInt32(RankArr[0]),
+                    Rank = Convert.ToInt32(RankArr[1]),
+                    UserSN = sessionData.trading.UserSN
+                };
+                dbBestIdeaMemRank.InsertOrReplace(model);
+                */
+            });
+
+            result.JsonReturnCode = 1;
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+
         #region Switch Step
         [HttpPost]
         public JsonResult GotoLikerScale1(int TopicSN)
