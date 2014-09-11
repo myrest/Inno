@@ -11,7 +11,7 @@ namespace InnoThink.BLL.InnoThinkMain.Binding
     public class LikerScaleBindingBLL
     {
         private LikerScaleBindingDAL repo = new LikerScaleBindingDAL();
-        public List<LikerScaleBindingView> GetUserRankByType(int TopicSN, int UserSN, EnumLikertScale LSType)
+        public List<LikerScaleBindingView> GetUserRankByType(int TopicSN, int UserSN, EnumLikertScaleType LSType)
         {
             return repo.GetUserRankByType(TopicSN, UserSN, LSType);
         }

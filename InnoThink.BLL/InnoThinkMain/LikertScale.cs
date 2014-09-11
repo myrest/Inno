@@ -6,6 +6,7 @@ using InnoThink.Domain;
 using Rest.Core.Constancy;
 using Rest.Core.Utility;
 using InnoThink.Domain.Constancy;
+using InnoThink.Domain.InnoThinkMain.Binding;
 
 namespace InnoThink.BLL.LikertScale
 {
@@ -64,6 +65,12 @@ namespace InnoThink.BLL.LikertScale
                 log.Exception(ex);
             }
             return newID;
+        }
+
+        public bool InsertBatch(List<LikerScaleBatchUpdateObject> data)
+        {
+            bool rtn = new LikertScale_Repo().InsertBatch(data);
+            return rtn;
         }
         #endregion
 

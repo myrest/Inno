@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using InnoThink.Domain.InnoThinkMain.Binding;
+using Rest.Core.Utility;
 
 namespace InnoThink.DAL.LikertScale
 {
@@ -17,6 +19,7 @@ namespace InnoThink.DAL.LikertScale
         IEnumerable<LikertScale_Info> GetByParam(LikertScale_Filter Filter, string _orderby = "");
         IEnumerable<LikertScale_Info> GetByParam(LikertScale_Filter Filter, string[] fieldNames, string _orderby = "");
         long Insert(LikertScale_Info data);
+        bool InsertBatch(List<LikerScaleBatchUpdateObject> data);
         int Update(long NoPk, LikertScale_Info data, IEnumerable<string> columns);
         int Update(LikertScale_Info data);
         int Delete(long NoPk);
@@ -24,8 +27,9 @@ namespace InnoThink.DAL.LikertScale
     #endregion
 
     #region Implementation
-    public class LikertScale_Repo
+    public class LikertScale_Repo : ILikertScale_Repo
     {
+        private static readonly SysLog log = SysLog.GetLogger(typeof(LikertScale_Repo));
         #region Operation: Select
         public LikertScale_Info GetBySN(long NoPk)
         {
@@ -86,6 +90,52 @@ namespace InnoThink.DAL.LikertScale
                 return NewID;
             }
         }
+        public bool InsertBatch(List<LikerScaleBatchUpdateObject> data)
+        {
+            bool rtn = true;
+            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            {
+                db.BeginTransaction();
+                try
+                {
+                    data.ForEach(x =>
+                    {
+                        LikertScale_Info info = new LikertScale_Info()
+                        {
+                            LikertScaleType = (int)x.LSType,
+                            ParentSN = x.ParentSN,
+                            Rank = x.Rank,
+                            UserSN = x.UserSN
+                        };
+                        var olddata = GetByParam(new LikertScale_Filter()
+                        {
+                            LikertScaleType = (int)x.LSType,
+                            ParentSN = x.ParentSN,
+                            UserSN = x.UserSN
+                        });
+                        if (olddata.Count() > 0)
+                        {
+                            db.Insert(info);
+                        }
+                        else
+                        {
+                            db.Update(info);
+                        }
+                    });
+                }
+                catch (Exception ex)
+                {
+                    log.Exception(ex);
+                    db.AbortTransaction();
+                    rtn = false;
+                }
+                if (rtn)
+                {
+                    db.CompleteTransaction();
+                }
+            }
+            return rtn;
+        }
         #endregion
 
         #region Operation: Update
@@ -144,10 +194,6 @@ namespace InnoThink.DAL.LikertScale
                 {
                     SQLStr.Append(" AND Rank=@0", filter.Rank.Value);
                 }
-                if (filter.TopicSN.HasValue)
-                {
-                    SQLStr.Append(" AND TopicSN=@0", filter.TopicSN.Value);
-                }
                 if (filter.UserSN.HasValue)
                 {
                     SQLStr.Append(" AND UserSN=@0", filter.UserSN.Value);
@@ -164,6 +210,7 @@ namespace InnoThink.DAL.LikertScale
             return string.Join(", ", fieldNames);
         }
         #endregion
+
     }
     #endregion
 

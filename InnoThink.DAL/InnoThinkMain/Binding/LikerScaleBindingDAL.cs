@@ -11,7 +11,7 @@ namespace InnoThink.DAL.InnoThinkMain.Binding
 {
     public class LikerScaleBindingDAL
     {
-        public List<LikerScaleBindingView> GetUserRankByType(int TopicSN, int UserSN, EnumLikertScale LSType)
+        public List<LikerScaleBindingView> GetUserRankByType(int TopicSN, int UserSN, EnumLikertScaleType LSType)
         {
             var CategoaryTypes = GetCategoaryTypes(LSType);
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
@@ -64,11 +64,11 @@ namespace InnoThink.DAL.InnoThinkMain.Binding
             }
         }
 
-        private int[] GetCategoaryTypes(EnumLikertScale LSType)
+        private int[] GetCategoaryTypes(EnumLikertScaleType LSType)
         {
             switch (LSType)
             {
-                case EnumLikertScale.Analysis1:
+                case EnumLikertScaleType.Analysis1:
                     List<int> ids = new List<int>() { 
                         (int)EnumAnalysisType.CurrentFuntional, 
                         (int)EnumAnalysisType.CurrentRequest,

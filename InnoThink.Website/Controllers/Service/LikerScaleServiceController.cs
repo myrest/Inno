@@ -7,6 +7,10 @@ using InnoThink.Domain.InnoThinkMain.Binding;
 using InnoThink.Website.Controllers.Service;
 using InnoThink.Website.Models;
 using Rest.Core.Utility;
+using Newtonsoft.Json;
+using InnoThink.Domain.Constancy;
+using System;
+using InnoThink.BLL.LikertScale;
 
 namespace EShopManager.Website.Controllers.Service
 {
@@ -15,6 +19,8 @@ namespace EShopManager.Website.Controllers.Service
         //
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(LikerScaleServiceController));
+        private static readonly LikertScale_Manager lsManage = new LikertScale_Manager();
+
 
         public LikerScaleServiceController()
             : base(Permission.Private)
@@ -26,26 +32,30 @@ namespace EShopManager.Website.Controllers.Service
         {
             ResultBase result = new ResultBase() { };
             var AllRank = JsonConvert.DeserializeObject<List<string>>(Ranks);
+            List<LikerScaleBatchUpdateObject> para = new List<LikerScaleBatchUpdateObject>() { };
             AllRank.ForEach(x =>
             {
-                //Get user sn and value in string, spread by ',', first is UserSN, second is Handle job detail.
                 var RankArr = x.Split(new char[] { '-' }, 3);
                 //RankArr[0] : CategoryId
                 //RankArr[1] : SN
-                //RankArr[0] : Rank
-                //Here shoud update and replay by batch
-                /*
-                DbBestIdeaMemRankModel model = new DbBestIdeaMemRankModel()
+                //RankArr[2] : Rank
+                para.Add(new LikerScaleBatchUpdateObject()
                 {
-                    BestIdeaSN = Convert.ToInt32(RankArr[0]),
-                    Rank = Convert.ToInt32(RankArr[1]),
+                    LSType = EnumLikertScaleType.Analysis1,
+                    ParentSN = Convert.ToInt32(RankArr[1]),
+                    Rank = Convert.ToInt32(RankArr[2]),
                     UserSN = sessionData.trading.UserSN
-                };
-                dbBestIdeaMemRank.InsertOrReplace(model);
-                */
+                });
             });
 
-            result.JsonReturnCode = 1;
+            if (lsManage.InsertBatch(para))
+            {
+                result.setMessage("Done");
+            }
+            else
+            {
+                result.setException("Insert Data Got error.", "UpdateLikerScaleRank");
+            }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 

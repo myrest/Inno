@@ -5,7 +5,7 @@ using System.Text;
 
 namespace InnoThink.Domain.Constancy
 {
-    public enum EnumLikertScale
+    public enum EnumLikertScaleType
     {
         /// <summary>
         /// 新舊功能需求與分析，共四項

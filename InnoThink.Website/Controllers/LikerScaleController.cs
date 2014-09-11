@@ -33,7 +33,7 @@ namespace InnoThink.Website.Controllers
             TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
 
-            List<LikerScaleBindingView> result = lsbind.GetUserRankByType(TopicSN, sessionData.trading.UserSN, EnumLikertScale.Analysis1);
+            List<LikerScaleBindingView> result = lsbind.GetUserRankByType(TopicSN, sessionData.trading.UserSN, EnumLikertScaleType.Analysis1);
 
             ViewData["TopicSN"] = TopicSN;
             ViewData["Model"] = result;

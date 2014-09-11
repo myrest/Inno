@@ -706,7 +706,7 @@
                     <%
                         }
                     %>
-                    <div class="align-r">
+                    <div class="align-right">
                         <input type="button" name="savebtn" value="儲存">
                     </div>
                     <div class="align-center">

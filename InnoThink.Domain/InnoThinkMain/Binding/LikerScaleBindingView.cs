@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using InnoThink.Domain.Constancy;
 
 namespace InnoThink.Domain.InnoThinkMain.Binding
 {
@@ -27,5 +28,15 @@ namespace InnoThink.Domain.InnoThinkMain.Binding
         public string ItemDescript { get; set; }
         public int ItemSN { get; set; }
         public int Rank { get; set; }
+    }
+
+    public class LikerScaleBatchUpdateObject
+    {
+        //類別
+        public EnumLikertScaleType LSType { get; set; }
+        //該類別之流水號
+        public int ParentSN { get; set; }
+        public int Rank { get; set; }
+        public int UserSN { get; set; }
     }
 }
