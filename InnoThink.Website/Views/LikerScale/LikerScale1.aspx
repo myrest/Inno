@@ -679,7 +679,7 @@
                                     <%
                                 if (!string.IsNullOrEmpty(subitem.UserNames))
                                 {
-                                    Response.Write(string.Format("<span title=\"{0}\">({1})</span>", subitem.UserNames, subitem.UserNames.Split(new char[] { ',' }).Count()));
+                                    Response.Write(string.Format("<span title=\"{0}\" class=\"cursorArraw\">({1})</span>", subitem.UserNames, subitem.UserNames.Split(new char[] { ',' }).Count()));
                                 }
                                     %>
                                 </td>

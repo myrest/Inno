@@ -238,6 +238,10 @@ input.textbox-highlight, .txt-input:hover, .amt-input:hover, .m-input-box:hover,
 {
     cursor: pointer;
 }
+.cursorArraw
+{
+    cursor:default;
+}
 
 /** Table**/
 .fancytable
