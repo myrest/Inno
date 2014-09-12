@@ -14,7 +14,7 @@ namespace InnoThink.DAL.LikertScale
     #region interface
     public interface ILikertScale_Repo
     {
-        LikertScale_Info GetBySN(long NoPk);
+        LikertScale_Info GetBySN(long LikertScaleSN);
         IEnumerable<LikertScale_Info> GetAll();
         IEnumerable<LikertScale_Info> GetByParam(LikertScale_Filter Filter, string _orderby = "");
         IEnumerable<LikertScale_Info> GetByParam(LikertScale_Filter Filter, string[] fieldNames, string _orderby = "");
@@ -22,7 +22,7 @@ namespace InnoThink.DAL.LikertScale
         bool InsertBatch(List<LikerScaleBatchUpdateObject> data);
         int Update(long NoPk, LikertScale_Info data, IEnumerable<string> columns);
         int Update(LikertScale_Info data);
-        int Delete(long NoPk);
+        int Delete(long LikertScaleSN);
     }
     #endregion
 
@@ -31,13 +31,13 @@ namespace InnoThink.DAL.LikertScale
     {
         private static readonly SysLog log = SysLog.GetLogger(typeof(LikertScale_Repo));
         #region Operation: Select
-        public LikertScale_Info GetBySN(long NoPk)
+        public LikertScale_Info GetBySN(long LikertScaleSN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
                 .Append("SELECT * FROM LikertScale")
-                .Append("WHERE NoPk=@0", NoPk);
+                .Append("WHERE LikertScaleSN=@0", LikertScaleSN);
 
                 var result = db.SingleOrDefault<LikertScale_Info>(SQLStr);
                 return result;
@@ -100,26 +100,28 @@ namespace InnoThink.DAL.LikertScale
                 {
                     data.ForEach(x =>
                     {
-                        LikertScale_Info info = new LikertScale_Info()
-                        {
-                            LikertScaleType = (int)x.LSType,
-                            ParentSN = x.ParentSN,
-                            Rank = x.Rank,
-                            UserSN = x.UserSN
-                        };
                         var olddata = GetByParam(new LikertScale_Filter()
                         {
                             LikertScaleType = (int)x.LSType,
                             ParentSN = x.ParentSN,
                             UserSN = x.UserSN
                         });
-                        if (olddata.Count() > 0)
+                        if (olddata.Count() == 0)
                         {
+                            LikertScale_Info info = new LikertScale_Info()
+                            {
+                                LikertScaleType = (int)x.LSType,
+                                ParentSN = x.ParentSN,
+                                Rank = x.Rank,
+                                UserSN = x.UserSN
+                            };
                             db.Insert(info);
                         }
                         else
                         {
-                            db.Update(info);
+                            var updateObj = olddata.First();
+                            updateObj.Rank = x.Rank;
+                            db.Update(updateObj);
                         }
                     });
                 }
@@ -139,11 +141,11 @@ namespace InnoThink.DAL.LikertScale
         #endregion
 
         #region Operation: Update
-        public int Update(long NoPk, LikertScale_Info data, IEnumerable<string> columns)
+        public int Update(long LikertScaleSN, LikertScale_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
-                return db.Update(data, NoPk, columns);
+                return db.Update(data, LikertScaleSN, columns);
             }
         }
 
@@ -157,11 +159,11 @@ namespace InnoThink.DAL.LikertScale
         #endregion
 
         #region Operation: Delete
-        public int Delete(long NoPk)
+        public int Delete(long LikertScaleSN)
         {
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
             {
-                return db.Delete("LikertScale", "NoPk", null, NoPk);
+                return db.Delete("LikertScale", "LikertScaleSN", null, LikertScaleSN);
             }
         }
         #endregion
@@ -182,6 +184,10 @@ namespace InnoThink.DAL.LikertScale
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
+                if (filter.LikertScaleSN.HasValue)
+                {
+                    SQLStr.Append(" AND LikertScaleSN=@0", filter.LikertScaleSN.Value);
+                }
                 if (filter.LikertScaleType.HasValue)
                 {
                     SQLStr.Append(" AND LikertScaleType=@0", filter.LikertScaleType.Value);
@@ -210,7 +216,6 @@ namespace InnoThink.DAL.LikertScale
             return string.Join(", ", fieldNames);
         }
         #endregion
-
     }
     #endregion
 

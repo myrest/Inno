@@ -552,9 +552,10 @@ img.delete
     border-bottom-right-radius: 30px;
     border-top-left-radius: 30px;
     -webkit-box-shadow: rgb(204, 204, 204) 5px 5px 5px 0px;
-    float: left;
     margin: 0 3px 3px 3px;
     padding: 0 6px 0 6px;
+    display:inline-table;
+    float:none;
 }
 
 .InputArea.LightYellow

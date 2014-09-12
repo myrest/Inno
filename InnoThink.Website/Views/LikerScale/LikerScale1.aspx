@@ -105,7 +105,6 @@
         .body0 #body2
         {
             padding-left: 5px;
-            height: 200px;
         }
         
         .body0 .body3
@@ -656,21 +655,16 @@
                     %>
                     <div id="Block<%=CategoryId %>" class="InputArea LightYellow LSSetting">
                         <table border="0" align="center">
-                            <tr>
-                                <td colspan="2" align="left" bgcolor="#FFFF99">
+                            <tr bgcolor="#FFFF99">
+                                <td align="left">
                                     <%=item.CategoryName %>：
                                 </td>
-                            </tr>
-                            <tr>
-                                <td width="35%" align="left" valign="top">
-                                    &nbsp;
-                                </td>
-                                <td width="58%" align="center" valign="top">
+                                <td align="center" valign="top">
                                     1 最不重要← →5 最重要
                                 </td>
                             </tr>
                             <%
-                            var i = 0;
+                            var i = 1;
                             string bgColor = "bgcolor=\"#FFFF99\"";
                             string BtnBGColor = string.Empty;
                             foreach (var subitem in item.Item)
@@ -678,9 +672,16 @@
                                 i++;
                                 string strBGColor = (i % 2 == 0) ? "" : bgColor;
                             %>
-                            <tr>
+                            <tr title="<%=subitem.ItemDescript %>">
                                 <td <% =strBGColor %>>
                                     <%=subitem.ItemName %>
+                                    <!-- span class="ui-icon ui-icon-person" title="<%=subitem.UserNames %>"></span -->
+                                    <%
+                                if (!string.IsNullOrEmpty(subitem.UserNames))
+                                {
+                                    Response.Write(string.Format("<span title=\"{0}\">({1})</span>", subitem.UserNames, subitem.UserNames.Split(new char[] { ',' }).Count()));
+                                }
+                                    %>
                                 </td>
                                 <td <% =strBGColor %>>
                                     <%
@@ -709,7 +710,10 @@
                     <div class="align-right">
                         <input type="button" name="savebtn" value="儲存">
                     </div>
-                    <div class="align-center">
+                </div>
+                <br /><br />
+                <div class="body3">
+                    <div id="body-4a">
                         議題 ：<% =ViewData["Subject"] %>
                     </div>
                 </div>

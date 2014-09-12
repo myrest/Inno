@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InnoThink.Domain.InnoThinkMain.Binding;
 using Rest.Core;
+using Rest.Core.Utility;
 using Rest.Core.Constancy;
 using InnoThink.Domain.Constancy;
 
@@ -18,12 +19,20 @@ namespace InnoThink.DAL.InnoThinkMain.Binding
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
                 .Append(@"
-                    select a.AnalysisSN as ItemSN, a.AnalysisType as CategoryType, ifnull(l.Rank,0) as Rank,
-                    a.Column1 as ItemName, a.Column2 as ItemDescript
-                     from analysis a left join LikertScale l on a.AnalysisSN = l.ParentSN and a.UserSN = l.UserSN
-                    where a.TopicSN = @0 and a.UserSN = @1 and a.AnalysisType in (@Types)
-                    order by a.AnalysisType, ItemSN
-                ", TopicSN, UserSN, new { Types = CategoaryTypes });
+                        SELECT A.AnalysisSN AS ItemSN,
+                                A.AnalysisType AS CategoryType,
+                                A.Column1 AS ItemName,
+                                A.Column2 AS ItemDescript,
+                                IFNULL((SELECT SLS.rank FROM LikertScale sls WHERE SLS.UserSN = @0 AND SLS.ParentSN = L.ParentSN limit 1),0) AS Rank,
+                                (SELECT GROUP_CONCAT(UserName) FROM 
+                                        (SELECT UserName FROM LikertScale SLS INNER JOIN User SU ON SLS.UserSN = SU.UserSN 
+                                        WHERE SLS.ParentSN = L.ParentSN
+                                        GROUP BY UserName )
+                                ) AS UserNames
+                        FROM Analysis A LEFT JOIN LikertScale L ON A.AnalysisSN = L.ParentSN
+                        WHERE A.TopicSN = @1  AND A.AnalysisType IN (@Types)
+                        GROUP BY A.AnalysisSN , A.AnalysisType  ,A.Column1 , A.Column2
+                ", UserSN, TopicSN, new { Types = CategoaryTypes });
 
                 var result = db.Query<LikerScaleBindingFlate>(SQLStr);
                 if (result != null && result.Count() > 0)
@@ -31,13 +40,17 @@ namespace InnoThink.DAL.InnoThinkMain.Binding
                     List<LikerScaleBindingView> rtn = new List<LikerScaleBindingView>(){};
                     result.ToList().ForEach(x =>
                     {
+                        var itemInLine = new LikerScaleBindingObject();
+                        /*
                         LikerScaleBindingObject itemInLine = new LikerScaleBindingObject()
                         {
                             ItemName = x.ItemName,
                             ItemDescript = x.ItemDescript,
                             ItemSN = x.ItemSN,
-                            Rank = x.Rank
-                        };
+                            Rank = x.Rank,
+                            UserNames = x.UserNames
+                        };*/
+                        itemInLine.CloneObject(x);
                         if (!rtn.Any(y => y.CategoryType == x.CategoryType))
                         {
                             rtn.Add(new LikerScaleBindingView()

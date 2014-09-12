@@ -14,14 +14,14 @@ namespace InnoThink.BLL.LikertScale
     #region interface
     public interface ILikertScale_Manager
     {
-        LikertScale_Info GetBySN(long NoPk);
+        LikertScale_Info GetBySN(long LikertScaleSN);
         IEnumerable<LikertScale_Info> GetAll();
         IEnumerable<LikertScale_Info> GetByParameter(LikertScale_Filter Filter, string _orderby = "");
         long Insert(LikertScale_Info data);
-        bool Update(long NoPk, LikertScale_Info data, IEnumerable<string> columns);
+        bool Update(long LikertScaleSN, LikertScale_Info data, IEnumerable<string> columns);
         bool Update(LikertScale_Info data);
-        int Delete(long NoPk);
-        bool IsExist(long NoPk);
+        int Delete(long LikertScaleSN);
+        bool IsExist(long LikertScaleSN);
     }
     #endregion
     */
@@ -36,9 +36,9 @@ namespace InnoThink.BLL.LikertScale
         #endregion
 
         #region Operation: Select
-        public LikertScale_Info GetBySN(long NoPk)
+        public LikertScale_Info GetBySN(long LikertScaleSN)
         {
-            return new LikertScale_Repo().GetBySN(NoPk);
+            return new LikertScale_Repo().GetBySN(LikertScaleSN);
         }
 
         public IEnumerable<LikertScale_Info> GetAll()
@@ -75,9 +75,9 @@ namespace InnoThink.BLL.LikertScale
         #endregion
 
         #region Operation: Raw Update
-        public bool Update(long NoPk, LikertScale_Info data, IEnumerable<string> columns)
+        public bool Update(long LikertScaleSN, LikertScale_Info data, IEnumerable<string> columns)
         {
-            return new LikertScale_Repo().Update(NoPk, data, columns) > 0;
+            return new LikertScale_Repo().Update(LikertScaleSN, data, columns) > 0;
         }
 
         public bool Update(LikertScale_Info data)
@@ -87,16 +87,16 @@ namespace InnoThink.BLL.LikertScale
         #endregion
 
         #region Operation: Delete
-        public int Delete(long NoPk)
+        public int Delete(long LikertScaleSN)
         {
-            return new LikertScale_Repo().Delete(NoPk);
+            return new LikertScale_Repo().Delete(LikertScaleSN);
         }
         #endregion
 
         #region public functions
-        public bool IsExist(long NoPk)
+        public bool IsExist(long LikertScaleSN)
         {
-            return (GetBySN(NoPk) != null);
+            return (GetBySN(LikertScaleSN) != null);
         }
         #endregion
 

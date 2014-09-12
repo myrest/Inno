@@ -118,7 +118,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AnalysisController.cs" />
     <Compile Include="Controllers\LikerScaleController.cs" />
-    <Compile Include="Controllers\LikertScaleController.cs" />
     <Compile Include="Controllers\ScenarioController.cs" />
     <Compile Include="Controllers\Service\LikerScaleServiceController.cs" />
     <Compile Include="Controllers\Service\BoardServiceController.cs" />

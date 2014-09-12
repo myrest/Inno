@@ -10,6 +10,7 @@ namespace InnoThink.Domain
     #region interface
     public interface ILikertScale_Info
     {
+        int LikertScaleSN { get; set; }
         int LikertScaleType { get; set; }
         int ParentSN { get; set; }
         int Rank { get; set; }
@@ -20,10 +21,11 @@ namespace InnoThink.Domain
 
     #region Implementation
     [Rest.Core.PetaPoco.TableName("LikertScale")]
-    [Rest.Core.PetaPoco.PrimaryKey("LikertScaleType,ParentSN,UserSN", autoIncrement=false)]
+    [Rest.Core.PetaPoco.PrimaryKey("LikertScaleSN")]
     public class LikertScale_Info //: ILikertScale_Info
     {
         #region private fields
+        public int LikertScaleSN { get; set; }
         public int LikertScaleType { get; set; }
         public int ParentSN { get; set; }
         public int Rank { get; set; }
@@ -39,6 +41,7 @@ namespace InnoThink.Domain
 
     public class LikertScale_Filter
     {
+        public int? LikertScaleSN { get; set; }
         public int? LikertScaleType { get; set; }
         public int? ParentSN { get; set; }
         public int? Rank { get; set; }

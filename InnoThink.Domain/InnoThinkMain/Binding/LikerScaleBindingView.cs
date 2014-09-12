@@ -13,6 +13,7 @@ namespace InnoThink.Domain.InnoThinkMain.Binding
         public int CategoryType { get; set; }
         public int Rank { get; set; }
         public string ItemName { get; set; }
+        public string UserNames { get; set; }
     }
 
     public class LikerScaleBindingView
@@ -28,6 +29,7 @@ namespace InnoThink.Domain.InnoThinkMain.Binding
         public string ItemDescript { get; set; }
         public int ItemSN { get; set; }
         public int Rank { get; set; }
+        public string UserNames { get; set; }
     }
 
     public class LikerScaleBatchUpdateObject
