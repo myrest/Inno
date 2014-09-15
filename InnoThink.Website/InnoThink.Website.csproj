@@ -194,6 +194,7 @@
     <Content Include="CDN\Images\Common\pbar-ani.gif" />
     <Content Include="CDN\Js\Analytisc\Analytisc.js" />
     <Content Include="CDN\Js\Common.js" />
+    <Content Include="CDN\Js\Default\FBGroup.js" />
     <Content Include="CDN\Js\Default\LoginAdmin.js" />
     <Content Include="CDN\Js\LikerScale\LikerScale.js" />
     <Content Include="CDN\Js\Main.js" />
