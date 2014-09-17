@@ -1,6 +1,5 @@
 var HomeControl = 'Home';
 var HomeAction = 'Index';
-var isFirstTimeFBLogin = true;
 
 $(function () {
     if (top.location != self.location) {
@@ -10,30 +9,15 @@ $(function () {
         Utils.textBoxsOnEnter(login._login, $('#headeridpass input'));
         Utils.textBoxsOnEnter(login._Reg, $('#body9 input'));
     }
-
     $.ajaxSetup({ cache: true });
+
     $.getScript('//connect.facebook.net/zh_TW/all.js', function () {
         FB.init({
             appId: '1465486540390678',
-            status: false, // check login status
-            cookie: true, // enable cookies to allow the server to access the session
             xfbml: true,  // parse XFBML
-            scope: 'email',
-            oauth: true
+            version: 'v2.0'
         });
         $('#loginbutton,#feedbutton').removeAttr('disabled');
-
-        //FB.getLoginStatus(updateStatusCallback);
-
-        FB.Event.subscribe('auth.login', function (response) {
-            updateStatusCallback(response);
-            //login.FBLogin(response.authResponse.accessToken);
-        });
-
-        FB.Event.subscribe('auth.statusChange', function (response) {
-            updateStatusCallback(response);
-            //login.FBLogin(response.authResponse.accessToken);
-        });
     });
 });
 
@@ -114,55 +98,25 @@ var login =
             });
         }
     },
-    FBLogin: function (token) {
-        if (isFirstTimeFBLogin) {
-            isFirstTimeFBLogin = false;
-            var param = { token: token };
-            utility.service("LoginService/FBLogin", param, "POST", function (data) {
-                if (data.code > 0) {
-                    var redirto = utility.getRedirUrl(HomeControl, HomeAction) + '?' + (new Date()).getMilliseconds();
-                    window.location.href = redirto;
-                } else {
-                    utility.showPopUp(data.msg, 1, function () { window.location.href = window.location.pathname + '?u=' + id; });
-                }
-            });
-        }
-    }
-};
-var updateStatusCallback = function (response) {
-    // Here we specify what we do with the response anytime this event occurs.
-    if (response.status === 'connected') {
-        // The response object is returned with a status field that lets the app know the current
-        // login status of the person. In this case, we're handling the situation where they
-        // have logged in to the app.
-        var uid = response.authResponse.userID;
-        var accessToken = response.authResponse.accessToken;
-//        FB.api('/me?fields=id,name,picture,email', function (response) {
-//            var img = '<img src="' + response.picture.data.url + '">';
-//            $('#fbpic').html(img);
-//            $('#fbname').html(response.name);
-//        });
-        login.FBLogin(accessToken);
-    } else if (response.status === 'not_authorized') {
-        // In this case, the person is logged into Facebook, but not into the app, so we call
-        // FB.login() to prompt them to do so.
-        // In real-life usage, you wouldn't want to immediately prompt someone to login
-        // like this, for two reasons:
-        // (1) JavaScript created popup windows are blocked by most browsers unless they
-        // result from direct interaction from people using the app (such as a mouse click)
-        // (2) it is a bad experience to be continually prompted to login upon page load.
-        //FB.login();
-        //        FB.api('/me?fields=id,name,picture', function (response) {
-        //            var img = '<img src="' + response.picture.data.url + '">';
-        //            $('#fbpic').html(img);
-        //            $('#fbname').html(response.name);
-        //        });
-    } else {
-        // In this case, the person is not logged into Facebook, so we call the login()
-        // function to prompt them to do so. Note that at this stage there is no indication
-        // of whether they are logged into the app. If they aren't then they'll see the Login
-        // dialog right after they log in to Facebook.
-        // The same caveats as above apply to the FB.login() call here.
-        FB.login();
+    FBLogin: function () {
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                var uid = response.authResponse.userID;
+                var accessToken = response.authResponse.accessToken;
+                var param = { token: accessToken };
+                utility.service("LoginService/FBLogin", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        var redirto = utility.getRedirUrl(HomeControl, HomeAction) + '?' + (new Date()).getMilliseconds();
+                        window.location.href = redirto;
+                    } else {
+                        utility.showPopUp(data.msg, 1, function () { window.location.href = window.location.pathname + '?u=' + id; });
+                    }
+                });
+
+            }
+            else {
+                //initiateFBLogin();
+            }
+        });
     }
 };

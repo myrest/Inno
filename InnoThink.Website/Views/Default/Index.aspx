@@ -7,7 +7,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <!-- link href="<%= Url.CdnContent("/CSS/Login.css") %>" rel="stylesheet" type="text/css" /-->
     <style type="text/css">
-        #header0 {
+        #header0
+        {
             margin-top: 0px;
             height: 50px;
             z-index: 3;
@@ -20,8 +21,9 @@
             top: 0px;
             right: 0px;
         }
-
-        #headerlogo {
+        
+        #headerlogo
+        {
             width: 150px;
             position: static;
             left: 629px;
@@ -30,8 +32,9 @@
             float: left;
             margin-left: 0px;
         }
-
-        #headerword {
+        
+        #headerword
+        {
             width: 740px;
             position: absolute;
             font-size: small;
@@ -42,13 +45,15 @@
             margin-left: -370px;
             left: 50%;
         }
-
-        #header0 #head3 {
+        
+        #header0 #head3
+        {
             width: 400px;
             height: 60px;
         }
-
-        #header0 #body0 {
+        
+        #header0 #body0
+        {
             height: 450px;
             background-image: url(/pic/back-3.jpg);
             position: absolute;
@@ -61,8 +66,9 @@
             -webkit-box-shadow: 5px 5px 5px;
             box-shadow: 5px 5px 5px;
         }
-
-        #header0 #body1 {
+        
+        #header0 #body1
+        {
             width: 300px;
             position: absolute;
             left: 466px;
@@ -70,11 +76,13 @@
             height: 321px;
             z-index: 3;
         }
-
-            #header0 #body1 #body2 {
-            }
-
-        #header0 #body2 {
+        
+        #header0 #body1 #body2
+        {
+        }
+        
+        #header0 #body2
+        {
             width: 300px;
             position: absolute;
             left: 780px;
@@ -82,8 +90,9 @@
             height: 321px;
             z-index: 3;
         }
-
-        #header0 #bottom0 {
+        
+        #header0 #bottom0
+        {
             text-align: center;
             margin-top: 10px;
             font-size: small;
@@ -93,26 +102,29 @@
             width: 740px;
             margin-left: -370px;
         }
-
-        #header0 #body0 #body3 {
+        
+        #header0 #body0 #body3
+        {
             width: 430px;
             float: left;
             height: 350px;
-            font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+            font-family: Cambria, "Hoefler Text" , "Liberation Serif" , Times, "Times New Roman" , serif;
             font-size: x-large;
             font-style: normal;
             font-weight: bolder;
             margin-left: 10px;
         }
-
-        #header0 #body0 #body4 {
+        
+        #header0 #body0 #body4
+        {
             width: 300px;
             float: right;
             height: 350px;
         }
-
-        #header0 #body0 #body5 {
-            font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+        
+        #header0 #body0 #body5
+        {
+            font-family: "Gill Sans" , "Gill Sans MT" , "Myriad Pro" , "DejaVu Sans Condensed" , Helvetica, Arial, sans-serif;
             font-size: small;
             color: #FFFFFF;
             height: 25px;
@@ -122,16 +134,18 @@
             background-color: #4FA3C7;
             text-align: center;
         }
-
-        #header0 #body0 #body3 #body7 {
+        
+        #header0 #body0 #body3 #body7
+        {
             font-weight: normal;
             font-size: small;
             margin-top: -70px;
             margin-left: 30px;
             line-height: 200%;
         }
-
-        #header0 #body0 #body3 #body8 {
+        
+        #header0 #body0 #body3 #body8
+        {
             margin-top: -10px;
             padding-top: 0px;
             float: right;
@@ -140,8 +154,9 @@
             text-align: center;
             font-weight: normal;
         }
-
-        #header0 #body0 #body4 #body9 {
+        
+        #header0 #body0 #body4 #body9
+        {
             font-size: small;
             padding-left: 0px;
             font-weight: bold;
@@ -152,16 +167,18 @@
             width: 250px;
             float: right;
         }
-
-        #header0 #headerword #header-word2 {
+        
+        #header0 #headerword #header-word2
+        {
             width: 540px;
             float: right;
             padding-top: 25px;
             line-height: 120%;
             text-align: right;
         }
-
-        #headeridpass {
+        
+        #headeridpass
+        {
             width: 306px;
             position: static;
             font-size: small;
@@ -201,7 +218,11 @@
                 我們不只是在想，而是在創造。 InnoThink means I am not only thinking but also creating.
             </div>
             <p style="float: right; padding-right: 4px; margin-top: 4px;">
-                <fb:login-button show-faces="false" width="500" max-rows="5" data-size="small" data-auto-logout-link="false" scope="email"></fb:login-button>
+                <div id="fb-root">
+                </div>
+                <div class="fb-login-button align-right" data-max-rows="1" data-size="medium" data-show-faces="false"
+                    onlogin="login.FBLogin()" data-auto-logout-link="false" data-scope="public_profile, user_friends, email, user_about_me">
+                </div>
             </p>
             <div id="body3">
                 歡迎來到 InnoThink。
