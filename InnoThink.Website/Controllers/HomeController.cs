@@ -18,6 +18,7 @@ namespace InnoThink.Website.Controllers
 
         public ActionResult Index()
         {
+            ViewData["FBToken"] = sessionData.trading.FBAccessToken;
             return View();
         }
     }

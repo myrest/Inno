@@ -336,6 +336,8 @@
         <div id="body1">
             歡迎來到 InnoThink
         </div>
+        <div id="FBgroup">
+        </div>
         <div id="body-3">
             <div id="body3-2a">
                 <div id="body3-2ax1">
@@ -440,5 +442,8 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">
+    <script>
+        var token = '<%=ViewData["FBToken"].ToString() %>';
+    </script>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/Default/FBGroup.js") %>"></script>
 </asp:Content>

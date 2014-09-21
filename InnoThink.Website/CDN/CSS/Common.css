@@ -597,3 +597,15 @@ img.delete
     margin : 0px;
     width : 99%;
 }
+
+.fbmainmsg
+{
+    padding : 10px;
+    background:#ffffff;
+}
+.fbmainname
+{
+    color:#3b5998;
+    font-weight:bold;
+    font-size:14px;
+}

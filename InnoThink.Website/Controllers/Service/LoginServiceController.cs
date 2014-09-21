@@ -64,6 +64,7 @@ namespace InnoThink.Website.Controllers.Service
             {
                 MakeTrading(FBObject.Email);
                 sessionData.trading.isLogined = true;
+                sessionData.trading.FBAccessToken = token;
                 result.JsonReturnCode = 1;
             }
             else

@@ -51,6 +51,7 @@ namespace InnoThink.Core
             isLogined = false;
             UserSN = 0;
             Level = 0;
+            FBAccessToken = string.Empty;
         }
 
         public string LoginId { get; set; }
@@ -61,7 +62,8 @@ namespace InnoThink.Core
 
         public int UserSN { get; set; }
 
-        //public string FBToken { get; set; }
+        public string FBAccessToken { get; set; }
+        
         public string Picture { get; set; }
 
         public string UserName { get; set; }

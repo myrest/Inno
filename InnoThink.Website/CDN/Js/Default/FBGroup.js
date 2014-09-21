@@ -1,157 +1,120 @@
-
 $(function () {
-    $.ajaxSetup({ cache: true });
-    $.getScript('//connect.facebook.net/zh_TW/all.js', function () {
-        FB.init({
-            groupId: '536281986502720',
-            status: false, // check login status
-            cookie: true, // enable cookies to allow the server to access the session
-            xfbml: true,  // parse XFBML
-            scope: 'email',
-            oauth: true
-        });
-        $('#loginbutton,#feedbutton').removeAttr('disabled');
+    var fbGroupUrl = 'https://graph.facebook.com/v2.1/536281986502720/feed?limit=100&access_token=' + token;
+    var templatepara = fbjson;
+    utility.template("Default/FBGroupDataList.html", function (template) {
+        $('#FBgroup').html(template.process(templatepara));
+    }, "FBgroup");
 
-        //FB.getLoginStatus(updateStatusCallback);
 
-        FB.Event.subscribe('auth.login', function (response) {
-            updateStatusCallback(response);
-            //login.FBLogin(response.authResponse.accessToken);
-        });
-
-        FB.Event.subscribe('auth.statusChange', function (response) {
-            updateStatusCallback(response);
-            //login.FBLogin(response.authResponse.accessToken);
-        });
-    });
 });
 
-var login =
-{
-    $RegNewOne: $('#btnRegNewOne'),
-    $ToLoginPanel: $('#ToLoginPanel'),
-    init: function () {
-        $("#btnLogin").click(this._login);
-        login.$RegNewOne.click(this._Reg);
 
-        $("#username").focus();
-        var _u = $.query.get('u').toString();
-        if (_u.length > 0) {
-            $("#username").val(_u);
-            $("#password").focus();
+var fbjson = {
+    "data": [
+    {
+        "id": "536281986502720_536326666498252",
+        "from": {
+            "id": "813395908691308",
+            "name": "Kuan Chou"
+        },
+        "to": {
+            "data": [
+          {
+              "name": "Innoroot",
+              "id": "536281986502720"
+          }
+        ]
+        },
+        "message": "好像很好玩的感覺~",
+        "actions": [
+        {
+            "name": "Comment",
+            "link": "https://www.facebook.com/536281986502720/posts/536326666498252"
+        },
+        {
+            "name": "Like",
+            "link": "https://www.facebook.com/536281986502720/posts/536326666498252"
         }
-
-        $("#dialog-message").dialog({
-            autoOpen: true,
-            modal: true,
-            buttons: {
-                Ok: function () {
-                    $(this).dialog("close");
+      ],
+        "privacy": {
+            "value": ""
+        },
+        "type": "status",
+        "created_time": "2014-09-15T18:53:06+0000",
+        "updated_time": "2014-09-18T03:53:08+0000",
+        "likes": {
+            "data": [
+          {
+              "id": "10152434237009412",
+              "name": "Roy Tai"
+          }
+        ],
+            "paging": {
+                "cursors": {
+                    "after": "MTAxNTI0MzQyMzcwMDk0MTI=",
+                    "before": "MTAxNTI0MzQyMzcwMDk0MTI="
                 }
             }
-        });
-    },
-    _login: function () {
-        var id = $("#username").val();
-        var pwd = $("#password").val();
-        var vy = $("#verify").val();
-
-        if (id.length === 0) {
-            utility.showPopUp('請輸入帳號', 1, function () { $("#username").focus(); });
-        }
-        else if (pwd.length === 0) {
-            utility.showPopUp('請輸入密碼', 1, function () { $("#password").focus(); });
-        }
-        else {
-            var param = { username: id, password: pwd, verify: vy };
-            utility.service("LoginService/Login", param, "POST", function (data) {
-                if (data.code > 0) {
-                    var redirto = utility.getRedirUrl(HomeControl, HomeAction) + '?' + (new Date()).getMilliseconds();
-                    window.location.href = redirto;
-                } else {
-                    utility.showPopUp(data.msg, 1, function () { window.location.href = window.location.pathname + '?u=' + id; });
+        },
+        "comments": {
+            "data": [
+          {
+              "id": "537335556397363",
+              "from": {
+                  "id": "10152434237009412",
+                  "name": "Roy Tai"
+              },
+              "message": "funny is ok.",
+              "can_remove": true,
+              "created_time": "2014-09-18T03:53:08+0000",
+              "like_count": 0,
+              "user_likes": false
+          }
+        ],
+            "paging": {
+                "cursors": {
+                    "after": "WTI5dGJXVnVkRjlqZFhKemIzSTZOVE0zTXpNMU5UVTJNemszTXpZek9qRTBNVEV3TVRJek9EZz0=",
+                    "before": "WTI5dGJXVnVkRjlqZFhKemIzSTZOVE0zTXpNMU5UVTJNemszTXpZek9qRTBNVEV3TVRJek9EZz0="
                 }
-            });
-        }
-    },
-    _Reg: function () {
-        var id = $("#NewId").val();
-        var pwd = $("#NewPwd").val();
-        var conpwd = $("#NewConfPwd").val();
-
-        if (id.length === 0) {
-            utility.showPopUp('請輸入帳號', 1, function () { $("#NewId").focus(); });
-        }
-        else if (pwd.length === 0) {
-            utility.showPopUp('請輸入密碼', 1, function () { $("#NewPwd").focus(); });
-        }
-        else if (pwd != conpwd) {
-            utility.showPopUp('兩次輸入的密碼不同', 1, function () { $("#NewPwd").focus(); });
-        }
-        else {
-            var param = { username: id, password: pwd, TeamGroupID: $("#TopicGroupId").val() };
-            utility.service("LoginService/Registry", param, "POST", function (data) {
-                if (data.code > 0) {
-                    var redirto = utility.getRedirUrl(HomeControl, HomeAction) + '?' + (new Date()).getMilliseconds();
-                    var cb = function () {
-                        window.location.href = redirto;
-                    }
-                    utility.showPopUp(data.msg, 1, cb);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
-            });
+            }
         }
     },
-    FBLogin: function (token) {
-        if (isFirstTimeFBLogin) {
-            isFirstTimeFBLogin = false;
-            var param = { token: token };
-            utility.service("LoginService/FBLogin", param, "POST", function (data) {
-                if (data.code > 0) {
-                    var redirto = utility.getRedirUrl(HomeControl, HomeAction) + '?' + (new Date()).getMilliseconds();
-                    window.location.href = redirto;
-                } else {
-                    utility.showPopUp(data.msg, 1, function () { window.location.href = window.location.pathname + '?u=' + id; });
-                }
-            });
+    {
+        "id": "536281986502720_536291253168460",
+        "from": {
+            "id": "10152434237009412",
+            "name": "Roy Tai"
+        },
+        "to": {
+            "data": [
+          {
+              "name": "Innoroot",
+              "id": "536281986502720"
+          }
+        ]
+        },
+        "message": "我的貼貼樂",
+        "actions": [
+        {
+            "name": "Comment",
+            "link": "https://www.facebook.com/536281986502720/posts/536291253168460"
+        },
+        {
+            "name": "Like",
+            "link": "https://www.facebook.com/536281986502720/posts/536291253168460"
         }
+      ],
+        "privacy": {
+            "value": ""
+        },
+        "type": "status",
+        "created_time": "2014-09-15T16:51:03+0000",
+        "updated_time": "2014-09-15T16:51:03+0000"
     }
-};
-var updateStatusCallback = function (response) {
-    // Here we specify what we do with the response anytime this event occurs.
-    if (response.status === 'connected') {
-        // The response object is returned with a status field that lets the app know the current
-        // login status of the person. In this case, we're handling the situation where they
-        // have logged in to the app.
-        var uid = response.authResponse.userID;
-        var accessToken = response.authResponse.accessToken;
-//        FB.api('/me?fields=id,name,picture,email', function (response) {
-//            var img = '<img src="' + response.picture.data.url + '">';
-//            $('#fbpic').html(img);
-//            $('#fbname').html(response.name);
-//        });
-        login.FBLogin(accessToken);
-    } else if (response.status === 'not_authorized') {
-        // In this case, the person is logged into Facebook, but not into the app, so we call
-        // FB.login() to prompt them to do so.
-        // In real-life usage, you wouldn't want to immediately prompt someone to login
-        // like this, for two reasons:
-        // (1) JavaScript created popup windows are blocked by most browsers unless they
-        // result from direct interaction from people using the app (such as a mouse click)
-        // (2) it is a bad experience to be continually prompted to login upon page load.
-        //FB.login();
-        //        FB.api('/me?fields=id,name,picture', function (response) {
-        //            var img = '<img src="' + response.picture.data.url + '">';
-        //            $('#fbpic').html(img);
-        //            $('#fbname').html(response.name);
-        //        });
-    } else {
-        // In this case, the person is not logged into Facebook, so we call the login()
-        // function to prompt them to do so. Note that at this stage there is no indication
-        // of whether they are logged into the app. If they aren't then they'll see the Login
-        // dialog right after they log in to Facebook.
-        // The same caveats as above apply to the FB.login() call here.
-        FB.login();
+  ],
+    "paging": {
+        "previous": "https://graph.facebook.com/v2.1/536281986502720/feed?limit=100&since=1411012388&__paging_token=enc_Aewdg0OHJDe25KCwDsnFq-qLh1RqWqKqaPfNhKFt7TZkzF4JFQkjMYHcwba7A8Nsg2o0Go7xdGm5WxYwNGxRHdflKLxBUA-zAh4Xx-Dxu0f0lw",
+        "next": "https://graph.facebook.com/v2.1/536281986502720/feed?limit=100&until=1410799863&__paging_token=enc_AexLx_KEx7DKC8MHU6cTEjJuTorp6XNyAwjCDd5-V1CDJjIFcDqADX4oZ_cUvWYdIJ_ptfTm36m7xAD29gLMYT8DYXZ8nurVSNyE5H-Ohp941g"
     }
-};
+}
+
