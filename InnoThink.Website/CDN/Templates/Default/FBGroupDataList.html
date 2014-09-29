@@ -1,8 +1,10 @@
-﻿{for item in data}
+﻿<textarea title="留個言吧......" placeholder="留個言吧......" class="NewFBMessage"></textarea>
+<input type="button" value=" 留言 " class="fbSendmessage" />
+{for item in FbData.data}
 <table class="fbmainmsg">
     <tr>
-        <td>
-            <img src="http://graph.facebook.com/${item.from.id}/picture" width="40" height="40" />
+        <td class="fbmainimg">
+            <img src="http://graph.facebook.com/${item.from.id}/picture" class="fbmainimg"  alt=""  />
         </td>
         <td>
             <span class="fbmainname">${item.from.name}</span>
@@ -20,37 +22,35 @@
             {var likes = (item.likes != undefined)?item.likes.data.length:0} Likes:${likes}
         </td>
     </tr>
-    {if (item.comments != undefined)}
-    <tr>
+    <tr style="vertical-align: top; background-color:#f6f7f8">
         <td colspan="2">
-            <!--Comment start -->
-            {for comment in item.comments.data}
             <table>
+            <!--Comment start -->
+        {if (item.comments != undefined)}
+            {for comment in item.comments.data}
                 <tr>
                     <td>
-                        <img src="http://graph.facebook.com/${comment.from.id}/picture" width="32" height="32"  />
+                        <img class="fbsubimg" src="http://graph.facebook.com/${comment.from.id}/picture" alt="" />
                     </td>
-                    <td>
-                        ${comment.from.name}
+                    <td class="fbsubmsg">
+                        <span class="fbsubname">${comment.from.name}</span>
+                        <span>${comment.message}</span>
                         <br />
-                        ${new Date(comment.created_time)}
+                        ${new Date(comment.created_time)} · Likes:${comment.like_count}
                     </td>
                 </tr>
+            {/for}
+        {/if}
+            <!--Comment end -->
                 <tr>
                     <td colspan="2">
-                        ${comment.message}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        Likes:${comment.like_count}
+                        <img src="https://graph.facebook.com/me/picture?access_token=${token}" class="fbsubimg"  alt=""  />
+                        <textarea title="留言..." placeholder="留言..." class="NewFBComment"></textarea>
+                        <input type="button" value=" 留言 " class="fbSendComment" id="${item.id}" />
                     </td>
                 </tr>
             </table>
-            {/for}
-            <!--Comment end -->
         </td>
     </tr>
-    {/if}
 </table>
 {/for} 

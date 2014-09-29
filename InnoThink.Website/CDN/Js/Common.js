@@ -47,6 +47,9 @@ var utility = {
         utility.showPopUp(data.msg, 1);
     }
     , service: function (mvcUrl, parameter, httpMethod, callBack, errorCallback, responseDataType) {
+        if (mvcUrl.indexOf('http') != 0) {
+            mvcUrl = '/' + mvcUrl;
+        }
         if (utility.stopRequest) {
             return;
         } else {
@@ -56,7 +59,7 @@ var utility = {
         $("#loading").remove();
         $('<div id="loading" class="loading" />').appendTo($('body'));
         var paramObj = {
-            url: "/" + mvcUrl,
+            url: mvcUrl,
             cache: false,
             data: parameter,
             type: httpMethod,
@@ -408,7 +411,7 @@ var Utils = {
                 if (e.keyCode) code = e.keyCode;
                 else if (e.which) code = e.which;
                 if (code == 13) {
-                    onEnter();
+                    onEnter(this);
                     e.cancelBubble = true;
                     if (e.stopPropagation) {
                         e.preventDefault();
