@@ -35,7 +35,7 @@ namespace InnoThink.Website.Controllers.Service
         }
 
         [HttpPost]
-        public JsonResult NewTopic(string Subject, int opento)
+        public JsonResult NewTopic(string Subject)
         {
             ResultBase result = new ResultBase() { };
             if (Subject.Length > 100)
@@ -62,9 +62,11 @@ namespace InnoThink.Website.Controllers.Service
                         var user = um.GetBySN(sessionData.trading.UserSN);
                         var data = new Topic_Info()
                         {
+                            DateCreated = DateTime.Now,
                             Subject = Subject,
                             TeamGroupSN = user.TeamGroupSN,
-                            IsSandBox = TrueOrFalse.False.ToInt()
+                            IsSandBox = TrueOrFalse.False.ToInt(),
+                            Step = 0
                         };
                         bool flag = dbTopic.Insert(data) > 0;
                         if (!flag)
@@ -140,7 +142,7 @@ namespace InnoThink.Website.Controllers.Service
         }
 
         [HttpPost]
-        public JsonResult UpdateMyInfo(string Professional, string UserName, string TeamGroupID)
+        public JsonResult UpdateMyInfo(string Professional, string UserName, string TeamGroupID, string EduId, string Phone)
         {
             ResultBase result = new ResultBase();
             result.setMessage("");//Default set to success.
@@ -161,6 +163,8 @@ namespace InnoThink.Website.Controllers.Service
                 user.Professional = Professional;
                 user.UserName = UserName;
                 user.TeamGroupSN = TeamGroupSN;
+                user.EduId = EduId;
+                user.Phone = Phone;
                 if (!string.IsNullOrEmpty(sessionData.trading._tempFileName))
                 {
                     //user has upload person icon, need update the value.

@@ -325,7 +325,7 @@
                     %>
                 </div>
                 <div id="body-5" style="<%=HideStyle%>">
-                    1. 資料填寫：<span class="right"><input type="button" id="leavetopic" value="退出議題" /></span>
+                    1. 資料填寫：<span class="right"></span>
                 </div>
                 <div id="body2" style="<%=HideStyle%>">
                     <table width="95%" border="0" align="center">
@@ -494,7 +494,6 @@
             //bind event for save data.
             $('#saveData').on('click', Step0.SaveData);
             $('.next').on('click', Step0.ToStep1);
-            $('#leavetopic').on('click', Step0.LeaveTopic);
 
             $('#file_upload').fileUploadUI({
                 url: '/FileUploadService/UploadPersonIcon',
@@ -523,20 +522,6 @@
                 var descript = (Step0.$Description.val().trim().length > 0) ? Step0.$Description.val() : ' ';
                 var para = { 'Descript': descript, 'LeaderVote': voteto.val(), 'TopicSN': TopicSN };
                 utility.ajaxQuiet('TopicService/UpdateUnit1Description', para);
-            }
-            , LeaveTopic: function () {
-                var para = { 'TopicSN': TopicSN };
-                var cb = function (result) {
-                    var rd = function () {
-                        var url = utility.getRedirUrl('Home', 'Index');
-                        location.href = url;
-                    }
-                    utility.showPopUp(result.msg, 1, rd);
-                };
-                var ecb = function (result) {
-                    utility.showPopUp(result.msg, 1);
-                };
-                utility.ajaxQuiet('TopicService/LeaveTopic', para, cb, ecb);
             }
             , ToStep1: function () {
                 var para = { 'TopicSN': TopicSN };

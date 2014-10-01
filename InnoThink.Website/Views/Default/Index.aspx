@@ -218,6 +218,7 @@
                 我們不只是在想，而是在創造。 InnoThink means I am not only thinking but also creating.
             </div>
             <p style="float: right; padding-right: 4px; margin-top: 4px;">
+            <!-- <input type="button" value="test" onclick="FB.login(login.FBLogin, {scope: 'public_profile, user_groups, publish_actions'} );" />-->
                 <div id="fb-root">
                 </div>
                 <div class="fb-login-button align-right" data-max-rows="1" data-size="medium" data-show-faces="false"

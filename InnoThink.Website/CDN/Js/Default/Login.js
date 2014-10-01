@@ -19,6 +19,7 @@ $(function () {
         });
         $('#loginbutton,#feedbutton').removeAttr('disabled');
     });
+
 });
 
 var login =

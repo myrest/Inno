@@ -18,4 +18,16 @@
             <a href="#" id="JoinedTopic">正在參加的議題</a>
         </td>
     </tr>
+    <tr>
+        <td>
+            <img src="/pic/slogo-2.jpg" width="22" height="20" alt="" />
+            <a href="/Member/CreateNewTopic">建立新的議題</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="/pic/slogo-2.jpg" width="22" height="20" alt="" />
+            <a href="javascript:void(0);" id="leavetopic">退出正在參加的議題</a>
+        </td>
+    </tr>
 </table>

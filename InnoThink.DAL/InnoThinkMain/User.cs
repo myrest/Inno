@@ -133,9 +133,37 @@ namespace InnoThink.DAL.User
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
+                if (!string.IsNullOrEmpty(filter.EduId))
+                {
+                    SQLStr.Append(" AND EduId=@0", filter.EduId);
+                }
+                if (!string.IsNullOrEmpty(filter.Encode))
+                {
+                    SQLStr.Append(" AND Encode=@0", filter.Encode);
+                }
+                if (filter.LastUpdate.HasValue)
+                {
+                    SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);
+                }
                 if (!string.IsNullOrEmpty(filter.LoginId))
                 {
                     SQLStr.Append("And UPPER(LoginId)=@0", filter.LoginId.ToUpper());
+                }
+                if (!string.IsNullOrEmpty(filter.Password))
+                {
+                    SQLStr.Append(" AND Password=@0", filter.Password);
+                }
+                if (!string.IsNullOrEmpty(filter.Phone))
+                {
+                    SQLStr.Append(" AND Phone=@0", filter.Phone);
+                }
+                if (!string.IsNullOrEmpty(filter.Picture))
+                {
+                    SQLStr.Append(" AND Picture=@0", filter.Picture);
+                }
+                if (!string.IsNullOrEmpty(filter.Professional))
+                {
+                    SQLStr.Append(" AND Professional=@0", filter.Professional);
                 }
                 if (filter.Status.HasValue)
                 {
@@ -149,8 +177,6 @@ namespace InnoThink.DAL.User
                 {
                     SQLStr.Append("And UserName like %@0%", filter.UserName);
                 }
-                //Should updat the filter for wide search
-
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
 

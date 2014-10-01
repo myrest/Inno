@@ -389,7 +389,7 @@
     <div id="talk0">
         <div id="talk1" class="clickable">
             <div id="talk-up1">
-                外部意見
+                留言板
             </div>
         </div>
         <span id="PublicBlock">
@@ -450,7 +450,7 @@
         <div id="talk2">
         </div>
         <div id="talk-up2">
-            內部意見
+            聊天室
         </div>
         <span id="PrivateBlock">
             <%

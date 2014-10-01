@@ -208,6 +208,10 @@ namespace InnoThink.Website.Controllers.Service
             {
                 result.setErrorMessage("主旨不得為空。");
             }
+            else if (Subject.Length > 100)
+            {
+                result.setErrorMessage("議題名稱長度超過上限。");
+            }
             else if (!isSandBox && TopicIsExist(Subject))
             {
                 result.setErrorMessage("相同主旨已存在。");

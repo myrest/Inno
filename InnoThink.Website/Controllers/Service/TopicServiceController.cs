@@ -875,23 +875,40 @@ namespace InnoThink.Website.Controllers.Service
         public JsonResult LeaveTopic(int TopicSN)
         {
             ResultBase result = new ResultBase() { };
-            var model = dbTopic.GetBySN(TopicSN);
-            if (model.DateClosed == DateTime.MinValue)
+
+            if (TopicSN == 0)
             {
-                var data = dbTopMem.GetByParameter(new TopicMember_Filter()
+                //找出所參加的議題
+                var Topic = dbTopic.getFirstTopicByUserSN(sessionData.trading.UserSN);
+                if (Topic != null && Topic.TopicSN > 0)
                 {
-                    UserSN = sessionData.trading.UserSN,
-                    TopicSN = TopicSN
-                }).FirstOrDefault();
-                if (data != null)
-                {
-                    dbTopMem.Delete(data.TopicMemberSN);
+                    TopicSN = Topic.TopicSN;
                 }
-                result.setMessage("您已退出該議題討論。");
+            }
+            if (TopicSN > 0)
+            {
+                var model = dbTopic.GetBySN(TopicSN);
+                if (model.DateClosed == null)
+                {
+                    var data = dbTopMem.GetByParameter(new TopicMember_Filter()
+                    {
+                        UserSN = sessionData.trading.UserSN,
+                        TopicSN = TopicSN
+                    }).FirstOrDefault();
+                    if (data != null)
+                    {
+                        dbTopMem.Delete(data.TopicMemberSN);
+                    }
+                    result.setMessage("您已退出該議題討論。");
+                }
+                else
+                {
+                    result.setErrorMessage("該議題已關閉。");
+                }
             }
             else
             {
-                result.setErrorMessage("該議題已關閉。");
+                result.setErrorMessage("您還沒加入任何一個議題。");
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }

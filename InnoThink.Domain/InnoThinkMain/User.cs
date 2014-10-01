@@ -10,10 +10,12 @@ namespace InnoThink.Domain
     #region interface
     public interface IUser_Info
     {
+        string EduId { get; set; }
         string Encode { get; set; }
         DateTime LastUpdate { get; set; }
         string LoginId { get; set; }
         string Password { get; set; }
+        string Phone { get; set; }
         string Picture { get; set; }
         string Professional { get; set; }
         int Status { get; set; }
@@ -30,10 +32,12 @@ namespace InnoThink.Domain
     public class User_Info //: IUser_Info
     {
         #region private fields
+        public string EduId { get; set; }
         public string Encode { get; set; }
         public DateTime LastUpdate { get; set; }
         public string LoginId { get; set; }
         public string Password { get; set; }
+        public string Phone { get; set; }
         public string Picture { get; set; }
         public string Professional { get; set; }
         public int Status { get; set; }
@@ -45,14 +49,19 @@ namespace InnoThink.Domain
         #region Constructor
         public User_Info()
         {
-            LastUpdate = DateTime.Now;
         }
         #endregion
     }
 
     public class User_Filter
     {
+        public string EduId { get; set; }
+        public string Encode { get; set; }
+        public DateTime? LastUpdate { get; set; }
         public string LoginId { get; set; }
+        public string Phone { get; set; }
+        public string Picture { get; set; }
+        public string Professional { get; set; }
         public int? Status { get; set; }
         public int? TeamGroupSN { get; set; }
         public string UserName { get; set; }

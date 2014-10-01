@@ -15,7 +15,6 @@
         <h3>我想要:</h3>
         <a href="/Member/UpdateMyInfo">修改個人資料</a><br />
         <a href="/Member/ChangePassowrd">修改密碼</a><br />
-        <a href="/Member/CreateNewTopic">建立新的議題</a><br />
         <!-- <a href="/Member/JoinedTopic">查看正在參加的議題</a><br /> -->
     </div>
 </asp:Content>

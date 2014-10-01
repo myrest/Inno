@@ -10,6 +10,7 @@ var Main = {
         $('#talk1, #tabright').on('click', function () { $('#talk0, #tabright').toggle('slideRight'); event.preventDefault(); });
         $('#otherteam-up1').trigger('click');
         $('#talk1').trigger('click');
+        $('#leavetopic').on('click', Main.LeaveTopic);
     },
     DDLMenu: [
     {
@@ -104,8 +105,22 @@ var Main = {
             utility.showPopUp(data.msg, 1);
         }
         utility.ajaxQuiet('TopicService/GetFirstTopic', null, cb, ecb);
-    },
-    ChangeWorkFlow: function () {
+    }
+    , LeaveTopic: function () {
+        var para = { 'TopicSN': 0 };
+        var cb = function (result) {
+            var rd = function () {
+                var url = utility.getRedirUrl('Home', 'Index');
+                location.href = url;
+            }
+            utility.showPopUp(result.msg, 1, rd);
+        };
+        var ecb = function (result) {
+            utility.showPopUp(result.msg, 1);
+        };
+        utility.ajaxQuiet('TopicService/LeaveTopic', para, cb, ecb);
+    }
+    , ChangeWorkFlow: function () {
         var $this = $(this);
         var _topic = 0;
         if (TopicSN == undefined) {

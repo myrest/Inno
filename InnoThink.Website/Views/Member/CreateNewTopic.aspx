@@ -22,18 +22,6 @@
                 </td>
             </tr>
             <tr>
-                <td>開放範圍：
-                </td>
-                <td>
-                    <label for="all">
-                        <input type="radio" id="all" name="opento" value="<% =(int)TopicPublishType.All %>" />全部</label>
-                    <label for="all">
-                        <input type="radio" id="tg" name="opento" value="<% =(int)TopicPublishType.TeamGroup %>" />同一團隊</label>
-                    <label for="all">
-                        <input type="radio" id="private" name="opento" value="<% =(int)TopicPublishType.Private %>" checked="checked" />儘自己</label>
-                </td>
-            </tr>
-            <tr>
                 <td colspan="2">
                     <input type="button" id="save" value="建立" />
                 </td>
@@ -55,7 +43,7 @@
                 }
                 else {
                     var $opento = $('input[name=opento]:checked');
-                    var param = { subject: $('#subject').val(), opento: $opento.val() };
+                    var param = { subject: $('#subject').val() };
                     utility.service("MemberService/NewTopic", param, "POST", function (data) {
                         if (data.code > 0) {
                             var redirto = utility.getRedirUrl('Member', 'UserInfo') + '?' + (new Date()).getMilliseconds();

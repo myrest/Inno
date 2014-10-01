@@ -40,6 +40,20 @@
                 </td>
             </tr>
             <tr>
+                <td>學號：
+                </td>
+                <td>
+                    <input type="text" id="EduId" value="<% =Model.EduId %>" />
+                </td>
+            </tr>
+            <tr>
+                <td>電話：
+                </td>
+                <td>
+                    <input type="text" id="Phone" value="<% =Model.Phone %>" />
+                </td>
+            </tr>
+            <tr>
                 <td>所屬群組：
                 </td>
                 <td>
@@ -86,7 +100,11 @@
         var updateMyInfo = {
             _Save: function () {
                 var TeamGroupID = $('#TeamGroupID').val();
-                var param = { Professional: $('#Professional').val(), UserName: $('#UserName').val(), TeamGroupID: TeamGroupID };
+                var param = { Professional: $('#Professional').val(), UserName: $('#UserName').val()
+                , TeamGroupID: TeamGroupID
+                , EduId: $('#EduId').val()
+                , Phone: $('#Phone').val()
+                };
                 utility.service("MemberService/UpdateMyInfo", param, "POST", function (data) {
                     if (data.code > 0) {
                         var redirto = '/Member/UserInfo' + '?' + (new Date()).getMilliseconds();
