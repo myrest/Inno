@@ -5,6 +5,8 @@
 <%@ Import Namespace="InnoThink.Website.Models" %>
 <%@ Import Namespace="InnoThink.Domain" %>
 <%@ Import Namespace="InnoThink.Core.Constancy" %>
+<%@ Import Namespace="InnoThink.Domain.Constancy" %>
+<%@ Import Namespace="InnoThink.Core.DB" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     第二次我的情境故事
 </asp:Content>
@@ -281,6 +283,40 @@
                         <tr>
                             <td colspan="3" valign="top">
                                 <span id="CurrentChar"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <%
+                                    List<ScenarioRankModel> RankAvg = (List<ScenarioRankModel>)ViewData["Rank"];
+                                    RankAvg.Where(x => !string.IsNullOrEmpty(x.Title)).ToList().ForEach(y =>
+                                    {
+                                %>
+                                <div class="valuerankdiv">
+                                    <table width="100%">
+                                        <tr bgcolor="#FFB7FF">
+                                            <td>
+                                                <% =y.Title %>的情境
+                                            </td>
+                                        </tr>
+                                        <%
+                                    y.Data.ForEach(z =>
+                                    {
+                                        %>
+                                        <tr>
+                                            <td>
+                                                <% =string.Format("{0}&nbsp;({1}分)", z.Key, z.Value) %>
+                                            </td>
+                                        </tr>
+                                        <%
+                                    });
+                                        %>
+                                    </table>
+                                </div>
+                                <%
+                                });
+
+                                %>
                             </td>
                         </tr>
                         <tr>

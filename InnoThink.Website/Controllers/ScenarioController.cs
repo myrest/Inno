@@ -262,6 +262,23 @@ namespace InnoThink.Website.Controllers
             ViewData["AllMember"] = AllMember;
             ViewData["LeaderUserSN"] = LeaderUser.UserSN;
 
+
+            //Handel char value
+            //Need to get all the rank for the each char.
+            var charRank = dbScenario.GetCharAvgRankByTopic(TopicSN, ScenarioType.FirstTime);
+            var charValueRank = dbScenario.GetCharValueAvgRankByTopic(TopicSN, ScenarioType.FirstTime);
+            List<ScenarioRankModel> AllRank = new List<ScenarioRankModel>() { };
+            if (charRank != null)
+            {
+                AllRank.AddRange(charRank);
+            }
+            if (charValueRank != null)
+            {
+                AllRank.AddRange(charValueRank);
+            }
+            ViewData["Rank"] = AllRank;
+
+
             return View();
         }
     }
