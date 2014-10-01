@@ -16,12 +16,15 @@ using System.Web.Mvc;
 using InnoThink.Domain;
 using InnoThink.Domain.InnoThinkMain.Binding;
 using InnoThink.Domain.Constancy;
+using InnoThink.BLL.Topic;
+using InnoThink.BLL.User;
 
 namespace InnoThink.Website.Controllers.Service
 {
     public class ScenarioServiceController : BaseController
     {
         private static readonly SysLog Log = SysLog.GetLogger(typeof(ScenarioServiceController));
+        private static readonly Topic_Manager dbTopic = new Topic_Manager();
         
         private static readonly DbResultTable dbResult = new DbResultTable() { };
         private static readonly DbScenarioTable dbScenario = new DbScenarioTable() { };
@@ -466,7 +469,14 @@ namespace InnoThink.Website.Controllers.Service
         {
             if (UserSN == 0)
             {
-                UserSN = sessionData.trading.UserSN;
+                //using Leader's sn for default setting
+                var Topic = dbTopic.GetBySN(TopicSN);
+                User_Manager um = new User_Manager();
+                var LeaderUser = um.GetByParameter(new User_Filter()
+                {
+                    LoginId = Topic.LeaderLoginId
+                }).FirstOrDefault();
+                UserSN = LeaderUser.UserSN;
             }
 
             ScenarioCharResultViewModel result = new ScenarioCharResultViewModel(UserSN) { };

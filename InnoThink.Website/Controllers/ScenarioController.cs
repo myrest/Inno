@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using InnoThink.Domain;
 using InnoThink.Domain.InnoThinkMain.Binding;
 using InnoThink.Domain.Constancy;
+using InnoThink.BLL.Topic;
+using InnoThink.BLL.User;
 
 namespace InnoThink.Website.Controllers
 {
@@ -18,7 +20,7 @@ namespace InnoThink.Website.Controllers
         //
         // GET: /Scenario/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(TopicController));
-
+        private static readonly Topic_Manager dbTopic = new Topic_Manager();
         
         
         private static readonly DbResultTable dbResult = new DbResultTable() { };
@@ -197,12 +199,18 @@ namespace InnoThink.Website.Controllers
                     x.ServerFileName = StringUtility.ConvertScenarioPath(x.ServerFileName);
                 });
             }
+            var Topic = dbTopic.GetBySN(TopicSN);
+            User_Manager um = new User_Manager();
+            var LeaderUser = um.GetByParameter(new User_Filter()
+            {
+                LoginId = Topic.LeaderLoginId
+            }).FirstOrDefault();
 
             Model.Listing = list;
             Model.TopicSN = TopicSN;
             ViewData["Model"] = Model;
             ViewData["Rank"] = AllRank;
-
+            ViewData["IsLeader"] = (LeaderUser.UserSN == sessionData.trading.UserSN);
             return View();
         }
 
@@ -212,8 +220,15 @@ namespace InnoThink.Website.Controllers
             TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();
 
+            //User Leader's char
             //Get ScenarioChar infor
-            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.UserSN) { };
+            var Topic = dbTopic.GetBySN(TopicSN);
+            User_Manager um = new User_Manager();
+            var LeaderUser = um.GetByParameter(new User_Filter()
+            {
+                LoginId = Topic.LeaderLoginId
+            }).FirstOrDefault();
+            ScenarioCharViewModel Model = new ScenarioCharViewModel(LeaderUser.UserSN) { };
             var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.SecondTime);
             if (list != null)
             {
@@ -239,12 +254,13 @@ namespace InnoThink.Website.Controllers
                 AllMember.AddRange(OffLineMem);
             }
 
-            //Make ViewData
-            ViewData["AllMember"] = AllMember;
+            //remove all, except Leader
+            AllMember.Where(x => x.UserSN != LeaderUser.UserSN).ToList().ForEach(x => AllMember.Remove(x));
 
             //Make ViewData
             ViewData["Model"] = Model;
             ViewData["AllMember"] = AllMember;
+            ViewData["LeaderUserSN"] = LeaderUser.UserSN;
 
             return View();
         }

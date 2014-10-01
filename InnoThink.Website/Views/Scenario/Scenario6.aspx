@@ -259,13 +259,19 @@
                         ViewData["QCBAR"] = QCBAR;
                         Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");
                         bool IsTeamMember = (bool)ViewData["IsTeamMember"];
+                        bool IsLeader = (bool)ViewData["IsLeader"];
                         bool NotTeamMember = !IsTeamMember;
                         string HideEditClass = string.Empty;
                         string HideStyle = string.Empty;
+                        string HideForTeamMember = string.Empty;
                         if (NotTeamMember)
                         {
                             HideEditClass = "hide";
                             HideStyle = "display:none;";
+                        }
+                        if (!IsLeader)
+                        {
+                            HideForTeamMember = "hide";
                         }
                     %>
                 </div>
@@ -330,11 +336,11 @@
                                 %>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td colspan="2" valign="top">3. 選擇我的新身份：
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td width="13%" valign="top" bgcolor="#FFFF99">
                                 <input type="hidden" name="TopicSN" value="<%=Model.TopicSN %>" />
                                 1. 暱稱：
@@ -343,7 +349,7 @@
                                 <input name="NickName" type="text" id="NickName" size="16" value="<%=Model.Data.NickName %>" />
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top">2. 性別：
                             </td>
                             <td valign="top">
@@ -353,7 +359,7 @@
                                 女性
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top" bgcolor="#FFFF99">3. 年齡：
                             </td>
                             <td valign="top" bgcolor="#FFFF99">
@@ -367,7 +373,7 @@
                                 26~30 歲
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top"></td>
                             <td valign="top">
                                 <input type="radio" name="AgeRang" value="4" <% =((int)Model.Data.AgeRang == 4)?"checked":"" %> />
@@ -380,7 +386,7 @@
                                 61歲以上
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top" bgcolor="#FFFF99">4. 教育程度：
                             </td>
                             <td valign="top" bgcolor="#FFFF99">
@@ -400,7 +406,7 @@
                                 博士
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top">5. 職業：
                             </td>
                             <td valign="top">
@@ -438,7 +444,7 @@
                                 <input name="CareerOther" type="text" id="CareerOther" size="16" value="<% =CareerOther%>" />
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top" bgcolor="#FFFF99">6. 月收入：
                                 <%
                                     string[] SalaryArr = new string[8];
@@ -456,7 +462,7 @@
                                 30,001 ~ 40,000
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top">&nbsp;
                             </td>
                             <td valign="top">
@@ -470,7 +476,7 @@
                                 70,001 以上
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top" bgcolor="#FFFF99">7. 人格：
                                 <%
                                     string[] PersonArr = { "衝動", "溫和", "穩重", "暴躁", "柔弱", "" };
@@ -504,7 +510,7 @@
                                 <input name="PersonalityOther" type="text" id="PersonalityOther" size="16" <%=PersonOther %> />
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top">8. 長相：
                             </td>
                             <td align="left" valign="top">
@@ -530,13 +536,13 @@
                                 </span>(請畫出來)
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top" bgcolor="#FFFF99">&nbsp;
                             </td>
                             <td align="left" valign="top" bgcolor="#FFFF99">&nbsp;
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top">9. 我的議題：
                             </td>
                             <td align="left" valign="top">
@@ -544,7 +550,7 @@
                                 (該角色主要探討之情境故事議題)
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="<% =HideForTeamMember%> %>">
                             <td valign="top">&nbsp;
                             </td>
                             <td align="right" valign="top">

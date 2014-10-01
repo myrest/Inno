@@ -248,7 +248,7 @@
         var Model = (ScenarioCharViewModel)ViewData["Model"];
         var AllMember = (List<InnoThink.Domain.InnoThinkMain.Binding.TopicMemberUI>)ViewData["AllMember"];
         var CharModel = Model.Data;
-        int UserSN = (int)ViewData["_UserSN"];
+        int UserSN = (int)ViewData["LeaderUserSN"];
     %>
     <table class="body0 StepBody">
         <tr>

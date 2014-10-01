@@ -589,7 +589,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="groupname" value="想法" size="19" />
+                                    <input type="text" name="groupname" value="想法" size="15" />
                                 </td>
                             </tr>
                             <tr>
@@ -638,7 +638,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="groupname" value="想法" size="19" />
+                                    <input type="text" name="groupname" value="想法" size="15" />
                                 </td>
                             </tr>
                             <tr>
@@ -736,7 +736,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="groupname" value="想法" size="19" />
+                                    <input type="text" name="groupname" value="想法" size="15" />
                                 </td>
                             </tr>
                             <tr>

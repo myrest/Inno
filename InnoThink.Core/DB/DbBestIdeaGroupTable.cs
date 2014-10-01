@@ -191,7 +191,7 @@ namespace InnoThink.Core.DB
                 From BestIdeaGroup a inner join BestIdeaGroupRank b
                     on a.BestIdeaGroupSN = b.BestIdeaGroupSN
                 Where a.TopicSN = @TopicSN
-                Group by b.BestIdeaGroupSN, a.GroupName, a.Type ";
+                Group by b.BestIdeaGroupSN, a.GroupName, a.Type order by avg(b.Rank) desc";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));
             List<DbBest6DataModel> itemList = ExecuteReader<DbBest6DataModel>(CommandType.Text, strCMD, listPara, getDataModuleCallBack);
