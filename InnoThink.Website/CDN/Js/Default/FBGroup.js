@@ -1,11 +1,10 @@
 $(function () {
     InnoFB.RandFBGroup();
 });
-//Facebook app Secret
-//0efabca716bc6ba28c16b01c1d088321
+
 var InnoFB = {
-    fbGroupUrl: 'https://graph.facebook.com/v2.1/536281986502720/feed?limit=100&access_token=' + token
-    , fbGroupMsgUrl: 'https://graph.facebook.com/v2.1/536281986502720/feed?&access_token=' + token + '&message='
+    fbGroupUrl: 'https://graph.facebook.com/v2.1/' + fbGroupId + '/feed?limit=100&access_token=' + token
+    , fbGroupMsgUrl: 'https://graph.facebook.com/v2.1/' + fbGroupId + '/feed?&access_token=' + token + '&message='
     , fbGraphUrl: 'https://graph.facebook.com/v2.1/'
     , RandFBGroup: function () {
         utility.service(InnoFB.fbGroupUrl, null, 'Get', InnoFB.ParsFB, InnoFB.ParsFailed);

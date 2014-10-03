@@ -222,7 +222,7 @@
                 <div id="fb-root">
                 </div>
                 <div class="fb-login-button align-right" data-max-rows="1" data-size="medium" data-show-faces="false"
-                    onlogin="login.FBLogin()" data-auto-logout-link="false" data-scope="public_profile, user_groups, publish_actions">
+                    onlogin="login.FBLogin()" data-auto-logout-link="false" data-scope="public_profile, user_groups, publish_actions, email">
                 </div>
             </p>
             <div id="body3">

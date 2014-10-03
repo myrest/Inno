@@ -97,8 +97,7 @@
                 var param = { SN: $(this).data('id') };
                 utility.service("MemberService/JoinTopic", param, "POST", function (data) {
                     if (data.code > 0) {
-                        var redirto = utility.getRedirUrl('Member', 'UserInfo') + '?' + (new Date()).getMilliseconds();
-                        utility.showPopUp("參加申請已送出", 1, function () { window.location.href = redirto; });
+                        utility.showPopUp("參加申請已送出", 1, Main.FirstTopic);
                     } else {
                         utility.showPopUp(data.msg, 1);
                     }

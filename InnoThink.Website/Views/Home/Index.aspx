@@ -444,6 +444,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">
     <script>
         var token = '<%=ViewData["FBToken"].ToString() %>';
+        var fbGroupId = '<%=ViewData["FBGroupID"].ToString() %>';
     </script>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/Default/FBGroup.js") %>"></script>
 </asp:Content>
