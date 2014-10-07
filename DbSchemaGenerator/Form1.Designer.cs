@@ -41,6 +41,15 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabDBSetting = new System.Windows.Forms.TabControl();
             this.Sqlite = new System.Windows.Forms.TabPage();
+            this.MsSql = new System.Windows.Forms.TabPage();
+            this.password = new System.Windows.Forms.TextBox();
+            this.username = new System.Windows.Forms.TextBox();
+            this.dbname = new System.Windows.Forms.TextBox();
+            this.servername = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabBuildIdv = new System.Windows.Forms.TabPage();
             this.ContentBody = new System.Windows.Forms.TextBox();
@@ -54,24 +63,14 @@
             this.GenDomain = new System.Windows.Forms.Button();
             this.DDLTableListing = new System.Windows.Forms.ComboBox();
             this.tabMainFunction = new System.Windows.Forms.TabControl();
-            this.MsSql = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.servername = new System.Windows.Forms.TextBox();
-            this.dbname = new System.Windows.Forms.TextBox();
-            this.username = new System.Windows.Forms.TextBox();
-            this.password = new System.Windows.Forms.TextBox();
             this.tabDBSetting.SuspendLayout();
             this.Sqlite.SuspendLayout();
+            this.MsSql.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabBuildIdv.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabMainFunction.SuspendLayout();
-            this.MsSql.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -184,6 +183,88 @@
             this.Sqlite.Text = "Sqlite setting";
             this.Sqlite.UseVisualStyleBackColor = true;
             // 
+            // MsSql
+            // 
+            this.MsSql.Controls.Add(this.password);
+            this.MsSql.Controls.Add(this.username);
+            this.MsSql.Controls.Add(this.dbname);
+            this.MsSql.Controls.Add(this.servername);
+            this.MsSql.Controls.Add(this.label5);
+            this.MsSql.Controls.Add(this.label4);
+            this.MsSql.Controls.Add(this.label3);
+            this.MsSql.Controls.Add(this.label1);
+            this.MsSql.Location = new System.Drawing.Point(4, 22);
+            this.MsSql.Name = "MsSql";
+            this.MsSql.Padding = new System.Windows.Forms.Padding(3);
+            this.MsSql.Size = new System.Drawing.Size(793, 69);
+            this.MsSql.TabIndex = 2;
+            this.MsSql.Text = "MsSql";
+            this.MsSql.UseVisualStyleBackColor = true;
+            // 
+            // password
+            // 
+            this.password.Location = new System.Drawing.Point(315, 39);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(128, 22);
+            this.password.TabIndex = 8;
+            // 
+            // username
+            // 
+            this.username.Location = new System.Drawing.Point(315, 11);
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(128, 22);
+            this.username.TabIndex = 7;
+            // 
+            // dbname
+            // 
+            this.dbname.Location = new System.Drawing.Point(92, 39);
+            this.dbname.Name = "dbname";
+            this.dbname.Size = new System.Drawing.Size(128, 22);
+            this.dbname.TabIndex = 6;
+            // 
+            // servername
+            // 
+            this.servername.Location = new System.Drawing.Point(92, 11);
+            this.servername.Name = "servername";
+            this.servername.Size = new System.Drawing.Size(128, 22);
+            this.servername.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(258, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 12);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Password:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(253, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 12);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "UserName:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 42);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Database Name:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Server Name:";
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.lbNameSpace);
@@ -209,7 +290,7 @@
             this.tabBuildIdv.Location = new System.Drawing.Point(4, 22);
             this.tabBuildIdv.Name = "tabBuildIdv";
             this.tabBuildIdv.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBuildIdv.Size = new System.Drawing.Size(793, 336);
+            this.tabBuildIdv.Size = new System.Drawing.Size(793, 302);
             this.tabBuildIdv.TabIndex = 0;
             this.tabBuildIdv.Text = "Build individual";
             this.tabBuildIdv.UseVisualStyleBackColor = true;
@@ -222,7 +303,7 @@
             this.ContentBody.Name = "ContentBody";
             this.ContentBody.ReadOnly = true;
             this.ContentBody.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.ContentBody.Size = new System.Drawing.Size(652, 272);
+            this.ContentBody.Size = new System.Drawing.Size(652, 238);
             this.ContentBody.TabIndex = 1;
             this.ContentBody.WordWrap = false;
             // 
@@ -231,7 +312,7 @@
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(138, 304);
+            this.panel2.Location = new System.Drawing.Point(138, 270);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(652, 29);
             this.panel2.TabIndex = 3;
@@ -318,7 +399,7 @@
             this.DDLTableListing.FormattingEnabled = true;
             this.DDLTableListing.Location = new System.Drawing.Point(3, 3);
             this.DDLTableListing.Name = "DDLTableListing";
-            this.DDLTableListing.Size = new System.Drawing.Size(135, 330);
+            this.DDLTableListing.Size = new System.Drawing.Size(135, 296);
             this.DDLTableListing.TabIndex = 0;
             this.DDLTableListing.SelectedIndexChanged += new System.EventHandler(this.DDLTableListing_SelectedIndexChanged);
             // 
@@ -334,98 +415,6 @@
             this.tabMainFunction.TabIndex = 8;
             this.tabMainFunction.SelectedIndexChanged += new System.EventHandler(this.tabMainFunction_SelectedIndexChanged);
             // 
-            // MsSql
-            // 
-            this.MsSql.Controls.Add(this.password);
-            this.MsSql.Controls.Add(this.username);
-            this.MsSql.Controls.Add(this.dbname);
-            this.MsSql.Controls.Add(this.servername);
-            this.MsSql.Controls.Add(this.button3);
-            this.MsSql.Controls.Add(this.label5);
-            this.MsSql.Controls.Add(this.label4);
-            this.MsSql.Controls.Add(this.label3);
-            this.MsSql.Controls.Add(this.label1);
-            this.MsSql.Location = new System.Drawing.Point(4, 22);
-            this.MsSql.Name = "MsSql";
-            this.MsSql.Padding = new System.Windows.Forms.Padding(3);
-            this.MsSql.Size = new System.Drawing.Size(793, 69);
-            this.MsSql.TabIndex = 2;
-            this.MsSql.Text = "MsSql";
-            this.MsSql.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Server Name:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 42);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 12);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Database Name:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(253, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 12);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "UserName:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(258, 42);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 12);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Password:";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(667, 37);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Connect";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // servername
-            // 
-            this.servername.Location = new System.Drawing.Point(92, 11);
-            this.servername.Name = "servername";
-            this.servername.Size = new System.Drawing.Size(128, 22);
-            this.servername.TabIndex = 5;
-            // 
-            // dbname
-            // 
-            this.dbname.Location = new System.Drawing.Point(92, 39);
-            this.dbname.Name = "dbname";
-            this.dbname.Size = new System.Drawing.Size(128, 22);
-            this.dbname.TabIndex = 6;
-            // 
-            // username
-            // 
-            this.username.Location = new System.Drawing.Point(315, 11);
-            this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(128, 22);
-            this.username.TabIndex = 7;
-            // 
-            // password
-            // 
-            this.password.Location = new System.Drawing.Point(315, 39);
-            this.password.Name = "password";
-            this.password.Size = new System.Drawing.Size(128, 22);
-            this.password.TabIndex = 8;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -438,6 +427,8 @@
             this.tabDBSetting.ResumeLayout(false);
             this.Sqlite.ResumeLayout(false);
             this.Sqlite.PerformLayout();
+            this.MsSql.ResumeLayout(false);
+            this.MsSql.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabBuildIdv.ResumeLayout(false);
@@ -445,8 +436,6 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tabMainFunction.ResumeLayout(false);
-            this.MsSql.ResumeLayout(false);
-            this.MsSql.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -484,7 +473,6 @@
         private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.TextBox dbname;
         private System.Windows.Forms.TextBox servername;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

@@ -241,12 +241,67 @@ namespace DbSchemaGenerator
                 Tables.ForEach(x =>
                 {
                     string pk = string.Empty;
-                    var columns = GetColumnInformationByTable(x, out pk);
-                    FileCreator.CreateDomainFile(columns, pk, DomainPath, NameSpace.Text.Trim(), x);
+                    Dictionary<string, string> columns = new Dictionary<string, string>() { };
+                    List<ColumnInformation> Column3s = new List<ColumnInformation>() { };
+                    if (tabDBSetting.SelectedIndex == 1)
+                    {
+                        var conn = GetDbConnector.GetMssqlConnection(servername.Text, dbname.Text, username.Text, password.Text);
+                        conn.Open();
+                        Column3s = GetColumnInformationByTable(x, out pk, conn);
+                        conn.Close();
+                    }
+                    else
+                    {
+                        columns = GetColumnInformationByTable(x, out pk);
+                    }
+
+                    FileCreator.CreateDomainFile(Column3s, pk, DomainPath, NameSpace.Text.Trim(), x);
                     FileCreator.CreateDALFile(columns, pk, DALPath, NameSpace.Text.Trim(), x);
                     FileCreator.CreateBLLFile(columns, pk, BLLPath, NameSpace.Text.Trim(), x);
                 });
             }
+        }
+
+        private List<ColumnInformation> GetColumnInformationByTable(string TableName, out string pk,  SqlConnection conn)
+        {
+            List<ColumnInformation> rtn = new List<ColumnInformation>() { };
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand(string.Format(@"
+                    select ctype.Data_type [DataType], st.name [Table], sc.name [Column], sep.value [Description] from sys.tables st
+                    inner join sys.columns sc on st.object_id = sc.object_id left join sys.extended_properties sep on st.object_id = sep.major_id
+                    and sc.column_id = sep.minor_id and sep.name = 'MS_Description'
+                    inner join INFORMATION_SCHEMA.COLUMNS ctype on sc.name = ctype.Column_Name and ctype.TABLE_NAME = st.name
+                    where st.name = '{0}'", TableName), conn);
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    rtn.Add(new ColumnInformation()
+                    {
+                        DataType = myReader["DataType"].ToString(),
+                        Description = myReader["Description"].ToString(),
+                        Name = myReader["Column"].ToString()
+                    });
+                }
+                myReader.Close();
+                myCommand.CommandText = string.Format("SELECT Column_Name FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE OBJECTPROPERTY(OBJECT_ID(constraint_name), 'IsPrimaryKey') = 1 AND table_name = '{0}'", TableName);
+                myReader = myCommand.ExecuteReader();
+                if (myReader.Read())
+                {
+                    pk = myReader["Column_Name"].ToString();
+                }
+                else
+                {
+                    pk = string.Empty;
+                }
+            }
+            catch (Exception e)
+            {
+                pk = string.Empty;
+                throw e;
+            }
+            return rtn;
         }
 
         private void FileGenerator()
@@ -447,6 +502,22 @@ namespace DbSchemaGenerator
 
         private void tabMainFunction_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (tabMainFunction.SelectedIndex == 1)
+            {
+                if (tabDBSetting.SelectedIndex == 0 && FileName.Text == "NoData")
+                {
+                    tabMainFunction.SelectedIndex = 0;
+                    MessageBox.Show("Sqlite資料來源還沒設定完成。");
+                }
+                if (tabDBSetting.SelectedIndex == 1)
+                {
+                    if (string.IsNullOrEmpty(dbname.Text) || string.IsNullOrEmpty(servername.Text) || string.IsNullOrEmpty(username.Text) || string.IsNullOrEmpty(password.Text))
+                    {
+                        tabMainFunction.SelectedIndex = 0;
+                        MessageBox.Show("MsSql資料來源還沒設定完成。");
+                    }
+                }
+            }
             if (tabMainFunction.SelectedTab.Name == tabBuildIdv.Name)
             {
                 ReloadSchemaSqlite();
@@ -464,11 +535,26 @@ namespace DbSchemaGenerator
         {
             string pk = string.Empty;
             string Content = string.Empty;
-            var columns = GetColumnInformationByTable(DDLTableListing.SelectedValue.ToString(), out pk);
+
+            Dictionary<string, string> columns = new Dictionary<string, string>() { };
+            List<ColumnInformation> Column3s = new List<ColumnInformation>() { };
+            if (tabDBSetting.SelectedIndex == 1)
+            {
+                var conn = GetDbConnector.GetMssqlConnection(servername.Text, dbname.Text, username.Text, password.Text);
+                conn.Open();
+                Column3s = GetColumnInformationByTable(DDLTableListing.SelectedValue.ToString(), out pk, conn);
+                conn.Close();
+            }
+            else
+            {
+                columns = GetColumnInformationByTable(DDLTableListing.SelectedValue.ToString(), out pk);
+            }
+
+
             switch (gt)
             {
                 case GenType.Domain:
-                    Content = FileCreator.GetDomainContent(columns, pk, DomainPath, NameSpace.Text.Trim(), DDLTableListing.SelectedValue.ToString());
+                    Content = FileCreator.GetDomainContent(Column3s, pk, DomainPath, NameSpace.Text.Trim(), DDLTableListing.SelectedValue.ToString());
                     break;
                 case GenType.DAL:
                     Content = FileCreator.CreateDALContent(columns, pk, DomainPath, NameSpace.Text.Trim(), DDLTableListing.SelectedValue.ToString());

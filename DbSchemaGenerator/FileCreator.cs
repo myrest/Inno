@@ -58,8 +58,13 @@ namespace DbSchemaGenerator
             return rtn;
         }
 
+        private static string MapTypeSqlite(ColumnInformation item, bool isFilter = false)
+        {
+            return MapTypeSqlite(new KeyValuePair<string, string>(item.Name, item.DataType), isFilter);
+        }
+
         #region Domain
-        internal static string GetDomainContent(Dictionary<string, string> columns, string pk, string DomainPath, string NameSpace, string TableName)
+        internal static string GetDomainContent(List<ColumnInformation> columns, string pk, string DomainPath, string NameSpace, string TableName)
         {
             string curNamespace = string.Format("{0}.Domain", NameSpace);
             StringBuilder sb = new StringBuilder();
@@ -94,6 +99,14 @@ namespace {0}
         #region private fields", TableName, pk);
             foreach (var item in columns)
             {
+                //Column description
+                if (!string.IsNullOrEmpty(item.Description))
+                {
+                    sb.AppendFormat(@"
+        /// <summary>
+        /// {0}
+        /// </summary>", item.Description);
+                }
                 sb.AppendFormat(@"
         public {0}", MapTypeSqlite(item));
             }
@@ -123,7 +136,7 @@ namespace {0}
             return sb.ToString();
         }
 
-        internal static void CreateDomainFile(Dictionary<string, string> columns, string pk, string DomainPath, string NameSpace, string TableName)
+        internal static void CreateDomainFile(List<ColumnInformation> columns, string pk, string DomainPath, string NameSpace, string TableName)
         {
             string Content = GetDomainContent(columns, pk, DomainPath, NameSpace, TableName);
 
@@ -474,5 +487,12 @@ namespace {1}
             }
         }
         #endregion
+    }
+
+    public class ColumnInformation
+    {
+        public string Name { get; set; }
+        public string DataType { get; set; }
+        public string Description { get; set; }
     }
 }
