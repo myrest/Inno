@@ -11,29 +11,38 @@ namespace DbSchemaGenerator
     {
         private static string MapTypeSqlite(KeyValuePair<string, string> item, bool isFilter = false)
         {
-            string SqlDataType = item.Value;
+            string SqlDataType = item.Value.ToUpper();
             string SqlDataName = item.Key;
             string rtn = string.Empty;
             string AllowNull = (isFilter) ? "?" : "";
             switch (SqlDataType)
             {
                 case "TEXT":
+                case "NVARCHAR":
+                case "VARCHAR":
+                case "CHAR":
+                case "NCHAR":
+                case "NTEXT":
                     SqlDataType = "string";
                     break;
                 case "NUM":
                 case "INTEGER":
                 case "INT":
                 case "NUMERIC":
+                case "BIT":
                     SqlDataType = SqlDataName.StartsWith("is") ? "bool" : "int";
                     SqlDataType += AllowNull;
                     break;
                 case "DATE":
                 case "TIME":
                 case "TIMESTAMP":
+                case "DATETIME":
+                case "SMALLDATETIME":
                     SqlDataType = "DateTime";
                     SqlDataType += AllowNull;
                     break;
                 case "REAL":
+                case "MONEY":
                     SqlDataType = "decimal";
                     SqlDataType += AllowNull;
                     break;

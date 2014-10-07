@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Data.SqlClient;
 
 namespace DbSchemaGenerator
 {
@@ -50,6 +51,12 @@ namespace DbSchemaGenerator
                         NameSpace.Text = settings[0];
                         FileName.Text = settings[1];
                         TargetFolder.Text = settings[2];
+
+                        //MsSql Setting
+                        servername.Text = settings[3];
+                        dbname.Text = settings[4];
+                        username.Text = settings[5];
+                        password.Text = settings[6];
                     }
                 }
             }
@@ -65,10 +72,16 @@ namespace DbSchemaGenerator
 
         private void SaveSetting()
         {
-            string[] mergeCon = new string[3];
+            string[] mergeCon = new string[7];
             mergeCon[0] = NameSpace.Text;
             mergeCon[1] = FileName.Text;
             mergeCon[2] = TargetFolder.Text;
+            //MSsql Setting
+            mergeCon[3] = servername.Text;
+            mergeCon[4] = dbname.Text;
+            mergeCon[5] = username.Text;
+            mergeCon[6] = password.Text;
+
             string setting = string.Join(",", mergeCon);
             using (FileStream fs = File.Create(SettingFullFileName))
             {
@@ -107,27 +120,34 @@ namespace DbSchemaGenerator
         private bool CheckAndSetEnv()
         {
             bool rtn = false;
-            if (string.Compare(TargetFolder.Text, "NoData", true) == 0)
+            string DBfilename = string.Empty;
+            switch (tabDBSetting.SelectedIndex)
             {
-                MessageBox.Show("Plese select your out target folder.");
-                FolderSelector.Focus();
+                case 0:
+                    //check sqlite
+                    rtn = CheckAndSetSqlite();
+                    DBfilename = Path.GetFileNameWithoutExtension(FileName.ToString().Trim());
+                    break;
+                case 1:
+                    rtn = CheckAndSetMsSql();
+                    DBfilename = dbname.Text;
+                    break;
+                default:
+                    throw new Exception("Data check is not implemented.");
             }
-            else if (string.IsNullOrEmpty(NameSpace.Text.Trim()))
+
+            if (string.IsNullOrEmpty(DBfilename))
             {
-                MessageBox.Show("Namespace is not option.");
-                NameSpace.Focus();
+                rtn = false;
+                MessageBox.Show("DBfilename is empty.");
             }
-            else if (string.Compare(FileName.Text, "NoData", true) == 0)
-            {
-                MessageBox.Show("Plese select your database file.");
-                FileSelector.Focus();
-            }
-            else
+
+
+            if (rtn)
             {
                 //Check Folder is exist.
                 string curNamespace = NameSpace.Text.Trim();
                 string targetPath = TargetFolder.Text.Trim();
-                string DBfilename = Path.GetFileNameWithoutExtension(FileName.ToString().Trim());
                 DomainPath = string.Format(@"{0}\{1}.Domain\{2}", targetPath, curNamespace, DBfilename);
                 BLLPath = string.Format(@"{0}\{1}.BLL\{2}", targetPath, curNamespace, DBfilename);
                 DALPath = string.Format(@"{0}\{1}.DAL\{2}", targetPath, curNamespace, DBfilename);
@@ -159,6 +179,61 @@ namespace DbSchemaGenerator
             return rtn;
         }
 
+        private bool CheckAndSetMsSql()
+        {
+            bool rtn = false;
+            if (string.IsNullOrEmpty(servername.Text.Trim()))
+            {
+                MessageBox.Show("Server name is empty.");
+                servername.Focus();
+            }
+            else if (string.IsNullOrEmpty(dbname.Text.Trim()))
+            {
+                MessageBox.Show("Database name is empty.");
+                dbname.Focus();
+            }
+            else if (string.IsNullOrEmpty(username.Text.Trim()))
+            {
+                MessageBox.Show("User name is empty.");
+                username.Focus();
+            }
+            else if (string.IsNullOrEmpty(password.Text.Trim()))
+            {
+                MessageBox.Show("Password is empty.");
+                password.Focus();
+            }
+            else
+            {
+                rtn = true;
+            }
+            return rtn;
+        }
+
+        private bool CheckAndSetSqlite()
+        {
+            bool rtn = false;
+            if (string.Compare(TargetFolder.Text, "NoData", true) == 0)
+            {
+                MessageBox.Show("Plese select your out target folder.");
+                FolderSelector.Focus();
+            }
+            else if (string.IsNullOrEmpty(NameSpace.Text.Trim()))
+            {
+                MessageBox.Show("Namespace is not option.");
+                NameSpace.Focus();
+            }
+            else if (string.Compare(FileName.Text, "NoData", true) == 0)
+            {
+                MessageBox.Show("Plese select your database file.");
+                FileSelector.Focus();
+            }
+            else
+            {
+                rtn = true;
+            }
+            return rtn;
+        }
+
         private void FileGenerator(List<string> Tables)
         {
             if (Tables != null && Tables.Count > 0)
@@ -167,7 +242,6 @@ namespace DbSchemaGenerator
                 {
                     string pk = string.Empty;
                     var columns = GetColumnInformationByTable(x, out pk);
-                    string DBfilename = Path.GetFileNameWithoutExtension(FileName.Text);
                     FileCreator.CreateDomainFile(columns, pk, DomainPath, NameSpace.Text.Trim(), x);
                     FileCreator.CreateDALFile(columns, pk, DALPath, NameSpace.Text.Trim(), x);
                     FileCreator.CreateBLLFile(columns, pk, BLLPath, NameSpace.Text.Trim(), x);
@@ -178,18 +252,103 @@ namespace DbSchemaGenerator
         private void FileGenerator()
         {
             //Get all tablename
-            var AllTable = GetTableListing();
+            List<string> AllTable = new List<string>() { };
+            switch (tabDBSetting.SelectedIndex)
+            {
+                case 0:
+                    //sqlite
+                    AllTable = GetSqliteTableListing();
+                    break;
+                case 1:
+                    //mssql
+                    AllTable = GetMssqlTableListing();
+                    break;
+            }
+
             FileGenerator(AllTable);
         }
 
+        private List<string> GetMssqlTableListing()
+        {
+            List<string> rtn = new List<string>() { };
+            var conn = GetDbConnector.GetMssqlConnection(servername.Text, dbname.Text, username.Text, password.Text);
+            conn.Open();
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand("SELECT table_name FROM information_schema.tables group by table_name", conn);
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    rtn.Add(myReader["table_name"].ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            return rtn;
+        }
+
+        //colum nname , column type
         private Dictionary<string, string> GetColumnInformationByTable(string TableName, out string pk)
+        {
+            Dictionary<string, string> rtn = new Dictionary<string, string>() { };
+            pk = "";
+            switch (tabDBSetting.SelectedIndex)
+            {
+                case 0:
+                    rtn = GetSqliteColumnInformationByTable(TableName, out pk);
+                    break;
+                case 1:
+                    var conn = GetDbConnector.GetMssqlConnection(servername.Text, dbname.Text, username.Text, password.Text);
+                    conn.Open();
+                    rtn = GetMssqlColumnInformationByTable(TableName, out pk, conn);
+                    conn.Close();
+                    break;
+            }
+
+            return rtn;
+        }
+
+        private Dictionary<string, string> GetMssqlColumnInformationByTable(string TableName, out string pk, SqlConnection conn)
+        {
+            Dictionary<string, string> element = new Dictionary<string, string>() { };
+            try
+            {
+                SqlDataReader myReader = null;
+                SqlCommand myCommand = new SqlCommand(string.Format("SELECT Column_Name, Data_type FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'{0}'", TableName), conn);
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    element.Add(myReader["Column_Name"].ToString(), myReader["Data_type"].ToString());
+                }
+                myReader.Close();
+                myCommand.CommandText = string.Format("SELECT Column_Name FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE OBJECTPROPERTY(OBJECT_ID(constraint_name), 'IsPrimaryKey') = 1 AND table_name = '{0}'", TableName);
+                myReader = myCommand.ExecuteReader();
+                if (myReader.Read())
+                {
+                    pk = myReader["Column_Name"].ToString();
+                }
+                else
+                {
+                    pk = string.Empty;
+                }
+            }
+            catch (Exception e)
+            {
+                pk = string.Empty;
+                throw e;
+            }
+            return element;
+        }
+
+        private Dictionary<string, string> GetSqliteColumnInformationByTable(string TableName, out string pk)
         {
             pk = string.Empty;
             Dictionary<string, string> element = new Dictionary<string, string>() { };
 
             SQLiteConnection conn = new SQLiteConnection(string.Format("Data Source={0};Version=3;", FileName.Text));
-
-            //SQLiteCommand comm = new SQLiteCommand("PRAGMA table_info(Settings);", conn);
 
             using (var comm = new SQLiteCommand("PRAGMA table_info(" + TableName + ");", conn))
             {
@@ -213,7 +372,7 @@ namespace DbSchemaGenerator
             return element.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
         }
 
-        private List<string> GetTableListing()
+        private List<string> GetSqliteTableListing()
         {
             List<string> tables = new List<string>() { };
             SQLiteConnection conn = new SQLiteConnection(string.Format("Data Source={0};Version=3;", FileName.Text));
@@ -270,7 +429,18 @@ namespace DbSchemaGenerator
 
         private void ReloadSchemaSqlite()
         {
-            var obj = GetTableListing();
+            List<string> obj = new List<string>() { };
+            switch (tabDBSetting.SelectedIndex)
+            {
+                case 0:
+                    obj = GetSqliteTableListing();
+                    break;
+                case 1:
+                    obj = GetMssqlTableListing();
+                    break;
+                default:
+                    throw new Exception("Not setting yet.");
+            }
             var ds = obj.ToDictionary(x => x, y => y);
             DDLTableListing.DataSource = obj;
         }

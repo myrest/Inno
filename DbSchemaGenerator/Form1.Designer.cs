@@ -39,12 +39,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.FolderSelector = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.tabSqlite = new System.Windows.Forms.TabControl();
+            this.tabDBSetting = new System.Windows.Forms.TabControl();
             this.Sqlite = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabBuildIdv = new System.Windows.Forms.TabPage();
             this.ContentBody = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.GenDAL = new System.Windows.Forms.Button();
@@ -53,14 +54,24 @@
             this.GenDomain = new System.Windows.Forms.Button();
             this.DDLTableListing = new System.Windows.Forms.ComboBox();
             this.tabMainFunction = new System.Windows.Forms.TabControl();
-            this.button2 = new System.Windows.Forms.Button();
-            this.tabSqlite.SuspendLayout();
+            this.MsSql = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.servername = new System.Windows.Forms.TextBox();
+            this.dbname = new System.Windows.Forms.TextBox();
+            this.username = new System.Windows.Forms.TextBox();
+            this.password = new System.Windows.Forms.TextBox();
+            this.tabDBSetting.SuspendLayout();
             this.Sqlite.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabBuildIdv.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabMainFunction.SuspendLayout();
+            this.MsSql.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -149,15 +160,16 @@
             this.FolderSelector.UseVisualStyleBackColor = true;
             this.FolderSelector.Click += new System.EventHandler(this.FolderSelector_Click);
             // 
-            // tabSqlite
+            // tabDBSetting
             // 
-            this.tabSqlite.Controls.Add(this.Sqlite);
-            this.tabSqlite.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabSqlite.Location = new System.Drawing.Point(0, 0);
-            this.tabSqlite.Name = "tabSqlite";
-            this.tabSqlite.SelectedIndex = 0;
-            this.tabSqlite.Size = new System.Drawing.Size(801, 61);
-            this.tabSqlite.TabIndex = 7;
+            this.tabDBSetting.Controls.Add(this.Sqlite);
+            this.tabDBSetting.Controls.Add(this.MsSql);
+            this.tabDBSetting.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabDBSetting.Location = new System.Drawing.Point(0, 0);
+            this.tabDBSetting.Name = "tabDBSetting";
+            this.tabDBSetting.SelectedIndex = 0;
+            this.tabDBSetting.Size = new System.Drawing.Size(801, 95);
+            this.tabDBSetting.TabIndex = 7;
             // 
             // Sqlite
             // 
@@ -167,7 +179,7 @@
             this.Sqlite.Location = new System.Drawing.Point(4, 22);
             this.Sqlite.Name = "Sqlite";
             this.Sqlite.Padding = new System.Windows.Forms.Padding(3);
-            this.Sqlite.Size = new System.Drawing.Size(793, 35);
+            this.Sqlite.Size = new System.Drawing.Size(793, 69);
             this.Sqlite.TabIndex = 1;
             this.Sqlite.Text = "Sqlite setting";
             this.Sqlite.UseVisualStyleBackColor = true;
@@ -183,7 +195,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(793, 336);
+            this.tabPage1.Size = new System.Drawing.Size(793, 302);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Build ALL";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -223,6 +235,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(652, 29);
             this.panel2.TabIndex = 3;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(424, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(103, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Build File";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -305,22 +327,104 @@
             this.tabMainFunction.Controls.Add(this.tabPage1);
             this.tabMainFunction.Controls.Add(this.tabBuildIdv);
             this.tabMainFunction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMainFunction.Location = new System.Drawing.Point(0, 61);
+            this.tabMainFunction.Location = new System.Drawing.Point(0, 95);
             this.tabMainFunction.Name = "tabMainFunction";
             this.tabMainFunction.SelectedIndex = 0;
-            this.tabMainFunction.Size = new System.Drawing.Size(801, 362);
+            this.tabMainFunction.Size = new System.Drawing.Size(801, 328);
             this.tabMainFunction.TabIndex = 8;
             this.tabMainFunction.SelectedIndexChanged += new System.EventHandler(this.tabMainFunction_SelectedIndexChanged);
             // 
-            // button2
+            // MsSql
             // 
-            this.button2.Location = new System.Drawing.Point(424, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(103, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Build File";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.MsSql.Controls.Add(this.password);
+            this.MsSql.Controls.Add(this.username);
+            this.MsSql.Controls.Add(this.dbname);
+            this.MsSql.Controls.Add(this.servername);
+            this.MsSql.Controls.Add(this.button3);
+            this.MsSql.Controls.Add(this.label5);
+            this.MsSql.Controls.Add(this.label4);
+            this.MsSql.Controls.Add(this.label3);
+            this.MsSql.Controls.Add(this.label1);
+            this.MsSql.Location = new System.Drawing.Point(4, 22);
+            this.MsSql.Name = "MsSql";
+            this.MsSql.Padding = new System.Windows.Forms.Padding(3);
+            this.MsSql.Size = new System.Drawing.Size(793, 69);
+            this.MsSql.TabIndex = 2;
+            this.MsSql.Text = "MsSql";
+            this.MsSql.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Server Name:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 42);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Database Name:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(253, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 12);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "UserName:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(258, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 12);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Password:";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(667, 37);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Connect";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // servername
+            // 
+            this.servername.Location = new System.Drawing.Point(92, 11);
+            this.servername.Name = "servername";
+            this.servername.Size = new System.Drawing.Size(128, 22);
+            this.servername.TabIndex = 5;
+            // 
+            // dbname
+            // 
+            this.dbname.Location = new System.Drawing.Point(92, 39);
+            this.dbname.Name = "dbname";
+            this.dbname.Size = new System.Drawing.Size(128, 22);
+            this.dbname.TabIndex = 6;
+            // 
+            // username
+            // 
+            this.username.Location = new System.Drawing.Point(315, 11);
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(128, 22);
+            this.username.TabIndex = 7;
+            // 
+            // password
+            // 
+            this.password.Location = new System.Drawing.Point(315, 39);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(128, 22);
+            this.password.TabIndex = 8;
             // 
             // Form1
             // 
@@ -328,10 +432,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 423);
             this.Controls.Add(this.tabMainFunction);
-            this.Controls.Add(this.tabSqlite);
+            this.Controls.Add(this.tabDBSetting);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.tabSqlite.ResumeLayout(false);
+            this.tabDBSetting.ResumeLayout(false);
             this.Sqlite.ResumeLayout(false);
             this.Sqlite.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -341,6 +445,8 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tabMainFunction.ResumeLayout(false);
+            this.MsSql.ResumeLayout(false);
+            this.MsSql.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -358,7 +464,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button FolderSelector;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.TabControl tabSqlite;
+        private System.Windows.Forms.TabControl tabDBSetting;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage Sqlite;
         private System.Windows.Forms.TabPage tabBuildIdv;
@@ -373,6 +479,16 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TabPage MsSql;
+        private System.Windows.Forms.TextBox password;
+        private System.Windows.Forms.TextBox username;
+        private System.Windows.Forms.TextBox dbname;
+        private System.Windows.Forms.TextBox servername;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
 
 
 
