@@ -106,7 +106,7 @@ namespace InnoThink.Website.Communication
             var list = Unit1Cache.GetAllConnections(model.TopicSN);
             list.ForEach(x =>
             {
-                if (model.PublishType == 0)
+                if (model.PublishType == (int)BoardType.Private)
                 {
                     Clients.Client(x).syncUIPrivateMessage(model);
                 }

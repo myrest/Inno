@@ -562,7 +562,7 @@
                             <%
                                 foreach (var item in online)
                                 {
-                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", "TODO:要找出大頭像", item.UserSN + "要找出名字", item.UserSN));
+                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", item.Picture, item.UserName, item.UserSN));
                                 }
                             %>
                         </td>
@@ -577,7 +577,7 @@
                             <%
                                 foreach (var item in offline)
                                 {
-                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", "TODO:要找出大頭像", item.UserSN + "要找出名字", item.UserSN));
+                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", item.Picture, item.UserName, item.UserSN));
                                 }
                             %>
                         </td>

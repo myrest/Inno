@@ -30,14 +30,14 @@ namespace InnoThink.Website.Controllers.Service
         [HttpPost]
         public JsonResult SendPublicMessage(string Message, int TopicSN)
         {
-            ResultBase result = SendBoardMessage(Message, TopicSN, 1);
+            ResultBase result = SendBoardMessage(Message, TopicSN, (int)BoardType.Public);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
         public JsonResult SendPrivateMessage(string Message, int TopicSN)
         {
-            ResultBase result = SendBoardMessage(Message, TopicSN, 0);
+            ResultBase result = SendBoardMessage(Message, TopicSN, (int)BoardType.Private);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 

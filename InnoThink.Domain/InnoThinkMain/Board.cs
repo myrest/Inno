@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace InnoThink.Domain
 {
@@ -24,10 +25,12 @@ namespace InnoThink.Domain
     #region Implementation
     [Rest.Core.PetaPoco.TableName("Board")]
     [Rest.Core.PetaPoco.PrimaryKey("BoardSN")]
+    [DataContract]
     public class Board_Info //: IBoard_Info
     {
         #region private fields
         public int BoardSN { get; set; }
+        [DataMember(Name = "msg")]
         public string Content { get; set; }
         public int ContentType { get; set; }
         public DateTime DateCreated { get; set; }

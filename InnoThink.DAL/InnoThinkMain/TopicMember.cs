@@ -204,7 +204,7 @@ namespace InnoThink.DAL.TopicMember
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
                 .Append(@"
-                    select tm.*, u.UserName 
+                    select tm.*, u.UserName, u.Picture
                     from TopicMember tm inner join User u on tm.UserSN = u.UserSN 
                     where tm.TopicSN = @0", TopicSN);
             using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))

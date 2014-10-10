@@ -181,7 +181,7 @@ var inno198 = {
             },
             syncOnlineUser: function (data) {
                 //Get the old data is exist or not.
-                var $existing = $('#UOid' + data.SN);
+                var $existing = $('#UOid' + data.UserSN);
                 if ($existing.length > 0) {
                     var $clone = $existing.clone();
                     $existing.remove();
@@ -191,7 +191,7 @@ var inno198 = {
                     if (data.Picture != undefined) {
                         pic = data.Picture;
                     }
-                    var picobj = '<img src="' + pic + '" width="30" height="30" alt="' + data.UserName + '" title="' + data.UserName + '" class="onlinemember" id="UOid' + data.SN + '" />&nbsp;';
+                    var picobj = '<img src="' + pic + '" width="30" height="30" alt="' + data.UserName + '" title="' + data.UserName + '" class="onlinemember" id="UOid' + data.UserSN + '" />&nbsp;';
                     $('#topicOnline').append(picobj);
                 }
             },
@@ -279,6 +279,9 @@ var SyncBoardUI = function (data, isPrivate) {
         $('#PrivateBlock').append($boardTemp);
     } else {
         $('#PublicBlock').append($boardTemp);
+    }
+    if ($('#talk0').css('display') == 'none') {
+        $('#talk1').trigger('click');
     }
 };
 

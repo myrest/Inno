@@ -27,7 +27,7 @@ namespace InnoThink.Domain.InnoThinkMain.Binding
         [DataMember(Name = "uid")]
         public string LoginId { get; set; }
 
-        [DataMember(Name = "Date")]
+        [DataMember(Name = "dt")]
         public string DateUI
         {
             get
