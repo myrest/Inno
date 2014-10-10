@@ -23,6 +23,7 @@ namespace DbSchemaGenerator
                 case "CHAR":
                 case "NCHAR":
                 case "NTEXT":
+                case "GUID":
                     SqlDataType = "string";
                     break;
                 case "NUM":
@@ -30,6 +31,8 @@ namespace DbSchemaGenerator
                 case "INT":
                 case "NUMERIC":
                 case "BIT":
+                case "BIGINT":
+                case "TINYINT":
                     SqlDataType = SqlDataName.StartsWith("is") ? "bool" : "int";
                     SqlDataType += AllowNull;
                     break;
@@ -194,7 +197,7 @@ namespace {1}
         #region Operation: Select
         public {2}_Info GetBySN(long {3})
         {{
-            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            using (var db = new DBExecutor().GetDatabase())
             {{
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
                 .Append(""SELECT * FROM {2}"")
@@ -207,7 +210,7 @@ namespace {1}
 
         public IEnumerable<{2}_Info> GetAll()
         {{
-            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            using (var db = new DBExecutor().GetDatabase())
             {{
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
                     .Append(""SELECT * FROM {2}"");
@@ -219,7 +222,7 @@ namespace {1}
 
         public IEnumerable<{2}_Info> GetByParam({2}_Filter Filter, string _orderby = """")
         {{
-            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            using (var db = new DBExecutor().GetDatabase())
             {{
                 var SQLStr = ConstructSQL(Filter, new string[] {{ ""*"" }}, _orderby);
 
@@ -231,7 +234,7 @@ namespace {1}
 
         public IEnumerable<{2}_Info> GetByParam({2}_Filter Filter, string[] fieldNames, string _orderby = """")
         {{
-            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            using (var db = new DBExecutor().GetDatabase())
             {{
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
@@ -245,7 +248,7 @@ namespace {1}
         #region Operation: Insert
         public long Insert({2}_Info data)
         {{
-            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            using (var db = new DBExecutor().GetDatabase())
             {{
                 long NewID = db.Insert(data) as long? ?? 0;
                 return NewID;
@@ -256,7 +259,7 @@ namespace {1}
         #region Operation: Update
         public int Update(long {3}, {2}_Info data, IEnumerable<string> columns)
         {{
-            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            using (var db = new DBExecutor().GetDatabase())
             {{
                 return db.Update(data, {3}, columns);
             }}
@@ -264,7 +267,7 @@ namespace {1}
 
         public int Update({2}_Info data)
         {{
-            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            using (var db = new DBExecutor().GetDatabase())
             {{
                 return db.Update(data);
             }}
@@ -274,7 +277,7 @@ namespace {1}
         #region Operation: Delete
         public int Delete(long {3})
         {{
-            using (var db = new DBExecutor().GetDatabase(DataBaseName.InnoThinkMain))
+            using (var db = new DBExecutor().GetDatabase())
             {{
                 return db.Delete(""{2}"", ""{3}"", null, {3});
             }}

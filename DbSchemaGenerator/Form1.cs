@@ -612,5 +612,10 @@ namespace DbSchemaGenerator
                 MessageBox.Show(string.Format("{0} build done.", DDLTableListing.SelectedItem.ToString()));
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            new Login(this).ShowDialog();
+        }
     }
 }
