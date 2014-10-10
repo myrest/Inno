@@ -597,7 +597,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input name="idea" type="text" value="想法" size="19">
+                                    <input name="idea" type="text" value="想法" size="16">
                                 </td>
                             </tr>
                             <tr>
@@ -622,7 +622,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input name="idea" type="text" value="想法" size="19">
+                                    <input name="idea" type="text" value="想法" size="16">
                                 </td>
                             </tr>
                             <tr>
@@ -647,7 +647,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input name="idea" type="text" value="想法" size="19">
+                                    <input name="idea" type="text" value="想法" size="16">
                                 </td>
                             </tr>
                             <tr>
@@ -672,7 +672,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input name="idea" type="text" value="想法" size="19">
+                                    <input name="idea" type="text" value="想法" size="16">
                                 </td>
                             </tr>
                             <tr>

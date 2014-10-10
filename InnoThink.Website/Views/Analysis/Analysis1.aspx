@@ -663,12 +663,12 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input name="idea" type="text" value="" size="47" defaultvalue="想法">
+                                    <input name="idea" type="text" value="" size="42" defaultvalue="想法">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="description" cols="37" rows="3" defaultvalue="說明"></textarea>
+                                    <textarea name="description" cols="43" rows="3" defaultvalue="說明"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -691,12 +691,12 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input name="idea" type="text" value="" size="50" defaultvalue="想法">
+                                    <input name="idea" type="text" value="" size="42" defaultvalue="想法">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="description" cols="39" rows="3" defaultvalue="說明"></textarea>
+                                    <textarea name="description" cols="43" rows="3" defaultvalue="說明"></textarea>
                                 </td>
                             </tr>
                             <tr>

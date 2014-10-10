@@ -6,8 +6,8 @@ var Main = {
         $('#JoinedTopic').on('click', Main.FirstTopic);
         $('#QuickJump').on('change', Main.ChangeWorkFlow);
         $('#headerlogo').on('click', function () { location.href = '/Home/Index'; });
-        $('#otherteam-up1, #tableft').on('click', function () { $('#otherteam, #tableft').toggle('slide'); event.preventDefault(); });
-        $('#talk1, #tabright').on('click', function () { $('#talk0, #tabright').toggle('slideRight'); event.preventDefault(); });
+        $('#otherteam-up1, #tableft').on('click', function () { $('#otherteam, #tableft').toggle('slide'); return void (0); });
+        $('#talk1, #tabright').on('click', function () { $('#talk0, #tabright').toggle('slideRight'); return void (0); });
         $('#otherteam-up1').trigger('click');
         $('#talk1').trigger('click');
         $('#leavetopic').on('click', Main.LeaveTopic);

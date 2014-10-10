@@ -650,7 +650,7 @@
                     %>
                 </div>
                 <div id="best-2p">
-                    1. 尋找GAP<span class="right"><input type="button" id="EndBest" value="結束Best分析" /></span>
+                    1. 尋找GAP<span class="right"><!-- input type="button" id="EndBest" value="結束Best分析" / --></span>
                 </div>
                 <div id="best-ma1">
                     <table width="95%" border="0" align="center">
