@@ -91,6 +91,15 @@ namespace DbSchemaGenerator
         }
         #endregion
 
+        private static string RemovePrefix(string DBName, string PreFix = "db_")
+        {
+            if (DBName.ToLower().StartsWith(PreFix))
+            {
+                DBName = DBName.Substring(PreFix.Length);
+            }
+            return DBName;
+        }
+
         private void FileSelector_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
@@ -535,32 +544,33 @@ namespace DbSchemaGenerator
         {
             string pk = string.Empty;
             string Content = string.Empty;
-
+            string TableName = DDLTableListing.SelectedValue.ToString();
+            TableName = RemovePrefix(TableName);
             Dictionary<string, string> columns = new Dictionary<string, string>() { };
             List<ColumnInformation> Column3s = new List<ColumnInformation>() { };
             if (tabDBSetting.SelectedIndex == 1)
             {
                 var conn = GetDbConnector.GetMssqlConnection(servername.Text, dbname.Text, username.Text, password.Text);
                 conn.Open();
-                Column3s = GetColumnInformationByTable(DDLTableListing.SelectedValue.ToString(), out pk, conn);
+                Column3s = GetColumnInformationByTable(TableName, out pk, conn);
                 conn.Close();
             }
             else
             {
-                columns = GetColumnInformationByTable(DDLTableListing.SelectedValue.ToString(), out pk);
+                columns = GetColumnInformationByTable(TableName, out pk);
             }
 
 
             switch (gt)
             {
                 case GenType.Domain:
-                    Content = FileCreator.GetDomainContent(Column3s, pk, DomainPath, NameSpace.Text.Trim(), DDLTableListing.SelectedValue.ToString());
+                    Content = FileCreator.GetDomainContent(Column3s, pk, DomainPath, NameSpace.Text.Trim(), TableName);
                     break;
                 case GenType.DAL:
-                    Content = FileCreator.CreateDALContent(columns, pk, DomainPath, NameSpace.Text.Trim(), DDLTableListing.SelectedValue.ToString());
+                    Content = FileCreator.CreateDALContent(columns, pk, DomainPath, NameSpace.Text.Trim(), TableName);
                     break;
                 case GenType.BLL:
-                    Content = FileCreator.CreateBLLContent(columns, pk, DomainPath, NameSpace.Text.Trim(), DDLTableListing.SelectedValue.ToString());
+                    Content = FileCreator.CreateBLLContent(columns, pk, DomainPath, NameSpace.Text.Trim(), TableName);
                     break;
                 default:
                     throw new Exception(string.Format("GenType:{0} not found.", gt.ToString()));
@@ -615,7 +625,9 @@ namespace DbSchemaGenerator
 
         private void Form1_Load(object sender, EventArgs e)
         {
+#if !DEBUG
             new Login(this).ShowDialog();
+#endif
         }
     }
 }

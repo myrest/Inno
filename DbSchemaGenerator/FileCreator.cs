@@ -66,6 +66,15 @@ namespace DbSchemaGenerator
             return MapTypeSqlite(new KeyValuePair<string, string>(item.Name, item.DataType), isFilter);
         }
 
+        private static string RemovePrefix(string DBName, string PreFix = "db_")
+        {
+            if (DBName.ToLower().StartsWith(PreFix))
+            {
+                DBName = DBName.Substring(PreFix.Length);
+            }
+            return DBName;
+        }
+
         #region Domain
         internal static string GetDomainContent(List<ColumnInformation> columns, string pk, string DomainPath, string NameSpace, string TableName)
         {
@@ -141,6 +150,7 @@ namespace {0}
 
         internal static void CreateDomainFile(List<ColumnInformation> columns, string pk, string DomainPath, string NameSpace, string TableName)
         {
+            TableName = RemovePrefix(TableName);
             string Content = GetDomainContent(columns, pk, DomainPath, NameSpace, TableName);
 
             if (!DomainPath.EndsWith("\\"))
@@ -345,6 +355,7 @@ namespace {1}
 
         internal static void CreateDALFile(Dictionary<string, string> columns, string pk, string DALPath, string NameSpace, string TableName)
         {
+            TableName = RemovePrefix(TableName);
             string Content = CreateDALContent(columns, pk, DALPath, NameSpace, TableName);
             if (!DALPath.EndsWith("\\"))
             {
@@ -365,7 +376,7 @@ namespace {1}
         internal static string CreateBLLContent(Dictionary<string, string> columns, string pk, string BLLPath, string NameSpace, string TableName)
         {
             pk = (string.IsNullOrEmpty(pk)) ? "NoPk" : pk;
-            string curNamespace = string.Format("{0}.BLL.{1}", NameSpace, TableName);
+            string curNamespace = string.Format("{0}.BLL", NameSpace);
             StringBuilder sb = new StringBuilder();
             #region Create Domain StringBuilder
             sb.AppendFormat(@"using System;
@@ -475,6 +486,7 @@ namespace {1}
 
         internal static void CreateBLLFile(Dictionary<string, string> columns, string pk, string BLLPath, string NameSpace, string TableName)
         {
+            TableName = RemovePrefix(TableName);
             string Content = CreateBLLContent(columns, pk, BLLPath, NameSpace, TableName);
             if (!BLLPath.EndsWith("\\"))
             {
