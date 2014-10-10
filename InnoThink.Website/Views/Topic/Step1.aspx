@@ -557,6 +557,10 @@
                         <%
                             foreach (var item in Model.TeamMembers)
                             {
+                                if (string.IsNullOrEmpty(item.Value.Description))
+                                {
+                                    item.Value.Description = "";
+                                }
                         %>
                         <tr class="<% =item.Value.UserSN %>">
                             <td width="15%" rowspan="2">
@@ -576,7 +580,7 @@
                         </tr>
                         <tr class="<% =item.Value.UserSN %>">
                             <td height="78" colspan="2" valign="top" class="descript">
-                                <% =item.Value.Description.Replace("\n", "<br>") %>
+                                <% =item.Value.Description %>
                             </td>
                         </tr>
                         <%

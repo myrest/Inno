@@ -350,7 +350,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\TopicStep.Master" />
-    <Content Include="App_Data\InnoThinkMain.oo2" />
+    <None Include="App_Data\InnoThinkMain.oo2" />
     <None Include="CDN\Js\lib\jquery.min.map" />
     <Content Include="Upload\_temp\TempFolder" />
     <Content Include="Upload\Best\ImageReleateWithBest" />
@@ -382,9 +382,6 @@
       <Project>{3a850565-71b6-4b0c-b255-2d2a57e37b8b}</Project>
       <Name>Rest.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Upload\Analytics\" />

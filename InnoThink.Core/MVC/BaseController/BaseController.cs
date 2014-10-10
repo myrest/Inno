@@ -31,7 +31,7 @@ namespace InnoThink.Core.MVC.BaseController
 
         protected override void OnException(ExceptionContext filterContext)
         {
-            filterContext.Result = Json("Got Server Error, Please check with Administrator. Thansk!", JsonRequestBehavior.AllowGet);
+            filterContext.Result = Json("Got Server Error, Please check with Administrator. Thanks!", JsonRequestBehavior.AllowGet);
             filterContext.ExceptionHandled = true;
             Log.Exception(filterContext.Exception);
         }

@@ -107,6 +107,9 @@ var Main = {
         utility.ajaxQuiet('TopicService/GetFirstTopic', null, cb, ecb);
     }
     , LeaveTopic: function () {
+        utility.showPopUp("確定要退出該議題嗎？", 3, Main.DoLeaveTopic);
+    }
+    , DoLeaveTopic: function () {
         var para = { 'TopicSN': 0 };
         var cb = function (result) {
             var rd = function () {
@@ -118,6 +121,9 @@ var Main = {
         var ecb = function (result) {
             utility.showPopUp(result.msg, 1);
         };
+        //utility.showPopUp("確定要退出該議題嗎？",3,
+
+
         utility.ajaxQuiet('TopicService/LeaveTopic', para, cb, ecb);
     }
     , ChangeWorkFlow: function () {

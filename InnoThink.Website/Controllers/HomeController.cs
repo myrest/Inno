@@ -21,8 +21,8 @@ namespace InnoThink.Website.Controllers
         {
             string FBGroupID = string.Empty;
             ViewData["FBToken"] = sessionData.trading.FBAccessToken;
-            string hostname = Dns.GetHostName();
-            if (string.Compare(hostname, "www.innoroot.com", true) == 0)
+            string hostname = HttpContext.Request.Url.Host;
+            if (hostname.ToLower().Contains("www.innoroot.com"))
             {
                 FBGroupID = "1465916723672476";//2014實務專題討論
             }
