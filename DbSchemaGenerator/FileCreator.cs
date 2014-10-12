@@ -78,6 +78,8 @@ namespace DbSchemaGenerator
         #region Domain
         internal static string GetDomainContent(List<ColumnInformation> columns, string pk, string DomainPath, string NameSpace, string TableName)
         {
+            string RealTableName = TableName;
+            TableName = RemovePrefix(TableName);
             string curNamespace = string.Format("{0}.Domain", NameSpace);
             StringBuilder sb = new StringBuilder();
             #region Create Domain StringBuilder
@@ -105,10 +107,10 @@ namespace {0}
 
     #region Implementation
     [Rest.Core.PetaPoco.TableName(""{0}"")]
-    [Rest.Core.PetaPoco.PrimaryKey(""{1}"")]
-    public class {0}_Info //: I{0}_Info
+    [Rest.Core.PetaPoco.PrimaryKey(""{2}"")]
+    public class {1}_Info //: I{1}_Info
     {{
-        #region private fields", TableName, pk);
+        #region private fields", RealTableName, TableName, pk);
             foreach (var item in columns)
             {
                 //Column description
@@ -150,9 +152,8 @@ namespace {0}
 
         internal static void CreateDomainFile(List<ColumnInformation> columns, string pk, string DomainPath, string NameSpace, string TableName)
         {
-            TableName = RemovePrefix(TableName);
             string Content = GetDomainContent(columns, pk, DomainPath, NameSpace, TableName);
-
+            TableName = RemovePrefix(TableName);
             if (!DomainPath.EndsWith("\\"))
             {
                 DomainPath += "\\";
@@ -260,7 +261,12 @@ namespace {1}
         {{
             using (var db = new DBExecutor().GetDatabase())
             {{
-                long NewID = db.Insert(data) as long? ?? 0;
+                long NewID = 0;
+                var result = db.Insert(data);
+                if (result != null)
+                {{
+                    long.TryParse(result.ToString(), out NewID);
+                }}
                 return NewID;
             }}
         }}

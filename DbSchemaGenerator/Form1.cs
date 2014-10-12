@@ -545,7 +545,6 @@ namespace DbSchemaGenerator
             string pk = string.Empty;
             string Content = string.Empty;
             string TableName = DDLTableListing.SelectedValue.ToString();
-            TableName = RemovePrefix(TableName);
             Dictionary<string, string> columns = new Dictionary<string, string>() { };
             List<ColumnInformation> Column3s = new List<ColumnInformation>() { };
             if (tabDBSetting.SelectedIndex == 1)
