@@ -93,5 +93,25 @@ namespace InnoThink.Website.Controllers
             ViewData["FormUI"] = UIObj;
             return View(@"~\Views\Analysis\Analysis1.aspx");
         }
+
+        //了解市場
+        public ActionResult Analysis4(int TopicSN)
+        {
+            TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
+            sessionData.ClearTempValue();
+
+            var UIObj = new AnalysisUIFormObject()
+            {
+                MainFunction = "瞭解市場",
+                TitleLeft = "現有市場描述",
+                TitleRight = "親身體驗服務",
+                TypeLeft = (int)EnumAnalysisType.CurrentMarket,
+                TypeRight = (int)EnumAnalysisType.Visit
+            };
+
+            ViewData["TopicSN"] = TopicSN;
+            ViewData["FormUI"] = UIObj;
+            return View(@"~\Views\Analysis\Analysis1.aspx");
+        }
     }
 }

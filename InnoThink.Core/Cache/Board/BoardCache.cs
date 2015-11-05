@@ -9,6 +9,7 @@ using InnoThink.Domain.Constancy;
 using InnoThink.Domain;
 using InnoThink.Domain.InnoThinkMain.Binding;
 using InnoThink.Core.Utility;
+using Rest.Core.Utility;
 
 namespace InnoThink.Core.Cache.Board
 {
@@ -26,6 +27,15 @@ namespace InnoThink.Core.Cache.Board
             {
                 AddToCache(x);
             });
+        }
+
+        private static void InitialCache(BoardType bt, int TopicSN)
+        {
+            var board = new Board_Manager().GetByLimitedRecord(bt, TopicSN);
+            board.OrderBy(x => x.BoardSN).ToList().ForEach(x =>
+                {
+                    AddToCache(x);
+                });
         }
 
         private static void AddToCache(BoardUI board)
@@ -75,6 +85,13 @@ namespace InnoThink.Core.Cache.Board
 
         public static List<BoardUI> GetAllBoard(int TopicSN, BoardType boardType)
         {
+            List<BoardUI> rtn = new List<BoardUI>() { };
+            rtn = PrivateBoard.Where(x => x.Key == TopicSN).FirstOrDefault().Value;
+            if (rtn == null || rtn.Count() == 0)
+            {
+                InitialCache(boardType, TopicSN);
+            }
+
             switch (boardType)
             {
                 case BoardType.Private:

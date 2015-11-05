@@ -7,7 +7,9 @@ var InnoFB = {
     , fbGroupMsgUrl: 'https://graph.facebook.com/v2.1/' + fbGroupId + '/feed?&access_token=' + token + '&message='
     , fbGraphUrl: 'https://graph.facebook.com/v2.1/'
     , RandFBGroup: function () {
-        utility.service(InnoFB.fbGroupUrl, null, 'Get', InnoFB.ParsFB, InnoFB.ParsFailed);
+        if (token.length > 1) {
+            utility.service(InnoFB.fbGroupUrl, null, 'Get', InnoFB.ParsFB, InnoFB.ParsFailed);
+        }
     }
     , ParsFB: function (fbobj) {
         var param = { FbData: fbobj, token: token };

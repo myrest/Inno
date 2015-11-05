@@ -131,6 +131,7 @@
     </Compile>
     <Compile Include="SessionData.cs" />
     <Compile Include="Utility\BaseDAO.cs" />
+    <Compile Include="Utility\Extension\StringExtension.cs" />
     <Compile Include="Utility\FBUtility.cs" />
     <Compile Include="Utility\ListStartWith.cs" />
     <Compile Include="Utility\StringUtility.cs" />
@@ -167,7 +168,7 @@
       <Name>InnoThink.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\InnoThink.Domain\InnoThink.Domain.csproj">
-      <Project>{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}</Project>
+      <Project>{527fe3a5-3a71-4ab7-86f9-3a6b48add98e}</Project>
       <Name>InnoThink.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Rest.Core\Rest.Core.csproj">

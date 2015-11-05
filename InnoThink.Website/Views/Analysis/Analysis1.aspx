@@ -668,7 +668,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="description" cols="43" rows="3" defaultvalue="說明"></textarea>
+                                    <textarea name="description" cols="38" rows="3" defaultvalue="說明"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -696,7 +696,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="description" cols="43" rows="3" defaultvalue="說明"></textarea>
+                                    <textarea name="description" cols="38" rows="3" defaultvalue="說明"></textarea>
                                 </td>
                             </tr>
                             <tr>

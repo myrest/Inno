@@ -33,7 +33,7 @@ var Analysis = {
 
         //Get from form
         var idea = $table.find('.idea').html();
-        var description = $table.find('.description').html();
+        var description = $table.find('.description').html().replace(/<br\s*[\/]?>/gi, "\n");
         var anssn = $this.attr('sn');
         var anntype = $this.attr('anntype');
 

@@ -149,6 +149,8 @@ namespace InnoThink.DAL.Board
             {
                 if (filter.PublishType.HasValue)
                     SQLStr.Append("And PublishType=@0", filter.PublishType.Value);
+                if (filter.TopicSN.HasValue)
+                    SQLStr.Append("And TopicSN=@0", filter.TopicSN.Value);
                 //Should updat the filter for wide search
             }
             return SQLStr;

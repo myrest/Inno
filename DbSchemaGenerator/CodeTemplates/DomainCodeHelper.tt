@@ -1,0 +1,63 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DbSchemaGenerator.Base" #>
+<#@ import namespace="DbSchemaGenerator.Utility" #>
+<#
+    AbsTableSchema TableObject = tableObject;
+    string TableName = tableName;
+    string NameSpace = nameSpace;
+    TableSchemaObject TableSchema = TableObject.GetTableSchema(TableName);
+    string PrimaryKey = TableSchema.PrimaryKey;
+    List<ColumnObject> ColumnInfo = TableSchema.ColumnInfo;
+#>
+using <#=NameSpace #>.Domain.Constancy;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+namespace <#=NameSpace #>.Domain
+{
+    [Rest.Core.PetaPoco.TableName("<#=TableName #>")]
+    [Rest.Core.PetaPoco.PrimaryKey("<#=PrimaryKey #>")]
+    public class <#=TableName #>_Info
+    {
+        #region private fields
+<#
+    ColumnInfo.ForEach(x=>{
+#>
+        /// <summary>
+        /// <#=x.ColumnDescription#>
+        /// </summary>
+        public <#=x.ToCSharpType()#> <#=x.ColumnName#> { get; set; }
+
+<#
+    });
+#>
+        #endregion
+
+        #region Constructor
+        public <#=TableName #>_Info()
+        {
+        }
+        #endregion
+    }
+
+    public class <#=TableName #>_Filter
+    {
+<#
+    ColumnInfo.ForEach(x=>{
+        string NullAbleObject= "?";
+        if (x.ToCSharpType() == "string") NullAbleObject = "";
+#>
+        public <#=x.ToCSharpType()#><#=NullAbleObject#> <#=x.ColumnName#> { get; set; }
+<#
+    });
+#>
+        //You can copy/modify above <#=TableName #>_Info field for search criteria
+    }
+}

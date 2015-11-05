@@ -1,0 +1,122 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DbSchemaGenerator.Base" #>
+<#@ import namespace="DbSchemaGenerator.Utility" #>
+<#
+    AbsTableSchema TableObject = tableObject;
+    string TableName = tableName;
+    string NameSpace = nameSpace;
+    TableSchemaObject TableSchema = TableObject.GetTableSchema(TableName);
+    string PrimaryKey = TableSchema.PrimaryKey;
+    List<ColumnObject> ColumnInfo = TableSchema.ColumnInfo;
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using <#=NameSpace #>.DAL.<#=TableName #>;
+using <#=NameSpace #>.Domain;
+using Rest.Core.Constancy;
+using Rest.Core.Utility;
+
+namespace <#=NameSpace #>.BLL.<#=TableName #>
+{
+    public class <#=TableName #>_Manager
+    {
+        #region public properties
+        #endregion
+
+        #region private fields
+        private readonly static SysLog log = SysLog.GetLogger(typeof(<#=TableName #>_Manager));
+        #endregion
+
+        #region Operation: Select
+        public <#=TableName #>_Info GetBySN(int <#=PrimaryKey #>)
+        {
+            return new <#=TableName #>_Repo().GetBySN(<#=PrimaryKey #>);
+        }
+
+        public IEnumerable<<#=TableName #>_Info> GetAll()
+        {
+            return new <#=TableName #>_Repo().GetAll();
+        }
+
+        public List<<#=TableName #>_Info> GetByParameter(<#=TableName #>_Filter Filter)
+        {
+            return new <#=TableName #>_Repo().GetByParam(Filter);
+        }
+
+        public List<<#=TableName #>_Info> GetByParameter(<#=TableName #>_Filter Filter, Rest.Core.Paging Page)
+        {
+            return new <#=TableName #>_Repo().GetByParam(Filter, Page);
+        }
+
+        public List<<#=TableName #>_Info> GetByParameter(<#=TableName #>_Filter Filter, string _orderby)
+        {
+            return new <#=TableName #>_Repo().GetByParam(Filter, _orderby);
+        }
+
+        public List<<#=TableName #>_Info> GetByParameter(<#=TableName #>_Filter Filter, string _orderby, Rest.Core.Paging Page)
+        {
+            return new <#=TableName #>_Repo().GetByParam(Filter, _orderby, Page);
+        }
+
+        public List<<#=TableName #>_Info> GetByParameter(<#=TableName #>_Filter Filter, Rest.Core.Paging Page, string[] fieldNames, string _orderby)
+        {
+            return new <#=TableName #>_Repo().GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<<#=TableName #>_Info> GetByParameter(<#=TableName #>_Filter Filter, string[] fieldNames, string _orderby, Rest.Core.Paging Page)
+        {
+            return new <#=TableName #>_Repo().GetByParam(Filter, fieldNames, _orderby, Page);
+        }
+        #endregion
+
+        #region Operation: Raw Insert
+        public int Insert(<#=TableName #>_Info data)
+        {
+            int newID = 0;
+            try
+            {
+                newID = new <#=TableName #>_Repo().Insert(data);
+            }
+            catch (Exception ex)
+            {
+                log.Exception(ex);
+            }
+            return newID;
+        }
+        #endregion
+
+        #region Operation: Raw Update
+        public bool Update(int <#=PrimaryKey #>, <#=TableName #>_Info data, List<string> columns)
+        {
+            return new <#=TableName #>_Repo().Update(<#=PrimaryKey #>, data, columns) > 0;
+        }
+
+        public bool Update(<#=TableName #>_Info data)
+        {
+            return new <#=TableName #>_Repo().Update(data) > 0;
+        }
+        #endregion
+
+        #region Operation: Delete
+        public int Delete(int <#=PrimaryKey #>)
+        {
+            return new <#=TableName #>_Repo().Delete(<#=PrimaryKey #>);
+        }
+        #endregion
+
+        #region public functions
+        public bool IsExist(int <#=PrimaryKey #>)
+        {
+            return (GetBySN(<#=PrimaryKey #>) != null);
+        }
+        #endregion
+
+        #region private functions
+        #endregion
+    }
+}

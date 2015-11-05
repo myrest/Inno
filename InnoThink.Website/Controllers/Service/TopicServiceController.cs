@@ -22,6 +22,7 @@ using InnoThink.BLL.Topic;
 using InnoThink.BLL.TopicMember;
 using InnoThink.Domain.InnoThinkMain.Binding;
 using InnoThink.Domain.Constancy;
+using InnoThink.BLL.TeamGroup;
 
 namespace InnoThink.Website.Controllers.Service
 {
@@ -34,6 +35,8 @@ namespace InnoThink.Website.Controllers.Service
         private static readonly Topic_Manager dbTopic = new Topic_Manager();
 
         private static readonly TopicMember_Manager dbTopMem = new TopicMember_Manager() { };
+
+        private static readonly User_Manager dbUser = new User_Manager() { };
 
         private static readonly DbBestStep1Table dbBest1 = new DbBestStep1Table() { };
         private static readonly DbBestIdeaTable dbBestIdea = new DbBestIdeaTable() { };
@@ -57,6 +60,32 @@ namespace InnoThink.Website.Controllers.Service
                 dbTopic.Delete(SN);
             }
             result.setMessage("資料已刪除。");
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteBest(int BESTSN)
+        {
+            ResultBase result = new ResultBase();
+            try
+            {
+                var data = dbBestIdea.GetBySN(BESTSN);
+                if (data != null)
+                {
+                    dbBestIdea.Delete(BESTSN);
+                    KeyValuePair<int, int> UiObj = new KeyValuePair<int, int>((int)data.Type, data.SN);
+                    CommServer.Instance.SyncUpdate(UiObj, "Step.SyncRemoveUI", data.TopicSN);
+                    result.setMessage("");
+                }
+                else
+                {
+                    result.setException("Data was been delete.", "DeleteAnalysis");
+                }
+            }
+            catch (Exception ex)
+            {
+                result.setException(ex, "DeleteAnalysis");
+            }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
@@ -311,7 +340,7 @@ namespace InnoThink.Website.Controllers.Service
         [HttpPost]
         public JsonResult CheckTopic(int SN)
         {
-            ResultBase result = GetTopicNextStep(SN);
+            ResultBase result = GetTopicNextStep(SN, sessionData.trading);
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
@@ -324,7 +353,7 @@ namespace InnoThink.Website.Controllers.Service
             var Topic = dbTopic.getFirstTopicByUserSN(sessionData.trading.UserSN);
             if (Topic != null && Topic.TopicSN > 0)
             {
-                result = GetTopicNextStep(Topic.TopicSN);
+                result = GetTopicNextStep(Topic.TopicSN, sessionData.trading);
             }
             else
             {
@@ -353,7 +382,7 @@ namespace InnoThink.Website.Controllers.Service
                 dbTopic.Update(TopicInfo);
 
                 //let all the teammember into next step.
-                ResultBase nextstep = GetTopicNextStep(TopicSN);
+                ResultBase nextstep = GetTopicNextStep(TopicSN, trading);
                 if (nextstep.JsonReturnCode > 0)
                 {
                     CommServer.Instance.JumpToStep(TopicSN, nextstep.Message);
@@ -374,7 +403,7 @@ namespace InnoThink.Website.Controllers.Service
             return result;
         }
 
-        private static ResultBase GetTopicNextStep(int SN)
+        private static ResultBase GetTopicNextStep(int SN, Trading trading)
         {
             ResultBase result = new ResultBase();
             var dbTopic = new Topic_Manager();
@@ -391,7 +420,17 @@ namespace InnoThink.Website.Controllers.Service
                     switch (Topic.Step)
                     {
                         case 0:
-                            result.Message = "/Topic/Step0?TopicSN=" + Topic.TopicSN;
+                            //Get user's Team groupid
+                            int TeamGroupId = dbUser.GetBySN(trading.UserSN).TeamGroupSN;
+                            //if teamgroupid bigger then 6, the first page will be different.
+                            if (TeamGroupId <= 6)
+                            {
+                                result.Message = "/Topic/Step0?TopicSN=" + Topic.TopicSN;
+                            }
+                            else
+                            {
+                                result.Message = "/Analysis/Analysis4?TopicSN=" + Topic.TopicSN;
+                            }
                             break;
 
                         case 1:

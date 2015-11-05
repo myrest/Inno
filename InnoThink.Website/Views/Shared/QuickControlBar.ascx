@@ -25,13 +25,18 @@
                 var CurrentPage = [ '<% =QCBAR.ControlMainTitle %>', '<% =QCBAR.ControlSubTitle %>' ];
             </script>
             <span class="align-right QuickJumpBlock">
-                <select id="MainMenuDDL">
-                </select>
+                <!--select id="MainMenuDDL">
+                </!--select>
                 <select id="QuickJump">
+                </select -->
+                <select id="QuickJump">
+                    <option value="Analysis,Analysis4">瞭解市場</option>
+                    <option value="Topic,Set2">SET便條紙</option>
                 </select>
-                <label for="AllJump" title="隊長專屬功能" class="<%=HideForNotLeader %>">
+                <label for="AllJump">
                     <input type="checkbox" id="AllJump" />全員跳頁
                 </label>
+
             </span>
         </td>
     </tr>

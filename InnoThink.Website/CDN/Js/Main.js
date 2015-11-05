@@ -157,6 +157,7 @@ $(function () {
     Main.init();
     if (typeof (CurrentPage) != 'undefined') {
         Main.MakeDDLMenu();
+        $(".QuickJumpBlock option:contains('" + CurrentPage[0] + "')").attr('selected', true);
     }
     //JSON.stringify(possessList)
 });

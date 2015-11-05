@@ -17,6 +17,7 @@ using InnoThink.BLL.User;
 using InnoThink.BLL.Topic;
 using InnoThink.Website.Controllers.Service;
 using InnoThink.Website.Communication;
+using InnoThink.Core.Utility.Extension;
 
 namespace EShopManager.Website.Controllers.Service
 {
@@ -80,6 +81,7 @@ namespace EShopManager.Website.Controllers.Service
             {
                 result.setErrorMessage("InsertOrReplaceAnalysis got error.");
             }
+            data.Column2 = data.Column2.ConvertNewLine2Br();
             CommServer.Instance.SyncUpdate(data, "Analysis.SyncUI");
             return result;
         }
@@ -92,6 +94,7 @@ namespace EShopManager.Website.Controllers.Service
             {
                 EnumAnalysisType anaType = (EnumAnalysisType)AnalysisType;
                 var data = dbAnalysis.GetByTopicSN(TopicSN, anaType);
+                data.ForEach(x => x.Column2 = x.Column2.ConvertNewLine2Br());
                 result.Items = data;
                 result.setMessage("");
             }

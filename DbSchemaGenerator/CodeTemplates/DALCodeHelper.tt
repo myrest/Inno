@@ -1,0 +1,210 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DbSchemaGenerator.Base" #>
+<#@ import namespace="DbSchemaGenerator.Utility" #>
+<#
+    AbsTableSchema TableObject = tableObject;
+    string TableName = tableName;
+    string NameSpace = nameSpace;
+    TableSchemaObject TableSchema = TableObject.GetTableSchema(TableName);
+    string PrimaryKey = TableSchema.PrimaryKey;
+    List<ColumnObject> ColumnInfo = TableSchema.ColumnInfo;
+#>
+using <#=NameSpace #>.Domain;
+using <#=NameSpace #>.Domain.Constancy;
+using Rest.Core.Constancy;
+using Rest.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace <#=NameSpace #>.DAL.<#=TableName #>
+{
+    #region interface
+    public interface I<#=TableName #>_Repo
+    {
+        <#=TableName #>_Info GetBySN(int <#=PrimaryKey #>);
+        List<<#=TableName #>_Info> GetAll();
+        List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter);
+        List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter, Paging Page);
+        List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter, string _orderby);
+        List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter, string _orderby, Paging Page);
+        List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
+        List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
+        int Insert(<#=TableName #>_Info data);
+        int Update(int <#=PrimaryKey #>, <#=TableName #>_Info data, List<string> columns);
+        int Update(<#=TableName #>_Info data);
+        int Delete(int <#=PrimaryKey #>);
+    }
+    #endregion
+
+    #region Implementation
+    public class <#=TableName #>_Repo
+    {
+        #region Operation: Select
+        public <#=TableName #>_Info GetBySN(int <#=PrimaryKey #>)
+        {
+            using (var db = new DBExecutor().GetDatabase())
+            {
+                var SQLStr = Rest.Core.PetaPoco.Sql.Builder
+                .Append("SELECT * FROM <#=TableName #>")
+                .Append("WHERE <#=PrimaryKey #>=@0", <#=PrimaryKey #>);
+
+                var result = db.SingleOrDefault<<#=TableName #>_Info>(SQLStr);
+                return result;
+            }
+        }
+
+        public List<<#=TableName #>_Info> GetAll()
+        {
+            using (var db = new DBExecutor().GetDatabase())
+            {
+                var SQLStr = Rest.Core.PetaPoco.Sql.Builder
+                    .Append("SELECT * FROM <#=TableName #>");
+                var result = db.Query<<#=TableName #>_Info>(SQLStr).ToList();
+
+                return result;
+            }
+        }
+
+        public List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter)
+        {
+            return GetByParam(Filter, null, null, "");
+        }
+
+        public List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter, Paging Page)
+        {
+            return GetByParam(Filter, Page, null, "");
+        }
+
+        public List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter, string _orderby)
+        {
+            return GetByParam(Filter, null, null, _orderby);
+        }
+
+        public List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter, string _orderby, Paging Page)
+        {
+            return GetByParam(Filter, Page, null, _orderby);
+        }
+
+        public List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
+        {
+            return GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<<#=TableName #>_Info> GetByParam(<#=TableName #>_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
+        {
+            if (fieldNames == null) { fieldNames = new string[] { "*" }; }
+            if (Page == null) { Page = new Paging(); }
+            using (var db = new DBExecutor().GetDatabase())
+            {
+                var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
+
+                var result = db.Page<<#=TableName #>_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
+                Page.Convert<<#=TableName #>_Info>(result);
+
+                return result.Items;
+            }
+        }
+
+        #endregion
+
+        #region Operation: Insert
+        public int Insert(<#=TableName #>_Info data)
+        {
+            using (var db = new DBExecutor().GetDatabase())
+            {
+                int NewID = 0;
+                var result = db.Insert(data);
+                if (result != null)
+                {
+                    int.TryParse(result.ToString(), out NewID);
+                }
+                return NewID;
+            }
+        }
+        #endregion
+
+        #region Operation: Update
+        public int Update(int <#=PrimaryKey #>, <#=TableName #>_Info data, List<string> columns)
+        {
+            using (var db = new DBExecutor().GetDatabase())
+            {
+                return db.Update(data, <#=PrimaryKey #>, columns);
+            }
+        }
+
+        public int Update(<#=TableName #>_Info data)
+        {
+            using (var db = new DBExecutor().GetDatabase())
+            {
+                return db.Update(data);
+            }
+        }
+        #endregion
+
+        #region Operation: Delete
+        public int Delete(int <#=PrimaryKey #>)
+        {
+            using (var db = new DBExecutor().GetDatabase())
+            {
+                return db.Delete("<#=TableName #>", "<#=PrimaryKey #>", null, <#=PrimaryKey #>);
+            }
+        }
+        #endregion
+
+        #region public function
+        #endregion
+
+        #region private function
+        private Rest.Core.PetaPoco.Sql ConstructSQL(<#=TableName #>_Filter filter)
+        {
+            return ConstructSQL(filter, new string[] { "*" }, "");
+        }
+
+        private Rest.Core.PetaPoco.Sql ConstructSQL(<#=TableName #>_Filter filter, string[] fieldNames, string _orderby)
+        {
+            var SQLStr = Rest.Core.PetaPoco.Sql.Builder
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM <#=TableName #>")
+                .Append("WHERE 1=1 ");
+            if (filter != null)
+            {
+<#
+    ColumnInfo.ForEach(x=>{
+        if (x.ToCSharpType() == "string"){
+            #>
+                if (!string.IsNullOrEmpty(filter.<#=x.ColumnName#>))
+                {
+                    SQLStr.Append(" AND <#=x.ColumnName#>=@0", filter.<#=x.ColumnName#>);
+                }
+            <#
+        }else{
+            #>
+                if (filter.<#=x.ColumnName#>.HasValue)
+                {
+                    SQLStr.Append(" AND <#=x.ColumnName#>=@0", filter.<#=x.ColumnName#>.Value);
+                }
+            <#
+        }
+    });
+#>
+                if (_orderby != "")
+                    SQLStr.OrderBy(_orderby);
+
+            }
+            return SQLStr;
+        }
+
+        private string FieldNameArrayToFieldNameString(string[] fieldNames)
+        {
+            return string.Join(", ", fieldNames);
+        }
+        #endregion
+    }
+    #endregion
+
+}

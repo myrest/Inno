@@ -48,18 +48,15 @@ namespace InnoThink.BLL.Board
             var data = rep.GetPagingByParam(filter, paging);
             return data;
         }
-        public IEnumerable<BoardUI> GetByLimitedRecord(BoardType? boardType = null)
+
+        public IEnumerable<BoardUI> GetByLimitedRecord(BoardType boardType = BoardType.Public, int TopicSN = 0)
         {
             Paging pg = new Paging()
             {
                 CurrentPage = 1,
                 ItemsPerPage = 10
             };
-            Board_Filter filter = new Board_Filter() { };
-            if (boardType.HasValue)
-            {
-                filter.PublishType = (int)boardType.Value;
-            }
+            Board_Filter filter = new Board_Filter() { PublishType = (int)boardType, TopicSN = TopicSN };
 
             return GetByLimitedRecord(filter, pg);
         }
@@ -78,10 +75,11 @@ namespace InnoThink.BLL.Board
         #region Operation: Raw Insert
         public long Insert(Board_Info data)
         {
+            Board_Info puredata = new Board_Info() { }.CloneObject(data) as Board_Info;
             long newID = 0;
             try
             {
-                newID = new Board_Repo().Insert(data);
+                newID = new Board_Repo().Insert(puredata);
             }
             catch (Exception ex)
             {

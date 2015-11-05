@@ -159,6 +159,15 @@ namespace InnoThink.Core.DB
                 return new List<DbBest4DataModel>() { };
             }
         }
+
+        public void Delete(int BESTSN)
+        {
+            const string strCMD = @"
+                delete bestidea Where b.bestideasn = @BESTSN";
+            List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
+            listPara.Add(new SQLiteParameter("@BESTSN", BESTSN));
+            ExecuteNonQuery(strCMD, listPara);
+        }
     }
 
     public class DbBestIdeaModel

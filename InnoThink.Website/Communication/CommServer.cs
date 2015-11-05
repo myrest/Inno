@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using InnoThink.Domain;
 using InnoThink.Domain.InnoThinkMain.Binding;
 using InnoThink.Domain.Constancy;
+using InnoThink.Core.Utility.Extension;
 
 namespace InnoThink.Website.Communication
 {
@@ -239,6 +240,7 @@ namespace InnoThink.Website.Communication
         {
             //get connections
             var list = Unit1Cache.GetAllConnections(model.TopicSN);
+            model.Description = model.Description.ConvertNewLine2Br();
             list.ForEach(x =>
             {
                 Clients.Client(x).syncBestIdea(model);

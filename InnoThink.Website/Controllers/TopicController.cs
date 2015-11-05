@@ -228,6 +228,19 @@ namespace InnoThink.Website.Controllers
             return View();
         }
 
+        //SET分析法2
+        public ActionResult Set2(int TopicSN)
+        {
+            MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
+            sessionData.ClearTempValue();
+            Best2ViewModel Model = new Best2ViewModel() { };
+            var list = dbBestIdea.GetAllByTopicSN(TopicSN);
+            Model.Listing = list;
+            Model.TopicSN = TopicSN;
+            ViewData["Model"] = Model;
+            return View();
+        }
+
         //Best分析法3
         public ActionResult Best3(int TopicSN)
         {

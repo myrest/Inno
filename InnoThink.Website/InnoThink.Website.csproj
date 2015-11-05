@@ -122,7 +122,7 @@
     <Compile Include="Controllers\Service\LikerScaleServiceController.cs" />
     <Compile Include="Controllers\Service\BoardServiceController.cs" />
     <Compile Include="Controllers\Service\AdminServiceController.cs" />
-    <Compile Include="Controllers\Service\Copy of AnalysisServiceController.cs" />
+    <Compile Include="Controllers\Service\AnalysisServiceController.cs" />
     <Compile Include="Controllers\Service\FileUploadServiceController.cs" />
     <Compile Include="Controllers\Service\GuardController.cs" />
     <Compile Include="Controllers\Service\ScenarioServiceController.cs" />
@@ -332,6 +332,7 @@
     <Content Include="Views\Topic\Best4.aspx" />
     <Content Include="Views\Topic\Best5.aspx" />
     <Content Include="Views\Topic\Best6.aspx" />
+    <Content Include="Views\Topic\Set2.aspx" />
     <Content Include="Views\Topic\Result3.aspx" />
     <Content Include="Views\Topic\Result2.aspx" />
     <Content Include="Views\Topic\Result1.aspx" />
@@ -375,7 +376,7 @@
       <Name>InnoThink.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\InnoThink.Domain\InnoThink.Domain.csproj">
-      <Project>{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}</Project>
+      <Project>{527fe3a5-3a71-4ab7-86f9-3a6b48add98e}</Project>
       <Name>InnoThink.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Rest.Core\Rest.Core.csproj">

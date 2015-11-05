@@ -389,69 +389,13 @@
     <div id="talk0">
         <div id="talk1" class="clickable">
             <div id="talk-up1">
-                留言板
+                聊天室
             </div>
         </div>
-        <span id="PublicBlock">
-            <%
-                List<BoardUI> PublicBoard = new List<BoardUI>() { };
-                if (ViewData["PublicBoard"] != null)
-                {
-                    PublicBoard = (List<BoardUI>)ViewData["PublicBoard"];
-                }
-                foreach (var item in PublicBoard)
-                {
-            %>
-            <div class="Div1">
-                <table width="95%" border="0">
-                    <tr>
-                        <td width="15%">
-                            <img src="<%=item.Picture %>" width="30" height="30" alt="" />
-                        </td>
-                        <td width="85%">
-                            <span title="<%=item.LoginId %>">
-                                <% =item.UserName %></span> 說：<%=item.Content %>(<%=item.DateUI %>)
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <%
-                }
-            %>
-        </span>
-        <div id="talk-out1">
-            <table width="95%" border="0">
-                <tr>
-                    <td>
-                        <input name="PublicMessage" type="text" id="PublicMessage" size="23" extmaxlength="50" />
-                        <img src="/pic/camara-1.png" width="15" height="12" alt="" />
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <span id="BoardTemplate" style="display: none; visibility: hidden;">
-            <div class="Div1">
-                <table width="95%" border="0">
-                    <tr>
-                        <td width="15%">
-                            <img width="30" height="30" alt="" class="img" />
-                        </td>
-                        <td width="85%">
-                            <span title="" class="loginid"></span>說：<span class="msg"></span>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </span>
         <%
             if (IsTeamMember)
             {
         %>
-        <div id="talk2">
-        </div>
-        <div id="talk-up2">
-            聊天室
-        </div>
         <span id="PrivateBlock">
             <%
                 List<BoardUI> PrivateBoard = new List<BoardUI>() { };
@@ -479,7 +423,7 @@
                 }
             %>
         </span>
-        <div id="talk-out2">
+        <div id="talk-out1">
             <table width="95%" border="0">
                 <tr>
                     <td>
@@ -488,13 +432,24 @@
                     </td>
                 </tr>
             </table>
-            <p>
-                &nbsp;
-            </p>
         </div>
         <%
             }
         %>
+        <span id="BoardTemplate" style="display: none; visibility: hidden;">
+            <div class="Div1">
+                <table width="95%" border="0">
+                    <tr>
+                        <td width="15%">
+                            <img width="30" height="30" alt="" class="img" />
+                        </td>
+                        <td width="85%">
+                            <span title="" class="loginid"></span>說：<span class="msg"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </span>
     </div>
     <div id="tableft" class="clickable LRtab">
         C<br />
