@@ -24,7 +24,8 @@ namespace InnoThink.Website.Controllers
             string hostname = HttpContext.Request.Url.Host;
             if (hostname.ToLower().Contains("www.innoroot.com"))
             {
-                FBGroupID = "1465916723672476";//2014實務專題討論
+                //FBGroupID = "1465916723672476";//2014實務專題討論
+                FBGroupID = "1055290374511536";//北科大104年進修工業設計-實務專題
             }
             else
             {

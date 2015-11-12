@@ -102,9 +102,9 @@ namespace InnoThink.Website.Controllers
 
             var UIObj = new AnalysisUIFormObject()
             {
-                MainFunction = "瞭解市場",
+                MainFunction = "現有市場分析",
                 TitleLeft = "現有市場描述",
-                TitleRight = "親身體驗服務",
+                TitleRight = "同質性服務描述",
                 TypeLeft = (int)EnumAnalysisType.CurrentMarket,
                 TypeRight = (int)EnumAnalysisType.Visit
             };

@@ -160,10 +160,29 @@ namespace InnoThink.Core.DB
             }
         }
 
+        public List<DbBest4DataModel> GetAllSetViewDataByTopicSN(int TopicSN)
+        {
+            const string strCMD = @"
+                Select Type, BestIdeaSN, Idea, 0 as Ranking
+                From bestidea
+                Where TopicSN = @TopicSN order by BestIdeaSN desc";
+            List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
+            listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));
+            List<DbBest4DataModel> itemList = ExecuteReader<DbBest4DataModel>(CommandType.Text, strCMD, listPara, getDataModuleCallBack);
+            if (itemList.Count > 0)
+            {
+                return itemList;
+            }
+            else
+            {
+                return new List<DbBest4DataModel>() { };
+            }
+        }
+
         public void Delete(int BESTSN)
         {
             const string strCMD = @"
-                delete bestidea Where b.bestideasn = @BESTSN";
+                delete from bestidea Where bestideasn = @BESTSN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@BESTSN", BESTSN));
             ExecuteNonQuery(strCMD, listPara);

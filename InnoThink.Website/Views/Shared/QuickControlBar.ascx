@@ -30,8 +30,11 @@
                 <select id="QuickJump">
                 </select -->
                 <select id="QuickJump">
-                    <option value="Analysis,Analysis4">瞭解市場</option>
                     <option value="Topic,Set2">SET便條紙</option>
+                    <option value="Topic,Set4">KJ法</option>
+                    <option value="Topic,Set5">Set重要性分析</option>
+                    <option value="Topic,Set6">尋找產品機會缺口</option>
+                    <option value="Analysis,Analysis4">現有市場分析</option>
                 </select>
                 <label for="AllJump">
                     <input type="checkbox" id="AllJump" />全員跳頁

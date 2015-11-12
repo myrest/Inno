@@ -241,6 +241,69 @@ namespace InnoThink.Website.Controllers
             return View();
         }
 
+        //Set分析法4
+        public ActionResult Set4(int TopicSN)
+        {
+            MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
+            sessionData.ClearTempValue();
+            Best4ViewModel Model = new Best4ViewModel() { };
+            var list = dbBestIdea.GetAllSetViewDataByTopicSN(TopicSN);
+            var GroupList = dbBestIdeaGrp.GetALLByTopicSN(TopicSN);
+            if (GroupList == null)
+            {
+                GroupList = new List<DbBestIdeaGroup>() { };
+            }
+            Model.Listing = list;
+            Model.GroupListing = GroupList;
+            Model.TopicSN = TopicSN;
+            ViewData["Model"] = Model;
+            return View();
+        }
+
+        //Set分析法5
+        public ActionResult Set5(int TopicSN)
+        {
+            MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
+            sessionData.ClearTempValue();
+            Best5ViewModel Model = new Best5ViewModel() { };
+            var list = dbBestGroupRank.GetAllByTopicSN(TopicSN, sessionData.trading.UserSN);
+            Model.Listing = list;
+            Model.TopicSN = TopicSN;
+            ViewData["Model"] = Model;
+            return View();
+        }
+
+        //Best分析法6
+        public ActionResult Set6(int TopicSN)
+        {
+            MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
+            sessionData.ClearTempValue();
+
+            //Get IdeaGroup information for list donw check box
+            Best6ViewModel GroupModel = new Best6ViewModel() { };
+            List<DbBest6DataModel> listBest5 = dbBestIdeaGrp.GetAllViewDataByTopicSN(TopicSN);
+            GroupModel.Listing = listBest5;
+            GroupModel.TopicSN = TopicSN;
+
+            var list = dbBestGap.GetALLByTopicSN(TopicSN);
+            //Change image path.
+            if (list != null)
+            {
+                list.ForEach(x =>
+                {
+                    x.Document = StringUtility.ConvertGAPPath(x.Document);
+                });
+            }
+            else
+            {
+                list = new List<DbBestGAPModel>() { };
+            }
+
+            GroupModel.GAPListing = list;
+            ViewData["Model"] = GroupModel;
+            return View();
+        }
+
         //Best分析法3
         public ActionResult Best3(int TopicSN)
         {

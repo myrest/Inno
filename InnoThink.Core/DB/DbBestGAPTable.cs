@@ -41,8 +41,15 @@ namespace InnoThink.Core.DB
             else
             {
                 var idea = dbBestIdeaGrp.GetALLByBestIdeaGroupSN(BestIdeaGroupSN);
-                BestIdeaGroupCache.Add(BestIdeaGroupSN, idea);
-                return idea.GroupName;
+                if (idea != null)
+                {
+                    BestIdeaGroupCache.Add(BestIdeaGroupSN, idea);
+                    return idea.GroupName;
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
 
@@ -59,11 +66,15 @@ namespace InnoThink.Core.DB
                     sdr["BestIdeaGroupSNs"].ToString().Split(new char[] { ',' }).ToList().ForEach(x =>
                     {
                         int sn = Convert.ToInt32(x);
-                        GroupMember.Add(new DbBestGAPMemberModel()
+                        var idea = GetIdeaBySN(sn);
+                        if (!string.IsNullOrEmpty(idea))
                         {
-                            BestIdeaGroupSN = sn,
-                            Idea = GetIdeaBySN(sn)
-                        });
+                            GroupMember.Add(new DbBestGAPMemberModel()
+                            {
+                                BestIdeaGroupSN = sn,
+                                Idea = idea
+                            });
+                        }
                     });
 
                     listResult.Add(new DbBestGAPModel()
@@ -197,6 +208,15 @@ namespace InnoThink.Core.DB
             listPara.Add(new SQLiteParameter("@SN", Model.SN));
             int icnt = ExecuteNonQuery(strCMD, listPara);
             return (icnt > 0);
+        }
+
+        public void Delete(int SN)
+        {
+            const string strCMD = @"
+                delete from bestgap Where bestgapsn = @SN";
+            List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
+            listPara.Add(new SQLiteParameter("@SN", SN));
+            ExecuteNonQuery(strCMD, listPara);
         }
     }
 

@@ -58,7 +58,7 @@ namespace InnoThink.Core.Cache.Board
             }
             //modify user's picture
             board.Picture = StringUtility.ConvertPicturePath(board.Picture);
-            if (target[board.TopicSN].Count() > 10)
+            if (target[board.TopicSN].Count() > 1000)
             {
                 target[board.TopicSN].RemoveAt(0);
             }

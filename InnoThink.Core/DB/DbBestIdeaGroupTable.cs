@@ -36,8 +36,15 @@ namespace InnoThink.Core.DB
             else
             {
                 var idea = dbBestIdea.GetBySN(BestIdeaSN);
-                BestIdeaCache.Add(BestIdeaSN, idea);
-                return idea.Idea;
+                if (idea != null)
+                {
+                    BestIdeaCache.Add(BestIdeaSN, idea);
+                    return idea.Idea;
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
 
@@ -54,11 +61,15 @@ namespace InnoThink.Core.DB
                     sdr["BestIdeaSNs"].ToString().Split(new char[] { ',' }).ToList().ForEach(x =>
                     {
                         int sn = Convert.ToInt32(x);
-                        GroupMember.Add(new DbBestIdeaGroupMember()
+                        var idea = GetIdeaBySN(sn);
+                        if (idea != null)
                         {
-                            BestIdeaSN = sn,
-                            Idea = GetIdeaBySN(sn)
-                        });
+                            GroupMember.Add(new DbBestIdeaGroupMember()
+                            {
+                                BestIdeaSN = sn,
+                                Idea = idea
+                            });
+                        }
                     });
 
                     listResult.Add(new DbBestIdeaGroup()
@@ -118,6 +129,18 @@ namespace InnoThink.Core.DB
             listPara.Add(new SQLiteParameter("@Type", Model.Type));
             int newSN = ExecuteInsert(strCMD, listPara);
             return (newSN);
+        }
+
+        /// <summary>
+        /// Delete record
+        /// </summary>
+        /// <param name="SN"></param>
+        public void Delete(int SN)
+        {
+            string strCMD = @"Delete from BestIdeaGroup where BestIdeaGroupSN = @BestIdeaGroupSN";
+            List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
+            listPara.Add(new SQLiteParameter("@BestIdeaGroupSN", SN));
+            ExecuteNonQuery(strCMD, listPara);
         }
 
         public List<DbBestIdeaGroup> GetALLByTopicSN(int TopicSN)

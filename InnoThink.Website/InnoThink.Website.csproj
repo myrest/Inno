@@ -332,6 +332,9 @@
     <Content Include="Views\Topic\Best4.aspx" />
     <Content Include="Views\Topic\Best5.aspx" />
     <Content Include="Views\Topic\Best6.aspx" />
+    <Content Include="Views\Topic\Set6.aspx" />
+    <Content Include="Views\Topic\Set5.aspx" />
+    <Content Include="Views\Topic\Set4.aspx" />
     <Content Include="Views\Topic\Set2.aspx" />
     <Content Include="Views\Topic\Result3.aspx" />
     <Content Include="Views\Topic\Result2.aspx" />
@@ -359,6 +362,7 @@
     <Content Include="Upload\TeamLogo\ImageReleateWithTeamLogo" />
     <Content Include="Upload\BestGAP\ImageReleateWithBestGAP" />
     <Content Include="Upload\Result\ImageReleateWithResult" />
+    <None Include="Properties\PublishProfiles\HDD.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Site.Master" />

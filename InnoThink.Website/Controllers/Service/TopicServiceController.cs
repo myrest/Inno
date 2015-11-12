@@ -73,22 +73,73 @@ namespace InnoThink.Website.Controllers.Service
                 if (data != null)
                 {
                     dbBestIdea.Delete(BESTSN);
-                    KeyValuePair<int, int> UiObj = new KeyValuePair<int, int>((int)data.Type, data.SN);
+                    KeyValuePair<string, int> UiObj = new KeyValuePair<string, int>(data.Type.ToString(), data.SN);
                     CommServer.Instance.SyncUpdate(UiObj, "Step.SyncRemoveUI", data.TopicSN);
                     result.setMessage("");
                 }
                 else
                 {
-                    result.setException("Data was been delete.", "DeleteAnalysis");
+                    result.setException("Data was been delete.", "DeleteBest");
                 }
             }
             catch (Exception ex)
             {
-                result.setException(ex, "DeleteAnalysis");
+                result.setException(ex, "DeleteBest");
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
+        [HttpPost]
+        public JsonResult DeleteGAP(int BESTSN)
+        {
+            ResultBase result = new ResultBase();
+            try
+            {
+                var data = dbBestGAP.GetByBestGAPSN(BESTSN);
+                if (data != null)
+                {
+                    dbBestGAP.Delete(BESTSN);
+                    CommServer.Instance.SyncUpdate(data.SN, "Step.SyncRemoveUI", data.TopicSN);
+                    result.setMessage("");
+                }
+                else
+                {
+                    result.setException("Data was been delete.", "DeleteGAP");
+                }
+            }
+            catch (Exception ex)
+            {
+                result.setException(ex, "DeleteGAP");
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteBestGroup(int BestGrpSN)
+        {
+            ResultBase result = new ResultBase();
+            try
+            {
+                var data = dbBestIdeaGrp.GetALLByBestIdeaGroupSN(BestGrpSN);
+                if (data != null)
+                {
+                    dbBestIdeaGrp.Delete(BestGrpSN);
+                    KeyValuePair<string, int> UiObj = new KeyValuePair<string, int>(data.Type.ToString(), data.SN);
+                    CommServer.Instance.SyncUpdate(UiObj, "Step.SyncRemoveUI", data.TopicSN);
+                    result.setMessage("");
+                }
+                else
+                {
+                    result.setException("Data was been delete.", "DeleteBestGroup");
+                }
+            }
+            catch (Exception ex)
+            {
+                result.setException(ex, "DeleteBestGroup");
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+        
         [HttpPost]
         public JsonResult UpdateUnit1Description(UpdateUnit1DescriptionUI data)
         {
@@ -429,7 +480,7 @@ namespace InnoThink.Website.Controllers.Service
                             }
                             else
                             {
-                                result.Message = "/Analysis/Analysis4?TopicSN=" + Topic.TopicSN;
+                                result.Message = "/Topic/Set2?TopicSN=" + Topic.TopicSN;
                             }
                             break;
 
