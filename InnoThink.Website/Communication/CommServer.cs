@@ -267,6 +267,16 @@ namespace InnoThink.Website.Communication
             });
         }
 
+        internal void syncUIBestIGAPIdea(DbBestGAPIdeaModel model)
+        {
+            //get connections
+            var list = Unit1Cache.GetAllConnections(model.TopicSN);
+            list.ForEach(x =>
+            {
+                Clients.Client(x).syncBestGAP(model);
+            });
+        }
+
         internal void syncOnlineUser(int TopicSN, User_Info user)
         {
             //get connections

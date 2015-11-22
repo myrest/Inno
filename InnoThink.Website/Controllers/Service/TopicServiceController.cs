@@ -44,6 +44,7 @@ namespace InnoThink.Website.Controllers.Service
         private static readonly DbBestIdeaGroupTable dbBestIdeaGrp = new DbBestIdeaGroupTable() { };
         private static readonly DbBestIdeaGroupRankTable dbBestIdeaGrpRank = new DbBestIdeaGroupRankTable() { };
         private static readonly DbBestGAPTable dbBestGAP = new DbBestGAPTable() { };
+        private static readonly DbBestGAPIdeaTable dbBestGAPIdea = new DbBestGAPIdeaTable() { };
         private static readonly DbResultTable dbResult = new DbResultTable() { };
 
         public TopicServiceController()
@@ -113,6 +114,32 @@ namespace InnoThink.Website.Controllers.Service
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
+
+        [HttpPost]
+        public JsonResult DeleteGAPIdea(int GapIdeaSN)
+        {
+            ResultBase result = new ResultBase();
+            try
+            {
+                var data = dbBestGAPIdea.GetByBestGAPIdeaSN(GapIdeaSN);
+                if (data != null)
+                {
+                    dbBestGAPIdea.Delete(GapIdeaSN);
+                    CommServer.Instance.SyncUpdate(data.SN, "Step.SyncRemoveUI", data.TopicSN);
+                    result.setMessage("");
+                }
+                else
+                {
+                    result.setException("Data was been delete.", "DeleteGAP");
+                }
+            }
+            catch (Exception ex)
+            {
+                result.setException(ex, "DeleteGAPIdea");
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
 
         [HttpPost]
         public JsonResult DeleteBestGroup(int BestGrpSN)
@@ -725,6 +752,63 @@ namespace InnoThink.Website.Controllers.Service
         }
 
         [HttpPost]
+        public JsonResult UpdateBestGAPIdea(string MyGAP, string Description, string SNs, int BestGAPSN)
+        {
+            ResultBase result = new ResultBase() { };
+            var AllBestIdeaGroupSN = JsonConvert.DeserializeObject<List<string>>(SNs);
+            List<DbBestGAPIdeaMemberModel> SubItem = new List<DbBestGAPIdeaMemberModel>() { };
+            AllBestIdeaGroupSN.ForEach(x =>
+            {
+                SubItem.Add(new DbBestGAPIdeaMemberModel() { BestGAPSN = Convert.ToInt32(x) });
+            });
+
+            //Get existing data
+            //var Model = dbBestGAP.GetByBestGAPSN(BestGAPSN);
+            var Model = dbBestGAPIdea.GetByBestGAPIdeaSN(BestGAPSN);
+
+            //set data for update
+            Model.Description = Description;
+            Model.MyGAP = MyGAP;
+            Model.IdeaDetails = SubItem;
+            //if user update file, need to copy file from temp folder to the upload folder.
+            if (!string.IsNullOrEmpty(sessionData.trading._tempFileName))
+            {
+                if (string.Compare("DELETE", sessionData.trading._tempFileName, true) == 0)
+                {
+                    string FileDisc = string.Format("{0}/{1}/{2}", HttpRuntime.AppDomainAppPath, AppConfigManager.SystemSetting.FileUpLoadBest, Model.Document);
+                    FileInfo f = new FileInfo(FileDisc);
+                    f.Delete();
+                    Model.Document = string.Empty;
+                }
+                else
+                {
+                    string FileSource = string.Format("{0}/{1}/{2}", HttpRuntime.AppDomainAppPath, AppConfigManager.SystemSetting.FileUpLoadTempFolder, sessionData.trading._tempFileName);
+                    if (string.IsNullOrEmpty(Model.Document))
+                    {
+                        Model.Document = "Best6_1" + Model.SN + Path.GetExtension(FileSource);
+                    }
+                    string FileDisc = string.Format("{0}/{1}/{2}", HttpRuntime.AppDomainAppPath, AppConfigManager.SystemSetting.FileUpLoadBestGAP, Model.Document);
+                    FileInfo f = new FileInfo(FileDisc);
+                    f.Delete();
+                    f = new FileInfo(FileSource);
+                    f.MoveTo(FileDisc);
+                }
+            }
+
+            dbBestGAPIdea.InsertOrReplace(Model);
+            sessionData.ClearTempValue();
+            //get from DB.
+            Model = dbBestGAPIdea.GetByBestGAPIdeaSN(Model.SN);
+            if (!string.IsNullOrEmpty(Model.Document))
+            {
+                Model.Document = StringUtility.ConvertGAPPath(Model.Document);
+            }
+            CommServer.Instance.syncUIBestIGAPIdea(Model);
+            result.JsonReturnCode = 1;
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
         public JsonResult UpdateBest1(string Category, string Description, string Related, int SN)
         {
             ResultBase result = new ResultBase() { };
@@ -1059,6 +1143,39 @@ namespace InnoThink.Website.Controllers.Service
                 model.Document = StringUtility.ConvertGAPPath(model.Document);
             }
             CommServer.Instance.syncUIBestIGAP(model);
+            result.JsonReturnCode = 1;
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult NewBestGAPIdea(int TopicSN, string MyGAP, string Description, string SNs)
+        {
+            ResultBase result = new ResultBase() { };
+            var AllBestIdeaGroupSN = JsonConvert.DeserializeObject<List<string>>(SNs);
+            List<DbBestGAPIdeaMemberModel> SubItem = new List<DbBestGAPIdeaMemberModel>() { };
+            AllBestIdeaGroupSN.ForEach(x =>
+            {
+                SubItem.Add(new DbBestGAPIdeaMemberModel() { BestGAPSN = Convert.ToInt32(x) });
+            });
+
+            DbBestGAPIdeaModel model = new DbBestGAPIdeaModel()
+            {
+                TopicSN = TopicSN,
+                Description = Description,
+                Document = sessionData.trading._tempFileName,
+                MyGAP = MyGAP,
+                UserSN = sessionData.trading.UserSN,
+                IdeaDetails = SubItem
+            };
+            int NewSN = dbBestGAPIdea.Add(model);
+            sessionData.ClearTempValue();
+            //get from DB.
+            model = dbBestGAPIdea.GetByBestGAPIdeaSN(NewSN);
+            if (!string.IsNullOrEmpty(model.Document))
+            {
+                model.Document = StringUtility.ConvertGAPPath(model.Document);
+            }
+            CommServer.Instance.syncUIBestIGAPIdea(model);
             result.JsonReturnCode = 1;
             return Json(result, JsonRequestBehavior.DenyGet);
         }

@@ -35,6 +35,7 @@
                     <option value="Topic,Set5">Set重要性分析</option>
                     <option value="Topic,Set6">尋找產品機會缺口</option>
                     <option value="Analysis,Analysis4">現有市場分析</option>
+                    <option value="Topic,Set6_1">機會缺口點子</option>
                 </select>
                 <label for="AllJump">
                     <input type="checkbox" id="AllJump" />全員跳頁

@@ -13,38 +13,38 @@ using Rest.Core.Constancy;
 
 namespace InnoThink.Core.DB
 {
-    public class DbBestGAPTable : BaseDAO
+    public class DbBestGAPIdeaTable : BaseDAO
     {
-        private readonly static SysLog log = SysLog.GetLogger(typeof(DbBestGAPTable));
+        private readonly static SysLog log = SysLog.GetLogger(typeof(DbBestGAPIdeaTable));
 
         //private readonly static DbBestIdeaTable dbBestIdea = new DbBestIdeaTable() { };
-        private readonly static DbBestIdeaGroupTable dbBestIdeaGrp = new DbBestIdeaGroupTable() { };
+        private readonly static DbBestGAPTable dbBestGAP = new DbBestGAPTable() { };
 
-        private static Dictionary<int, DbBestIdeaGroup> BestIdeaGroupCache = new Dictionary<int, DbBestIdeaGroup>() { };
+        private static Dictionary<int, DbBestGAPModel> BestGAPCache = new Dictionary<int, DbBestGAPModel>() { };
 
-        public DbBestGAPTable()
+        public DbBestGAPIdeaTable()
         {
-            base.init(typeof(DbBestGAPTable).ToString(), DataBaseName.InnoThinkMain);
+            base.init(typeof(DbBestGAPIdeaTable).ToString(), DataBaseName.InnoThinkMain);
         }
 
-        private void ClearBestIdeaGroupCache()
+        private void ClearBestGAPCache()
         {
-            BestIdeaGroupCache.Clear();
+            BestGAPCache.Clear();
         }
 
-        private string GetIdeaBySN(int BestIdeaGroupSN)
+        private string GetGAPBySN(int BestGAPSN)
         {
-            if (BestIdeaGroupCache.Keys.Contains(BestIdeaGroupSN))
+            if (BestGAPCache.Keys.Contains(BestGAPSN))
             {
-                return BestIdeaGroupCache[BestIdeaGroupSN].GroupName;
+                return BestGAPCache[BestGAPSN].MyGAP;
             }
             else
             {
-                var idea = dbBestIdeaGrp.GetALLByBestIdeaGroupSN(BestIdeaGroupSN);
+                var idea = dbBestGAP.GetByBestGAPSN(BestGAPSN);
                 if (idea != null)
                 {
-                    BestIdeaGroupCache.Add(BestIdeaGroupSN, idea);
-                    return idea.GroupName;
+                    BestGAPCache.Add(BestGAPSN, idea);
+                    return idea.MyGAP;
                 }
                 else
                 {
@@ -53,35 +53,35 @@ namespace InnoThink.Core.DB
             }
         }
 
-        private List<DbBestGAPModel> getModuleCallBack(SQLiteDataReader sdr)
+        private List<DbBestGAPIdeaModel> getModuleCallBack(SQLiteDataReader sdr)
         {
-            List<DbBestGAPModel> listResult = new List<DbBestGAPModel>() { };
+            List<DbBestGAPIdeaModel> listResult = new List<DbBestGAPIdeaModel>() { };
             if (sdr.HasRows)
             {
-                ClearBestIdeaGroupCache();
+                ClearBestGAPCache();
                 while (sdr.Read())
                 {
-                    //split BestIdeaGroupSNs.
-                    List<DbBestGAPMemberModel> GroupMember = new List<DbBestGAPMemberModel>() { };
-                    sdr["BestIdeaGroupSNs"].ToString().Split(new char[] { ',' }).ToList().ForEach(x =>
+                    //split BestGAPSNs.
+                    List<DbBestGAPIdeaMemberModel> GroupMember = new List<DbBestGAPIdeaMemberModel>() { };
+                    sdr["BestGAPSNs"].ToString().Split(new char[] { ',' }).ToList().ForEach(x =>
                     {
                         int sn = Convert.ToInt32(x);
-                        var idea = GetIdeaBySN(sn);
+                        var idea = GetGAPBySN(sn);
                         if (!string.IsNullOrEmpty(idea))
                         {
-                            GroupMember.Add(new DbBestGAPMemberModel()
+                            GroupMember.Add(new DbBestGAPIdeaMemberModel()
                             {
-                                BestIdeaGroupSN = sn,
+                                BestGAPSN = sn,
                                 Idea = idea
                             });
                         }
                     });
 
-                    listResult.Add(new DbBestGAPModel()
+                    listResult.Add(new DbBestGAPIdeaModel()
                     {
                         MyGAP = sdr["MyGAP"].ToString(),
                         IdeaDetails = GroupMember,
-                        SN = Convert.ToInt32(sdr["BestGAPSN"].ToString()),
+                        SN = Convert.ToInt32(sdr["BestGAPIdeaSN"].ToString()),
                         TopicSN = Convert.ToInt32(sdr["TopicSN"].ToString()),
                         Description = sdr["Description"].ToString(),
                         Document = sdr["Document"].ToString(),
@@ -98,25 +98,25 @@ namespace InnoThink.Core.DB
         /// </summary>
         /// <param name="Model">object which will be inserted.</param>
         /// <returns>The new record's SN.</returns>
-        public int Add(DbBestGAPModel Model)
+        public int Add(DbBestGAPIdeaModel Model)
         {
-            string[] BestIdeaGroupSNs_arr = Model.IdeaDetails.Select(x => x.BestIdeaGroupSN.ToString()).ToArray();
-            string BestIdeaGroupSNs = string.Join(",", BestIdeaGroupSNs_arr);
+            string[] BestGAPSNs_arr = Model.IdeaDetails.Select(x => x.BestGAPSN.ToString()).ToArray();
+            string BestGAPSNs = string.Join(",", BestGAPSNs_arr);
 
-            string strCMD = @"insert into BestGAP
+            string strCMD = @"insert into BestGAPIdea
             (
-                TopicSN, MyGAP, Description, Document, BestIdeaGroupSNs, UserSN, LastUpdate
+                TopicSN, MyGAP, Description, Document, BestGAPSNs, UserSN, LastUpdate
             )
             values
             (
-                @TopicSN, @MyGAP, @Description, @Document, @BestIdeaGroupSNs, @UserSN, @LastUpdate
+                @TopicSN, @MyGAP, @Description, @Document, @BestGAPSNs, @UserSN, @LastUpdate
             )";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@TopicSN", Model.TopicSN));
             listPara.Add(new SQLiteParameter("@MyGAP", Model.MyGAP));
             listPara.Add(new SQLiteParameter("@Description", Model.Description));
             listPara.Add(new SQLiteParameter("@Document", Model.Document));
-            listPara.Add(new SQLiteParameter("@BestIdeaGroupSNs", BestIdeaGroupSNs));
+            listPara.Add(new SQLiteParameter("@BestGAPSNs", BestGAPSNs));
             listPara.Add(new SQLiteParameter("@UserSN", Model.UserSN));
             listPara.Add(new SQLiteParameter("@LastUpdate", DateTime.Now));
             int newSN = ExecuteInsert(strCMD, listPara);
@@ -125,14 +125,14 @@ namespace InnoThink.Core.DB
             {
                 //Copy file
                 string FileSource = string.Format("{0}/{1}/{2}", HttpRuntime.AppDomainAppPath, AppConfigManager.SystemSetting.FileUpLoadTempFolder, Model.Document);
-                string NewName = "Best6" + newSN + Path.GetExtension(FileSource);
+                string NewName = "Best6_1" + newSN + Path.GetExtension(FileSource);
                 string FileDisc = string.Format("{0}/{1}/{2}", HttpRuntime.AppDomainAppPath, AppConfigManager.SystemSetting.FileUpLoadBestGAP, NewName);
                 FileInfo f = new FileInfo(FileSource);
                 f.MoveTo(FileDisc);
                 //Set the image to new filename.
                 Model.Document = NewName;
                 //Update image to new filename.
-                strCMD = "Update BestGAP set Document = @Document where BestGAPSN = @SN";
+                strCMD = "Update BestGAPIdea set Document = @Document where BestGAPIdeaSN = @SN";
                 listPara = new List<SQLiteParameter>() { };
                 listPara.Add(new SQLiteParameter("@Document", NewName));
                 listPara.Add(new SQLiteParameter("@SN", newSN));
@@ -142,28 +142,28 @@ namespace InnoThink.Core.DB
             return (newSN);
         }
 
-        public List<DbBestGAPModel> GetALLByTopicSN(int TopicSN)
+        public List<DbBestGAPIdeaModel> GetALLByTopicSN(int TopicSN)
         {
-            const string strCMD = "select * from BestGAP where TopicSN = @TopicSN";
+            const string strCMD = "select * from BestGAPIdea where TopicSN = @TopicSN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@TopicSN", TopicSN));
-            List<DbBestGAPModel> itemList = ExecuteReader<DbBestGAPModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
+            List<DbBestGAPIdeaModel> itemList = ExecuteReader<DbBestGAPIdeaModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
             if (itemList.Count > 0)
             {
                 return itemList;
             }
             else
             {
-                return new List<DbBestGAPModel>() { };
+                return null;
             }
         }
 
-        public DbBestGAPModel GetByBestGAPSN(int BestGAPSN)
+        public DbBestGAPIdeaModel GetByBestGAPIdeaSN(int BestGAPIdeaSN)
         {
-            const string strCMD = "select * from BestGAP where BestGAPSN = @SN";
+            const string strCMD = "select * from BestGAPIdea where BestGAPIdeaSN = @SN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
-            listPara.Add(new SQLiteParameter("@SN", BestGAPSN));
-            List<DbBestGAPModel> itemList = ExecuteReader<DbBestGAPModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
+            listPara.Add(new SQLiteParameter("@SN", BestGAPIdeaSN));
+            List<DbBestGAPIdeaModel> itemList = ExecuteReader<DbBestGAPIdeaModel>(CommandType.Text, strCMD, listPara, getModuleCallBack);
             if (itemList.Count > 0)
             {
                 return itemList[0];
@@ -174,9 +174,9 @@ namespace InnoThink.Core.DB
             }
         }
 
-        public void InsertOrReplace(DbBestGAPModel Model)
+        public void InsertOrReplace(DbBestGAPIdeaModel Model)
         {
-            var obj = GetByBestGAPSN(Model.SN);
+            var obj = GetByBestGAPIdeaSN(Model.SN);
             if (obj != null)
             {
                 Update(Model);
@@ -187,22 +187,22 @@ namespace InnoThink.Core.DB
             }
         }
 
-        private bool Update(DbBestGAPModel Model)
+        private bool Update(DbBestGAPIdeaModel Model)
         {
-            string[] BestIdeaGroupSNs_arr = Model.IdeaDetails.Select(x => x.BestIdeaGroupSN.ToString()).ToArray();
-            string BestIdeaGroupSNs = string.Join(",", BestIdeaGroupSNs_arr);
+            string[] BestGAPSNs_arr = Model.IdeaDetails.Select(x => x.BestGAPSN.ToString()).ToArray();
+            string BestGAPSNs = string.Join(",", BestGAPSNs_arr);
 
             string strCMD = @"
-                Update BestGAP set
+                Update BestGAPIdea set
                     MyGAP = @MyGAP
-                    ,BestIdeaGroupSNs = @BestIdeaGroupSNs
+                    ,BestGAPSNs = @BestGAPSNs
                     ,Description = @Description
                     ,Document = @Document
-                Where BestGAPSN = @SN
+                Where BestGAPIdeaSN = @SN
             ";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@MyGAP", Model.MyGAP));
-            listPara.Add(new SQLiteParameter("@BestIdeaGroupSNs", BestIdeaGroupSNs));
+            listPara.Add(new SQLiteParameter("@BestGAPSNs", BestGAPSNs));
             listPara.Add(new SQLiteParameter("@Description", Model.Description));
             listPara.Add(new SQLiteParameter("@Document", Model.Document));
             listPara.Add(new SQLiteParameter("@SN", Model.SN));
@@ -213,20 +213,20 @@ namespace InnoThink.Core.DB
         public void Delete(int SN)
         {
             const string strCMD = @"
-                delete from bestgap Where bestgapsn = @SN";
+                delete from BestGAPIdea Where BestGapIdeasn = @SN";
             List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
             listPara.Add(new SQLiteParameter("@SN", SN));
             ExecuteNonQuery(strCMD, listPara);
         }
     }
 
-    public class DbBestGAPMemberModel
+    public class DbBestGAPIdeaMemberModel
     {
-        public int BestIdeaGroupSN;
+        public int BestGAPSN;
         public string Idea;
     }
 
-    public class DbBestGAPModel
+    public class DbBestGAPIdeaModel
     {
         /// <summary>
         /// 流水號
@@ -266,6 +266,6 @@ namespace InnoThink.Core.DB
         /// <summary>
         /// Best Idea 群組成員
         /// </summary>
-        public List<DbBestGAPMemberModel> IdeaDetails;
+        public List<DbBestGAPIdeaMemberModel> IdeaDetails;
     }
 }

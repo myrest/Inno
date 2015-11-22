@@ -191,8 +191,9 @@ var inno198 = {
                     if (data.Picture != undefined) {
                         pic = data.Picture;
                     }
-                    var picobj = '<img src="' + pic + '" width="30" height="30" alt="' + data.UserName + '" title="' + data.UserName + '" class="onlinemember" id="UOid' + data.UserSN + '" />&nbsp;';
+                    var picobj = '<img src="' + pic + '" width="30" height="30" alt="' + data.UserName + '" title="' + data.UserName + '" class="onlinemember clickable" id="UOid' + data.UserSN + '" />&nbsp;';
                     $('#topicOnline').append(picobj);
+                    Main.BindImpersonateEvent();
                 }
             },
             syncOfflineUser: function (UserSN) {

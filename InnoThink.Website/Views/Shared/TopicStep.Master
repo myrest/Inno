@@ -500,6 +500,7 @@
             {
                 HiddenClass = string.Empty;
             }
+            int CurrentUserSN = (int)ViewData["_UserSN"];
         %>
         <div id="otherteam2" class="<%=HiddenClass %>">
             <div id="otherteam-up2">
@@ -517,7 +518,8 @@
                             <%
                                 foreach (var item in online)
                                 {
-                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", item.Picture, item.UserName, item.UserSN));
+                                    string isMeClass = (item.UserSN == CurrentUserSN) ? "IconIsME" : "";
+                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember clickable {2}\" id=\"UOid{3}\" />", item.Picture, item.UserName, isMeClass, item.UserSN));
                                 }
                             %>
                         </td>
@@ -532,7 +534,8 @@
                             <%
                                 foreach (var item in offline)
                                 {
-                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember\" id=\"UOid{2}\" />", item.Picture, item.UserName, item.UserSN));
+                                    string isMeClass = (item.UserSN == CurrentUserSN) ? "IconIsME" : "";
+                                    Response.Write(string.Format("<img src=\"{0}\" width=\"30\" height=\"30\" alt=\"{1}\" title=\"{1}\" class=\"onlinemember clickable {2}\" id=\"UOid{3}\" />", item.Picture, item.UserName, isMeClass, item.UserSN));
                                 }
                             %>
                         </td>

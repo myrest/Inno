@@ -378,7 +378,7 @@ input.textbox-highlight, .txt-input:hover, .amt-input:hover, .m-input-box:hover,
 {
     display: block;
 }
-#tbitems .related
+.related
 {
     color: rgb(188, 58, 194);
 }
@@ -451,7 +451,7 @@ input.textbox-highlight, .txt-input:hover, .amt-input:hover, .m-input-box:hover,
 /*Common left down*/
 .onlinemember
 {
-    padding: 0px 2px 6px 2px;
+    margin: 0px 2px 6px 2px;
 }
 
 /* Result */
@@ -565,6 +565,7 @@ img.delete
 .InputArea.LightYellow
 {
     background-color: rgb(255, 255, 204);
+    width:47%;
 }
 
 .WhitePaperTable
@@ -577,7 +578,7 @@ img.delete
     -webkit-box-shadow: rgb(204, 204, 204) 5px 0px 5px 0px;
     margin: 0 5px 13px 5px;
     padding: 0 10px 0 10px;
-    width:330;
+    width:330px;
 }
 .WhitePaperTable.LightYellow
 {
@@ -597,6 +598,15 @@ img.delete
     margin : 0px;
     width : 99%;
 }
+
+/* Team member status*/
+.IconIsME {
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    border:1px solid #aaaaaa;
+}
+
 /* Facebook CSS Setting Start*/
 #FBgroup
 {

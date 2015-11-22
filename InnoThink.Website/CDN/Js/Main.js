@@ -151,6 +151,19 @@ var Main = {
             }
         }
     }
+    , _Impersonate: function ($this) {
+        var sn = $this.attr('id');
+        sn = sn.substring(4, sn.length);
+        var param = { NewUserSN: sn };
+        utility.ajaxQuiet("LoginService/Impersonate", param, function () { location.reload(); });
+    }
+    , Impersonate: function () {
+        var $this = $(this);
+        utility.showPopUp("你要進行身份切換嗎?", 3, function () { Main._Impersonate($this); });
+    }
+    , BindImpersonateEvent: function () {
+        $('.onlinemember').unbind().on('click', Main.Impersonate);
+    }
 };
 
 $(function () {
@@ -159,5 +172,6 @@ $(function () {
         Main.MakeDDLMenu();
         $(".QuickJumpBlock option:contains('" + CurrentPage[0] + "')").attr('selected', true);
     }
+    Main.BindImpersonateEvent();
     //JSON.stringify(possessList)
 });

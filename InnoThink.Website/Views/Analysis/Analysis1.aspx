@@ -653,7 +653,7 @@
                         1. <%=PageTitle %>：
                     </div>
                     <div id="Block<%=FormUI.TypeLeft %>" class="InputArea LightYellow">
-                        <table>
+                        <table class="width100">
                             <tr>
                                 <td align="center">
                                     <%=FormUI.TitleLeft %>
@@ -663,12 +663,12 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input name="idea" type="text" value="" size="42" defaultvalue="想法">
+                                    <input name="idea" type="text" value=""  class="width100" defaultvalue="想法">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="description" cols="38" rows="3" defaultvalue="說明"></textarea>
+                                    <textarea name="description"  class="width100" rows="3" defaultvalue="說明"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -681,7 +681,7 @@
                         </table>
                     </div>
                     <div id="Block<%=FormUI.TypeRight %>" class="InputArea LightYellow">
-                        <table>
+                        <table class="width100">
                             <tr>
                                 <td align="center">
                                     <%=FormUI.TitleRight %>
@@ -691,12 +691,12 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input name="idea" type="text" value="" size="42" defaultvalue="想法">
+                                    <input name="idea" type="text" value="" class="width100" defaultvalue="想法">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <textarea name="description" cols="38" rows="3" defaultvalue="說明"></textarea>
+                                    <textarea name="description"  class="width100" rows="3" defaultvalue="說明"></textarea>
                                 </td>
                             </tr>
                             <tr>

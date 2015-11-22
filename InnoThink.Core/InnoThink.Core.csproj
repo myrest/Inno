@@ -104,6 +104,7 @@
     <Compile Include="Constancy\Enums.cs" />
     <Compile Include="Constancy\EnumScenario.cs" />
     <Compile Include="Constancy\Permission.cs" />
+    <Compile Include="DB\DbBestGAPIdeaTable.cs" />
     <Compile Include="DB\DbScenarioTable.cs" />
     <Compile Include="DB\DbResultsTable.cs" />
     <Compile Include="DB\DbBestGAPTable.cs" />

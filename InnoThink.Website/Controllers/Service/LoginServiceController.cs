@@ -50,6 +50,7 @@ namespace InnoThink.Website.Controllers.Service
             trading.Picture = user.Picture;
             trading.UserName = user.UserName;
             trading.UserSN = user.UserSN;
+            trading.ReallUserSN = user.UserSN;
             sessionData.trading = trading;
         }
 
@@ -270,6 +271,15 @@ namespace InnoThink.Website.Controllers.Service
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult Impersonate(int NewUserSN)
+        {
+            sessionData.trading.UserSN = NewUserSN;
+            ResultBase r = new ResultBase();
+            r.setMessage("Done");
+            return Json(r, JsonRequestBehavior.DenyGet);
         }
 
         public JsonResult Logout()

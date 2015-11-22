@@ -181,6 +181,17 @@ namespace InnoThink.Website.Controllers.Service
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
+        [HttpPost]
+        public JsonResult UploadBest6_1Image(HttpPostedFileBase Uploadfile)
+        {
+            //Check image dimensions.
+            int ImageWidth = 150;
+            int ImageHeight = 150;
+            string PreFix = "Best6_1";
+            UploadFileResult result = CheckAndSaveUploadFile(Uploadfile, ImageWidth, ImageHeight, PreFix);
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
         private UploadFileResult CheckAndSaveUploadFile(HttpPostedFileBase Uploadfile, int ImageWidth, int ImageHeight, string PreFix)
         {
             //This must be get the Topic SN from SessionData.

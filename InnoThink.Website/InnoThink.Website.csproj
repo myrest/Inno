@@ -144,6 +144,7 @@
     <Compile Include="Models\Topic\Best4ViewModel.cs" />
     <Compile Include="Models\Topic\Best5ViewModel.cs" />
     <Compile Include="Models\Topic\Best6ViewModel.cs" />
+    <Compile Include="Models\Topic\Best6_1ViewModel.cs" />
     <Compile Include="Models\Topic\ScenarioCharResultViewModel.cs" />
     <Compile Include="Models\Topic\ScenarioCharViewModel.cs" />
     <Compile Include="Models\Topic\ResultRankCommentListModel.cs" />
@@ -279,6 +280,7 @@
     <Content Include="pic\logo50x150-2.png" />
     <Content Include="pic\logo50x150-3.gif" />
     <Content Include="pic\logo50x150-3.png" />
+    <Content Include="pic\NoIcon.jpg" />
     <Content Include="pic\pc-1.png" />
     <Content Include="pic\pen-1.png" />
     <Content Include="pic\right-1.png" />
@@ -332,6 +334,7 @@
     <Content Include="Views\Topic\Best4.aspx" />
     <Content Include="Views\Topic\Best5.aspx" />
     <Content Include="Views\Topic\Best6.aspx" />
+    <Content Include="Views\Topic\Set6_1.aspx" />
     <Content Include="Views\Topic\Set6.aspx" />
     <Content Include="Views\Topic\Set5.aspx" />
     <Content Include="Views\Topic\Set4.aspx" />

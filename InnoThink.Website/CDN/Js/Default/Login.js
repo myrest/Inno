@@ -71,6 +71,8 @@ var login =
         }
     },
     _Reg: function () {
+        utility.showPopUp("暫時不開放註冊，請使用Facebook帳號登入。", 1);
+        return false;
         var id = $("#NewId").val();
         var pwd = $("#NewPwd").val();
         var conpwd = $("#NewConfPwd").val();

@@ -52,14 +52,24 @@ namespace InnoThink.Core
             UserSN = 0;
             Level = 0;
             FBAccessToken = string.Empty;
+            ReallUserSN = 0;
         }
 
         public string LoginId { get; set; }
+
+        /// <summary>
+        /// Due to user can impersonate to other person.
+        /// This is the reall UserSN
+        /// </summary>
+        public int ReallUserSN { get; set; }
 
         public bool isLogined { get; set; }
 
         public int Level { get; set; }
 
+        /// <summary>
+        /// This is only using write in DB, impersonated user
+        /// </summary>
         public int UserSN { get; set; }
 
         public string FBAccessToken { get; set; }

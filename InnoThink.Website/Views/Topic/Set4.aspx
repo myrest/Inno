@@ -607,7 +607,7 @@
                             <tr>
                                 <td valign="top">
                                     <label for="chk_<%=item.BestIdeaSN %>">
-                                        <input type="checkbox" name="chkTypeS" id="Checkbox1" value="<%=item.BestIdeaSN %>" />
+                                        <input type="checkbox" name="chkTypeS" id="chk_<%=item.BestIdeaSN %>" value="<%=item.BestIdeaSN %>" />
                                         <% =item.Idea %>
                                     </label>
                                 </td>
@@ -944,7 +944,7 @@
             , GetBestData: function () {
                 var $this = $(this);
                 //Get Type
-                var type = 'best' + $this.parent().parent().parent().parent().parent().parent().attr('id').substr(6, 1);
+                var type = 'best' + $this.parent().parent().parent().parent().parent().parent().attr('id').substr(9, 1);
                 var GroupName = $this.parent().find('.groupName').html().trim();
                 var sns = $this.attr('sns').split(',');
 
