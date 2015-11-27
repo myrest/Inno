@@ -111,7 +111,7 @@ namespace InnoThink.Website.Controllers
 
             ViewData["TopicSN"] = TopicSN;
             ViewData["FormUI"] = UIObj;
-            return View(@"~\Views\Analysis\Analysis1.aspx");
+            return View(@"~\Views\Analysis\Analysis4.aspx");
         }
     }
 }

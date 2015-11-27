@@ -238,6 +238,7 @@
     <Content Include="CDN\Templates\Products\ProdListing.html" />
     <Content Include="CDN\Templates\Result\CommentListing.html" />
     <Content Include="CDN\Templates\Result\SetRankForm.html" />
+    <Content Include="CDN\Templates\Scenario\Scenario2_1.html" />
     <Content Include="CDN\Templates\Scenario\Scenario4.html" />
     <Content Include="CDN\Templates\Scenario\Scenario3.html" />
     <Content Include="CDN\Templates\Scenario\Scenario2.html" />
@@ -304,6 +305,7 @@
     <Content Include="Views\Admin\CreateTeamGroup.aspx" />
     <Content Include="Views\Admin\TeamGroupListing.aspx" />
     <Content Include="Views\Analysis\Analysis1.aspx" />
+    <Content Include="Views\Analysis\Analysis4.aspx" />
     <Content Include="Views\Default\Admin.aspx" />
     <Content Include="Views\Default\Index.aspx" />
     <Content Include="Views\Admin\Admin.aspx" />
@@ -315,6 +317,8 @@
     <Content Include="Views\Member\CreateNewTopic.aspx" />
     <Content Include="Views\Member\UserInfo.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Scenario\Scenario3_1.aspx" />
+    <Content Include="Views\Scenario\Scenario2_1.aspx" />
     <Content Include="Views\Scenario\Scenario7.aspx" />
     <Content Include="Views\Scenario\Scenario6.aspx" />
     <Content Include="Views\Scenario\Scenario5.aspx" />

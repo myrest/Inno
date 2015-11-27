@@ -196,7 +196,13 @@ namespace InnoThink.Website.Controllers.Service
                     Type = ScenarioType.FirstTime
                 };
 
-                if (!string.IsNullOrEmpty(model.Subject) && !string.IsNullOrEmpty(model.NickName))
+                bool skipValidation = false;
+                if (obj.TopicSN > 6)
+                {
+                    skipValidation = true;
+                }
+
+                if (!string.IsNullOrEmpty(model.Subject) && !string.IsNullOrEmpty(model.NickName) || skipValidation)
                 {
                     //Get existing SN
                     var ScenarioObjList = dbScenario.GetAllByTopicSN(model.TopicSN, ScenarioType.FirstTime);
@@ -253,6 +259,7 @@ namespace InnoThink.Website.Controllers.Service
                     result.setMessage("Done");
                     model.ServerFileName = StringUtility.ConvertScenarioPath(model.ServerFileName);
                     sessionData.ClearTempValue();
+                    model.UserName = sessionData.trading.UserName;
                     CommServer.Instance.syncUIScenario2(model);
                 }
                 else

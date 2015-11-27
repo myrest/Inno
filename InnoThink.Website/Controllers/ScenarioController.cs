@@ -99,8 +99,71 @@ namespace InnoThink.Website.Controllers
             return View();
         }
 
+        //情境分析法3
+        public ActionResult Scenario3_1(int TopicSN)
+        {
+            TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
+            sessionData.ClearTempValue();
+
+            //Get ScenarioChar infor
+            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.UserSN) { };
+            var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.FirstTime);
+            if (list != null)
+            {
+                //Change image path.
+                list.ForEach(x =>
+                {
+                    x.ServerFileName = StringUtility.ConvertScenarioPath(x.ServerFileName);
+                });
+            }
+            Model.Listing = list;
+            Model.TopicSN = TopicSN;
+
+            //Get Team member List
+            var OnLineMem = (List<TopicMemberUI>)ViewData["OnlineTeamMember"];
+            var OffLineMem = (List<TopicMemberUI>)ViewData["OfflineTeamMember"];
+            List<TopicMemberUI> AllMember = new List<TopicMemberUI>() { };
+            if (OnLineMem != null)
+            {
+                AllMember.AddRange(OnLineMem);
+            }
+            if (OffLineMem != null)
+            {
+                AllMember.AddRange(OffLineMem);
+            }
+
+            //Make ViewData
+            ViewData["Model"] = Model;
+            ViewData["AllMember"] = AllMember;
+
+            return View();
+        }
+        
         //情境分析法2
         public ActionResult Scenario2(int TopicSN)
+        {
+            TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
+            sessionData.ClearTempValue();
+            ScenarioCharViewModel Model = new ScenarioCharViewModel(sessionData.trading.UserSN) { };
+            var list = dbScenario.GetAllByTopicSN(TopicSN, ScenarioType.FirstTime);
+            if (list != null)
+            {
+                //Change image path.
+                list.ForEach(x =>
+                {
+                    x.ServerFileName = StringUtility.ConvertScenarioPath(x.ServerFileName);
+                });
+            }
+
+            Model.Listing = list;
+            Model.TopicSN = TopicSN;
+            ViewData["Model"] = Model;
+
+            return View();
+        }
+
+        //角色扮演簡單版
+        public ActionResult Scenario2_1(int TopicSN)
         {
             TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
             sessionData.ClearTempValue();

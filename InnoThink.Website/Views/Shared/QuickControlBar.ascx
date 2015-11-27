@@ -36,6 +36,8 @@
                     <option value="Topic,Set6">尋找產品機會缺口</option>
                     <option value="Analysis,Analysis4">現有市場分析</option>
                     <option value="Topic,Set6_1">機會缺口點子</option>
+                    <option value="Scenario,Scenario2_1">角色扮演設定</option>
+                    <option value="Scenario,Scenario3_1">我的情境故事</option>
                 </select>
                 <label for="AllJump">
                     <input type="checkbox" id="AllJump" />全員跳頁

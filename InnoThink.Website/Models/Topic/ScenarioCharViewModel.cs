@@ -17,6 +17,9 @@ namespace InnoThink.Website.Models
 
         public int TopicSN { get; set; }
 
+        [DataMember(Name = "UserName")]
+        public string UserName { get; set; }
+
         [DataMember(Name = "d")]
         public List<DbScenarioCharModel> Listing { get; set; }
 

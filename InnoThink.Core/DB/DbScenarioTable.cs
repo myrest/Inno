@@ -640,6 +640,11 @@ namespace InnoThink.Core.DB
                     case AgeRangType.Under10:
                         return "10歲以下";
 
+                    case AgeRangType.Be11_20:
+                        return "11~20歲";
+
+                    case AgeRangType.Be21_30:
+                        return "21~30歲";
                     default:
                         return "未知";
                 }
