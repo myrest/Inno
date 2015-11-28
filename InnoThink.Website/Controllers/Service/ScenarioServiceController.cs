@@ -577,11 +577,15 @@ namespace InnoThink.Website.Controllers.Service
         {
             DbScenarioCharValueModel model = new DbScenarioCharValueModel() { };
             ResultBase result = new ResultBase() { };
-            if (TopicSN == 0 || string.IsNullOrEmpty(Description))
+            if (TopicSN == 0 || string.IsNullOrEmpty(Description) || ScenarioSN == 0)
             {
                 if (ScenarioSN == 0)
                 {
                     result.setErrorMessage("ScenarioSN is empty.");
+                }
+                else if (TopicSN == 0)
+                {
+                    result.setErrorMessage("TopicSN is empty.");
                 }
                 else
                 {

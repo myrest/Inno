@@ -5,10 +5,8 @@
 <%@ Import Namespace="InnoThink.Website.Models" %>
 <%@ Import Namespace="InnoThink.Domain" %>
 <%@ Import Namespace="InnoThink.Core.Constancy" %>
-<%@ Import Namespace="InnoThink.Domain.InnoThinkMain.Binding" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    我的情境故事
+    有價值點分析
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" runat="server">
     <style type="text/css">
@@ -202,8 +200,7 @@
             background-color: #F2F2F2;
             height: 20px;
             padding-top: 8px;
-            margin-bottom: 10px;
-            /*text-align: center;*/
+            margin-bottom: 10px; /*text-align: center;*/
         }
 
         #talk0 #talk-out1 {
@@ -248,8 +245,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%
         var Model = (ScenarioCharViewModel)ViewData["Model"];
-        var AllMember = (List<TopicMemberUI>)ViewData["AllMember"];
-        var CharModel = Model.Data;
+        var AllMember = (List<InnoThink.Domain.InnoThinkMain.Binding.TopicMemberUI>)ViewData["AllMember"];
         int UserSN = (int)ViewData["_UserSN"];
     %>
     <table class="body0 StepBody">
@@ -257,19 +253,13 @@
             <td>
                 <div id="body1">
                     <%
-                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "我的情境故事", ControlSubTitle = "我的情境故事" };
+                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "有價值點分析", ControlSubTitle = "有價值點分析" };
                         ViewData["QCBAR"] = QCBAR;
                         Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");
                         bool IsTeamMember = (bool)ViewData["IsTeamMember"];
                         bool NotTeamMember = !IsTeamMember;
                         string HideEditClass = string.Empty;
                         string HideStyle = string.Empty;
-                        //若無角色,則以訪客處理
-                        if (Model.Data.SN == 0)
-                        {
-                            IsTeamMember = false;
-                            NotTeamMember = !IsTeamMember;
-                        }
                         if (NotTeamMember)
                         {
                             HideEditClass = "hide";
@@ -277,76 +267,51 @@
                         }
                     %>
                 </div>
-                <div id="body-5" style="<%=HideStyle%>">
-                    1. 我的情境故事：
+                <div id="body-5">
+                    1. 我的情境分鏡：
                 </div>
-                <div id="body2" style="<%=HideStyle%>">
+                <div id="body2">
                     <table width="95%" border="0" align="center">
-                        <tr>
-                            <td colspan="3" valign="top" bgcolor="#FFFF99">1. 我的身份：
-                            </td>
-                        </tr>
-                        <tr>
+                        <tr bgcolor="#FFFF99">
                             <td colspan="3" valign="top">
-                                <table width="95%" border="0" align="center">
-                                    <tr>
-                                        <td valign="top" colspan="2"><% =CharModel.UserName%>扮演
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top">性別：<% =CharModel.GenderUI%>
-                                        </td>
-                                        <td valign="top">年齡：<% =CharModel.AgeRangUI%>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top">教育程度：<% =CharModel.EduUI%>
-                                        </td>
-                                        <td height="21" valign="top">職業：<% =CharModel.Career%>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <div class="teammember">
+                                    成員：
+                                    <%
+                                        //At the fist time login will using the current user for UI display.
+                                        foreach (var item in AllMember)
+                                        {
+                                            string strCHK = (UserSN == item.UserSN) ? "Scenario3Checked" : "";
+                                            Response.Write(string.Format("<span class=\"clickable Scenario3MemTab {0}\" sn=\"{1}\" />{2}</span>", strCHK, item.UserSN, item.UserName));
+                                        }
+                                    %>
+                                </div>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3" valign="top" bgcolor="#FFFF99">2. 我發生的情境故事 (請根據 &quot; 人事時地物 &quot; 寫出5件以上該角色在這個議題中發生的事)：
+                            <td colspan="3" valign="top" id="CharInformation">這裏放角色資料
+                            </td>
+                        </tr>
+                        <tr bgcolor="#FFFF99">
+                            <td colspan="3" valign="top">1. 我的議題：<% =ViewData["Subject"].ToString()%>
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">&nbsp;
-                            </td>
-                            <td valign="top">事件描述：
-                            </td>
-                            <td valign="top">
-                                <textarea name="column2" cols="50" rows="3" id="column2" extmaxlength="4000"></textarea>
-                                <input type="hidden" id="ResultSN" value="0" />
+                            <td colspan="3" align="center" valign="top" id="Storys">這裏放故事內容
                             </td>
                         </tr>
-                        <tr>
-                            <td valign="top">&nbsp;
+                        <tr style="<%=HideStyle%>">
+                            <td height="21" colspan="2" valign="top" bgcolor="#FFFF99">2. 有價值點：
                             </td>
-                            <td valign="top">事件圖畫：
-                            </td>
-                            <td valign="top">
-                                <form id="file_upload" runat="server">
-                                    <div id="filediv">
-                                        <input type="file" name="Uploadfile" multiple="" />
-                                        <button>
-                                            上傳</button>
-                                        <div>
-                                            檔案上傳
-                                        </div>
-                                    </div>
-                                    <table id="files" style="display: inline;">
-                                    </table>
-                                </form>
-                                <span id="deluploadfile"></span>
+                            <td valign="top" bgcolor="#FFFF99">
+                                <input name="valuepoint" type="text" id="valuepoint" size="40" extmaxlength="20" />
+                                <input type="hidden" id="ScenarioCharSN" />
+                                <input type="hidden" id="ScenarioCharVpSN" />
                             </td>
                         </tr>
-                        <tr>
-                            <td width="3%" valign="top">&nbsp;
+                        <tr style="<%=HideStyle%>">
+                            <td width="5%" valign="top">&nbsp;
                             </td>
-                            <td width="12%" align="right" valign="top">&nbsp;
+                            <td width="10%" align="right" valign="top">&nbsp;
                             </td>
                             <td width="85%" align="right" valign="top">
                                 <button id="savebtn">
@@ -361,23 +326,14 @@
                         </tr>
                     </table>
                 </div>
-                <div class="Div1">
-                    2. 情境分鏡描述：<span id="notice" style="background-color: rgb(255, 195, 195);" class="hidden">資料已更新</span>
+                <div id="body-5">
+                    2. 有價值點： (請寫出從故事中覺得有價值點，或新想法可加入)
+                    <span id="notice" style="background-color: rgb(255, 195, 195);" class="hidden">資料已更新</span>
                 </div>
                 <div id="body-3">
-                    <div id="body-4a">
-                        成員：
-                        <%
-                            //At the fist time login will using the current user for UI display.
-                            foreach (var item in AllMember)
-                            {
-                                string strCHK = (UserSN == item.UserSN) ? "Scenario3Checked" : "";
-                                Response.Write(string.Format("<span class=\"clickable Scenario3MemTab {0}\" sn=\"{1}\" />{2}</span>", strCHK, item.UserSN, item.UserName));
-                            }
-                        %>
-                    </div>
                     <div id="body-5a">
-                        <span id="CharBlock"></span>
+                        <table width="95%" border="0" id="CharBlock">
+                        </table>
                     </div>
                 </div>
             </td>
@@ -385,13 +341,10 @@
     </table>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">
-    <%
-        ScenarioCharViewModel Model = (ScenarioCharViewModel)ViewData["Model"];
-    %>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/lib/jquery.fileupload.js") %>"></script>
     <script type="text/javascript" src="<%= Url.CdnContent("/js/lib/jquery.fileupload-ui.js") %>"></script>
     <script type="text/javascript">
-        var TopicSN = '<% =Model.TopicSN %>';
+        var TopicSN = '<% =(int)ViewData["TopicSN"] %>';
         TopicSN = parseInt(TopicSN, 10);
         /*global $ */
         $(function () {
@@ -403,52 +356,23 @@
             $('#cancle').on('click', Step.CancleUpdate);
             $('#updatebtn').on('click', Step.UpdateData);
 
-            //$('#deleteimage').on('click', Step.DeleteImage);
-            //Step.$Template = $('#itemTemplate').clone().removeClass('hidden').removeAttr('id');
-
-            $('#file_upload').fileUploadUI({
-                url: '/FileUploadService/UploadResult',
-                method: 'POST',
-                uploadTable: $('#files'),
-                downloadTable: $('#files'),
-                buildUploadRow: function (files, index) {
-                    $('#files').html('');
-                    return $('<tr><td>' + files[index].name + '(' + files[index].size + ')<\/td>' +
-                            '<td class="file_upload_progress"><div><\/div><\/td>' +
-                            '<td class="file_upload_cancel">' +
-                            '<button class="ui-state-default ui-corner-all" title="取消">' +
-                            '<span class="ui-icon ui-icon-cancel">取消<\/span>' +
-                            '<\/button><\/td><\/tr>');
-                },
-                buildDownloadRow: function (file) {
-                    if (file.code > 0) {
-                        $('#deluploadfile').html('<button id="deleteimage" class="ui-state-default ui-corner-all ui-icon ui-icon-cancel clickable" title="刪除" />');
-                        $('#deleteimage').on('click', Step.DeleteImage);
-                        return $('<tr><td>' + file.fn + '(' + file.fs + ')<\/td><\/tr>');
-                    } else {
-                        utility.showPopUp(file.msg, 1);
-                    }
-                }
-            });
-            Step.GetAllData3(0);
+            Step.GetAllData4(0);
         });
 
         var Step = {
-            $Column1: $('#column1'),
-            $Column2: $('#column2'),
-            $Column3: $('#column3'),
-            $Column4: $('#column4'),
-            SN: 0
+            $ValuePoint: $('#valuepoint')
+            , $ScenarioCharSN: $('#ScenarioCharSN')
+            , $ScenarioCharVpSN: $('#ScenarioCharVpSN')
             , ClearForm: function () {
-                $('#body2 input, #body2 textarea').val('');
-                $('#files').html('');
+                Step.$ValuePoint.val('');
             }
             , GetDataByUserSN: function () {
                 var $this = $(this);
                 $('.Scenario3MemTab').removeClass('Scenario3Checked');
                 $this.addClass('Scenario3Checked');
                 var UserSN = $this.attr('sn');
-                Step.GetAllData3(UserSN);
+                Step.GetAllData4(UserSN);
+                Step.$ScenarioCharSN.val(UserSN);
                 Step.CancleUpdate();
             }
             , CancleUpdate: function () {
@@ -460,74 +384,64 @@
             }
             , UpdateData: function () {
                 var para = {
-                    'Column1': Step.$Column1.val()
-                    , 'Column2': Step.$Column2.val()
-                    , 'Column3': Step.$Column3.val()
-                    , 'Column4': Step.$Column4.val()
-                    , 'SN': $('#ResultSN').val()
+                    'TopicSN': TopicSN
+                    , 'ScenarioCharSN': Step.$ScenarioCharSN.val()
+                    , 'ScenarioCharVpSN': Step.$ScenarioCharVpSN.val()
+                    , 'Description': Step.$ValuePoint.val()
                 };
-                utility.ajaxQuiet('TopicService/UpdateResult', para);
+                utility.ajaxQuiet('ScenarioService/Scenario4Update', para, null, utility.ecb);
                 Step.CancleUpdate();
-            }
-            , DeleteImage: function () {
-                var para = {
-                    'SN': TopicSN
-                };
-                utility.ajaxQuiet('FileUploadService/TempDeleteBestImage', para);
-                $('#deluploadfile').html('');
-                $('#files').html('');
             }
             , SaveData: function () {
                 var para = {
-                    'Column1': Step.$Column1.val()
-                    , 'Column2': Step.$Column2.val()
-                    , 'Column3': Step.$Column3.val()
-                    , 'Column4': Step.$Column4.val()
-                    , 'TopicSN': TopicSN
+                    'TopicSN': TopicSN
+                    , 'ScenarioSN': Step.$ScenarioCharSN.val()
+                    , 'Description': Step.$ValuePoint.val()
                 };
-                utility.ajaxQuiet('ScenarioService/Scenario3', para, null, utility.ecb);
+                utility.ajaxQuiet('ScenarioService/Scenario4Save', para, null, utility.ecb);
                 Step.ClearForm();
             }
             , GetDataForEdit: function () {
-                var ResultSN = $(this).parent().parent().attr('sn')
-                $('#ResultSN').val(ResultSN);
-                var para = {
-                    'SN': ResultSN
-                };
-                var cb = function (result) {
-                    var data = result.Listing[0];
-                    Step.$Column2.val(data.Column2);
-                    if (data.UserFileName.length > 0) {
-                        $('#deluploadfile').html(data.UserFileName + ' <button id="deleteimage" class="ui-state-default ui-corner-all ui-icon ui-icon-cancel clickable" title="刪除" />');
-                        $('#deleteimage').on('click', Step.DeleteImage);
-                    }
-                    document.location = "#";
-                };
-                utility.ajaxQuiet('TopicService/GetResultInfo', para, cb);
+                var ScenarioCharVpSN = $(this).parent().parent().attr('sn');
+                var ScenarioCharSN = Step.$ScenarioCharSN.val();
+                var Description = $(this).parent().text().trim();
+                //set current VP SN.
+                Step.$ScenarioCharVpSN.val(ScenarioCharVpSN);
+                //Set to input box.
+                Step.$ValuePoint.val(Description);
                 $('#btnofupdate').show();
                 $('#savebtn').hide();
-                $('#files').html('');
+                Step.$ValuePoint.focus();
             }
-            , GetAllData3: function (UserSN) {
+            , GetAllData4: function (UserSN) {
                 var para = {
                     'TopicSN': TopicSN,
                     'UserSN': UserSN
                 };
-                utility.service('ScenarioService/GetAllItemList3', para, 'POST', function (data) {
+                utility.service('ScenarioService/GetAllItemList4', para, 'POST', function (data) {
                     if (data.code > 0) {
                         if (data.d != null) {
+                            //ScenarioCharSN
+                            $('#ScenarioCharSN').val(data.info.sn);
                             var objData = Array();
                             objData.push(data.info);
                             var templatepara = { 'data': objData };
                             //build member inform
                             utility.template("Scenario/Scenario2_1.html", function (template) {
-                                $('#CharBlock').html(template.process(templatepara));
+                                $('#CharInformation').html(template.process(templatepara));
                                 var templatepara3 = { 'data': data.d };
                                 //build descriptions
                                 utility.template("Scenario/Scenario3.html", function (template) {
-                                    $('#CharBlock').append(template.process(templatepara3));
-                                    //bind edit event.
-                                    $('#CharBlock .edit').unbind().on('click', Step.GetDataForEdit);
+                                    $('#Storys').html(template.process(templatepara3));
+                                    //remove edit button.
+                                    $('#Storys .edit.clickable').remove()
+                                    //Build Value points
+                                    var templatepara4 = { 'data': data.vp };
+                                    utility.template("Scenario/Scenario4.html", function (template) {
+                                        $('#CharBlock').html(template.process(templatepara4));
+                                        //bind edit event.
+                                        $('#CharBlock .edit').unbind().on('click', Step.GetDataForEdit);
+                                    }, "Scenario4Listing");
                                 }, "Scenario3Listing");
                             }, "ScenarioListing");
                         }
@@ -536,25 +450,29 @@
                     }
                 });
             }
-            , syncUIScenario3: function (data) {
+            , syncUIScenario4: function (data) {
                 //check is the data is come from the same UserSN.
                 var curUserSN = $('.Scenario3MemTab.Scenario3Checked').attr('sn');
-                if (parseInt(data[0].usn,10) == parseInt(curUserSN, 10)) {
+                var curSCSN = Step.$ScenarioCharSN.val();
+                if (parseInt(data.scsn, 10) == parseInt(curSCSN, 10)) {
                     //check sn is existing.
-                    var $obj = $('#CharBlock tr[sn=' + data[0].sn + ']');
-                    var templatepara = { 'data': data };
-                    utility.template("Scenario/Scenario3.html", function (template) {
+                    var $obj = $('#CharBlock tr[sn=' + data.sn + ']');
+                    var objData = Array();
+                    objData.push(data);
+                    var templatepara = { 'data': objData };
+                    utility.template("Scenario/Scenario4.html", function (template) {
                         var html = template.process(templatepara);
                         //need to get the tr block for signal data
-                        var $trHtml = $(html).find('tr[sn=' + data[0].sn + ']');
+                        var $trHtml = $(html);
+                        $trHtml.children().first().html($('#CharBlock tr').length + 1 + '.');
 
                         if ($obj.length > 0) {
                             $obj.html($trHtml.html());
                         } else {
-                            $('#CharBlock .Scenario3List').append($trHtml);
+                            $('#CharBlock').append($trHtml);
                         }
                         $('#CharBlock .edit').unbind().on('click', Step.GetDataForEdit);
-                    }, "Scenario3Listing");
+                    }, "Scenario4Listing");
                     $('#notice').show(500);
                     setTimeout(function () {
                         $('#notice').hide(500);

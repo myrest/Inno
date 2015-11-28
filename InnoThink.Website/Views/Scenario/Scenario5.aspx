@@ -581,7 +581,7 @@
             <td>
                 <div id="body1">
                     <%
-                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "微觀情境分析", ControlSubTitle = "情境故事重要性分析" };
+                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "情境故事重要性分析", ControlSubTitle = "情境故事重要性分析" };
                         ViewData["QCBAR"] = QCBAR;
                         Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");
                         bool IsTeamMember = (bool)ViewData["IsTeamMember"];
@@ -604,6 +604,7 @@
                             <col width="50%" />
                         </colgroup>
                         <%
+                            string username = "";
                             if (RankData != null)
                             {
                                 int i = 0;
@@ -632,7 +633,8 @@
                                     }
                                     else
                                     {
-                                        Response.Write(string.Format("{0} .{1}的故事：{2}", i, item.Values[0].UserName, item.Subject));
+                                        //Response.Write(string.Format("{0} .{1}的故事：{2}", i, item.Values[0].UserName, item.Subject));
+                                        Response.Write("有價值點");
                                     }
                                             %>
                                         </td>
@@ -653,24 +655,37 @@
                                     {
                                         j++;
                                         string strBGColor = (j % 2 == 0) ? "" : bgColor;
-                                    %>
-                                    <tr>
-                                        <td width="35%" align="left" valign="top" <% =strBGColor %>>
-                                            <%=vp.Description %>
-                                        </td>
-                                        <td align="center" valign="top" <% =strBGColor %>>
-                                            <%
-                                        for (int x = 1; x < 6; x++)
+                                        if ((string.Compare(keywork, item.Subject, true) != 0) && (username != vp.UserName))
                                         {
-                                            string selected = (x == vp.Rank) ? "checked=\"checked\"" : "";
-                                            string radiosample = "<label for=\"id{0}\"><input type=\"radio\" name=\"{1}{2}\" id=\"id{0}\" value=\"{3}\" {4}>{3}</label>";
-                                            string radio = string.Format(radiosample, x.ToString() + vp.ScenarioCharValueSN, rdoName, vp.ScenarioCharValueSN, x, selected);
-                                            Response.Write(radio);
-                                        }
+                                            username = vp.UserName;
                                             %>
-                                        </td>
-                                    </tr>
-                                    <%
+                                            <tr>
+                                                <td width="100%" colspan="2" align="left" valign="top" <% =strBGColor %> style="color:blue;">
+                                                    <%=string.Format("[{0}的故事]", vp.UserName) %>
+                                                </td>
+                                            </tr>
+                                            <%
+                                            j++;
+                                            strBGColor = (j % 2 == 0) ? "" : bgColor;
+                                        }
+                                        %>
+                                        <tr>
+                                            <td width="35%" align="left" valign="top" <% =strBGColor %>>
+                                                <%=vp.Description %>
+                                            </td>
+                                            <td align="center" valign="top" <% =strBGColor %>>
+                                                <%
+                                            for (int x = 1; x < 6; x++)
+                                            {
+                                                string selected = (x == vp.Rank) ? "checked=\"checked\"" : "";
+                                                string radiosample = "<label for=\"id{0}\"><input type=\"radio\" name=\"{1}{2}\" id=\"id{0}\" value=\"{3}\" {4}>{3}</label>";
+                                                string radio = string.Format(radiosample, x.ToString() + vp.ScenarioCharValueSN, rdoName, vp.ScenarioCharValueSN, x, selected);
+                                                Response.Write(radio);
+                                            }
+                                                %>
+                                            </td>
+                                        </tr>
+                                        <%
                                     }
                                     BtnBGColor = (j % 2 == 1) ? "" : bgColor;
                                     %>

@@ -210,6 +210,31 @@ namespace InnoThink.Website.Controllers
             return View();
         }
 
+        //情境分析法4
+        public ActionResult Scenario4_1(int TopicSN)
+        {
+            TopicController.MakeBoardViewModel(TopicSN, ViewData, sessionData.trading, isAdmin);
+            sessionData.ClearTempValue();
+
+            //Get Team member List
+            var OnLineMem = (List<TopicMemberUI>)ViewData["OnlineTeamMember"];
+            var OffLineMem = (List<TopicMemberUI>)ViewData["OfflineTeamMember"];
+            List<TopicMemberUI> AllMember = new List<TopicMemberUI>() { };
+            if (OnLineMem != null)
+            {
+                AllMember.AddRange(OnLineMem);
+            }
+            if (OffLineMem != null)
+            {
+                AllMember.AddRange(OffLineMem);
+            }
+
+            //Make ViewData
+            ViewData["AllMember"] = AllMember;
+
+            return View();
+        }
+        
         //情境分析法5
         public ActionResult Scenario5(int TopicSN)
         {

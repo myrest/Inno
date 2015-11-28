@@ -71,7 +71,7 @@ namespace InnoThink.Core.DB
                         Description = sdr["Description"].ToString(),
                         ScenarioCharSN = Convert.ToInt32(sdr["ScenarioCharSN"].ToString()),
                         UserSN = Convert.ToInt32(sdr["UserSN"].ToString()),
-                        SN = Convert.ToInt32(sdr["ScenarioCharSN"].ToString()),
+                        SN = Convert.ToInt32(sdr["ScenarioCharValuesSN"].ToString()),
                     });
                     //listResult.Last().LastUpdate = DateTime.Parse(sdr["LastUpdate"].ToString());
                 }
@@ -426,10 +426,12 @@ namespace InnoThink.Core.DB
                                         Set Rank = @Rank,
                                             LastUpdate = @LastUpdate
                                         Where ScenarioCharValueSN = @ScenarioCharValueSN
+                                        And UserSN = @UserSN
                 ";
                 List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
                 listPara.Add(new SQLiteParameter("@ScenarioCharValueSN", model.ScenarioCharValueSN));
                 listPara.Add(new SQLiteParameter("@Rank", model.Rank));
+                listPara.Add(new SQLiteParameter("@UserSN", model.UserSN));
                 listPara.Add(new SQLiteParameter("@LastUpdate", DateTime.Now));
                 ExecuteNonQuery(strCMD, listPara);
             }
@@ -525,11 +527,13 @@ namespace InnoThink.Core.DB
                                         Set Rank = @Rank,
                                             LastUpdate = @LastUpdate
                                         Where ScenarioCharSN = @ScenarioCharSN
+                                        And UserSN = @UserSN
                 ";
                 List<SQLiteParameter> listPara = new List<SQLiteParameter>() { };
                 listPara.Add(new SQLiteParameter("@ScenarioCharSN", model.ScenarioCharValueSN));
                 listPara.Add(new SQLiteParameter("@Rank", model.Rank));
                 listPara.Add(new SQLiteParameter("@LastUpdate", DateTime.Now));
+                listPara.Add(new SQLiteParameter("@UserSN", model.UserSN));
                 ExecuteNonQuery(strCMD, listPara);
             }
         }

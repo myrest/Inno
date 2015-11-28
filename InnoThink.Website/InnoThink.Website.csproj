@@ -317,6 +317,7 @@
     <Content Include="Views\Member\CreateNewTopic.aspx" />
     <Content Include="Views\Member\UserInfo.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Scenario\Scenario4_1.aspx" />
     <Content Include="Views\Scenario\Scenario3_1.aspx" />
     <Content Include="Views\Scenario\Scenario2_1.aspx" />
     <Content Include="Views\Scenario\Scenario7.aspx" />
