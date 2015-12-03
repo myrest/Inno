@@ -634,7 +634,7 @@
             <td>
                 <div id="body1">
                     <%
-                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = FormUI.MainFunction, ControlSubTitle = PageTitle };
+                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = FormUI.MainFunction, ControlSubTitle = FormUI.MainFunction };
                         ViewData["QCBAR"] = QCBAR;
                         Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");
                         bool IsTeamMember = (bool)ViewData["IsTeamMember"];

@@ -34,39 +34,35 @@ namespace InnoThink.Core.Cache.SignalR
             }
         }
 
-        public static void Add(int TopicSN, string ConnectionId)
+        public static void Add(string ConnectionId)
         {
             //check the connectionnid is exist?
             var CacheObj = AllConnections.Where(x => x.ConnectionID == ConnectionId).FirstOrDefault();
-            if (CacheObj != null)
-            {
-                //this block should not be trigger, because any new connection will has different connection id.
-
-                //update current topic sn.
-                CacheObj.TopicSN = TopicSN;
-                //Same User sn only can apply to one connection id.
-                //Need remove other connection.
-                AllConnections.Remove(AllConnections.Find(x => x.UserSN == CacheObj.UserSN && x.ConnectionID != ConnectionId));
-            }
-            else
+            if (CacheObj == null)
             {
                 AllConnections.Add(new ConnectionObject()
                 {
-                    ConnectionID = ConnectionId,
-                    TopicSN = TopicSN
+                    ConnectionID = ConnectionId
                 });
             }
         }
 
-        public static void Update(string ConnectionId, int UserSN)
+        public static ConnectionObject Update(int TopicSN, string ConnectionId, int UserSN)
         {
             //check the connectionnid is exist?
             var CacheObj = AllConnections.Where(x => x.ConnectionID == ConnectionId).FirstOrDefault();
             if (CacheObj != null)
             {
-                //update current User SN
-                CacheObj.UserSN = UserSN;
+                AllConnections.Remove(CacheObj);
+                CacheObj = new ConnectionObject()
+                {
+                    ConnectionID = ConnectionId,
+                    TopicSN = TopicSN,
+                    UserSN = UserSN
+                };
+                AllConnections.Add(CacheObj);
             }
+            return CacheObj;
         }
 
         public static void Remove(string ConnectionId)

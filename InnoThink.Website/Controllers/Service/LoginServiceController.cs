@@ -58,52 +58,49 @@ namespace InnoThink.Website.Controllers.Service
         public JsonResult FBLogin(string token)
         {
             ResultBase result = new ResultBase();
-            sessionData.trading = new Trading();
-            FacebookPersonAuth FBObject = FBUtility.GetUserID(token);
-            User_Manager um = new User_Manager();
-            if (um.FBLoginCheck(FBObject))
+            try
             {
-                MakeTrading(FBObject.Email);
-                sessionData.trading.isLogined = true;
-                sessionData.trading.FBAccessToken = token;
-                result.JsonReturnCode = 1;
+                sessionData.trading = new Trading();
+                FacebookPersonAuth FBObject = new FBUtility().GetUserID(token);
+                User_Manager um = new User_Manager();
+                if (um.FBLoginCheck(FBObject))
+                {
+                    MakeTrading(FBObject.Email);
+                    sessionData.trading.isLogined = true;
+                    sessionData.trading.FBAccessToken = token;
+                    result.JsonReturnCode = 1;
+                    Log.Debug(string.Format("User [{0}] Logined.", FBObject.Email));
+                }
+                else
+                {
+                    result.setException("Facebook login failed, please try again.", "FBLogin");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                result.setException("Facebook login failed, please try again.", "FBLogin");
+                result.setException(ex, "FBLogin");
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
-        public JsonResult SignalrLogin(string ConnectionId)
+        public JsonResult SignalrLogin(string ConnectionId, int TopicSN)
         {
             ResultBase result = new ResultBase();
-            if (sessionData.trading != null && sessionData.trading.UserSN > 0)
-            {
-                ConnectionManageBase.Update(ConnectionId, sessionData.trading.UserSN);
-            }
-
-            if (isAdmin)
-            {
-                BackofficeUser_Manager bm = new BackofficeUser_Manager();
-                var bouser = bm.GetBySN(sessionData.trading.UserSN);
-                var cacheobj = ConnectionManageBase.GetByUserSN(sessionData.trading.UserSN);
-                CommServer.Instance.syncOnlineUser(cacheobj.TopicSN, bouser);
-                result.setMessage("Done");
-                return Json(result, JsonRequestBehavior.DenyGet);
-            }
-            else
+            if (!isAdmin)
             {
                 //Sync all the team member at the same TopicSN
-                User_Manager um = new User_Manager();
-                var user = um.GetBySN(sessionData.trading.UserSN);
-                user.Picture = StringUtility.ConvertPicturePath(user.Picture);
-                var cacheobj = ConnectionManageBase.GetByUserSN(sessionData.trading.UserSN);
+                User_Info user = new User_Info()
+                {
+                    Picture = sessionData.trading.Picture,
+                    UserName = sessionData.trading.UserName,
+                    UserSN = sessionData.trading.UserSN
+                };
+                var cacheobj = ConnectionManageBase.Update(TopicSN, ConnectionId, user.UserSN);
                 CommServer.Instance.syncOnlineUser(cacheobj.TopicSN, user);
-                result.setMessage("Done");
-                return Json(result, JsonRequestBehavior.DenyGet);
             }
+            result.setMessage("Done");
+            return Json(result, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]

@@ -34,12 +34,6 @@ var inno198 = {
 
         // Add client-side hub methods that the server will call
         $.extend(inno198.conn.client, {
-            ServerInitCache: function (msg) {
-                var para = {
-                    'ConnectionId': msg
-                };
-                utility.ajaxQuiet('LoginService/SignalrLogin', para);
-            },
             BoardA: function (msg) {
                 //update board at top of right side.
                 alert(msg);
@@ -228,10 +222,13 @@ var inno198 = {
         $.connection.hub.start({ jsonp: true })
         .pipe()
         .done(function (state) {
-            if (TopicSN == undefined || TopicSN == '') {
-                TopicSN = 0;
+            if ((typeof(TopicSN) != 'undefined') && TopicSN != '') {
+                var para = {
+                    'ConnectionId': state.id,
+                    TopicSN : TopicSN
+                };
+                utility.ajaxQuiet('LoginService/SignalrLogin', para);
             }
-            inno198.conn.server.initUnit1(TopicSN);
         })
         .fail(function () {
             $("#content").prepend("<li class='hubStartFail'> Could not Connect!</li>");

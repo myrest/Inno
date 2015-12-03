@@ -65,7 +65,8 @@ var Main = {
             $('#MainMenuDDL').append(new Option(dllName, dllName, checked, checked));
             //got the main menu setting, need to draw sub ment.
             if (checked) {
-                Main.MakeSubDDLMenu(ele[dllName], CurrentPage[1]);
+                //因為只有一層,暫時mark掉
+                //Main.MakeSubDDLMenu(ele[dllName], CurrentPage[1]);
             }
         });
         $('#MainMenuDDL').on('change', Main.ChangeSubDDLMenu)
@@ -170,7 +171,7 @@ $(function () {
     Main.init();
     if (typeof (CurrentPage) != 'undefined') {
         Main.MakeDDLMenu();
-        $(".QuickJumpBlock option:contains('" + CurrentPage[0] + "')").attr('selected', true);
+        $(".QuickJumpBlock option:contains('" + CurrentPage[1] + "')").attr('selected', true);
     }
     Main.BindImpersonateEvent();
     //JSON.stringify(possessList)

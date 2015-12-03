@@ -1,8 +1,13 @@
-﻿using InnoThink.Core.Cache.SignalR;
+﻿using InnoThink.Core;
+using InnoThink.Core.Cache.SignalR;
+using InnoThink.Domain;
+using InnoThink.Domain.Constancy;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Services;
 
 namespace InnoThink.Website.Communication
 {
@@ -10,6 +15,7 @@ namespace InnoThink.Website.Communication
     public class CommHub : Hub
     {
         private readonly CommServer commServer;
+        private static readonly string TradingSessionKey = SessionKeys.Trading.ToString();
 
         public CommHub()
             : this(CommServer.Instance)
@@ -26,6 +32,7 @@ namespace InnoThink.Website.Communication
         //Client connect event.
         public override Task OnConnected()
         {
+            Unit1Cache.Add(Context.ConnectionId);
             return base.OnConnected();
         }
 
@@ -54,21 +61,6 @@ namespace InnoThink.Website.Communication
         }
 
         #endregion Connect, Disconnect and Reconnect event.
-
-        public void init()
-        {
-            if (HttpContext.Current.Session != null)
-            {
-                HttpContext.Current.Session["ConnectionId"] = Context.ConnectionId;
-            }
-            commServer.init(Context);
-        }
-
-        //分組與初探：自我介紹及選隊長
-        public void initUnit1(int sn)
-        {
-            commServer.initUnit1(Context, sn);
-        }
 
         //同步各個Client端資料
         public void syncUIInfo(int TopicSN, string ElementName, string ElementValue, string AttName, string AttValue)

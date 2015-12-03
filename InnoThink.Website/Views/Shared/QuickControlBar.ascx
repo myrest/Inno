@@ -34,12 +34,15 @@
                     <option value="Topic,Set4">02. KJ法</option>
                     <option value="Topic,Set5">03. Set重要性分析</option>
                     <option value="Topic,Set6">04. 尋找產品機會缺口</option>
-                    <option value="Analysis,Analysis4">05. 現有市場分析</option>
-                    <option value="Topic,Set6_1">06. 機會缺口點子</option>
+                    <option value="Topic,Set6_1">05. 我的點子</option>
+                    <option value="Analysis,Analysis4">06. 現有市場分析</option>
                     <option value="Scenario,Scenario2_1">07. 角色扮演設定</option>
                     <option value="Scenario,Scenario3_1">08. 我的情境故事</option>
                     <option value="Scenario,Scenario4_1">09. 有價值點分析</option>
                     <option value="Scenario,Scenario5">10. 情境故事重要性分析</option>
+                    <option value="Topic,Result3">設計專案成果</option>
+                    <option value="Topic,Result1">草稿設計</option>
+                    <option value="Topic,Result2">裱版設計</option>
                 </select>
                 <label for="AllJump">
                     <input type="checkbox" id="AllJump" />全員跳頁

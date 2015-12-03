@@ -10,7 +10,7 @@ namespace InnoThink.Core.Utility
     {
         private static readonly SysLog log = SysLog.GetLogger(typeof(FBUtility));
 
-        public static FacebookPersonAuth GetUserID(string token)
+        public FacebookPersonAuth GetUserID(string token)
         {
             var client = new FacebookClient(token);
             //var meinfo = client.Get("me");

@@ -82,15 +82,6 @@ namespace InnoThink.Website.Communication
             //put initial action in here
         }
 
-        //分組與初探：自我介紹及選隊長 initial
-        internal void initUnit1(HubCallerContext Context, int sn)
-        {
-            //Add connection control.
-            SessionData sessionData = new SessionData();
-            Unit1Cache.Add(sn, Context.ConnectionId);
-            Clients.Client(Context.ConnectionId).ServerInitCache(Context.ConnectionId);
-        }
-
         internal void syncUIInfo(int TopicSN, string ElementName, string ElementValue, string AttName, string AttValue)
         {
             //get connections

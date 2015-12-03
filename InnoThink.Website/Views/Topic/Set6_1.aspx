@@ -632,7 +632,7 @@
             <td>
                 <div id="body1">
                     <%
-                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "機會缺口點子", ControlSubTitle = "機會缺口點子" };
+                        QuickControllBarViewModel QCBAR = new QuickControllBarViewModel() { ControlMainTitle = "我的點子", ControlSubTitle = "我的點子" };
                         ViewData["QCBAR"] = QCBAR;
                         Html.RenderPartial("~/Views/Shared/QuickControlBar.ascx");
                         bool IsTeamMember = (bool)ViewData["IsTeamMember"];
